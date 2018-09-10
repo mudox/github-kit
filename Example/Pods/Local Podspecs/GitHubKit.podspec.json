@@ -1,0 +1,22 @@
+{
+  "name": "GitHubKit",
+  "version": "0.1.0",
+  "summary": "A short description of GitHubKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/mudox/GitHubKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "mudox": "imudox@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/mudox/GitHubKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "GitHubKit/Classes/**/*"
+}
