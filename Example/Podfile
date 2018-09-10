@@ -1,12 +1,30 @@
 use_frameworks!
+platform :ios, '10.0'
 
 target 'GitHubKit_Example' do
+  jacKitPath     = '/Users/mudox/Develop/Apple/Frameworks/JacKit'
+  pod 'JacKit',    :path => jacKitPath
+
   pod 'GitHubKit', :path => '../'
+
+  pod 'Then'
+  pod 'Moya/RxSwift'
+
+  pod 'SwiftLint'
 
   target 'GitHubKit_Tests' do
     inherit! :search_paths
 
-    pod 'Quick', '~> 1.2.0'
-    pod 'Nimble', '~> 7.0.2'
+    # BDD
+    pod 'Quick'
+    pod 'Nimble'
+
+    # Testing RxSwift code
+    pod 'RxTest'
+    pod 'RxBlocking'
+    pod 'RxNimble'
+
+    # Requests stubbing
+    pod 'OHHTTPStubs'
   end
 end
