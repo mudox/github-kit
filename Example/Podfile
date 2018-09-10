@@ -2,18 +2,15 @@ use_frameworks!
 platform :ios, '10.0'
 
 target 'GitHubKit_Example' do
-  jacKitPath     = '/Users/mudox/Develop/Apple/Frameworks/JacKit'
-  pod 'JacKit',    :path => jacKitPath
-
-  pod 'GitHubKit', :path => '../'
-
-  pod 'Then'
-  pod 'Moya/RxSwift'
-
   pod 'SwiftLint'
 
   target 'GitHubKit_Tests' do
     inherit! :search_paths
+
+    pod 'GitHubKit', :path => '../'
+
+    jacKitPath     = '/Users/mudox/Develop/Apple/Frameworks/JacKit'
+    pod 'JacKit',    :path => jacKitPath
 
     # BDD
     pod 'Quick'

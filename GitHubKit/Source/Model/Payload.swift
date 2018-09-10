@@ -1,14 +1,14 @@
 import Foundation
 
-extension GitHub.ResponsePayload {
+extension Payload {
 
-  // MARK: - GitHub.Responses.Search
+  // MARK: - Payload.Search
 
-  struct Search: Decodable {
+  public struct Search: Decodable {
 
-    let totalCount: Int
-    let isInComplete: Bool
-    let items: [GitHub.Repository]
+    public let totalCount: Int
+    public let isInComplete: Bool
+    public let items: [Repository]
 
     private enum CodingKeys: String, CodingKey {
       case totalCount = "total_count"
@@ -18,14 +18,14 @@ extension GitHub.ResponsePayload {
 
   }
 
-  // MARK: - GitHub.Responses.RateLimit
+  // MARK: - Payload.RateLimit
 
-  struct RateLimit: Decodable {
+  public struct RateLimit: Decodable {
 
-    struct Limit: Decodable {
-      let limit: Int
-      let remaining: Int
-      let resetDate: Date
+    public struct Limit: Decodable {
+      public let limit: Int
+      public let remaining: Int
+      public let resetDate: Date
 
       private enum CodingKeys: String, CodingKey {
         case limit
@@ -33,7 +33,7 @@ extension GitHub.ResponsePayload {
         case resetDate = "reset"
       }
 
-      init(from decoder: Decoder) throws {
+      public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         limit = try container.decode(Int.self, forKey: .limit)
@@ -45,10 +45,10 @@ extension GitHub.ResponsePayload {
       }
     }
 
-    struct Resources: Decodable {
-      let core: Limit
-      let search: Limit
-      let graphQL: Limit
+    public struct Resources: Decodable {
+      public let core: Limit
+      public let search: Limit
+      public let graphQL: Limit
 
       private enum CodingKeys: String, CodingKey {
         case core
@@ -58,8 +58,8 @@ extension GitHub.ResponsePayload {
 
     }
 
-    let rate: Limit
-    let resources: Resources
+    public let rate: Limit
+    public let resources: Resources
   }
 
 }

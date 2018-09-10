@@ -6,144 +6,137 @@ import RxSwift
 
 import JacKit
 
-extension GitHub {
+public struct Service {
+  // MARK: - Singleton
 
-  struct Service {
-    // MARK: - Singleton
+  public static let shared = Service()
+  private init() {}
 
-    static let shared = Service()
-    private init() {}
+  // MARK: - MoyaProvider
 
-    // MARK: - MoyaProvider
+  private let provider = MoyaProvider<MoyaTarget>().rx
 
-    private let provider = MoyaProvider<GitHub.MoyaTarget>().rx
+  // MARK: - Search
 
-    // MARK: - Search
+  public typealias SearchRepositoryResponse = PagedResponse<Payload.Search>
 
+  /// Search GitHub repositories.
+  ///
+  /// - Parameter query: Query string. See [Understanding the search syntax](https://help.com/articles/understanding-the-search-syntax/)
+  ///   and [Searching for repositories](https://help.com/articles/searching-for-repositories/)
+  /// - Returns: Single\<SearchRepositoryResponse\>.
+  public func searchRepository(_ query: String) -> Single<SearchRepositoryResponse> {
+    return provider.request(.searchRepository(query))
+      .map(SearchRepositoryResponse.init)
+  }
 
-    typealias SearchRepositoryResponse = GitHub.PagedResponse<GitHub.ResponsePayload.Search>
+  // MARK: - User
 
+  public typealias CurrentUserResponse = Response<SignedInUser>
 
-    /// Search GitHub repositories.
-    ///
-    /// - Parameter query: Query string. See [Understanding the search syntax](https://help.github.com/articles/understanding-the-search-syntax/)
-    ///   and [Searching for repositories](https://help.github.com/articles/searching-for-repositories/)
-    /// - Returns: Single\<SearchRepositoryResponse\>.
-    func searchRepository(_ query: String) -> Single<SearchRepositoryResponse> {
-      return provider.request(.searchRepository(query))
-        .map(SearchRepositoryResponse.init)
-    }
+  /// Get full information of current (signed-in) GitHub user.
+  ///
+  /// - Returns: Single\<CurrentUserResponse\>.
+  public func currentUser() -> Single<CurrentUserResponse> {
+    return provider.request(.currentUser)
+      .map(CurrentUserResponse.init)
+  }
 
-    // MARK: - User
+  public typealias UserResponse = Response<User>
 
-    typealias CurrentUserResponse = GitHub.Response<GitHub.SignedInUser>
+  /// Get public information of a GitHub user with given username.
+  ///
+  /// - Returns: Single\<UserResponse\>.
+  public func user(name: String) -> Single<UserResponse> {
+    return provider.request(.user(name: name))
+      .map(UserResponse.init)
+  }
 
+  // MARK: - Misc
 
-    /// Get full information of current (signed-in) GitHub user.
-    ///
-    /// - Returns: Single\<CurrentUserResponse\>.
-    func currentUser() -> Single<CurrentUserResponse> {
-      return provider.request(.currentUser)
-        .map(CurrentUserResponse.init)
-    }
+  /// Request a random GitHub philosophy.
+  ///
+  /// - Returns: RxSwift.Single\<String\>.
+  public func zen() -> Single<String> {
+    return provider.request(.zen).mapString()
+  }
 
-    typealias UserResponse = GitHub.Response<GitHub.User>
+  /// Request rate limit status for current user.
+  ///
+  /// - Returns: Single\<Payload.RateLimit\>.
+  public func rateLimit() -> Single<Payload.RateLimit> {
+    return provider.request(.rateLimit)
+      .map(Payload.RateLimit.self)
+  }
 
-    /// Get public information of a GitHub user with given username.
-    ///
-    /// - Returns: Single\<UserResponse\>.
-    func user(name: String) -> Single<UserResponse> {
-      return provider.request(.user(name: name))
-        .map(UserResponse.init)
-    }
+  // MARK: - Authorization
 
-    // MARK: - Misc
+  public typealias AuthorizeResponse = Response<Authorization>
 
-    /// Request a random GitHub philosophy.
-    ///
-    /// - Returns: RxSwift.Single\<String\>.
-    func zen() -> Single<String> {
-      return provider.request(.zen).mapString()
-    }
+  /// Create a new authorization.
+  ///
+  /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
+  public func authorize() -> Single<AuthorizeResponse> {
+    return provider.request(.authorize)
+      .map(AuthorizeResponse.init)
+  }
 
-    /// Request rate limit status for current user.
-    ///
-    /// - Returns: Single\<GitHub.ResponsePayload.RateLimit\>.
-    func rateLimit() -> Single<GitHub.ResponsePayload.RateLimit> {
-      return provider.request(.rateLimit)
-        .map(GitHub.ResponsePayload.RateLimit.self)
-    }
-
-    // MARK: - Authorization
-
-    typealias AuthorizeResponse = GitHub.Response<GitHub.Authorization>
-
-    /// Create a new authorization.
-    ///
-    /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
-    func authorize() -> Single<AuthorizeResponse> {
-      return provider.request(.authorize)
-        .map(AuthorizeResponse.init)
-    }
-
-    /// Revoke an authorization with given ID.
-    ///
-    /// - Parameter id: Authorization ID.
-    /// - Returns: RxSwift.Completable.
-    func deleteAuthorization(id: Int) -> Completable {
-      return provider.request(.deleteAuthorization(id: id))
-        .map { response -> Moya.Response in
-          if response.statusCode != 204 {
-            Jack("GitHub.Service.deleteAuthorization").warn("""
-            expect status code 204, got \(response.statusCode)
-            \(Jack.dump(of: response))
-            """)
-          }
-          return response
+  /// Revoke an authorization with given ID.
+  ///
+  /// - Parameter id: Authorization ID.
+  /// - Returns: RxSwift.Completable.
+  public func deleteAuthorization(id: Int) -> Completable {
+    return provider.request(.deleteAuthorization(id: id))
+      .map { response -> Moya.Response in
+        if response.statusCode != 204 {
+          Jack("Service.deleteAuthorization").warn("""
+          expect status code 204, got \(response.statusCode)
+          \(Jack.dump(of: response))
+          """)
         }
-        .asCompletable()
-    }
+        return response
+      }
+      .asCompletable()
+  }
 
-    typealias AuthorizationsResponse = GitHub.Response<[GitHub.Authorization]>
+  public typealias AuthorizationsResponse = Response<[Authorization]>
 
-    /// Request all authorization granted from current user.
-    ///
-    /// - Returns: Single\<AuthorizationsResponse\>.
-    func authorizations() -> Single<AuthorizationsResponse> {
-      return provider.request(.authorizations)
-        .map(AuthorizationsResponse.init)
-    }
+  /// Request all authorization granted from current user.
+  ///
+  /// - Returns: Single\<AuthorizationsResponse\>.
+  public func authorizations() -> Single<AuthorizationsResponse> {
+    return provider.request(.authorizations)
+      .map(AuthorizationsResponse.init)
+  }
 
-    // MARK: - Grant
+  // MARK: - Grant
 
-    /// Request all grants associated with current user.
-    ///
-    /// - Returns: Single\<GrantsResponse\>.
-    typealias GrantsResponse = GitHub.Response<[GitHub.Grant]>
+  /// Request all grants associated with current user.
+  ///
+  /// - Returns: Single\<GrantsResponse\>.
+  public typealias GrantsResponse = Response<[Grant]>
 
-    func grants() -> Single<GrantsResponse> {
-      return provider.request(.grants)
-        .map(GrantsResponse.init)
-    }
+  public func grants() -> Single<GrantsResponse> {
+    return provider.request(.grants)
+      .map(GrantsResponse.init)
+  }
 
-    /// Revoke a grant with given ID.
-    ///
-    /// - Parameter id: Grant ID.
-    /// - Returns: RxSwift.Completable.
-    func deleteGrant(id: Int) -> Completable {
-      return provider.request(.deleteGrant(id: id))
-        .map { response -> Moya.Response in
-          if response.statusCode != 204 {
-            Jack("GitHub.Service.deleteGrant").warn("""
-            expect status code 204, got \(response.statusCode)
-            \(Jack.dump(of: response))
-            """)
-          }
-          return response
+  /// Revoke a grant with given ID.
+  ///
+  /// - Parameter id: Grant ID.
+  /// - Returns: RxSwift.Completable.
+  public func deleteGrant(id: Int) -> Completable {
+    return provider.request(.deleteGrant(id: id))
+      .map { response -> Moya.Response in
+        if response.statusCode != 204 {
+          Jack("Service.deleteGrant").warn("""
+          expect status code 204, got \(response.statusCode)
+          \(Jack.dump(of: response))
+          """)
         }
-        .asCompletable()
-    }
+        return response
+      }
+      .asCompletable()
+  }
 
-
-  } // struct Service
-} // extension GitHub
+} // struct Service

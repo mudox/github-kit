@@ -1,37 +1,34 @@
 import Moya
 
-extension GitHub {
+enum MoyaTarget {
 
-  enum MoyaTarget {
+  // MARK: Search
 
-    // MARK: Search
+  case searchRepository(String)
 
-    case searchRepository(String)
+  // MARK: User
 
-    // MARK: User
+  case currentUser
+  case user(name: String)
 
-    case currentUser
-    case user(name: String)
+  // MARK: Misc
 
-    // MARK: Misc
+  case zen
+  case rateLimit
 
-    case zen
-    case rateLimit
+  // MARK: Authorization
 
-    // MARK: Authorization
+  case authorize
+  case deleteAuthorization(id: Int)
+  case authorizations
 
-    case authorize
-    case deleteAuthorization(id: Int)
-    case authorizations
+  // MARK: Grant
 
-    // MARK: Grant
-
-    case grants
-    case deleteGrant(id: Int)
-  }
+  case grants
+  case deleteGrant(id: Int)
 }
 
-extension GitHub.MoyaTarget: Moya.TargetType {
+extension MoyaTarget: Moya.TargetType {
   public var method: Moya.Method {
     switch self {
     // Search
@@ -115,7 +112,7 @@ extension GitHub.MoyaTarget: Moya.TargetType {
     // Authorization
     case .authorize, .deleteAuthorization, .authorizations:
       return Dev.defaultMudoxAuthHeaders
-      
+
     // Grant
     case .grants, .deleteGrant:
       return Dev.defaultMudoxAuthHeaders
@@ -145,7 +142,7 @@ extension GitHub.MoyaTarget: Moya.TargetType {
     // Authorization
     case .authorize:
       let param: [String: Any] = [
-        "note": "Test GitHub.Service.authorize",
+        "note": "Test Service.authorize",
         "client_id": Dev.clientID,
         "client_secret": Dev.clientSecret,
         "scopes": [
@@ -158,7 +155,7 @@ extension GitHub.MoyaTarget: Moya.TargetType {
       return .requestParameters(parameters: param, encoding: JSONEncoding.default)
     case .deleteAuthorization, .authorizations:
       return .requestPlain
-      
+
     // Grant
     case .grants, .deleteGrant:
       return .requestPlain

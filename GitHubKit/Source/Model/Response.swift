@@ -1,97 +1,96 @@
 import Foundation
 import Moya
 
-import RxCocoa
 import RxSwift
 
 import JacKit
 
-extension GitHub {
+public class Response<Payload>: MoyaResponseConvertible, CustomReflectable
+  where Payload: Decodable
+{
 
-  // MARK: - GitHub.Response<Payload>
+  public let moyaResponse: Moya.Response
+  public let rateLimit: HeaderRateLimit
+  public let payload: Payload
 
-  class Response<Payload>: MoyaResponseConvertible, CustomReflectable
-    where Payload: Decodable
-  {
+  public required init(response: Moya.Response) throws {
+    moyaResponse = response
 
-    let moyaResponse: Moya.Response
-    let rateLimit: RateLimit
-    let payload: Payload
-
-    required init(response: Moya.Response) throws {
-      moyaResponse = response
-
-      guard let urlResponse = response.response else {
-        throw GitHub.Error.noHTTPURLResponse
-      }
-
-      let headers = try cast(urlResponse.allHeaderFields, to: [String: String].self)
-
-      guard let rateLimit = GitHub.RateLimit(from: headers) else {
-        throw GitHub.Error.initRateLimit(headers: headers)
-      }
-
-      self.rateLimit = rateLimit
-      payload = try JSONDecoder().decode(Payload.self, from: response.data)
+    guard let urlResponse = response.response else {
+      throw Error.noHTTPURLResponse
     }
 
-    var statusCode: Int {
-      return moyaResponse.statusCode
+    guard let headers = urlResponse.allHeaderFields as? [String: String] else {
+      throw Error.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
     }
 
-    var statusDescription: String {
-      let code = statusCode
-      let description = HTTPURLResponse.localizedString(forStatusCode: code)
-      return "\(code) \(description)"
+    guard let rateLimit = HeaderRateLimit(from: headers) else {
+      throw Error.initRateLimit(headers: headers)
     }
 
-    var customMirror: Mirror {
-      return Mirror(
-        self,
-        children: [
-          "status": "\(Jack.description(ofHTTPStatusCode: moyaResponse.statusCode))",
-          "rate limit": rateLimit,
-          "payload type": type(of: payload),
-        ],
-        displayStyle: .class
-      )
-    }
-
+    self.rateLimit = rateLimit
+    payload = try JSONDecoder().decode(Payload.self, from: response.data)
   }
 
-  // MARK: - GitHub.PagedResponse<Payload>
+  public var statusCode: Int {
+    return moyaResponse.statusCode
+  }
 
-  class PagedResponse<Payload>: Response<Payload>
-    where Payload: Decodable
-  {
+  public var statusDescription: String {
+    let code = statusCode
+    let description = HTTPURLResponse.localizedString(forStatusCode: code)
+    return "\(code) \(description)"
+  }
 
-    let pagination: Pagination
+  public var customMirror: Mirror {
+    return Mirror(
+      self,
+      children: [
+        "status": "\(Jack.description(ofHTTPStatusCode: moyaResponse.statusCode))",
+        "rate limit": rateLimit,
+        "payload type": type(of: payload),
+      ],
+      displayStyle: .class
+    )
+  }
 
-    required init(response: Moya.Response) throws {
-      guard let urlResponse = response.response else {
-        throw GitHub.Error.noHTTPURLResponse
-      }
+}
 
-      let headers = try cast(urlResponse.allHeaderFields, to: [String: String].self)
+// MARK: - PagedResponse<Payload>
 
-      guard let pagination = GitHub.Pagination(from: headers) else {
-        throw GitHub.Error.initPagination(headers: headers)
-      }
+public class PagedResponse<Payload>: Response<Payload>
+  where Payload: Decodable
+{
 
-      self.pagination = pagination
+  public let pagination: Pagination
 
-      try super.init(response: response)
+  public required init(response: Moya.Response) throws {
+    guard let urlResponse = response.response else {
+      throw Error.noHTTPURLResponse
     }
 
-    override var customMirror: Mirror {
-      return Mirror(
-        self,
-        children: [
-          "pagination": pagination,
-        ],
-        displayStyle: .class
-      )
+    guard let headers = urlResponse.allHeaderFields as? [String: String] else {
+      throw Error.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
     }
+
+    guard let pagination = Pagination(from: headers) else {
+      throw Error.initPagination(headers: headers)
+    }
+
+    self.pagination = pagination
+
+    try super.init(response: response)
+  }
+
+  public override var customMirror: Mirror {
+    return Mirror(
+      self,
+      children: [
+        "pagination": pagination,
+      ],
+      displayStyle: .class,
+      ancestorRepresentation: .customized { super.customMirror }
+    )
   }
 
 }

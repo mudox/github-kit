@@ -3,17 +3,17 @@ import XCTest
 import Nimble
 import Quick
 
+import GitHubKit
+
 import JacKit
 fileprivate let jack = Jack()
 
-@testable import Hydra
-
-func onError(_ error: Error) {
+func onError(_ error: Error, file: StaticString = #file, line: UInt = #line) -> Never {
   jack.error(Jack.dump(of: error))
-  fatalError()
+  fatalError(file: file, line: line)
 }
 
-class GitHubServiceSpec: QuickSpec { override func spec() {
+class ServiceSpec: QuickSpec { override func spec() {
 
   let timeout: TimeInterval = 5
 
@@ -27,11 +27,11 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
 
     it("searchRepository") {
       // Arrange
-      let jack = Jack("GitHub.Service.search")
+      let jack = Jack("Service.search")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHub.Service.shared.searchRepository("neovim").subscribe(
+        _ = Service.shared.searchRepository("neovim").subscribe(
           onSuccess: { response in
             jack.info("""
             \(Jack.dump(of: response))
@@ -41,7 +41,7 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
 
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
@@ -50,11 +50,11 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
 
     it("currentUser") {
       // Arrange
-      let jack = Jack("GitHub.Service.currentUser")
+      let jack = Jack("Service.currentUser")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHub.Service.shared.currentUser().subscribe(
+        _ = Service.shared.currentUser().subscribe(
           onSuccess: { response in
             jack.info("""
             \(Jack.dump(of: response))
@@ -63,7 +63,7 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
             """)
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
@@ -72,11 +72,11 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
 
     it("user") {
       // Arrange
-      let jack = Jack("GitHub.Service.user")
+      let jack = Jack("Service.user")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHub.Service.shared.user(name: "mudox").subscribe(
+        _ = Service.shared.user(name: "mudox").subscribe(
           onSuccess: { response in
             jack.info("""
             \(Jack.dump(of: response))
@@ -85,7 +85,7 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
             """)
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
@@ -94,16 +94,16 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
 
     it("zen") {
       // Arrange
-      let jack = Jack("GitHub.Service.user")
+      let jack = Jack("Service.user")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHub.Service.shared.zen().subscribe(
+        _ = Service.shared.zen().subscribe(
           onSuccess: { zen in
             jack.info("GitHub Zen: \(zen)")
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
@@ -112,29 +112,29 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
 
     it("rateLimit") {
       // Arrange
-      let jack = Jack("GitHub.Service.rateLimit")
+      let jack = Jack("Service.rateLimit")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHub.Service.shared.rateLimit().subscribe(
+        _ = Service.shared.rateLimit().subscribe(
           onSuccess: { rateLimit in
             jack.info(Jack.dump(of: rateLimit))
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
 
     // MARK: - authorize
 
-    it("authorize") {
+    xit("authorize") {
       // Arrange
-      let jack = Jack("GitHub.Service.authorize")
+      let jack = Jack("Service.authorize")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHub.Service.shared.authorize().subscribe(
+        _ = Service.shared.authorize().subscribe(
           onSuccess: { response in
             jack.info("""
             \(Jack.dump(of: response))
@@ -142,7 +142,7 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
             """)
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
@@ -151,11 +151,11 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
 
     it("authorizations") {
       // Arrange
-      let jack = Jack("GitHub.Service.authorizations")
+      let jack = Jack("Service.authorizations")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHub.Service.shared.authorizations().subscribe(
+        _ = Service.shared.authorizations().subscribe(
           onSuccess: { response in
             let hydraAuths = response.payload
               .filter { $0.app.name == "Hydra" }
@@ -178,27 +178,27 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
             """)
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
 
     // MARK: deleteAuthorization
 
-    it("deleteAuthorization") {
+    xit("deleteAuthorization") {
       // Arrange
-      let jack = Jack("GitHub.Service.deleteAuthorization")
+      let jack = Jack("Service.deleteAuthorization")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
         let id = 217_869_482
-        _ = GitHub.Service.shared.deleteAuthorization(id: id).subscribe(
+        _ = Service.shared.deleteAuthorization(id: id).subscribe(
           onCompleted: {
             jack.info("deleted authorization with ID: \(id)")
           },
-          onError: onError
+          onError: { onError($0) }
         )
-        _ = GitHub.Service.shared.authorizations().subscribe(
+        _ = Service.shared.authorizations().subscribe(
           onSuccess: { response in
             let hydraAuths = response.payload
               .filter { $0.app.name == "Hydra" }
@@ -222,7 +222,7 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
             """)
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
@@ -231,11 +231,11 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
 
     it("grants") {
       // Arrange
-      let jack = Jack("GitHub.Service.grants")
+      let jack = Jack("Service.grants")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHub.Service.shared.grants().subscribe(
+        _ = Service.shared.grants().subscribe(
           onSuccess: { response in
             let list = response.payload
               .enumerated()
@@ -256,27 +256,27 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
             """)
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }
 
     // MARK: deleteGrant
 
-    fit("deleteGrant") {
+    xit("deleteGrant") {
       // Arrange
-      let jack = Jack("GitHub.Service.deleteGrant")
+      let jack = Jack("Service.deleteGrant")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
         let id = 73626521
-        _ = GitHub.Service.shared.deleteGrant(id: id).subscribe(
+        _ = Service.shared.deleteGrant(id: id).subscribe(
           onCompleted: {
             jack.info("deleted grant with ID: \(id)")
           },
-          onError: onError
+          onError: { onError($0) }
         )
-        _ = GitHub.Service.shared.grants().subscribe(
+        _ = Service.shared.grants().subscribe(
           onSuccess: { response in
             let list = response.payload
               .enumerated()
@@ -297,7 +297,7 @@ class GitHubServiceSpec: QuickSpec { override func spec() {
             """)
             done()
           },
-          onError: onError
+          onError: { onError($0) }
         )
       }
     }

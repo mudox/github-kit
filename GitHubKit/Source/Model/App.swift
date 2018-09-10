@@ -1,19 +1,15 @@
 import Foundation
 
-extension GitHub {
+public struct App: Decodable {
 
-  struct App: Decodable {
+  public let name: String
+  public let url: URL
+  public let clientID: String
 
-    let name: String
-    let url: URL
-    let clientID: String
-
-    private enum CodingKeys: String, CodingKey {
-      case name
-      case url
-      case clientID = "client_id"
-    }
-
+  private enum CodingKeys: String, CodingKey {
+    case name
+    case url
+    case clientID = "client_id"
   }
-  
+
 }

@@ -1,59 +1,54 @@
 import Foundation
 import Moya
 
-import RxCocoa
 import RxSwift
 
-extension GitHub {
+public struct HeaderRateLimit {
+  
+  // MARK: - Stored Properties
 
-  struct RateLimit {
+  public let remainingCount: Int
+  public let totalCount: Int
+  public let resetTimeIntervalSince1970: TimeInterval
 
-    // MARK: - Stored Properties
+  // MARK: - Initializer
 
-    let remainingCount: Int
-    let totalCount: Int
-    let resetTimeIntervalSince1970: TimeInterval
-
-    // MARK: - Initializer
-
-    init?(from headers: [String: String]) {
-      guard
-        let limit = headers["X-RateLimit-Limit"],
-        let totalCount = Int(limit),
-        let remaining = headers["X-RateLimit-Remaining"],
-        let remainingCount = Int(remaining),
-        let reset = headers["X-RateLimit-Reset"],
-        let resetTimeInterval = TimeInterval(reset)
-      else {
-        return nil
-      }
-
-      self.totalCount = totalCount
-      self.remainingCount = remainingCount
-      resetTimeIntervalSince1970 = resetTimeInterval
+  public init?(from headers: [String: String]) {
+    guard
+      let limit = headers["X-RateLimit-Limit"],
+      let totalCount = Int(limit),
+      let remaining = headers["X-RateLimit-Remaining"],
+      let remainingCount = Int(remaining),
+      let reset = headers["X-RateLimit-Reset"],
+      let resetTimeInterval = TimeInterval(reset)
+    else {
+      return nil
     }
 
-    // MARK: - Computed Properties
+    self.totalCount = totalCount
+    self.remainingCount = remainingCount
+    resetTimeIntervalSince1970 = resetTimeInterval
+  }
 
-    var isExceeded: Bool {
-      return remainingCount > 0
-    }
+  // MARK: - Computed Properties
 
-    var resetInterval: TimeInterval {
-      return resetTimeIntervalSince1970 - Date().timeIntervalSince1970
-    }
+  public var isExceeded: Bool {
+    return remainingCount > 0
+  }
 
+  public var resetInterval: TimeInterval {
+    return resetTimeIntervalSince1970 - Date().timeIntervalSince1970
   }
 
 }
 
 // MARK: - CustomReflectable
 
-extension GitHub.RateLimit: CustomReflectable {
+extension HeaderRateLimit: CustomReflectable {
 
-  var customMirror: Mirror {
+  public var customMirror: Mirror {
     return Mirror(
-      GitHub.RateLimit.self,
+      RateLimit.self,
       children: [
         "remain": remainingCount,
         "total": totalCount,
