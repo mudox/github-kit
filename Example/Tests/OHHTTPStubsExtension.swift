@@ -5,16 +5,40 @@ import OHHTTPStubs
 fileprivate func parse(messageText text: String)
   -> (code: Int, header: [String: String], body: Data)
 {
+
+  /*
+   *
+   * Step 0 - Unify EOL to '\n'
+   *
+   */
+
+  let mutableText = NSMutableString(string: text)
+
+  let eolRegex = try! NSRegularExpression(
+    pattern: "(?:\\n|\\r\\n|\\r)"
+  )
+
+  eolRegex.replaceMatches(in: mutableText, range: NSMakeRange(0, mutableText.length), withTemplate: "\n")
+
+  let newText = mutableText as String
+  
+  /*
+   *
+   * Step 1 - Extract the 3 parts by regex
+   *
+   */
+
   let pattern = """
   ^
-  HTTP/1.1 \\s+ (\\d+) \\s+ (\\w+)\\n            # Response line
-  (.*)  \\n                                      # Header fileds
+  HTTP/1.1 \\s+ (\\d+) \\s+ \\w+  # Status Line
   \\n
-  (.*)                                           # Bodyh
+  (.*)                            # Header
+  \\n\\n
+  (.*)                            # Body
   $
   """
 
-  let regex = try! NSRegularExpression(
+  let msgRegex = try! NSRegularExpression(
     pattern: pattern,
     options: [
       .allowCommentsAndWhitespace,
@@ -22,25 +46,43 @@ fileprivate func parse(messageText text: String)
     ]
   )
 
-  let msgMatch = regex.firstMatch(in: text, options: [], range: NSMakeRange(0, text.count))!
+  let msgMatch = msgRegex.firstMatch(in: newText, options: [], range: NSMakeRange(0, mutableText.length))!
 
-  // Status code
-  let codeText = (text as NSString).substring(with: msgMatch.range(at: 1))
+  /*
+   *
+   * Step 2 - Status code
+   *
+   */
+
+  let codeText = (newText as NSString).substring(with: msgMatch.range(at: 1))
   let code = Int(codeText)!
 
-  // Header
-  let headerString = (text as NSString).substring(with: msgMatch.range(at: 3))
+  /*
+   *
+   * Step 3 - Header dictionary
+   *
+   */
+
+  let headerString = (newText as NSString).substring(with: msgMatch.range(at: 2))
   let headerList: [(String, String)] = headerString
     .split(separator: "\n")
     .map {
-      let splitted = $0.split(separator: ":", maxSplits: 1).map(String.init)
+      let splitted = $0
+        .split(separator: ":", maxSplits: 1, omittingEmptySubsequences: false)
+        .map(String.init)
       let key = splitted[0]
       let value = splitted[1].trimmingCharacters(in: .whitespaces)
       return (key, value)
     }
   let header = [String: String](uniqueKeysWithValues: headerList)
 
-  let bodyString = (text as NSString).substring(with: msgMatch.range(at: 4))
+  /*
+   *
+   * Step 4 - Body data
+   *
+   */
+
+  let bodyString = (newText as NSString).substring(with: msgMatch.range(at: 3))
   let body = bodyString.data(using: .utf8)!
 
   return (code, header, body)
