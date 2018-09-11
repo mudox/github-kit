@@ -18,8 +18,6 @@ PODS:
     - Moya/Core
     - RxSwift (~> 4.0)
   - Nimble (7.3.0)
-  - OHHTTPStubs (6.1.0):
-    - OHHTTPStubs/Default (= 6.1.0)
   - OHHTTPStubs/Core (6.1.0)
   - OHHTTPStubs/Default (6.1.0):
     - OHHTTPStubs/Core
@@ -31,6 +29,8 @@ PODS:
   - OHHTTPStubs/NSURLSession (6.1.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (6.1.0)
+  - OHHTTPStubs/Swift (6.1.0):
+    - OHHTTPStubs/Default
   - Quick (1.3.1)
   - Result (3.2.4)
   - RxBlocking (4.2.0):
@@ -51,7 +51,7 @@ DEPENDENCIES:
   - GitHubKit (from `../`)
   - JacKit (from `/Users/mudox/Develop/Apple/Frameworks/JacKit`)
   - Nimble
-  - OHHTTPStubs
+  - OHHTTPStubs/Swift
   - Quick
   - RxBlocking
   - RxNimble
@@ -99,6 +99,6 @@ SPEC CHECKSUMS:
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
 
-PODFILE CHECKSUM: 87f35b3f6cf8ef37dfac9f01d8569f74e7a5b264
+PODFILE CHECKSUM: 58d35c83491aed07abf81f3a72a7ad1461dfb07f
 
 COCOAPODS: 1.5.3

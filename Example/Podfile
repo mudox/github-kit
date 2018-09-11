@@ -22,6 +22,6 @@ target 'GitHubKit_Example' do
     pod 'RxNimble'
 
     # Requests stubbing
-    pod 'OHHTTPStubs'
+    pod 'OHHTTPStubs/Swift'
   end
 end
