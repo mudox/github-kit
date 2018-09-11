@@ -31,15 +31,15 @@ struct Dev {
 
   static let defaultMudoxAuthHeaders: [String: String] = [
     "Accept": defaultMediaType,
-    "Authorization": mudoxAuth,
+    "Authorization": mudoxAuth
   ]
   static let defaulHydraAuthHeaders: [String: String] = [
     "Accept": defaultMediaType,
-    "Authorization": hydraAuth,
+    "Authorization": hydraAuth
   ]
 
   static let defaultTokenHeaders: [String: String] = [
     "Accept": defaultMediaType,
-    "Authorization": tokenAuth,
+    "Authorization": tokenAuth
   ]
 }

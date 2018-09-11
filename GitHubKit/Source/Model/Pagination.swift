@@ -14,7 +14,7 @@ public enum Pagination {
 
   private static func url(from text: String, using pattern: NSRegularExpression) -> URL? {
     guard
-      let match = pattern.firstMatch(in: text, range: NSMakeRange(0, text.count))
+      let match = pattern.firstMatch(in: text, range: NSRange(location: 0, length: text.count))
     else {
       return nil
     }
@@ -114,7 +114,7 @@ extension Pagination: CustomReflectable {
       Pagination.self,
       children: [
         "page index": pageIndex as Any,
-        "total count": totalCount as Any,
+        "total count": totalCount as Any
       ]
     )
   }

@@ -6,8 +6,7 @@ import RxSwift
 import JacKit
 
 public class Response<Payload>: MoyaResponseConvertible, CustomReflectable
-  where Payload: Decodable
-{
+  where Payload: Decodable {
 
   public let moyaResponse: Moya.Response
   public let rateLimit: HeaderRateLimit
@@ -48,7 +47,7 @@ public class Response<Payload>: MoyaResponseConvertible, CustomReflectable
       children: [
         "status": "\(Jack.description(ofHTTPStatusCode: moyaResponse.statusCode))",
         "rate limit": rateLimit,
-        "payload type": type(of: payload),
+        "payload type": type(of: payload)
       ],
       displayStyle: .class
     )
@@ -59,8 +58,7 @@ public class Response<Payload>: MoyaResponseConvertible, CustomReflectable
 // MARK: - PagedResponse<Payload>
 
 public class PagedResponse<Payload>: Response<Payload>
-  where Payload: Decodable
-{
+  where Payload: Decodable {
 
   public let pagination: Pagination
 
@@ -86,7 +84,7 @@ public class PagedResponse<Payload>: Response<Payload>
     return Mirror(
       self,
       children: [
-        "pagination": pagination,
+        "pagination": pagination
       ],
       displayStyle: .class,
       ancestorRepresentation: .customized { super.customMirror }

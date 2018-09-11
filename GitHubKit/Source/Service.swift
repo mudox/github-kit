@@ -10,6 +10,7 @@ public struct Service {
   // MARK: - Singleton
 
   public static let shared = Service()
+
   private init() {}
 
   // MARK: - MoyaProvider
@@ -18,12 +19,13 @@ public struct Service {
 
   // MARK: - Search
 
-  public typealias SearchRepositoryResponse = PagedResponse<Payload.Search>
+  public typealias SearchRepositoryResponse = PagedResponse<SearchPayload>
 
   /// Search GitHub repositories.
   ///
-  /// - Parameter query: Query string. See [Understanding the search syntax](https://help.com/articles/understanding-the-search-syntax/)
-  ///   and [Searching for repositories](https://help.com/articles/searching-for-repositories/)
+  /// - Parameter query: Query string. See
+  /// [Understanding the search syntax](https://help.com/articles/understanding-the-search-syntax/) and
+  /// [Searching for repositories](https://help.com/articles/searching-for-repositories/)
   /// - Returns: Single\<SearchRepositoryResponse\>.
   public func searchRepository(_ query: String) -> Single<SearchRepositoryResponse> {
     return provider.request(.searchRepository(query))
@@ -63,10 +65,10 @@ public struct Service {
 
   /// Request rate limit status for current user.
   ///
-  /// - Returns: Single\<Payload.RateLimit\>.
-  public func rateLimit() -> Single<Payload.RateLimit> {
+  /// - Returns: Single\<RateLimitPayload\>.
+  public func rateLimit() -> Single<RateLimitPayload> {
     return provider.request(.rateLimit)
-      .map(Payload.RateLimit.self)
+      .map(RateLimitPayload.self)
   }
 
   // MARK: - Authorization

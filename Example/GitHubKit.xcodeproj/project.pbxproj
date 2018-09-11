@@ -369,7 +369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "lint() {\n    if which swiftlint >/dev/null; then\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\n    else\n    echo \"warning: SwiftLint not installed\"\n    fi\n}\nlint";
+			shellScript = "LINTER=\"${PODS_ROOT}/SwiftLint/swiftlint\"\nlint() {\n  if which swiftlint >/dev/null; then\n    $LINTER autocorrect\n    $LINTER\n  else\n    echo \"warning: SwiftLint not installed\"\n  fi\n}\nlint";
 		};
 		FEB18A1F79DBFCDEDBB844FE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

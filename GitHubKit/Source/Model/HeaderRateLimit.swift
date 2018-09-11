@@ -52,7 +52,7 @@ extension HeaderRateLimit: CustomReflectable {
       children: [
         "remain": remainingCount,
         "total": totalCount,
-        "reset": "in \(Int(resetInterval))s",
+        "reset": "in \(Int(resetInterval))s"
       ]
     )
   }

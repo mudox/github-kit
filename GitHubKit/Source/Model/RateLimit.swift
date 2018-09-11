@@ -1,7 +1,6 @@
 import Foundation
 import Moya
 
-
 import RxSwift
 
 public struct RateLimit {
@@ -57,7 +56,7 @@ extension RateLimit: CustomReflectable {
       children: [
         "remain": remaining,
         "total": total,
-        "reset": resetText,
+        "reset": resetText
       ]
     )
   }

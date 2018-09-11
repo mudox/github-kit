@@ -100,6 +100,7 @@ public class SignedInUser: User {
     try super.init(from: decoder)
   }
 
+  // swiftlint:disable nesting
   public struct Plan: Decodable {
     public let collaborators: Int
     public let name: String

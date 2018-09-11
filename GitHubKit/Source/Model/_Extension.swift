@@ -1,13 +1,13 @@
 import Foundation
 
 protocol JSONDecodable: Decodable {
-  static func jsonDecode(from: Data) -> Self
-  static func jsonDecode(from: String) -> Self
+  static func decode(jsonData: Data) throws -> Self
+  static func decode(jsonString: String) throws -> Self
 }
 
 protocol JSONEncodable: Encodable {
-  var endcodedJSONData: Data { get }
-  var endcodedJSONString: String { get }
+  var jsonData: Data? { get }
+  var jsonString: String? { get }
 }
 
 extension JSONDecodable {
@@ -16,7 +16,7 @@ extension JSONDecodable {
   /// - Parameter string: string
   /// - Returns: The decoded instance
   /// - Throws: Swift.DecodingError
-  static func jsonDecode(from data: Data) throws -> Self {
+  static func decode(jsonData data: Data) throws -> Self {
     return try JSONDecoder().decode(Self.self, from: data)
   }
 
@@ -26,19 +26,19 @@ extension JSONDecodable {
   /// - Parameter string: string
   /// - Returns: The decoded instance
   /// - Throws: `Swift.DecodingError`
-  static func jsonDecode(from string: String) throws -> Self {
-    let data = string.data(using: .utf8)!
+  static func decode(jsonString: String) throws -> Self {
+    let data = jsonString.data(using: .utf8)!
     return try JSONDecoder().decode(Self.self, from: data)
   }
 }
 
-extension Encodable {
-  var jsonData: Data? {
-    return try? JSONEncoder().encode(self)
+extension JSONEncodable {
+  func jsonData() throws -> Data {
+    return try JSONEncoder().encode(self)
   }
 
-  var jsonString: String? {
-    guard let data = self.jsonData else { return nil }
-    return String(data: data, encoding: .utf8)
+  func jsonString() throws -> String {
+    let data = try jsonData()
+    return String(data: data, encoding: .utf8)!
   }
 }

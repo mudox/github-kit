@@ -75,6 +75,8 @@ public struct Repository: Decodable {
 
   // MARK: - Repository.License
 
+  // swiftlint:disable nesting
+
   public struct License: Decodable {
     let key: String
     let name: String
