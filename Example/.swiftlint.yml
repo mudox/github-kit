@@ -8,6 +8,9 @@ analyzer_rules:
   - unused_import
   - unused_private_declaration
 
+disabled_rules:
+  - trailing_comma
+
 opt_in_rules:
   - anyobject_protocol
   - array_init
@@ -53,6 +56,10 @@ opt_in_rules:
   - untyped_error_in_catch
   - vertical_parameter_alignment_on_call
   - yoda_condition
+
+identifier_name:
+  excluded:
+      - id
 
 number_separator:
   minimum_length: 5

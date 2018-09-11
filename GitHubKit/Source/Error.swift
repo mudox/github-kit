@@ -1,6 +1,5 @@
 import Foundation
 
-
 /// Error
 enum Error: Swift.Error {
   // Moya.Response.response: HTTPURLResponse? return nil

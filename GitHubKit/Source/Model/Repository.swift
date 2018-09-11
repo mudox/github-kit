@@ -22,7 +22,7 @@ public struct Repository: Decodable {
   public let size: Int
   public let stargazersCount: Int
   public let watchersCount: Int
-  public let language: String
+  public let language: String?
   public let hasIssues: Bool
   public let hasProjects: Bool
   public let hasDownloads: Bool

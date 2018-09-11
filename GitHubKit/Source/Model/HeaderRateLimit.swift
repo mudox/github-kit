@@ -4,7 +4,7 @@ import Moya
 import RxSwift
 
 public struct HeaderRateLimit {
-  
+
   // MARK: - Stored Properties
 
   public let remainingCount: Int

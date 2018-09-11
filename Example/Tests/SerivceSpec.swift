@@ -85,14 +85,14 @@ class ServiceSpec: QuickSpec {
         let jack = Jack("OHHTTPStubs")
 
         let responseStub = OHHTTPStubsResponse(
-          responseFileName: "search_repositories.txt",
+          responseFileName: "search_repositories_3.txt",
           inBundleForClass: type(of: self)
         )
 
         expect(responseStub.statusCode) == 200
         let headers = responseStub.httpHeaders as! [String: String]
         expect(headers.count) > 0
-        expect(headers["Server"]) == "GitHub.com"
+        jack.verbose(Jack.dump(of: headers))
 
         jack.debug("data size: \(responseStub.dataSize)")
       }
@@ -106,30 +106,32 @@ class ServiceSpec: QuickSpec {
         // Arrange
         let jack = Jack("Service.search")
 
-        stubIfEnabled(
-          condition: isPath("/search/repositories"),
-          response: { _ in
-            OHHTTPStubsResponse(
-              responseFileName: "search_repositories.txt",
-              inBundleForClass: type(of: self)
+        for index in 0 ..< 4 {
+          stubIfEnabled(
+            condition: isPath("/search/repositories"),
+            response: { _ in
+              OHHTTPStubsResponse(
+                responseFileName: "search_repositories_\(index).txt",
+                inBundleForClass: type(of: self)
+              )
+            }
+          )?.name = "searchReposiories (search_repositories_\(index).txt"
+
+          // Act, Assert
+          waitUntil(timeout: timeout) { done in
+            _ = Service.shared.searchRepository("neovim").subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                - - -
+                Found \(response.payload.items.count) results
+                """)
+
+                done()
+              },
+              onError: { onError($0) }
             )
           }
-        )?.name = "searchReposiories"
-
-        // Act, Assert
-        waitUntil(timeout: timeout) { done in
-          _ = Service.shared.searchRepository("neovim").subscribe(
-            onSuccess: { response in
-              jack.info("""
-              \(Jack.dump(of: response))
-              - - -
-              Found \(response.payload.items.count) results
-              """)
-
-              done()
-            },
-            onError: { onError($0) }
-          )
         }
       }
 

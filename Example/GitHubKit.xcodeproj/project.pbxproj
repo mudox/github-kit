@@ -15,7 +15,10 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		E41DBDE1FD0E90D90EB78B29 /* Pods_GitHubKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45927C2CC163E0D5ADC054C3 /* Pods_GitHubKit_Tests.framework */; };
 		F427793E2146DB1900FCD28D /* OHHTTPStubsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */; };
-		F427794121474D3F00FCD28D /* search_repositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F427793F2146DB2700FCD28D /* search_repositories.txt */; };
+		F427794B2147701E00FCD28D /* search_repositories_0.txt in Resources */ = {isa = PBXBuildFile; fileRef = F427794321476EE500FCD28D /* search_repositories_0.txt */; };
+		F427794C2147702100FCD28D /* search_repositories_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F427794421476EE500FCD28D /* search_repositories_1.txt */; };
+		F427794D2147702800FCD28D /* search_repositories_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F427794821476FF500FCD28D /* search_repositories_2.txt */; };
+		F427794E2147702E00FCD28D /* search_repositories_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F427794721476FF500FCD28D /* search_repositories_3.txt */; };
 		F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAB2146062E00F3941E /* ModelSpec.swift */; };
 		F4EE0DB6214622BC00CACB2A /* SerivceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAC2146062E00F3941E /* SerivceSpec.swift */; };
 /* End PBXBuildFile section */
@@ -50,7 +53,10 @@
 		C659CBA66F0717FB10087F61 /* Pods-GitHubKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		DF6BA7A8B419A3B7DA274CEE /* Pods-GitHubKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHHTTPStubsExtension.swift; sourceTree = "<group>"; };
-		F427793F2146DB2700FCD28D /* search_repositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories.txt; sourceTree = "<group>"; };
+		F427794321476EE500FCD28D /* search_repositories_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_0.txt; sourceTree = "<group>"; };
+		F427794421476EE500FCD28D /* search_repositories_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_1.txt; sourceTree = "<group>"; };
+		F427794721476FF500FCD28D /* search_repositories_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_3.txt; sourceTree = "<group>"; };
+		F427794821476FF500FCD28D /* search_repositories_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_2.txt; sourceTree = "<group>"; };
 		F497DDAB2146062E00F3941E /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 		F497DDAC2146062E00F3941E /* SerivceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerivceSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,10 +147,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F427794221476EE500FCD28D /* Resources */,
 				F497DDAB2146062E00F3941E /* ModelSpec.swift */,
 				F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */,
 				F497DDAC2146062E00F3941E /* SerivceSpec.swift */,
-				F454E3BF2146B74B0026171D /* Resource */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -168,12 +174,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		F454E3BF2146B74B0026171D /* Resource */ = {
+		F427794221476EE500FCD28D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F427793F2146DB2700FCD28D /* search_repositories.txt */,
+				F427794321476EE500FCD28D /* search_repositories_0.txt */,
+				F427794421476EE500FCD28D /* search_repositories_1.txt */,
+				F427794821476FF500FCD28D /* search_repositories_2.txt */,
+				F427794721476FF500FCD28D /* search_repositories_3.txt */,
 			);
-			name = Resource;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,7 +234,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -274,7 +283,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F427794121474D3F00FCD28D /* search_repositories.txt in Resources */,
+				F427794D2147702800FCD28D /* search_repositories_2.txt in Resources */,
+				F427794C2147702100FCD28D /* search_repositories_1.txt in Resources */,
+				F427794E2147702E00FCD28D /* search_repositories_3.txt in Resources */,
+				F427794B2147701E00FCD28D /* search_repositories_0.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,12 +453,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -494,12 +508,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
