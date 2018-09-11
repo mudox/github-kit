@@ -1,12 +1,11 @@
 import Foundation
 
 public class User: Decodable {
-  // TODO: remove it when Swift 4.2 fixed the `no initializer` issue.
-  @available(*, deprecated, message: "Do not use.")
-  private init() {
-    fatalError("Swift 4.1")
-  }
 
+  @available(*, unavailable)
+  private init() {
+    fatalError("make compiler happy")
+  }
   // MARK: - Basic Info
 
   public let id: Int

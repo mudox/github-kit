@@ -1,17 +1,16 @@
 import Foundation
 import Moya
 
-
 import RxSwift
 
 public enum Pagination {
 
   // MARK: - Parsing
 
-  private static let firstRegex = try! NSRegularExpression(pattern: "<([^>]+)>; rel=\"first\"")
-  private static let lastRegex = try! NSRegularExpression(pattern: "<([^>]+)>; rel=\"last\"")
-  private static let prevRegex = try! NSRegularExpression(pattern: "<([^>]+)>; rel=\"prev\"")
-  private static let nextRegex = try! NSRegularExpression(pattern: "<([^>]+)>; rel=\"next\"")
+  private static let firstRegex = try? NSRegularExpression(pattern: "<([^>]+)>; rel=\"first\"")
+  private static let lastRegex = try? NSRegularExpression(pattern: "<([^>]+)>; rel=\"last\"")
+  private static let prevRegex = try? NSRegularExpression(pattern: "<([^>]+)>; rel=\"prev\"")
+  private static let nextRegex = try? NSRegularExpression(pattern: "<([^>]+)>; rel=\"next\"")
 
   private static func url(from text: String, using pattern: NSRegularExpression) -> URL? {
     guard
@@ -48,10 +47,19 @@ public enum Pagination {
   public init?(from headers: [String: String]) {
     guard let text = headers["Link"] else { return nil }
 
-    let first = Pagination.url(from: text, using: Pagination.firstRegex)
-    let last = Pagination.url(from: text, using: Pagination.lastRegex)
-    let next = Pagination.url(from: text, using: Pagination.nextRegex)
-    let prev = Pagination.url(from: text, using: Pagination.prevRegex)
+    guard
+      let firstRegex = Pagination.firstRegex,
+      let lastRegex = Pagination.lastRegex,
+      let nextRegex = Pagination.nextRegex,
+      let prevRegex = Pagination.prevRegex
+    else {
+      return nil
+    }
+
+    let first = Pagination.url(from: text, using: firstRegex)
+    let last = Pagination.url(from: text, using: lastRegex)
+    let next = Pagination.url(from: text, using: nextRegex)
+    let prev = Pagination.url(from: text, using: prevRegex)
 
     switch (first, last, prev, next) {
 
