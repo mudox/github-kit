@@ -21,7 +21,7 @@ fileprivate func parse(messageText text: String)
   eolRegex.replaceMatches(in: mutableText, range: NSMakeRange(0, mutableText.length), withTemplate: "\n")
 
   let newText = mutableText as String
-  
+
   /*
    *
    * Step 1 - Extract the 3 parts by regex
@@ -30,11 +30,11 @@ fileprivate func parse(messageText text: String)
 
   let pattern = """
   ^
-  HTTP/1.1 \\s+ (\\d+) \\s+ \\w+  # Status Line
+  HTTP/1.1 \\s+ (\\d+) \\s+ [^\\n]*  # Status Line
   \\n
-  (.*)                            # Header
+  (.*)                               # Header
   \\n\\n
-  (.*)                            # Body
+  (.*)                               # Body
   $
   """
 
@@ -46,7 +46,11 @@ fileprivate func parse(messageText text: String)
     ]
   )
 
-  let msgMatch = msgRegex.firstMatch(in: newText, options: [], range: NSMakeRange(0, mutableText.length))!
+  let msgMatch = msgRegex.firstMatch(
+    in: newText,
+    options: [],
+    range: NSMakeRange(0, (newText as NSString).length)
+  )!
 
   /*
    *
@@ -74,7 +78,7 @@ fileprivate func parse(messageText text: String)
       let value = splitted[1].trimmingCharacters(in: .whitespaces)
       return (key, value)
     }
-  let header = [String: String](uniqueKeysWithValues: headerList)
+  let header = [String: String](headerList, uniquingKeysWith: +)
 
   /*
    *
