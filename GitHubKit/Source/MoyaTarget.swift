@@ -106,8 +106,10 @@ extension MoyaTarget: Moya.TargetType {
       return Dev.defaultTokenHeaders
 
     // Misc
-    case .zen, .rateLimit:
+    case .zen:
       return Dev.defaultTokenHeaders
+    case .rateLimit:
+      return Dev.defaultMudoxAuthHeaders
 
     // Authorization
     case .authorize, .deleteAuthorization, .authorizations:
@@ -127,7 +129,7 @@ extension MoyaTarget: Moya.TargetType {
       let parameters: [String: Any] = [
         "q": query,
         "sort": "stars",
-        "order": "desc"
+        "order": "desc",
       ]
       return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
 
@@ -149,8 +151,8 @@ extension MoyaTarget: Moya.TargetType {
           "user",
           "repo",
           "admin:org",
-          "notifications"
-        ]
+          "notifications",
+        ],
       ]
       return .requestParameters(parameters: param, encoding: JSONEncoding.default)
     case .deleteAuthorization, .authorizations:

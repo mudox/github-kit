@@ -1,0 +1,22 @@
+HTTP/1.1 204 No Content
+Date: Sun, 09 Sep 2018 15:18:25 GMT
+Content-Type: application/octet-stream
+Connection: close
+Server: GitHub.com
+Status: 204 No Content
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4985
+X-RateLimit-Reset: 1536506441
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.060275
+Vary: Accept-Encoding
+X-GitHub-Request-Id: 5441:64AC:3526B7:48FDF7:5B9539C0
+

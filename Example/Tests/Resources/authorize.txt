@@ -1,0 +1,28 @@
+HTTP/1.1 201 Created
+Date: Tue, 11 Sep 2018 03:30:47 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 535
+Connection: close
+Server: GitHub.com
+Status: 201 Created
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999
+X-RateLimit-Reset: 1536640246
+Cache-Control: private, max-age=60, s-maxage=60
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP
+ETag: "8013f37c0b10cbc888fc3c8475fec578"
+Location: https://api.github.com/authorizations/218315231
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.097931
+Vary: Accept-Encoding
+X-GitHub-Request-Id: F1FE:48AC:8CEA1:BD0A3:5B9736E6
+
+{"id":218315231,"url":"https://api.github.com/authorizations/218315231","app":{"name":"Hydra","url":"https://github.com/mudox/hydra","client_id":"46cfca605f029f4fdb3e"},"token":"bb6c61578f08fdf7b8bc8dc2bc16a1d03a7806bd","hashed_token":"64fbad575c9b083e1746a5414b33c49eff4c00c719cc2630fab82c654b2c0aaf","token_last_eight":"3a7806bd","note":"Hydra user all-in-one acess token","note_url":null,"created_at":"2018-09-11T03:30:46Z","updated_at":"2018-09-11T03:30:46Z","scopes":["user","repo","admin:org","notifications"],"fingerprint":null}

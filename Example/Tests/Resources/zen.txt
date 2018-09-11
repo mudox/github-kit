@@ -1,0 +1,23 @@
+HTTP/1.1 200 OK
+Date: Tue, 04 Sep 2018 09:25:04 GMT
+Content-Type: text/plain;charset=utf-8
+Content-Length: 19
+Connection: close
+Server: GitHub.com
+Status: 200 OK
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 58
+X-RateLimit-Reset: 1536054526
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.009175
+Vary: Accept-Encoding
+X-GitHub-Request-Id: 225B:54D0:9AD18C:CCC3B2:5B8E4F70
+
+Stubbed zen by OHHTTPStubs!

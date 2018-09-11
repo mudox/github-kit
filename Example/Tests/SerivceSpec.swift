@@ -14,11 +14,6 @@ extension Jack {
   static let service = Jack("Service")
 }
 
-func onError(_ error: Error, file: StaticString = #file, line: UInt = #line) -> Never {
-  jack.error(Jack.dump(of: error))
-  fatalError(file: file, line: line)
-}
-
 /// Set $NETWORK_STUBBING_ENABLED to 'YES' to enabled stubbing.
 fileprivate var isStubbingEnabled: Bool = {
   let environValue = ProcessInfo.processInfo.environment["NETWORK_STUBBING_ENABLED"] ?? "NO"
@@ -46,28 +41,31 @@ fileprivate func setupStub() {
   }
   OHHTTPStubs.onStubMissing { request in
     Jack("OHHTTPStubs").warn("""
-    miss hit test: \(request)
+    miss hit test: \(request.httpMethod!) - \(request.url!)"
     """)
   }
 }
 
+@discardableResult
 fileprivate func stubIfEnabled(
-  condition: @escaping OHHTTPStubsTestBlock,
-  response: @escaping OHHTTPStubsResponseBlock
+  name: String,
+  condition: @escaping OHHTTPStubsTestBlock
 )
-  -> OHHTTPStubsDescriptor?
-{
+  -> OHHTTPStubsDescriptor? {
   if isStubbingEnabled {
-    return stub(condition: condition, response: response)
+    let s = stub(
+      condition: condition,
+      response: { _ in OHHTTPStubsResponse(filename: "\(name).txt") }
+    )
+    s.name = name
+    return s
   } else {
     return nil
   }
 }
 
 class ServiceSpec: QuickSpec {
-
   override func spec() {
-
     let timeout: TimeInterval = 5
 
     beforeEach {
@@ -85,8 +83,7 @@ class ServiceSpec: QuickSpec {
         let jack = Jack("OHHTTPStubs")
 
         let responseStub = OHHTTPStubsResponse(
-          responseFileName: "search_repositories_3.txt",
-          inBundleForClass: type(of: self)
+          filename: "zen.txt"
         )
 
         expect(responseStub.statusCode) == 200
@@ -99,23 +96,63 @@ class ServiceSpec: QuickSpec {
     }
 
     describe("Service") {
+      // MARK: - zen
 
-      // MARK: searchRepository
+      it("zen") {
+        // Arrange
+        let jack = Jack("Service.user")
 
-      fit("searchRepository") {
+        stubIfEnabled(
+          name: "zen",
+          condition: isMethodGET() && isPath("/zen")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.zen().subscribe(
+            onSuccess: { zen in
+              jack.info("GitHub Zen: \(zen)")
+              done()
+            },
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
+
+      // MARK: rateLimit
+
+      it("rateLimit") {
+        // Arrange
+        let jack = Jack("Service.rateLimit")
+
+        stubIfEnabled(
+          name: "rateLimit",
+          condition: isMethodGET() && isPath("/rateLimit")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.rateLimit().subscribe(
+            onSuccess: { rateLimit in
+              jack.info(Jack.dump(of: rateLimit))
+              done()
+            },
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
+
+      // MARK: - searchRepository
+
+      it("searchRepository") {
         // Arrange
         let jack = Jack("Service.search")
 
         for index in 0 ..< 4 {
           stubIfEnabled(
-            condition: isPath("/search/repositories"),
-            response: { _ in
-              OHHTTPStubsResponse(
-                responseFileName: "search_repositories_\(index).txt",
-                inBundleForClass: type(of: self)
-              )
-            }
-          )?.name = "searchReposiories (search_repositories_\(index).txt"
+            name: "search_repositories_\(index)",
+            condition: isMethodGET() && isPath("/search/repositories")
+          )
 
           // Act, Assert
           waitUntil(timeout: timeout) { done in
@@ -129,7 +166,7 @@ class ServiceSpec: QuickSpec {
 
                 done()
               },
-              onError: { onError($0) }
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
             )
           }
         }
@@ -140,6 +177,11 @@ class ServiceSpec: QuickSpec {
       it("currentUser") {
         // Arrange
         let jack = Jack("Service.currentUser")
+
+        stubIfEnabled(
+          name: "currentUser",
+          condition: isMethodGET() && isPath("/user")
+        )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
@@ -152,7 +194,7 @@ class ServiceSpec: QuickSpec {
               """)
               done()
             },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
           )
         }
       }
@@ -162,6 +204,11 @@ class ServiceSpec: QuickSpec {
       it("user") {
         // Arrange
         let jack = Jack("Service.user")
+
+        stubIfEnabled(
+          name: "user",
+          condition: isMethodGET() && isPath("/users")
+        )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
@@ -174,63 +221,21 @@ class ServiceSpec: QuickSpec {
               """)
               done()
             },
-            onError: { onError($0) }
-          )
-        }
-      }
-
-      // MARK: - zen
-
-      it("zen") {
-        // Arrange
-        let jack = Jack("Service.user")
-
-        stubIfEnabled(
-          condition: isPath("/zen"),
-          response: { _ in
-            OHHTTPStubsResponse(
-              data: "Stubbed GitHub Zen".data(using: .utf8)!,
-              statusCode: 200,
-              headers: nil
-            )
-          }
-        )?.name = "zen"
-
-        // Act, Assert
-        waitUntil(timeout: timeout) { done in
-          _ = Service.shared.zen().subscribe(
-            onSuccess: { zen in
-              jack.info("GitHub Zen: \(zen)")
-              done()
-            },
-            onError: { onError($0) }
-          )
-        }
-      }
-
-      // MARK: rateLimit
-
-      it("rateLimit") {
-        // Arrange
-        let jack = Jack("Service.rateLimit")
-
-        // Act, Assert
-        waitUntil(timeout: timeout) { done in
-          _ = Service.shared.rateLimit().subscribe(
-            onSuccess: { rateLimit in
-              jack.info(Jack.dump(of: rateLimit))
-              done()
-            },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
           )
         }
       }
 
       // MARK: - authorize
 
-      xit("authorize") {
+      it("authorize") {
         // Arrange
         let jack = Jack("Service.authorize")
+
+        stubIfEnabled(
+          name: "authorize",
+          condition: isMethodPOST() && isPath("/authorizations")
+        )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
@@ -242,7 +247,7 @@ class ServiceSpec: QuickSpec {
               """)
               done()
             },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
           )
         }
       }
@@ -252,6 +257,11 @@ class ServiceSpec: QuickSpec {
       it("authorizations") {
         // Arrange
         let jack = Jack("Service.authorizations")
+
+        stubIfEnabled(
+          name: "authorizations",
+          condition: isMethodGET() && isPath("/authorizations")
+        )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
@@ -278,16 +288,26 @@ class ServiceSpec: QuickSpec {
               """)
               done()
             },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
           )
         }
       }
 
       // MARK: deleteAuthorization
 
-      xit("deleteAuthorization") {
+      it("deleteAuthorization") {
         // Arrange
         let jack = Jack("Service.deleteAuthorization")
+
+        stubIfEnabled(
+          name: "deleteAuthorization",
+          condition: isMethodDELETE() && pathStartsWith("/authorizations")
+        )
+
+        stubIfEnabled(
+          name: "authorizations",
+          condition: isMethodGET() && isPath("/authorizations")
+        )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
@@ -296,7 +316,7 @@ class ServiceSpec: QuickSpec {
             onCompleted: {
               jack.info("deleted authorization with ID: \(id)")
             },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
           )
           _ = Service.shared.authorizations().subscribe(
             onSuccess: { response in
@@ -317,21 +337,26 @@ class ServiceSpec: QuickSpec {
 
               jack.info("""
               \(Jack.dump(of: response))
-              Total: \(response.payload.count), authorizations of Hydra:
+              Total: \(hydraAuths.count) authorizations of Hydra:
               \(hydraAuths)
               """)
               done()
             },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
           )
         }
       }
 
       // MARK: - grants
 
-      it("grants") {
+      fit("grants") {
         // Arrange
         let jack = Jack("Service.grants")
+
+        stubIfEnabled(
+          name: "grants",
+          condition: isMethodGET() && isPath("/applications/grants")
+        )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
@@ -356,16 +381,21 @@ class ServiceSpec: QuickSpec {
               """)
               done()
             },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
           )
         }
       }
 
       // MARK: deleteGrant
 
-      xit("deleteGrant") {
+      fit("deleteGrant") {
         // Arrange
         let jack = Jack("Service.deleteGrant")
+
+        stubIfEnabled(
+          name: "grants",
+          condition: isMethodDELETE() && isPath("/applications/grants")
+        )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
@@ -374,7 +404,7 @@ class ServiceSpec: QuickSpec {
             onCompleted: {
               jack.info("deleted grant with ID: \(id)")
             },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); done() }
           )
           _ = Service.shared.grants().subscribe(
             onSuccess: { response in
@@ -397,11 +427,10 @@ class ServiceSpec: QuickSpec {
               """)
               done()
             },
-            onError: { onError($0) }
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
           )
         }
       }
-
     } // describe("Service")
   } // spec()
 }

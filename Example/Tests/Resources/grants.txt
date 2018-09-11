@@ -1,0 +1,27 @@
+HTTP/1.1 200 OK
+Date: Thu, 06 Sep 2018 15:38:11 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 1772
+Connection: close
+Server: GitHub.com
+Status: 200 OK
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4974
+X-RateLimit-Reset: 1536248585
+Cache-Control: private, max-age=60, s-maxage=60
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP
+ETag: "54a13ab546a56d6853af3ee83d4c9e1c"
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.067372
+Vary: Accept-Encoding
+X-GitHub-Request-Id: 45E0:62ED:233A5F:2FB88E:5B9149E3
+
+[{"id":2608251,"url":"https://api.github.com/applications/grants/2608251","app":{"name":"Travis CI for Open Source","url":"https://travis-ci.org","client_id":"f244293c729d5066cf27"},"created_at":"2015-11-19T17:30:29Z","updated_at":"2017-12-19T16:02:32Z","scopes":["read:org","repo:status","repo_deployment","user:email","write:repo_hook"]},{"id":70699542,"url":"https://api.github.com/applications/grants/70699542","app":{"name":"CodePen.io","url":"https://codepen.io","client_id":"1d46d447dfcd2ccd7b18"},"created_at":"2018-07-27T19:18:27Z","updated_at":"2018-07-27T19:18:27Z","scopes":["gist","user:email"]},{"id":36426179,"url":"https://api.github.com/applications/grants/36426179","app":{"name":"CodeHub","url":"http://codehub-app.com","client_id":"72f4fb74bdba774b759d"},"created_at":"2017-03-24T01:37:09Z","updated_at":"2017-03-24T01:37:13Z","scopes":["gist","notifications","read:org","repo","user:follow"]},{"id":52753255,"url":"https://api.github.com/applications/grants/52753255","app":{"name":"Tower for macOS","url":"http://www.git-tower.com","client_id":"2b869ca0c7f81a86aac6"},"created_at":"2017-11-21T00:33:17Z","updated_at":"2017-11-21T00:33:17Z","scopes":["admin:public_key","read:org","repo","user"]},{"id":65866214,"url":"https://api.github.com/applications/grants/65866214","app":{"name":"SnippetsLab","url":"https://www.renfei.org/snippets-lab/","client_id":"9af20c75004f1f460f21"},"created_at":"2018-05-22T01:46:23Z","updated_at":"2018-05-22T01:46:23Z","scopes":["gist"]},{"id":73446983,"url":"https://api.github.com/applications/grants/73446983","app":{"name":"quicktype","url":"https://app.quicktype.io","client_id":"929285ed15cc477fa5dd"},"created_at":"2018-09-04T17:29:01Z","updated_at":"2018-09-04T17:29:01Z","scopes":["read:user","user:email"]}]

@@ -1,4 +1,5 @@
 import Foundation
+
 import Moya
 
 import RxSwift
@@ -47,7 +48,7 @@ public class Response<Payload>: MoyaResponseConvertible, CustomReflectable
       children: [
         "status": "\(Jack.description(ofHTTPStatusCode: moyaResponse.statusCode))",
         "rate limit": rateLimit,
-        "payload type": type(of: payload)
+        "payload type": type(of: payload),
       ],
       displayStyle: .class
     )
@@ -84,7 +85,7 @@ public class PagedResponse<Payload>: Response<Payload>
     return Mirror(
       self,
       children: [
-        "pagination": pagination
+        "pagination": pagination,
       ],
       displayStyle: .class,
       ancestorRepresentation: .customized { super.customMirror }
