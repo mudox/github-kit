@@ -78,7 +78,7 @@ fileprivate func parse(messageText text: String)
       let value = splitted[1].trimmingCharacters(in: .whitespaces)
       return (key, value)
     }
-  let header = [String: String](headerList, uniquingKeysWith: +)
+  let header = [String: String](headerList) { "\($0), \($1)" }
 
   /*
    *
