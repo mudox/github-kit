@@ -127,7 +127,7 @@ class ServiceSpec: QuickSpec {
 
         stubIfEnabled(
           name: "rateLimit",
-          condition: isMethodGET() && isPath("/rateLimit")
+          condition: isMethodGET() && isPath("/rate_limit")
         )
 
         // Act, Assert
@@ -394,7 +394,7 @@ class ServiceSpec: QuickSpec {
 
         stubIfEnabled(
           name: "grants",
-          condition: isMethodDELETE() && isPath("/applications/grants")
+          condition: isMethodDELETE() && pathStartsWith("/applications/grants")
         )
 
         // Act, Assert
