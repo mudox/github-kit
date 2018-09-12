@@ -207,7 +207,7 @@ class ServiceSpec: QuickSpec {
 
         stubIfEnabled(
           name: "user",
-          condition: isMethodGET() && isPath("/users")
+          condition: isMethodGET() && pathStartsWith("/users")
         )
 
         // Act, Assert
@@ -349,7 +349,7 @@ class ServiceSpec: QuickSpec {
 
       // MARK: - grants
 
-      fit("grants") {
+      it("grants") {
         // Arrange
         let jack = Jack("Service.grants")
 
@@ -388,7 +388,7 @@ class ServiceSpec: QuickSpec {
 
       // MARK: deleteGrant
 
-      fit("deleteGrant") {
+      it("deleteGrant") {
         // Arrange
         let jack = Jack("Service.deleteGrant")
 
