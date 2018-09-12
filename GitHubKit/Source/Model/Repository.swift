@@ -14,14 +14,15 @@ public struct Repository: Decodable {
   public let updateDate: String
   public let pushDate: String
 
-  private let _homepageString: String?
-  public var homepageURL: URL? {
-    return URL(string: _homepageString ?? "")
-  }
+  public var homepage: String?
 
-  public let size: Int
+  // Counts
   public let stargazersCount: Int
   public let watchersCount: Int
+  public let subscribersCount: Int?
+
+  public let size: Int
+
   public let language: String?
   public let hasIssues: Bool
   public let hasProjects: Bool
@@ -52,7 +53,7 @@ public struct Repository: Decodable {
     case hasPages = "has_pages"
     case hasProjects = "has_projects"
     case hasWiki = "has_wiki"
-    case _homepageString = "homepage"
+    case homepage
     case id
     case isFork = "fork"
     case language
@@ -68,6 +69,7 @@ public struct Repository: Decodable {
     case score
     case size
     case stargazersCount = "stargazers_count"
+    case subscribersCount = "subscribers_count"
     case updateDate = "updated_at"
     case watcherCount = "watchers"
     case watchersCount = "watchers_count"
