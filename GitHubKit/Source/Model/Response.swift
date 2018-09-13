@@ -6,6 +6,16 @@ import RxSwift
 
 import JacKit
 
+/// Add convenient initiailizer that enables syntax like
+///
+///     return provider.request(...)
+///       .map(CommitResponse.init)
+///
+protocol MoyaResponseMappable {
+
+  init(response: Moya.Response) throws
+}
+
 public class BlobResponse: CustomReflectable {
 
   public let moyaResponse: Moya.Response
@@ -45,7 +55,7 @@ public class BlobResponse: CustomReflectable {
   }
 }
 
-public class Response<Payload>: MoyaResponseConvertible, CustomReflectable
+public class Response<Payload>: MoyaResponseMappable, CustomReflectable
   where Payload: Decodable {
 
   public let moyaResponse: Moya.Response
