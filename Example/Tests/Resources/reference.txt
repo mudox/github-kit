@@ -1,0 +1,32 @@
+HTTP/1.1 200 OK
+Date: Wed, 12 Sep 2018 12:45:51 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 327
+Connection: close
+Server: GitHub.com
+Status: 200 OK
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4990
+X-RateLimit-Reset: 1536757623
+Cache-Control: private, max-age=60, s-maxage=60
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP
+ETag: "4e4dd88672240fb97c47260f2f139c30"
+Last-Modified: Wed, 12 Sep 2018 08:51:18 GMT
+X-Poll-Interval: 300
+X-OAuth-Scopes: user, repo, admin:org, notifications
+X-Accepted-OAuth-Scopes: repo
+X-OAuth-Client-Id: 46cfca605f029f4fdb3e
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.061890
+Vary: Accept-Encoding
+X-GitHub-Request-Id: 973E:01A3:1437D1B:19A7269:5B990A7E
+
+{"ref":"refs/heads/master","node_id":"MDM6UmVmMTAzNzY2MTUyOm1hc3Rlcg==","url":"https://api.github.com/repos/github/explore/git/refs/heads/master","object":{"sha":"04da4c2fa18043112ebcc8ca7e95fc14957f4aa1","type":"commit","url":"https://api.github.com/repos/github/explore/git/commits/04da4c2fa18043112ebcc8ca7e95fc14957f4aa1"}}

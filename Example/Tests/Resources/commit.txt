@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Date: Wed, 12 Sep 2018 12:45:52 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 2235
+Connection: close
+Server: GitHub.com
+Status: 200 OK
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4989
+X-RateLimit-Reset: 1536757623
+Cache-Control: private, max-age=60, s-maxage=60
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP
+ETag: "a23cbb551c5c15771f69b391e72e4035"
+Last-Modified: Wed, 12 Sep 2018 07:49:26 GMT
+X-OAuth-Scopes: user, repo, admin:org, notifications
+X-Accepted-OAuth-Scopes: 
+X-OAuth-Client-Id: 46cfca605f029f4fdb3e
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.048131
+Vary: Accept-Encoding
+X-GitHub-Request-Id: 991A:01A1:F83E72:13BC964:5B990A7F
+
+{"sha":"04da4c2fa18043112ebcc8ca7e95fc14957f4aa1","node_id":"MDY6Q29tbWl0MTAzNzY2MTUyOjA0ZGE0YzJmYTE4MDQzMTEyZWJjYzhjYTdlOTVmYzE0OTU3ZjRhYTE=","url":"https://api.github.com/repos/github/explore/git/commits/04da4c2fa18043112ebcc8ca7e95fc14957f4aa1","html_url":"https://github.com/github/explore/commit/04da4c2fa18043112ebcc8ca7e95fc14957f4aa1","author":{"name":"Mike McQuaid","email":"mike@mikemcquaid.com","date":"2018-09-12T07:49:26Z"},"committer":{"name":"GitHub","email":"noreply@github.com","date":"2018-09-12T07:49:26Z"},"tree":{"sha":"4b66c5bf104ff7424da52d82c05cfb6a061b7d49","url":"https://api.github.com/repos/github/explore/git/trees/4b66c5bf104ff7424da52d82c05cfb6a061b7d49"},"message":"Merge pull request #374 from grabear/master\n\nAdded the linter for R in the Clean Code Linters Collection.","parents":[{"sha":"32d4119f534577f829baec7c221a7a61b5f2e250","url":"https://api.github.com/repos/github/explore/git/commits/32d4119f534577f829baec7c221a7a61b5f2e250","html_url":"https://github.com/github/explore/commit/32d4119f534577f829baec7c221a7a61b5f2e250"},{"sha":"c2be3c5f229fc2945bf4ae2a2008823836cc4f0c","url":"https://api.github.com/repos/github/explore/git/commits/c2be3c5f229fc2945bf4ae2a2008823836cc4f0c","html_url":"https://github.com/github/explore/commit/c2be3c5f229fc2945bf4ae2a2008823836cc4f0c"}],"verification":{"verified":true,"reason":"valid","signature":"-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJbmMUGCRBK7hj4Ov3rIwAAdHIIAC0TbGuG66a9BStIVhR6TWyx\nCwQq68g8muxT/6bhdqt7Ry3wOL9Tp6uBnD9WUpgyPAJC9qUbal4HAT2b7UrItkIa\nMr6bbijsnNTC2XE6pIPML9oYqlwennvuxgFjS/+fpbhyzjDfbe/C2cyQGYW4B8cT\nNayS14EuV2n+shSAGGPSyc1lN1O48825pospdfZID/KH6sSgwkgq4NnG6RaU2Qdi\nv1guveSzFGlxVuRIYRQwuwTTLaqiNoDqzUrNf0bpEsYkwSKy6/YYkR9fSJKvlZc3\n0yklWlLY2woTBlWRFOXN7S3TJ48b+1AdE+Y3l7+BPQOMcDEatCg3FY+Y3gXQcM0=\n=kUxw\n-----END PGP SIGNATURE-----\n","payload":"tree 4b66c5bf104ff7424da52d82c05cfb6a061b7d49\nparent 32d4119f534577f829baec7c221a7a61b5f2e250\nparent c2be3c5f229fc2945bf4ae2a2008823836cc4f0c\nauthor Mike McQuaid <mike@mikemcquaid.com> 1536738566 +0100\ncommitter GitHub <noreply@github.com> 1536738566 +0100\n\nMerge pull request #374 from grabear/master\n\nAdded the linter for R in the Clean Code Linters Collection."}}

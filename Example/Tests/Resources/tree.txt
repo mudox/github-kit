@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Date: Wed, 12 Sep 2018 12:45:53 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 4412
+Connection: close
+Server: GitHub.com
+Status: 200 OK
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4988
+X-RateLimit-Reset: 1536757623
+Cache-Control: private, max-age=60, s-maxage=60
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP
+ETag: "db8321e3c806ed8a033283dd10896455"
+Last-Modified: Wed, 12 Sep 2018 08:51:18 GMT
+X-OAuth-Scopes: user, repo, admin:org, notifications
+X-Accepted-OAuth-Scopes: 
+X-OAuth-Client-Id: 46cfca605f029f4fdb3e
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.032331
+Vary: Accept-Encoding
+X-GitHub-Request-Id: 9742:01A1:F83ED0:13BC9D1:5B990A80
+
+{"sha":"4b66c5bf104ff7424da52d82c05cfb6a061b7d49","url":"https://api.github.com/repos/github/explore/git/trees/4b66c5bf104ff7424da52d82c05cfb6a061b7d49","tree":[{"path":".github","mode":"040000","type":"tree","sha":"ee7b2a938e7cebed19b76b38de86dd19c60edea3","url":"https://api.github.com/repos/github/explore/git/trees/ee7b2a938e7cebed19b76b38de86dd19c60edea3"},{"path":".gitignore","mode":"100644","type":"blob","sha":"5caafa23b1fb599f6e75575b274b8c1dde57fcaa","size":19,"url":"https://api.github.com/repos/github/explore/git/blobs/5caafa23b1fb599f6e75575b274b8c1dde57fcaa"},{"path":".rubocop.yml","mode":"100644","type":"blob","sha":"2f692fcf4609abda18e3b21fccd1846a6bbc4c4d","size":548,"url":"https://api.github.com/repos/github/explore/git/blobs/2f692fcf4609abda18e3b21fccd1846a6bbc4c4d"},{"path":".ruby-version","mode":"100644","type":"blob","sha":"73462a5a13445f66009e00988279d30e55aa8363","size":6,"url":"https://api.github.com/repos/github/explore/git/blobs/73462a5a13445f66009e00988279d30e55aa8363"},{"path":".travis.yml","mode":"100644","type":"blob","sha":"95b0c8840fa727a44d4c6f666283a8d704ca34fd","size":192,"url":"https://api.github.com/repos/github/explore/git/blobs/95b0c8840fa727a44d4c6f666283a8d704ca34fd"},{"path":"Brewfile","mode":"100644","type":"blob","sha":"dc23f8cdcf17701146b55bdddf05661680a80dec","size":55,"url":"https://api.github.com/repos/github/explore/git/blobs/dc23f8cdcf17701146b55bdddf05661680a80dec"},{"path":"CODE_OF_CONDUCT.md","mode":"100644","type":"blob","sha":"6b0c77a47ab270bd78768a23b313a0955e8df33c","size":3226,"url":"https://api.github.com/repos/github/explore/git/blobs/6b0c77a47ab270bd78768a23b313a0955e8df33c"},{"path":"CONTRIBUTING.md","mode":"100644","type":"blob","sha":"a25c9e2ca9b6bc8a288a386c56489063a0612bf1","size":5743,"url":"https://api.github.com/repos/github/explore/git/blobs/a25c9e2ca9b6bc8a288a386c56489063a0612bf1"},{"path":"Gemfile","mode":"100644","type":"blob","sha":"33f12afea180251451b0353b2b4eda24bd97a67a","size":132,"url":"https://api.github.com/repos/github/explore/git/blobs/33f12afea180251451b0353b2b4eda24bd97a67a"},{"path":"Gemfile.lock","mode":"100644","type":"blob","sha":"1a8df697243eb35bb4da87120db16f1783654fef","size":694,"url":"https://api.github.com/repos/github/explore/git/blobs/1a8df697243eb35bb4da87120db16f1783654fef"},{"path":"LICENSE.txt","mode":"100644","type":"blob","sha":"2f244ac814036ecd9ba9f69782e89ce6b1dca9eb","size":18650,"url":"https://api.github.com/repos/github/explore/git/blobs/2f244ac814036ecd9ba9f69782e89ce6b1dca9eb"},{"path":"README.md","mode":"100644","type":"blob","sha":"29d80d5f6e96d0577440baa73e61a9a7103fed61","size":1524,"url":"https://api.github.com/repos/github/explore/git/blobs/29d80d5f6e96d0577440baa73e61a9a7103fed61"},{"path":"Rakefile","mode":"100644","type":"blob","sha":"5dfa61083876da11e948f8836c80bee33dcc97fb","size":179,"url":"https://api.github.com/repos/github/explore/git/blobs/5dfa61083876da11e948f8836c80bee33dcc97fb"},{"path":"collections","mode":"040000","type":"tree","sha":"f9ff26359670954ec75b68b8459bcefa6b7c6181","url":"https://api.github.com/repos/github/explore/git/trees/f9ff26359670954ec75b68b8459bcefa6b7c6181"},{"path":"docs","mode":"040000","type":"tree","sha":"39339517944c07ffc2bfc99e6ccad6d5087e8b3e","url":"https://api.github.com/repos/github/explore/git/trees/39339517944c07ffc2bfc99e6ccad6d5087e8b3e"},{"path":"notices.md","mode":"100644","type":"blob","sha":"abf035669186733a01bf940b1eb135b5522fcc47","size":936,"url":"https://api.github.com/repos/github/explore/git/blobs/abf035669186733a01bf940b1eb135b5522fcc47"},{"path":"script","mode":"040000","type":"tree","sha":"81b5c3bc288658e606322a8a37156f2875229326","url":"https://api.github.com/repos/github/explore/git/trees/81b5c3bc288658e606322a8a37156f2875229326"},{"path":"test","mode":"040000","type":"tree","sha":"4a70c1750c8ac2945999810cd22724e144c2d9ee","url":"https://api.github.com/repos/github/explore/git/trees/4a70c1750c8ac2945999810cd22724e144c2d9ee"},{"path":"topics-todo.md","mode":"100644","type":"blob","sha":"922c240c5ca581e232cec1721696ce5548dac14b","size":5334,"url":"https://api.github.com/repos/github/explore/git/blobs/922c240c5ca581e232cec1721696ce5548dac14b"},{"path":"topics","mode":"040000","type":"tree","sha":"dfd0a5827d2c1b73a952d022f173d055a6184d22","url":"https://api.github.com/repos/github/explore/git/trees/dfd0a5827d2c1b73a952d022f173d055a6184d22"}],"truncated":false}
