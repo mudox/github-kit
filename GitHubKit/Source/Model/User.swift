@@ -6,6 +6,7 @@ public class User: Decodable {
   private init() {
     fatalError("make compiler happy")
   }
+
   // MARK: - Basic Info
 
   public let id: Int
@@ -23,13 +24,11 @@ public class User: Decodable {
   public let location: String?
 
   public let avatarURL: URL?
-  public let gravatarID: String?
 
   public let type: String
-  public let isSiteAdmin: Bool
 
-  public let creationDate: String
-  public let updateDate: String
+  public let creationDate: Date
+  public let updateDate: Date
 
   // MARK: - Counts
 
@@ -47,10 +46,8 @@ public class User: Decodable {
     case email
     case followerCount = "followers"
     case followingCount = "following"
-    case gravatarID = "gravatar_id"
     case hireable
     case id
-    case isSiteAdmin = "site_admin"
     case location
     case loginName = "login"
     case name
@@ -59,6 +56,55 @@ public class User: Decodable {
     case type
     case updateDate = "updated_at"
   }
+
+  public required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+
+    // swiftformat:disable consecutiveSpaces
+    // swiftlint:disable operator_usage_whitespace comma
+    avatarURL       = try container.decodeIfPresent(URL.self,    forKey: .avatarURL)
+    bio             = try container.decode         (String.self, forKey: .bio)
+    blog            = try container.decodeIfPresent(String.self, forKey: .blog)
+    company         = try container.decodeIfPresent(String.self, forKey: .company)
+    email           = try container.decodeIfPresent(String.self, forKey: .email)
+    followerCount   = try container.decode         (Int.self,    forKey: .followerCount)
+    followingCount  = try container.decode         (Int.self,    forKey: .followingCount)
+    hireable        = try container.decode         (Bool.self,   forKey: .hireable)
+    id              = try container.decode         (Int.self,    forKey: .id)
+    location        = try container.decodeIfPresent(String.self, forKey: .location)
+    loginName       = try container.decode         (String.self, forKey: .loginName)
+    name            = try container.decode         (String.self, forKey: .name)
+    publicGistCount = try container.decode         (Int.self,    forKey: .publicGistCount)
+    publicRepoCount = try container.decode         (Int.self,    forKey: .publicRepoCount)
+    type            = try container.decode         (String.self, forKey: .type)
+    // swiftlint:enable operator_usage_whitespace comma
+    // swiftformat:enable consecutiveSpaces
+
+    // Custom date decoding as RFC3339 format
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+
+    let creationDateString = try container.decode(String.self, forKey: .creationDate)
+    guard let creationDate = formatter.date(from: creationDateString) else {
+      throw DecodingError.dataCorruptedError(
+        forKey: .creationDate, in: container,
+        debugDescription: "parsing `.creationDate` as RFC3339 date failed"
+      )
+    }
+    self.creationDate = creationDate
+
+    let updateDateString = try container.decode(String.self, forKey: .updateDate)
+    guard let updateDate = formatter.date(from: updateDateString) else {
+      throw DecodingError.dataCorruptedError(
+        forKey: .updateDate, in: container,
+        debugDescription: "parsing `.updateDate` as RFC3339 date failed"
+      )
+    }
+    self.updateDate = updateDate
+  }
+
 }
 
 // MARK: - SignedInUser
