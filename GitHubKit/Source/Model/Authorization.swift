@@ -22,29 +22,29 @@ public struct Authorization: Decodable {
   public let updateDate: Date
 
   private enum CodingKeys: String, CodingKey {
-    case id
     case app
-    case token
+    case creationDate = "created_at"
+    case fingerprint
     case hashedToken = "hashed_token"
+    case id
     case note
     case noteURL = "note_url"
-    case creationDate = "created_at"
-    case updateDate = "updated_at"
     case scopes
-    case fingerprint
+    case token
+    case updateDate = "updated_at"
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    id = try container.decode(Int.self, forKey: .id)
     app = try container.decode(App.self, forKey: .app)
-    token = try container.decode(String.self, forKey: .token)
+    fingerprint = try container.decodeIfPresent(String.self, forKey: .fingerprint)
     hashedToken = try container.decode(String.self, forKey: .hashedToken)
-    note = try container.decode(String?.self, forKey: .note)
-    noteURL = try container.decode(URL?.self, forKey: .noteURL)
+    id = try container.decode(Int.self, forKey: .id)
+    note = try container.decodeIfPresent(String.self, forKey: .note)
+    noteURL = try container.decodeIfPresent(URL.self, forKey: .noteURL)
     scopes = try container.decode([String].self, forKey: .scopes)
-    fingerprint = try container.decode(String?.self, forKey: .fingerprint)
+    token = try container.decode(String.self, forKey: .token)
 
     /*
      *
