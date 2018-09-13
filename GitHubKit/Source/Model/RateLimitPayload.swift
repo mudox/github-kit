@@ -1,25 +1,5 @@
 import Foundation
 
-// swiftlint:disable nesting
-
-// MARK: - Payload.Search
-
-public struct SearchPayload: Decodable {
-
-  public let totalCount: Int
-  public let isInComplete: Bool
-  public let items: [Repository]
-
-  private enum CodingKeys: String, CodingKey {
-    case totalCount = "total_count"
-    case isInComplete = "incomplete_results"
-    case items
-  }
-
-}
-
-// MARK: - RateLimitPayload
-
 public struct RateLimitPayload: Decodable {
 
   public struct Limit: Decodable {
@@ -27,6 +7,7 @@ public struct RateLimitPayload: Decodable {
     public let remaining: Int
     public let resetDate: Date
 
+    // swiftlint:disable:next nesting
     private enum CodingKeys: String, CodingKey {
       case limit
       case remaining
@@ -50,6 +31,7 @@ public struct RateLimitPayload: Decodable {
     public let search: Limit
     public let graphQL: Limit
 
+    // swiftlint:disable:next nesting
     private enum CodingKeys: String, CodingKey {
       case core
       case search
