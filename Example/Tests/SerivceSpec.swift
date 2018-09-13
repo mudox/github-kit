@@ -431,6 +431,7 @@ class ServiceSpec: QuickSpec {
           )
         }
       }
+
       // MARK: - reference
 
       it("reference") {
@@ -461,6 +462,36 @@ class ServiceSpec: QuickSpec {
           )
         }
       }
+
+      fit("commit") {
+        // Arrange
+        let jack = Jack("Service.commit")
+
+        stubIfEnabled(
+          name: "commit",
+          condition: isMethodGET() && pathMatches("^/repos/.*/git/commits/")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.commit(
+            ownerName: "github",
+            repositoryName: "explore",
+            sha: "04da4c2fa18043112ebcc8ca7e95fc14957f4aa1"
+          )
+          .subscribe(
+            onSuccess: { response in
+              jack.info("""
+              \(Jack.dump(of: response))
+              \(Jack.dump(of: response.payload))
+              """)
+              done()
+            },
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
+
     } // describe("Service")
   } // spec()
 }

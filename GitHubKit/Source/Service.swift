@@ -141,4 +141,19 @@ public struct Service {
       .asCompletable()
   }
 
+  // MARK: - Data
+
+  public typealias ReferenceResponse = Response<Reference>
+
+  public func reference(ownerName: String, repositoryName: String, path: String) -> Single<ReferenceResponse> {
+    return provider.request(.reference(ownerName: ownerName, repositoryName: repositoryName, path: path))
+      .map(ReferenceResponse.init)
+  }
+
+  public typealias CommitResponse = Response<Commit>
+
+  public func commit(ownerName: String, repositoryName: String, sha: String) -> Single<CommitResponse> {
+    return provider.request(.commit(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
+      .map(CommitResponse.init)
+  }
 } // struct Service

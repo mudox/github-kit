@@ -26,7 +26,7 @@ public struct Reference: Decodable {
 }
 
 public extension Reference {
-  
+
   struct Target: Decodable {
     public let sha: String
     public let type: GitObjectType
