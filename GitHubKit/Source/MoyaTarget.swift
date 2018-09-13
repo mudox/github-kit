@@ -26,6 +26,13 @@ enum MoyaTarget {
 
   case grants
   case deleteGrant(id: Int)
+
+  // MARK: Data
+
+  case reference(ownerName: String, repositoryName: String, path: String)
+  case commit(ownerName: String, repositoryName: String, sha: String)
+  case tree(ownerName: String, repositoryName: String, sha: String)
+  case blob(ownerName: String, repositoryName: String, sha: String)
 }
 
 extension MoyaTarget: Moya.TargetType {
@@ -56,6 +63,10 @@ extension MoyaTarget: Moya.TargetType {
       return .get
     case .deleteGrant:
       return .delete
+
+    // Data
+    case .reference, .commit, .tree, .blob:
+      return .get
     }
   }
 
@@ -92,6 +103,16 @@ extension MoyaTarget: Moya.TargetType {
       return "/applications/grants"
     case let .deleteGrant(id):
       return "/applications/grants/\(id)"
+
+    // Data
+    case let .reference(ownerName, repositoryName, path):
+      return "/repos/\(ownerName)/\(repositoryName)/git/refs/\(path)"
+    case let .commit(ownerName, repositoryName, sha):
+      return "/repos/\(ownerName)/\(repositoryName)/git/commits/\(sha)"
+    case let .tree(ownerName, repositoryName, sha):
+      return "/repos/\(ownerName)/\(repositoryName)/git/trees/\(sha)"
+    case let .blob(ownerName, repositoryName, sha):
+      return "/repos/\(ownerName)/\(repositoryName)/git/blobs/\(sha)"
     }
   }
 
@@ -118,6 +139,10 @@ extension MoyaTarget: Moya.TargetType {
     // Grant
     case .grants, .deleteGrant:
       return Dev.defaultMudoxAuthHeaders
+
+    // Data
+    case .reference, .commit, .tree, .blob:
+      return Dev.defaultTokenHeaders
     }
   }
 
@@ -160,6 +185,10 @@ extension MoyaTarget: Moya.TargetType {
 
     // Grant
     case .grants, .deleteGrant:
+      return .requestPlain
+
+    // Data
+    case .reference, .commit, .tree, .blob:
       return .requestPlain
     }
 

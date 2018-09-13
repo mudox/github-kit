@@ -431,6 +431,36 @@ class ServiceSpec: QuickSpec {
           )
         }
       }
+      // MARK: - reference
+
+      it("reference") {
+        // Arrange
+        let jack = Jack("Service.reference")
+
+        stubIfEnabled(
+          name: "reference",
+          condition: isMethodGET() && pathMatches("^/repos/.*/git/refs/")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.reference(
+            ownerName: "github",
+            repositoryName: "explore",
+            path: "heads/master"
+          )
+          .subscribe(
+            onSuccess: { response in
+              jack.info("""
+              \(Jack.dump(of: response))
+              \(Jack.dump(of: response.payload))
+              """)
+              done()
+            },
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
     } // describe("Service")
   } // spec()
 }
