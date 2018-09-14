@@ -33,6 +33,13 @@ enum MoyaTarget {
   case commit(ownerName: String, repositoryName: String, sha: String)
   case tree(ownerName: String, repositoryName: String, sha: String)
   case blob(ownerName: String, repositoryName: String, sha: String)
+
+  // MARK: Follower
+
+  case followers(username: String)
+  case isFollowing(username: String, targetUsername: String)
+//  case follow(username: String)
+//  case unfollow(username: String)
 }
 
 extension MoyaTarget: Moya.TargetType {
@@ -67,7 +74,12 @@ extension MoyaTarget: Moya.TargetType {
     // Data
     case .reference, .commit, .tree, .blob:
       return .get
+
+    // Follower
+    case .followers, .isFollowing:
+      return .get
     }
+
   }
 
   public var baseURL: URL {
@@ -113,6 +125,13 @@ extension MoyaTarget: Moya.TargetType {
       return "/repos/\(ownerName)/\(repositoryName)/git/trees/\(sha)"
     case let .blob(ownerName, repositoryName, sha):
       return "/repos/\(ownerName)/\(repositoryName)/git/blobs/\(sha)"
+
+      // Follower
+
+    case let .followers(username):
+      return "/users/\(username)/followers"
+    case let .isFollowing(username, targetUsername):
+      return "/users/\(username)/following/\(targetUsername)"
     }
   }
 
@@ -143,7 +162,12 @@ extension MoyaTarget: Moya.TargetType {
     // Data
     case .reference, .commit, .tree, .blob:
       return Dev.defaultTokenHeaders
+
+    // Follower
+    case .followers, .isFollowing:
+      return Dev.defaultTokenHeaders
     }
+
   }
 
   public var task: Task {
@@ -190,12 +214,23 @@ extension MoyaTarget: Moya.TargetType {
     // Data
     case .reference, .commit, .tree, .blob:
       return .requestPlain
+
+    // Follower
+    case .followers, .isFollowing:
+      return .requestPlain
     }
 
   }
 
   public var validationType: ValidationType {
-    return .successCodes
+    switch self {
+    case .isFollowing:
+      // See https://developer.github.com/v3/users/followers/#check-if-one-user-follows-another
+      // This endpoint return 202 as true, 404 as false
+      return .none
+    default:
+      return .successCodes
+    }
   }
 
   public var sampleData: Data {

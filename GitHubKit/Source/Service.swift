@@ -71,6 +71,20 @@ public struct Service {
     return provider.request(.isFollowing(username: username, targetUsername: targetUsername))
       .map(IsFollowingResponse.init)
   }
+
+  public typealias FollowersResponse = Response<[Follower]>
+
+  // swiftlint:disable:next line_length
+  /// [List users followed by another user](https://developer.github.com/v3/users/followers/#list-users-followed-by-another-user)
+  ///
+  /// - Parameters:
+  ///   - username: User name.
+  /// - Returns: `FollowersResponse`, alias of `Response<[Follower]>`.
+  public func followers(of username: String) -> Single<FollowersResponse> {
+    return provider.request(.followers(username: username))
+      .map(FollowersResponse.init)
+  }
+
   // MARK: - Misc
 
   /// Request a random GitHub philosophy.

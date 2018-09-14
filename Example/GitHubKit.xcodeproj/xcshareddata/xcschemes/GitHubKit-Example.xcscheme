@@ -102,7 +102,7 @@
             isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "NETWORK_STUBBING_ENABLED"
+            key = "HTTP_STUBBING"
             value = "YES"
             isEnabled = "YES">
          </EnvironmentVariable>
