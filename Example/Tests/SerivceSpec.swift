@@ -14,18 +14,18 @@ extension Jack {
   static let service = Jack("Service")
 }
 
-/// Set $NETWORK_STUBBING_ENABLED to 'YES' to enabled stubbing.
+/// Set `$HTTP_STUBBING` to 'YES' to enabled stubbing.
 fileprivate var isStubbingEnabled: Bool = {
-  let environValue = ProcessInfo.processInfo.environment["NETWORK_STUBBING_ENABLED"] ?? "NO"
+  let environValue = ProcessInfo.processInfo.environment["HTTP_STUBBING"] ?? "NO"
   let enabled = (environValue == "YES")
 
   if enabled {
     Jack.service.debug("""
-    OHHTTPStubs is enabled ($NETWORK_STUBBING_ENABLED=YES)
+    OHHTTPStubs is enabled ($HTTP_STUBBING == YES)
     """, options: [.compact, .noLocation])
   } else {
     Jack.service.debug("""
-    OHHTTPStubs is NOT enabled ($NETWORK_STUBBING_ENABLED=NO)
+    OHHTTPStubs is NOT enabled ($HTTP_STUBBING != YES)
     """, options: [.compact, .noLocation])
   }
 
@@ -33,6 +33,8 @@ fileprivate var isStubbingEnabled: Bool = {
 }()
 
 fileprivate func setupStub() {
+  guard isStubbingEnabled else { return }
+
   OHHTTPStubs.onStubActivation { request, stub, _ in
     Jack("OHHTTPStubs").debug("""
     hit : \(request)
@@ -160,7 +162,6 @@ class ServiceSpec: QuickSpec {
               onSuccess: { response in
                 jack.info("""
                 \(Jack.dump(of: response))
-                - - -
                 Found \(response.payload.items.count) results
                 """)
 
@@ -189,8 +190,7 @@ class ServiceSpec: QuickSpec {
             onSuccess: { response in
               jack.info("""
               \(Jack.dump(of: response))
-              - - -
-              Username: \(response.payload.name)
+              \(Jack.dump(of: response.payload))
               """)
               done()
             },
@@ -216,8 +216,7 @@ class ServiceSpec: QuickSpec {
             onSuccess: { response in
               jack.info("""
               \(Jack.dump(of: response))
-              - - -
-              Username: \(response.payload.name)
+              \(Jack.dump(of: response.payload))
               """)
               done()
             },
@@ -445,25 +444,23 @@ class ServiceSpec: QuickSpec {
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
-          _ = Service.shared.reference(
-            ownerName: "github",
-            repositoryName: "explore",
-            path: "heads/master"
-          )
-          .subscribe(
-            onSuccess: { response in
-              jack.info("""
-              \(Jack.dump(of: response))
-              \(Jack.dump(of: response.payload))
-              """)
-              done()
-            },
-            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
-          )
+          _ = Service.shared.reference(of: "github", "explore", withPath: "heads/master")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                \(Jack.dump(of: response.payload))
+                """)
+                done()
+              },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+            )
         }
       }
 
-      fit("commit") {
+      // MARK: commit
+
+      it("commit") {
         // Arrange
         let jack = Jack("Service.commit")
 
@@ -475,9 +472,7 @@ class ServiceSpec: QuickSpec {
         // Act, Assert
         waitUntil(timeout: timeout) { done in
           _ = Service.shared.commit(
-            ownerName: "github",
-            repositoryName: "explore",
-            sha: "04da4c2fa18043112ebcc8ca7e95fc14957f4aa1"
+            of: "github", "explore", withSHA: "04da4c2fa18043112ebcc8ca7e95fc14957f4aa1"
           )
           .subscribe(
             onSuccess: { response in
@@ -491,7 +486,36 @@ class ServiceSpec: QuickSpec {
           )
         }
       }
-
+      
+      
+      // MARK: tree
+      
+      fit("tree") {
+        // Arrange
+        let jack = Jack("Service.tree")
+        
+        stubIfEnabled(
+          name: "tree",
+          condition: isMethodGET() && pathMatches("^/repos/.*/git/trees/")
+        )
+        
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          let sha = "4b66c5bf104ff7424da52d82c05cfb6a061b7d49"
+          _ = Service.shared.tree(of: "github", "explore", withSHA: sha)
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                  \(Jack.dump(of: response))
+                  \(Jack.dump(of: response.payload))
+                  """)
+                done()
+            },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
+      
     } // describe("Service")
   } // spec()
 }

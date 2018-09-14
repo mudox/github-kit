@@ -33,6 +33,7 @@ public extension Commit {
       name = try container.decode(String.self, forKey: .name)
       email = try container.decode(String.self, forKey: .email)
 
+      // Custom date decoding as RFC3339 format
       let formatter = DateFormatter()
       formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
       formatter.timeZone = TimeZone(secondsFromGMT: 0)

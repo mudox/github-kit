@@ -2,7 +2,7 @@ import Foundation
 
 import Moya
 
-protocol ResponseType {
+public protocol ResponseType {
   /// Add convenient initiailizer that enables syntax like
   ///
   ///     return provider.request(...)
