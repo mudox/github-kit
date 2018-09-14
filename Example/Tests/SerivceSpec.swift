@@ -53,7 +53,8 @@ fileprivate func stubIfEnabled(
   name: String,
   condition: @escaping OHHTTPStubsTestBlock
 )
-  -> OHHTTPStubsDescriptor? {
+  -> OHHTTPStubsDescriptor?
+{
   if isStubbingEnabled {
     let s = stub(
       condition: condition,
@@ -224,6 +225,11 @@ class ServiceSpec: QuickSpec {
           )
         }
       }
+      
+      // MARK: user - following
+      
+      // MARK: isFollowing
+      
 
       // MARK: - authorize
 
@@ -487,10 +493,9 @@ class ServiceSpec: QuickSpec {
         }
       }
       
-      
       // MARK: tree
       
-      fit("tree") {
+      it("tree") {
         // Arrange
         let jack = Jack("Service.tree")
         
@@ -503,6 +508,34 @@ class ServiceSpec: QuickSpec {
         waitUntil(timeout: timeout) { done in
           let sha = "4b66c5bf104ff7424da52d82c05cfb6a061b7d49"
           _ = Service.shared.tree(of: "github", "explore", withSHA: sha)
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                  \(Jack.dump(of: response))
+                  \(Jack.dump(of: response.payload))
+                  """)
+                done()
+            },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
+      
+      // MARK: blob
+      
+      it("blob") {
+        // Arrange
+        let jack = Jack("Service.blob")
+        
+        stubIfEnabled(
+          name: "blob",
+          condition: isMethodGET() && pathMatches("^/repos/.*/git/blobs/")
+        )
+        
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          let sha = "60c424465c52b757d9fca910ef2560e17ef0f626"
+          _ = Service.shared.blob(of: "github", "explore", withSHA: sha)
             .subscribe(
               onSuccess: { response in
                 jack.info("""

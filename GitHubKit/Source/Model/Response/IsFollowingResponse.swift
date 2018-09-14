@@ -21,7 +21,7 @@ public class IsFollowingResponse: ResponseType, CustomReflectable {
     try rateLimit = RawDataResponse.rateLimit(from: response)
 
     switch response.statusCode {
-    case 202:
+    case 204:
       payload = true
     case 404:
       payload = false
@@ -36,7 +36,7 @@ public class IsFollowingResponse: ResponseType, CustomReflectable {
       children: [
         "status": "\(Jack.description(ofHTTPStatusCode: moyaResponse.statusCode))",
         "rate limit": rateLimit,
-        "boolean payload": payload,
+        "boolean payload": payload
       ],
       displayStyle: .class
     )

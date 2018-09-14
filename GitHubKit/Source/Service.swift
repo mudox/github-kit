@@ -172,6 +172,8 @@ public struct Service {
       .asCompletable()
   }
 
+  // swiftlint:disable opening_brace
+
   // MARK: - Data
 
   public typealias ReferenceResponse = Response<Reference>
@@ -180,7 +182,8 @@ public struct Service {
     of ownerName: String, _ repositoryName: String,
     withPath path: String
   )
-    -> Single<ReferenceResponse> {
+    -> Single<ReferenceResponse>
+  {
     return provider.request(.reference(ownerName: ownerName, repositoryName: repositoryName, path: path))
       .map(ReferenceResponse.init)
   }
@@ -191,7 +194,8 @@ public struct Service {
     of ownerName: String, _ repositoryName: String,
     withSHA sha: String
   )
-    -> Single<CommitResponse> {
+    -> Single<CommitResponse>
+  {
 
     return provider.request(.commit(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(CommitResponse.init)
@@ -203,7 +207,8 @@ public struct Service {
     of ownerName: String, _ repositoryName: String,
     withSHA sha: String
   )
-    -> Single<TreeResponse> {
+    -> Single<TreeResponse>
+  {
     return provider.request(.tree(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(TreeResponse.init)
   }
@@ -221,9 +226,12 @@ public struct Service {
     of ownerName: String, _ repositoryName: String,
     withSHA sha: String
   )
-    -> Single<BlobRawResponse> {
+    -> Single<BlobRawResponse>
+  {
     return provider.request(.blob(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(BlobRawResponse.init)
   }
+
+  // swiftlint:enable opening_brace
 
 } // struct Service

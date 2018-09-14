@@ -1,0 +1,29 @@
+HTTP/1.1 200 OK
+Server: GitHub.com
+Date: Wed, 12 Sep 2018 16:52:55 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 1040
+Connection: close
+Status: 200 OK
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999
+X-RateLimit-Reset: 1536774775
+Cache-Control: private, max-age=60, s-maxage=60
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP
+ETag: "ba518c335c717c049aedb5f150d235e1"
+X-OAuth-Scopes: user, repo, admin:org, notifications
+X-Accepted-OAuth-Scopes: 
+X-OAuth-Client-Id: 46cfca605f029f4fdb3e
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.049472
+X-GitHub-Request-Id: D62A:08DD:52586D:B44E8F:5B994466
+
+{"sha":"60c424465c52b757d9fca910ef2560e17ef0f626","node_id":"MDQ6QmxvYjEwMzc2NjE1Mjo2MGM0MjQ0NjVjNTJiNzU3ZDlmY2E5MTBlZjI1NjBlMTdlZjBmNjI2","size":546,"url":"https://api.github.com/repos/github/explore/git/blobs/60c424465c52b757d9fca910ef2560e17ef0f626","content":"LS0tCml0ZW1zOgogLSBhZG9iZS9icmFja2V0cwogLSBsaW1ldGV4dC9saW1l\nCiAtIHRleHRtYXRlL3RleHRtYXRlCiAtIG5lb3ZpbS9uZW92aW0KIC0gc2hh\ncmVsYXRleC9zaGFyZWxhdGV4CiAtIHNsYXAtZWRpdG9yL3NsYXAKIC0gdGhv\nbWFzd2lsYnVybi9DYXJldAogLSBLb21vZG8vS29tb2RvRWRpdAogLSBsZW8t\nZWRpdG9yL2xlby1lZGl0b3IKIC0gc3lsMjBibnIvc3BhY2VtYWNzCiAtIFNw\nYWNlVmltL1NwYWNlVmltCiAtIGFsbS10b29scy9hbG0KIC0gYXRvbS9hdG9t\nCiAtIExpZ2h0VGFibGUvTGlnaHRUYWJsZQogLSB6ZWRhcHAvemVkCiAtIE1p\nY3Jvc29mdC92c2NvZGUKIC0genllZGlkaWEvbWljcm8KZGlzcGxheV9uYW1l\nOiBUZXh0IGVkaXRvcnMKY3JlYXRlZF9ieTogbGVlcmVpbGx5CmltYWdlOiB0\nZXh0LWVkaXRvcnMucG5nCi0tLQpUaGUgdGV4dCBlZGl0b3IgaXMgYSBzYWNy\nZWQgYXBwbGljYXRpb24gZm9yIGRldmVsb3BlcnMuIEhlcmUncyBhIHNob3dj\nYXNlIG9mIHNvbWUgYW1hemluZ2x5IGF3ZXNvbWUgb3BlbiBzb3VyY2UgZWRp\ndG9ycy4K\n","encoding":"base64"}
