@@ -63,20 +63,20 @@ public class PublicUserProfile: Decodable {
     // swiftformat:disable consecutiveSpaces
     // swiftlint:disable operator_usage_whitespace comma
     avatarURL       = try container.decodeIfPresent(URL.self,    forKey: .avatarURL)
-    bio             = try container.decode(String.self,          forKey: .bio)
+    bio             = try container.decode(String.self, forKey: .bio)
     blog            = try container.decodeIfPresent(String.self, forKey: .blog)
     company         = try container.decodeIfPresent(String.self, forKey: .company)
     email           = try container.decodeIfPresent(String.self, forKey: .email)
-    followerCount   = try container.decode(Int.self,             forKey: .followerCount)
-    followingCount  = try container.decode(Int.self,             forKey: .followingCount)
-    hireable        = try container.decode(Bool.self,            forKey: .hireable)
-    id              = try container.decode(Int.self,             forKey: .id)
+    followerCount   = try container.decode(Int.self,    forKey: .followerCount)
+    followingCount  = try container.decode(Int.self,    forKey: .followingCount)
+    hireable        = try container.decode(Bool.self,   forKey: .hireable)
+    id              = try container.decode(Int.self,    forKey: .id)
     location        = try container.decodeIfPresent(String.self, forKey: .location)
-    loginName       = try container.decode(String.self,          forKey: .loginName)
-    name            = try container.decode(String.self,          forKey: .name)
-    publicGistCount = try container.decode(Int.self,             forKey: .publicGistCount)
-    publicRepoCount = try container.decode(Int.self,             forKey: .publicRepoCount)
-    type            = try container.decode(String.self,          forKey: .type)
+    loginName       = try container.decode(String.self, forKey: .loginName)
+    name            = try container.decode(String.self, forKey: .name)
+    publicGistCount = try container.decode(Int.self,    forKey: .publicGistCount)
+    publicRepoCount = try container.decode(Int.self,    forKey: .publicRepoCount)
+    type            = try container.decode(String.self, forKey: .type)
     // swiftlint:enable operator_usage_whitespace comma
     // swiftformat:enable consecutiveSpaces
 
