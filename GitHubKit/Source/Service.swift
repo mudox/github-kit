@@ -156,4 +156,15 @@ public struct Service {
     return provider.request(.commit(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(CommitResponse.init)
   }
+
+  public typealias TreeResponse = Response<Tree>
+
+  public func tree(
+    of ownerName: String, _ repositoryName: String,
+    withSHA sha: String
+  )
+    -> Single<TreeResponse> {
+    return provider.request(.tree(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
+      .map(TreeResponse.init)
+  }
 } // struct Service
