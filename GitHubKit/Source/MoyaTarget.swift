@@ -1,6 +1,6 @@
 import Moya
 
-enum MoyaTarget {
+public enum MoyaTarget {
 
   // MARK: Search
 
@@ -233,6 +233,14 @@ extension MoyaTarget: Moya.TargetType {
 
   public var validationType: ValidationType {
     switch self {
+
+    // Authorization
+    case .deleteAuthorization:
+      return .customCodes([204])
+
+    // Grant
+    case .deleteGrant:
+      return .customCodes([204])
 
     // Follower
     case .follow, .unfollow:
