@@ -73,3 +73,11 @@ number_separator:
     #- AutomaticRuleTests.generated.swift
 
 severity: error
+
+custom_rules:
+  decode_optional_if_present:                      # rule identifier
+    included: ".*\\.swift"                         # regex that defines paths to include during linting. optional.
+    name: "Decode Optional If Present"             # rule name. optional.
+    regex: "try container.decode\\(\\w+\\?\\.self" # matching pattern
+    message: "Use `decodeIfPresent`"               # violation message. optional.
+    severity: warning                              # violation severity. optional.
