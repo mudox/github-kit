@@ -25,7 +25,7 @@
 		F49B2D5C21499FA700F30B6D /* reference.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5921499FA700F30B6D /* reference.txt */; };
 		F4A693482147F6DE000901E9 /* authorizations.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693302147E998000901E9 /* authorizations.txt */; };
 		F4A693492147F6DE000901E9 /* authorize.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693312147E998000901E9 /* authorize.txt */; };
-		F4A6934A2147F6DE000901E9 /* currentUser.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A6931F2147DA74000901E9 /* currentUser.txt */; };
+		F4A6934A2147F6DE000901E9 /* myProfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A6931F2147DA74000901E9 /* myProfile.txt */; };
 		F4A6934B2147F6DE000901E9 /* deleteAuthorization.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A6932F2147E998000901E9 /* deleteAuthorization.txt */; };
 		F4A6934C2147F6DE000901E9 /* deleteGrant.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693362147F394000901E9 /* deleteGrant.txt */; };
 		F4A6934D2147F6DE000901E9 /* grants.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693352147F394000901E9 /* grants.txt */; };
@@ -34,7 +34,7 @@
 		F4A693502147F6DE000901E9 /* search_repositories_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693292147E8B9000901E9 /* search_repositories_1.txt */; };
 		F4A693512147F6DE000901E9 /* search_repositories_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A6932A2147E8BA000901E9 /* search_repositories_2.txt */; };
 		F4A693522147F6DE000901E9 /* search_repositories_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693282147E8B9000901E9 /* search_repositories_3.txt */; };
-		F4A693532147F6DE000901E9 /* user.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693202147DA74000901E9 /* user.txt */; };
+		F4A693532147F6DE000901E9 /* profile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693202147DA74000901E9 /* profile.txt */; };
 		F4A693542147F6DE000901E9 /* zen.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40EB37C2147D71200EC440D /* zen.txt */; };
 		F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAB2146062E00F3941E /* ModelSpec.swift */; };
 		F4EE0DB6214622BC00CACB2A /* SerivceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAC2146062E00F3941E /* SerivceSpec.swift */; };
@@ -82,8 +82,8 @@
 		F49B2D5721499FA700F30B6D /* commit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = commit.txt; sourceTree = "<group>"; };
 		F49B2D5821499FA700F30B6D /* tree.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.txt; sourceTree = "<group>"; };
 		F49B2D5921499FA700F30B6D /* reference.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reference.txt; sourceTree = "<group>"; };
-		F4A6931F2147DA74000901E9 /* currentUser.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentUser.txt; sourceTree = "<group>"; };
-		F4A693202147DA74000901E9 /* user.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = user.txt; sourceTree = "<group>"; };
+		F4A6931F2147DA74000901E9 /* myProfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myProfile.txt; sourceTree = "<group>"; };
+		F4A693202147DA74000901E9 /* profile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = profile.txt; sourceTree = "<group>"; };
 		F4A693272147E8B9000901E9 /* search_repositories_0.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = search_repositories_0.txt; sourceTree = "<group>"; };
 		F4A693282147E8B9000901E9 /* search_repositories_3.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = search_repositories_3.txt; sourceTree = "<group>"; };
 		F4A693292147E8B9000901E9 /* search_repositories_1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = search_repositories_1.txt; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 				F4A693312147E998000901E9 /* authorize.txt */,
 				F4281334214B86180064C8D7 /* blob.txt */,
 				F49B2D5721499FA700F30B6D /* commit.txt */,
-				F4A6931F2147DA74000901E9 /* currentUser.txt */,
+				F4A6931F2147DA74000901E9 /* myProfile.txt */,
 				F4A6932F2147E998000901E9 /* deleteAuthorization.txt */,
 				F4A693362147F394000901E9 /* deleteGrant.txt */,
 				F428133B214BD1090064C8D7 /* follow.txt */,
@@ -230,7 +230,7 @@
 				F4A693282147E8B9000901E9 /* search_repositories_3.txt */,
 				F49B2D5821499FA700F30B6D /* tree.txt */,
 				F428133C214BD1090064C8D7 /* unfollow.txt */,
-				F4A693202147DA74000901E9 /* user.txt */,
+				F4A693202147DA74000901E9 /* profile.txt */,
 				F40EB37C2147D71200EC440D /* zen.txt */,
 			);
 			path = Resources;
@@ -332,7 +332,7 @@
 				F4A693542147F6DE000901E9 /* zen.txt in Resources */,
 				F4A693492147F6DE000901E9 /* authorize.txt in Resources */,
 				F4A693512147F6DE000901E9 /* search_repositories_2.txt in Resources */,
-				F4A693532147F6DE000901E9 /* user.txt in Resources */,
+				F4A693532147F6DE000901E9 /* profile.txt in Resources */,
 				F428133A214B8C590064C8D7 /* isFollowing.txt in Resources */,
 				F4A6934E2147F6DE000901E9 /* rateLimit.txt in Resources */,
 				F4281335214B86180064C8D7 /* blob.txt in Resources */,
@@ -346,7 +346,7 @@
 				F4A6934D2147F6DE000901E9 /* grants.txt in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				F49B2D5B21499FA700F30B6D /* tree.txt in Resources */,
-				F4A6934A2147F6DE000901E9 /* currentUser.txt in Resources */,
+				F4A6934A2147F6DE000901E9 /* myProfile.txt in Resources */,
 				F428133E214BD10A0064C8D7 /* unfollow.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

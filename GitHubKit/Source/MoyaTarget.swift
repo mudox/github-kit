@@ -8,8 +8,8 @@ public enum MoyaTarget {
 
   // MARK: User
 
-  case currentUser
-  case user(name: String)
+  case myProfile
+  case profile(username: String)
 
   // MARK: Misc
 
@@ -51,7 +51,7 @@ extension MoyaTarget: Moya.TargetType {
       return .get
 
     // User
-    case .user, .currentUser:
+    case .profile, .myProfile:
       return .get
 
     // Misc
@@ -98,9 +98,9 @@ extension MoyaTarget: Moya.TargetType {
       return "/search/repositories"
 
     // User
-    case .currentUser:
+    case .myProfile:
       return "/user"
-    case let .user(name):
+    case let .profile(name):
       return "/users/\(name)"
 
     // Misc
@@ -149,7 +149,7 @@ extension MoyaTarget: Moya.TargetType {
       return Dev.defaultTokenHeaders
 
     // User
-    case .user, .currentUser:
+    case .profile, .myProfile:
       return Dev.defaultTokenHeaders
 
     // Misc
@@ -192,7 +192,7 @@ extension MoyaTarget: Moya.TargetType {
       return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
 
     // User
-    case .user, .currentUser:
+    case .profile, .myProfile:
       return .requestPlain
 
     // Misc

@@ -189,20 +189,20 @@ class ServiceSpec: QuickSpec {
 
     describe("Service.User") {
 
-      // MARK: currentUser
+      // MARK: myProfile
 
-      it("currentUser") {
+      it("myProfile") {
         // Arrange
-        let jack = Jack("Service.currentUser")
+        let jack = Jack("Service.myProfile")
 
         stubIfEnabled(
-          name: "currentUser",
+          name: "myProfile",
           condition: isMethodGET() && isPath("/user")
         )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
-          _ = Service.shared.currentUser().subscribe(
+          _ = Service.shared.myProfile().subscribe(
             onSuccess: { response in
               jack.info("""
               \(Jack.dump(of: response))
@@ -217,18 +217,18 @@ class ServiceSpec: QuickSpec {
 
       // MARK: user
 
-      it("user") {
+      it("profile") {
         // Arrange
-        let jack = Jack("Service.user")
+        let jack = Jack("Service.profile")
 
         stubIfEnabled(
-          name: "user",
+          name: "profile",
           condition: isMethodGET() && pathStartsWith("/users")
         )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
-          _ = Service.shared.user(name: "mudox").subscribe(
+          _ = Service.shared.profile(of: "mudox").subscribe(
             onSuccess: { response in
               jack.info("""
               \(Jack.dump(of: response))
