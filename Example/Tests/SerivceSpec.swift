@@ -487,18 +487,18 @@ class ServiceSpec: QuickSpec {
 
       // MARK: grants
 
-      it("grants") {
+      it("myGrants") {
         // Arrange
-        let jack = Jack("Service.grants")
+        let jack = Jack("Service.myGrants")
 
         stubIfEnabled(
-          name: "grants",
+          name: "myGrants",
           condition: isMethodGET() && isPath("/applications/grants")
         )
 
         // Act, Assert
         waitUntil(timeout: timeout) { done in
-          _ = Service.shared.grants().subscribe(
+          _ = Service.shared.myGrants().subscribe(
             onSuccess: { response in
               let list = response.payload
                 .enumerated()
@@ -544,7 +544,7 @@ class ServiceSpec: QuickSpec {
             },
             onError: { jack.error(Jack.dump(of: $0)); done() }
           )
-          _ = Service.shared.grants().subscribe(
+          _ = Service.shared.myGrants().subscribe(
             onSuccess: { response in
               let list = response.payload
                 .enumerated()

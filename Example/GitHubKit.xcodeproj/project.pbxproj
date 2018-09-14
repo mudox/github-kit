@@ -28,7 +28,7 @@
 		F4A6934A2147F6DE000901E9 /* myProfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A6931F2147DA74000901E9 /* myProfile.txt */; };
 		F4A6934B2147F6DE000901E9 /* deleteAuthorization.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A6932F2147E998000901E9 /* deleteAuthorization.txt */; };
 		F4A6934C2147F6DE000901E9 /* deleteGrant.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693362147F394000901E9 /* deleteGrant.txt */; };
-		F4A6934D2147F6DE000901E9 /* grants.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693352147F394000901E9 /* grants.txt */; };
+		F4A6934D2147F6DE000901E9 /* myGrants.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693352147F394000901E9 /* myGrants.txt */; };
 		F4A6934E2147F6DE000901E9 /* rateLimit.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40EB37A2147D5B400EC440D /* rateLimit.txt */; };
 		F4A6934F2147F6DE000901E9 /* search_repositories_0.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693272147E8B9000901E9 /* search_repositories_0.txt */; };
 		F4A693502147F6DE000901E9 /* search_repositories_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693292147E8B9000901E9 /* search_repositories_1.txt */; };
@@ -91,7 +91,7 @@
 		F4A6932F2147E998000901E9 /* deleteAuthorization.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deleteAuthorization.txt; sourceTree = "<group>"; };
 		F4A693302147E998000901E9 /* authorizations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = authorizations.txt; sourceTree = "<group>"; };
 		F4A693312147E998000901E9 /* authorize.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = authorize.txt; sourceTree = "<group>"; };
-		F4A693352147F394000901E9 /* grants.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grants.txt; sourceTree = "<group>"; };
+		F4A693352147F394000901E9 /* myGrants.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myGrants.txt; sourceTree = "<group>"; };
 		F4A693362147F394000901E9 /* deleteGrant.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deleteGrant.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,7 +220,7 @@
 				F4A693362147F394000901E9 /* deleteGrant.txt */,
 				F428133B214BD1090064C8D7 /* follow.txt */,
 				F4281356214C11300064C8D7 /* followers.txt */,
-				F4A693352147F394000901E9 /* grants.txt */,
+				F4A693352147F394000901E9 /* myGrants.txt */,
 				F4281336214B8C390064C8D7 /* isFollowing.txt */,
 				F40EB37A2147D5B400EC440D /* rateLimit.txt */,
 				F49B2D5921499FA700F30B6D /* reference.txt */,
@@ -343,7 +343,7 @@
 				F4A693522147F6DE000901E9 /* search_repositories_3.txt in Resources */,
 				F4A6934C2147F6DE000901E9 /* deleteGrant.txt in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				F4A6934D2147F6DE000901E9 /* grants.txt in Resources */,
+				F4A6934D2147F6DE000901E9 /* myGrants.txt in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				F49B2D5B21499FA700F30B6D /* tree.txt in Resources */,
 				F4A6934A2147F6DE000901E9 /* myProfile.txt in Resources */,

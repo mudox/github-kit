@@ -43,7 +43,7 @@ public extension Service {
   /// - Returns: Single\<GrantsResponse\>.
   public typealias GrantsResponse = Response<[Grant]>
 
-  public func grants() -> Single<GrantsResponse> {
+  public func myGrants() -> Single<GrantsResponse> {
     return provider.request(.grants)
       .map(GrantsResponse.init)
   }
