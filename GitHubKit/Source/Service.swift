@@ -145,14 +145,23 @@ public struct Service {
 
   public typealias ReferenceResponse = Response<Reference>
 
-  public func reference(ownerName: String, repositoryName: String, path: String) -> Single<ReferenceResponse> {
+  public func reference(
+    of ownerName: String, _ repositoryName: String,
+    withPath path: String
+  )
+    -> Single<ReferenceResponse> {
     return provider.request(.reference(ownerName: ownerName, repositoryName: repositoryName, path: path))
       .map(ReferenceResponse.init)
   }
 
   public typealias CommitResponse = Response<Commit>
 
-  public func commit(ownerName: String, repositoryName: String, sha: String) -> Single<CommitResponse> {
+  public func commit(
+    of ownerName: String, _ repositoryName: String,
+    withSHA sha: String
+  )
+    -> Single<CommitResponse> {
+
     return provider.request(.commit(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(CommitResponse.init)
   }
@@ -167,4 +176,23 @@ public struct Service {
     return provider.request(.tree(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(TreeResponse.init)
   }
+
+  public typealias BlobRawResponse = RawDataResponse
+
+  /// [Get a blob](https://developer.github.com/v3/git/blobs/#get-a-blob)
+  ///
+  /// - Parameters:
+  ///   - ownerName: Owner username of the repository from which to get the blob.
+  ///   - repositoryName: The repository name.
+  ///   - sha: SHA-1 value of the blob object.
+  /// - Returns: `Single<BlobRawResponse>`
+  public func blob(
+    of ownerName: String, _ repositoryName: String,
+    withSHA sha: String
+  )
+    -> Single<BlobRawResponse> {
+    return provider.request(.blob(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
+      .map(BlobRawResponse.init)
+  }
+
 } // struct Service
