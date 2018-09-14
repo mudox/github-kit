@@ -230,6 +230,47 @@ class ServiceSpec: QuickSpec {
       
       // MARK: isFollowing
       
+      fit("isFollowing") {
+        // Arrange
+        let jack = Jack("Service.isFollowing")
+        
+        stubIfEnabled(
+          name: "isFollowing",
+          condition: isMethodGET() && pathMatches("^/users/.*/following/")
+        )
+        
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.isFollowing(from: "tracy", to: "mudox")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                  Is tracy following mudox?
+                  \(Jack.dump(of: response))
+                  \(Jack.dump(of: response.payload))
+                  """)
+                done()
+            },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.isFollowing(from: "mudox", to: "kevinzhow")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                  Is mudox following kevinzhow?
+                    \(Jack.dump(of: response))
+                    \(Jack.dump(of: response.payload))
+                  """)
+                done()
+            },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
 
       // MARK: - authorize
 
