@@ -6,7 +6,7 @@ public enum MoyaTarget {
 
   case searchRepository(String)
 
-  // MARK: User
+  // MARK: PublicUserProfile
 
   case myProfile
   case profile(username: String)
@@ -50,7 +50,7 @@ extension MoyaTarget: Moya.TargetType {
     case .searchRepository:
       return .get
 
-    // User
+    // PublicUserProfile
     case .profile, .myProfile:
       return .get
 
@@ -97,7 +97,7 @@ extension MoyaTarget: Moya.TargetType {
     case .searchRepository:
       return "/search/repositories"
 
-    // User
+    // PublicUserProfile
     case .myProfile:
       return "/user"
     case let .profile(name):
@@ -148,7 +148,7 @@ extension MoyaTarget: Moya.TargetType {
     case .searchRepository:
       return Dev.defaultTokenHeaders
 
-    // User
+    // PublicUserProfile
     case .profile, .myProfile:
       return Dev.defaultTokenHeaders
 
@@ -191,7 +191,7 @@ extension MoyaTarget: Moya.TargetType {
       ]
       return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
 
-    // User
+    // PublicUserProfile
     case .profile, .myProfile:
       return .requestPlain
 

@@ -422,7 +422,7 @@
 		A7F117AA7C298BFE6E89761559FD3089 /* Moya-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 60690D6BC9D5D510C150E24A424FA0DD /* Moya-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F30B818075E3408CBEF9A052AABB55 /* UIWebView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DF2E6C40080FD0B47C7667012A06D8 /* UIWebView+Rx.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A81AFBCDD374ECEA8F0CCBAEDE15ECFE /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 648F8CEB61E811C4722BD52996763613 /* DDLog.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		A8702E6E75C5C60A1B75EE13CE1329AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317DD86C6CD384F45610C4175A6295C4 /* User.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A8702E6E75C5C60A1B75EE13CE1329AF /* PublicUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317DD86C6CD384F45610C4175A6295C4 /* PublicUserProfile.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A893E573E7CFD99D4AB97427D3CB4B20 /* Observable+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2CA8820DEAF5590F42223038B36605 /* Observable+Bind.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A8A34375D9FA0EBBC8726D389CAA3FD2 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5741ED2BC55EA394CB6517C99DABC048 /* Image.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A9287AFFCF2FF84BC6FB256D3F9AAAC1 /* MatcherFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DACA8A92AA2ECF6242247E7CD3E1368 /* MatcherFunc.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -584,6 +584,7 @@
 		F428134D214C05730064C8D7 /* GitHubService+GitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428134C214C05730064C8D7 /* GitHubService+GitData.swift */; };
 		F428134F214C06350064C8D7 /* GitHubService+Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428134E214C06350064C8D7 /* GitHubService+Repository.swift */; };
 		F4281355214C076A0064C8D7 /* GitHubService+Showcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281354214C076A0064C8D7 /* GitHubService+Showcase.swift */; };
+		F4281359214C178E0064C8D7 /* PrivateUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */; };
 		F47D86A6214A420D00302329 /* RateLimitPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D86A5214A420D00302329 /* RateLimitPayload.swift */; };
 		F47D86A8214AB3A900302329 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D86A7214AB3A900302329 /* Follower.swift */; };
 		F47F2A0B74633AE6764975D5B0449275 /* RxPickerViewDataSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF7C95D294A26BCE870A8EA68EEA71F /* RxPickerViewDataSourceType.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -980,7 +981,7 @@
 		30754C0247EE11BB1E4E8861E6D7BE7E /* Platform.Linux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.Linux.swift; path = Platform/Platform.Linux.swift; sourceTree = "<group>"; };
 		307B4C573BED73498F4CEF2A9B6E87BF /* KVORepresentable+CoreGraphics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "KVORepresentable+CoreGraphics.swift"; path = "RxCocoa/Foundation/KVORepresentable+CoreGraphics.swift"; sourceTree = "<group>"; };
 		31511CA596A5CC845B66F05D7494DA63 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = Classes/DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
-		317DD86C6CD384F45610C4175A6295C4 /* User.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		317DD86C6CD384F45610C4175A6295C4 /* PublicUserProfile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublicUserProfile.swift; sourceTree = "<group>"; };
 		31E9748136073EA1B50E853EB051F3B9 /* Moya-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Moya-prefix.pch"; sourceTree = "<group>"; };
 		320B5D0A3975FDFE0F81AD723AE5E554 /* PrimitiveSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PrimitiveSequence.swift; path = RxSwift/Traits/PrimitiveSequence.swift; sourceTree = "<group>"; };
 		3432E9CADF5A3DDAC673A7E9F7E1F6C2 /* DDASLLogCapture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDASLLogCapture.m; path = Classes/DDASLLogCapture.m; sourceTree = "<group>"; };
@@ -1486,6 +1487,7 @@
 		F428134E214C06350064C8D7 /* GitHubService+Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubService+Repository.swift"; sourceTree = "<group>"; };
 		F4281350214C06E90064C8D7 /* _old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _old.swift; sourceTree = "<group>"; };
 		F4281354214C076A0064C8D7 /* GitHubService+Showcase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubService+Showcase.swift"; sourceTree = "<group>"; };
+		F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateUserProfile.swift; sourceTree = "<group>"; };
 		F45B579D9BC97BD77925FD214621B4EA /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47D86A5214A420D00302329 /* RateLimitPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateLimitPayload.swift; sourceTree = "<group>"; };
 		F47D86A7214AB3A900302329 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
@@ -2142,7 +2144,8 @@
 				F47D86A5214A420D00302329 /* RateLimitPayload.swift */,
 				502945AFA6F5B342B53B7E73BD3EA7EB /* Repository.swift */,
 				FB489EA87B73CA78A28C6194E5AFE0C1 /* SearchPayload.swift */,
-				317DD86C6CD384F45610C4175A6295C4 /* User.swift */,
+				317DD86C6CD384F45610C4175A6295C4 /* PublicUserProfile.swift */,
+				F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */,
 				F49B2D5121497B9F00F30B6D /* Git Object */,
 				F4281333214B57C90064C8D7 /* Response */,
 			);
@@ -3446,6 +3449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4281330214B579C0064C8D7 /* IsFollowingResponse.swift in Sources */,
+				F4281359214C178E0064C8D7 /* PrivateUserProfile.swift in Sources */,
 				6CE3D4B94C77251D541372DAEE44438B /* App.swift in Sources */,
 				F47D86A8214AB3A900302329 /* Follower.swift in Sources */,
 				A40D7F5A3127DCF4EB2A3BE370A45B1E /* Authorization.swift in Sources */,
@@ -3474,7 +3478,7 @@
 				F4281345214C00570064C8D7 /* GitHubService+Misc.swift in Sources */,
 				2694FDF03263EAFDABE3D38A10261267 /* MoyaTarget.swift in Sources */,
 				F428134F214C06350064C8D7 /* GitHubService+Repository.swift in Sources */,
-				A8702E6E75C5C60A1B75EE13CE1329AF /* User.swift in Sources */,
+				A8702E6E75C5C60A1B75EE13CE1329AF /* PublicUserProfile.swift in Sources */,
 				F4281332214B57BA0064C8D7 /* RawDataResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

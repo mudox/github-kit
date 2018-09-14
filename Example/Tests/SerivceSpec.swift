@@ -185,9 +185,9 @@ class ServiceSpec: QuickSpec {
 
     } // describe("Service.Search")
 
-    // MARK: - Service.User
+    // MARK: - Service.PublicUserProfile
 
-    describe("Service.User") {
+    describe("Service.PublicUserProfile") {
 
       // MARK: myProfile
 
@@ -359,7 +359,7 @@ class ServiceSpec: QuickSpec {
         }
       }
       
-    } // describe("Service.User")
+    } // describe("Service.PublicUserProfile")
 
     // MARK: - Service.Authorization
 

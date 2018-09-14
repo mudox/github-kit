@@ -1,6 +1,6 @@
 import Foundation
 
-public class User: Decodable {
+public class PublicUserProfile: Decodable {
 
   @available(*, unavailable)
   private init() {
@@ -63,20 +63,20 @@ public class User: Decodable {
     // swiftformat:disable consecutiveSpaces
     // swiftlint:disable operator_usage_whitespace comma
     avatarURL       = try container.decodeIfPresent(URL.self,    forKey: .avatarURL)
-    bio             = try container.decode         (String.self, forKey: .bio)
+    bio             = try container.decode(String.self, forKey: .bio)
     blog            = try container.decodeIfPresent(String.self, forKey: .blog)
     company         = try container.decodeIfPresent(String.self, forKey: .company)
     email           = try container.decodeIfPresent(String.self, forKey: .email)
-    followerCount   = try container.decode         (Int.self,    forKey: .followerCount)
-    followingCount  = try container.decode         (Int.self,    forKey: .followingCount)
-    hireable        = try container.decode         (Bool.self,   forKey: .hireable)
-    id              = try container.decode         (Int.self,    forKey: .id)
+    followerCount   = try container.decode(Int.self,    forKey: .followerCount)
+    followingCount  = try container.decode(Int.self,    forKey: .followingCount)
+    hireable        = try container.decode(Bool.self,   forKey: .hireable)
+    id              = try container.decode(Int.self,    forKey: .id)
     location        = try container.decodeIfPresent(String.self, forKey: .location)
-    loginName       = try container.decode         (String.self, forKey: .loginName)
-    name            = try container.decode         (String.self, forKey: .name)
-    publicGistCount = try container.decode         (Int.self,    forKey: .publicGistCount)
-    publicRepoCount = try container.decode         (Int.self,    forKey: .publicRepoCount)
-    type            = try container.decode         (String.self, forKey: .type)
+    loginName       = try container.decode(String.self, forKey: .loginName)
+    name            = try container.decode(String.self, forKey: .name)
+    publicGistCount = try container.decode(Int.self,    forKey: .publicGistCount)
+    publicRepoCount = try container.decode(Int.self,    forKey: .publicRepoCount)
+    type            = try container.decode(String.self, forKey: .type)
     // swiftlint:enable operator_usage_whitespace comma
     // swiftformat:enable consecutiveSpaces
 
@@ -105,59 +105,4 @@ public class User: Decodable {
     self.updateDate = updateDate
   }
 
-}
-
-// MARK: - SignedInUser
-
-public class SignedInUser: User {
-  public let collaboratorCount: Int
-  public let privateGistCount: Int
-  public let privateRepoCount: Int
-  public let ownedPrivateRepoCount: Int
-
-  public let diskUsage: Int
-  public let is2FAEnabled: Bool?
-
-  public let plan: Plan
-
-  private enum CodingKeys: String, CodingKey {
-    case collaboratorCount = "collaborators"
-    case diskUsage = "disk_usage"
-    case ownedPrivateRepoCount = "owned_private_repos"
-    case plan
-    case privateGistCount = "private_gists"
-    case privateRepoCount = "total_private_repos"
-    case is2FAEnabled = "two_factor_authentication"
-  }
-
-  public required init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-
-    collaboratorCount = try container.decode(Int.self, forKey: .collaboratorCount)
-    privateGistCount = try container.decode(Int.self, forKey: .privateGistCount)
-    privateRepoCount = try container.decode(Int.self, forKey: .privateRepoCount)
-    ownedPrivateRepoCount = try container.decode(Int.self, forKey: .ownedPrivateRepoCount)
-
-    diskUsage = try container.decode(Int.self, forKey: .diskUsage)
-    is2FAEnabled = try container.decode(Bool.self, forKey: .is2FAEnabled)
-
-    plan = try container.decode(Plan.self, forKey: .plan)
-
-    try super.init(from: decoder)
-  }
-
-  // swiftlint:disable nesting
-  public struct Plan: Decodable {
-    public let collaborators: Int
-    public let name: String
-    public let privateRepos: Int
-    public let space: Int
-
-    private enum CodingKeys: String, CodingKey {
-      case collaborators
-      case name
-      case privateRepos = "private_repos"
-      case space
-    }
-  }
 }
