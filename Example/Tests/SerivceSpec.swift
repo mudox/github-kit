@@ -285,6 +285,32 @@ class ServiceSpec: QuickSpec {
         }
       }
 
+      // MARK: followers
+
+      it("followers") {
+        // Arrange
+        let jack = Jack("Service.followers")
+
+        stubIfEnabled(
+          name: "user",
+          condition: isMethodGET() && pathMatches("^/users/.*/followers")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.followers(of: "mudox").subscribe(
+            onSuccess: { response in
+              jack.info("""
+              \(Jack.dump(of: response))
+              Has \(response.payload.count) followers
+              """)
+              done()
+            },
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
+
     } // describe("Service.User")
 
     // MARK: - Service.Authorization
@@ -500,7 +526,7 @@ class ServiceSpec: QuickSpec {
 
     // MARK: - Service.GitData
 
-    fdescribe("Service.GitData") {
+    describe("Service.GitData") {
 
       // MARK: reference
 

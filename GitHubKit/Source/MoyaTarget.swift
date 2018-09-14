@@ -40,6 +40,7 @@ enum MoyaTarget {
   case isFollowing(username: String, targetUsername: String)
 //  case follow(username: String)
 //  case unfollow(username: String)
+
 }
 
 extension MoyaTarget: Moya.TargetType {
