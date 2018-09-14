@@ -1,5 +1,6 @@
 import Foundation
 
+import Alamofire
 import Moya
 
 import RxSwift
@@ -23,9 +24,12 @@ public struct Service {
 
   /// Search GitHub repositories.
   ///
-  /// - Parameter query: Query string. See
-  /// [Understanding the search syntax](https://help.com/articles/understanding-the-search-syntax/) and
-  /// [Searching for repositories](https://help.com/articles/searching-for-repositories/)
+  /// See Also:
+  /// - [Understanding the search syntax](https://help.com/articles/understanding-the-search-syntax/)
+  /// - [Searching for repositories](https://help.com/articles/searching-for-repositories/)
+  ///
+  /// - Parameter query: Query string.
+  ///
   /// - Returns: Single\<SearchRepositoryResponse\>.
   public func searchRepository(_ query: String) -> Single<SearchRepositoryResponse> {
     return provider.request(.searchRepository(query))
@@ -36,7 +40,7 @@ public struct Service {
 
   public typealias CurrentUserResponse = Response<SignedInUser>
 
-  /// Get full information of current (signed-in) GitHub user.
+  /// Get public as well as private information of current (signed-in) GitHub user.
   ///
   /// - Returns: Single\<CurrentUserResponse\>.
   public func currentUser() -> Single<CurrentUserResponse> {
@@ -54,6 +58,19 @@ public struct Service {
       .map(UserResponse.init)
   }
 
+  // MARK: Follower
+
+  // swiftlint:disable:next line_length
+  /// [Check if one user follows another](https://developer.github.com/v3/users/followers/#check-if-one-user-follows-another)
+  ///
+  /// - Parameters:
+  ///   - username: User name.
+  ///   - targetUsername: Target user name.
+  /// - Returns: Single<Bool>
+  public func isFollowing(from username: String, to targetUsername: String) -> Single<IsFollowingResponse> {
+    return provider.request(.isFollowing(username: username, targetUsername: targetUsername))
+      .map(IsFollowingResponse.init)
+  }
   // MARK: - Misc
 
   /// Request a random GitHub philosophy.
