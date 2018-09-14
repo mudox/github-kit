@@ -36,7 +36,7 @@ public class IsFollowingResponse: ResponseType, CustomReflectable {
       children: [
         "status": "\(Jack.description(ofHTTPStatusCode: moyaResponse.statusCode))",
         "rate limit": rateLimit,
-        "blob data": payload,
+        "boolean payload": payload,
       ],
       displayStyle: .class
     )
