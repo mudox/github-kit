@@ -98,8 +98,11 @@ class ServiceSpec: QuickSpec {
       }
     }
 
-    describe("Service") {
-      // MARK: - zen
+    // MARK: - Service.Misc
+
+    describe("Service.Misc") {
+
+      // MARK: zen
 
       it("zen") {
         // Arrange
@@ -145,7 +148,13 @@ class ServiceSpec: QuickSpec {
         }
       }
 
-      // MARK: - searchRepository
+    } // describe("Misc")
+
+    // MARK: - Service.Search
+
+    describe("Service.Search") {
+
+      // MARK: searchRepository
 
       it("searchRepository") {
         // Arrange
@@ -174,7 +183,13 @@ class ServiceSpec: QuickSpec {
         }
       }
 
-      // MARK: - currentUser
+    } // describe("Service.Search")
+
+    // MARK: - Service.User
+
+    describe("Service.User") {
+
+      // MARK: currentUser
 
       it("currentUser") {
         // Arrange
@@ -225,34 +240,32 @@ class ServiceSpec: QuickSpec {
           )
         }
       }
-      
-      // MARK: user - following
-      
+
       // MARK: isFollowing
-      
-      fit("isFollowing") {
+
+      it("isFollowing") {
         // Arrange
         let jack = Jack("Service.isFollowing")
-        
+
         stubIfEnabled(
           name: "isFollowing",
           condition: isMethodGET() && pathMatches("^/users/.*/following/")
         )
-        
+
         // Act, Assert
         waitUntil(timeout: timeout) { done in
           _ = Service.shared.isFollowing(from: "tracy", to: "mudox")
             .subscribe(
               onSuccess: { response in
                 jack.info("""
-                  Is tracy following mudox?
-                  \(Jack.dump(of: response))
-                  \(Jack.dump(of: response.payload))
-                  """)
+                Is tracy following mudox?
+                \(Jack.dump(of: response))
+                \(Jack.dump(of: response.payload))
+                """)
                 done()
-            },
+              },
               onError: { jack.error(Jack.dump(of: $0)); fatalError() }
-          )
+            )
         }
 
         // Act, Assert
@@ -261,18 +274,23 @@ class ServiceSpec: QuickSpec {
             .subscribe(
               onSuccess: { response in
                 jack.info("""
-                  Is mudox following kevinzhow?
-                    \(Jack.dump(of: response))
-                    \(Jack.dump(of: response.payload))
-                  """)
+                Is mudox following kevinzhow?
+                  \(Jack.dump(of: response))
+                  \(Jack.dump(of: response.payload))
+                """)
                 done()
-            },
+              },
               onError: { jack.error(Jack.dump(of: $0)); fatalError() }
-          )
+            )
         }
       }
 
-      // MARK: - authorize
+    } // describe("Service.User")
+
+    // MARK: - Service.Authorization
+
+    describe("Service.Authoriztion") {
+      // MARK: authorize
 
       it("authorize") {
         // Arrange
@@ -393,7 +411,7 @@ class ServiceSpec: QuickSpec {
         }
       }
 
-      // MARK: - grants
+      // MARK: grants
 
       it("grants") {
         // Arrange
@@ -478,7 +496,13 @@ class ServiceSpec: QuickSpec {
         }
       }
 
-      // MARK: - reference
+    } // describe("Service.Authorization")
+
+    // MARK: - Service.GitData
+
+    fdescribe("Service.GitData") {
+
+      // MARK: reference
 
       it("reference") {
         // Arrange
@@ -533,18 +557,18 @@ class ServiceSpec: QuickSpec {
           )
         }
       }
-      
+
       // MARK: tree
-      
+
       it("tree") {
         // Arrange
         let jack = Jack("Service.tree")
-        
+
         stubIfEnabled(
           name: "tree",
           condition: isMethodGET() && pathMatches("^/repos/.*/git/trees/")
         )
-        
+
         // Act, Assert
         waitUntil(timeout: timeout) { done in
           let sha = "4b66c5bf104ff7424da52d82c05cfb6a061b7d49"
@@ -552,27 +576,27 @@ class ServiceSpec: QuickSpec {
             .subscribe(
               onSuccess: { response in
                 jack.info("""
-                  \(Jack.dump(of: response))
-                  \(Jack.dump(of: response.payload))
-                  """)
+                \(Jack.dump(of: response))
+                \(Jack.dump(of: response.payload))
+                """)
                 done()
-            },
+              },
               onError: { jack.error(Jack.dump(of: $0)); fatalError() }
-          )
+            )
         }
       }
-      
+
       // MARK: blob
-      
+
       it("blob") {
         // Arrange
         let jack = Jack("Service.blob")
-        
+
         stubIfEnabled(
           name: "blob",
           condition: isMethodGET() && pathMatches("^/repos/.*/git/blobs/")
         )
-        
+
         // Act, Assert
         waitUntil(timeout: timeout) { done in
           let sha = "60c424465c52b757d9fca910ef2560e17ef0f626"
@@ -580,16 +604,16 @@ class ServiceSpec: QuickSpec {
             .subscribe(
               onSuccess: { response in
                 jack.info("""
-                  \(Jack.dump(of: response))
-                  \(Jack.dump(of: response.payload))
-                  """)
+                \(Jack.dump(of: response))
+                \(Jack.dump(of: response.payload))
+                """)
                 done()
-            },
+              },
               onError: { jack.error(Jack.dump(of: $0)); fatalError() }
-          )
+            )
         }
       }
-      
+
     } // describe("Service")
   } // spec()
 }
