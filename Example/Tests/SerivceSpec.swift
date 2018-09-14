@@ -311,6 +311,54 @@ class ServiceSpec: QuickSpec {
         }
       }
 
+      // MARK: follow
+
+      fit("follow") {
+        // Arrange
+        let jack = Jack("Service.follow")
+
+        stubIfEnabled(
+          name: "follow",
+          condition: isMethodPUT() && pathStartsWith("/user/following")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          let username = "kevinzhow"
+          _ = Service.shared.follow(username: username).subscribe(
+            onCompleted: {
+              jack.info("Followed user \(username)")
+              done()
+            },
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
+
+      // MARK: unfollow
+
+      fit("unfollow") {
+        // Arrange
+        let jack = Jack("Service.unfollow")
+
+        stubIfEnabled(
+          name: "unfollow",
+          condition: isMethodDELETE() && pathStartsWith("/user/following")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          let username = "kevinzhow"
+          _ = Service.shared.unfollow(username: username).subscribe(
+            onCompleted: {
+              jack.info("Unfollowed user \(username)")
+              done()
+            },
+            onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
+        }
+      }
+      
     } // describe("Service.User")
 
     // MARK: - Service.Authorization
