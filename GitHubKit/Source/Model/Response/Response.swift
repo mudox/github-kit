@@ -6,56 +6,9 @@ import RxSwift
 
 import JacKit
 
-/// Add convenient initiailizer that enables syntax like
-///
-///     return provider.request(...)
-///       .map(CommitResponse.init)
-///
-protocol MoyaResponseMappable {
+// MARK: - Response<Payload>
 
-  init(response: Moya.Response) throws
-}
-
-public class BlobResponse: CustomReflectable {
-
-  public let moyaResponse: Moya.Response
-  public let rateLimit: HeaderRateLimit
-  public let blobData: Data
-
-  public required init(response: Moya.Response) throws {
-    moyaResponse = response
-
-    guard let urlResponse = response.response else {
-      throw Error.noHTTPURLResponse
-    }
-
-    guard let headers = urlResponse.allHeaderFields as? [String: String] else {
-      throw Error.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
-    }
-
-    guard let rateLimit = HeaderRateLimit(from: headers) else {
-      throw Error.initRateLimit(headers: headers)
-    }
-
-    self.rateLimit = rateLimit
-
-    blobData = response.data
-  }
-
-  public var customMirror: Mirror {
-    return Mirror(
-      self,
-      children: [
-        "status": "\(Jack.description(ofHTTPStatusCode: moyaResponse.statusCode))",
-        "rate limit": rateLimit,
-        "blob data": blobData,
-      ],
-      displayStyle: .class
-    )
-  }
-}
-
-public class Response<Payload>: MoyaResponseMappable, CustomReflectable
+public class Response<Payload>: ResponseType, CustomReflectable
   where Payload: Decodable {
 
   public let moyaResponse: Moya.Response
@@ -63,8 +16,6 @@ public class Response<Payload>: MoyaResponseMappable, CustomReflectable
   public let payload: Payload
 
   public required init(response: Moya.Response) throws {
-    moyaResponse = response
-
     guard let urlResponse = response.response else {
       throw Error.noHTTPURLResponse
     }
@@ -77,8 +28,11 @@ public class Response<Payload>: MoyaResponseMappable, CustomReflectable
       throw Error.initRateLimit(headers: headers)
     }
 
+    let payload = try JSONDecoder().decode(Payload.self, from: response.data)
+
+    moyaResponse = response
     self.rateLimit = rateLimit
-    payload = try JSONDecoder().decode(Payload.self, from: response.data)
+    self.payload = payload
   }
 
   public var statusCode: Int {
@@ -92,6 +46,7 @@ public class Response<Payload>: MoyaResponseMappable, CustomReflectable
   }
 
   public var customMirror: Mirror {
+    // Do not expand payload, it may be very long
     return Mirror(
       self,
       children: [
