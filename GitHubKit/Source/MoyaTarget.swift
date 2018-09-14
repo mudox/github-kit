@@ -38,8 +38,8 @@ enum MoyaTarget {
 
   case followers(username: String)
   case isFollowing(username: String, targetUsername: String)
-//  case follow(username: String)
-//  case unfollow(username: String)
+  case follow(username: String)
+  case unfollow(username: String)
 
 }
 
@@ -79,6 +79,10 @@ extension MoyaTarget: Moya.TargetType {
     // Follower
     case .followers, .isFollowing:
       return .get
+    case .follow:
+      return .put
+    case .unfollow:
+      return .delete
     }
 
   }
@@ -133,6 +137,8 @@ extension MoyaTarget: Moya.TargetType {
       return "/users/\(username)/followers"
     case let .isFollowing(username, targetUsername):
       return "/users/\(username)/following/\(targetUsername)"
+    case let .follow(username), let .unfollow(username):
+      return "/user/following/\(username)"
     }
   }
 
@@ -165,7 +171,9 @@ extension MoyaTarget: Moya.TargetType {
       return Dev.defaultTokenHeaders
 
     // Follower
-    case .followers, .isFollowing:
+    case .followers, .isFollowing, .follow, .unfollow:
+      // The .unfollow need basic auth or OAuth with 'user:follow' scope.
+      // See https://developer.github.com/v3/users/followers/#unfollow-a-user
       return Dev.defaultTokenHeaders
     }
 
@@ -179,7 +187,7 @@ extension MoyaTarget: Moya.TargetType {
       let parameters: [String: Any] = [
         "q": query,
         "sort": "stars",
-        "order": "desc"
+        "order": "desc",
       ]
       return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
 
@@ -201,8 +209,8 @@ extension MoyaTarget: Moya.TargetType {
           "user",
           "repo",
           "admin:org",
-          "notifications"
-        ]
+          "notifications",
+        ],
       ]
       return .requestParameters(parameters: param, encoding: JSONEncoding.default)
     case .deleteAuthorization, .authorizations:
@@ -217,7 +225,7 @@ extension MoyaTarget: Moya.TargetType {
       return .requestPlain
 
     // Follower
-    case .followers, .isFollowing:
+    case .followers, .isFollowing, .follow, .unfollow:
       return .requestPlain
     }
 
@@ -225,10 +233,15 @@ extension MoyaTarget: Moya.TargetType {
 
   public var validationType: ValidationType {
     switch self {
+
+    // Follower
+    case .follow, .unfollow:
+      return .customCodes([204])
     case .isFollowing:
       // See https://developer.github.com/v3/users/followers/#check-if-one-user-follows-another
       // This endpoint return 202 as true, 404 as false
-      return .none
+      return .customCodes([204, 404])
+
     default:
       return .successCodes
     }

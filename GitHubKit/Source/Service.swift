@@ -85,6 +85,27 @@ public struct Service {
       .map(FollowersResponse.init)
   }
 
+  /// [Follow a user](https://developer.github.com/v3/users/followers/#follow-a-user)
+  ///
+  /// - Parameter username: Username.
+  /// - Returns: Completable.
+  public func follow(username: String) -> Completable {
+    return provider.request(.follow(username: username))
+      .asCompletable()
+  }
+
+  /// [Unfollow a user](https://developer.github.com/v3/users/followers/#follow-a-user)
+  ///
+  /// - Important: This endpoint requires basic authorization or OAuth
+  ///   with 'user:follow' scope which is included in scope 'user'.
+  ///
+  /// - Parameter username: Username.
+  /// - Returns: Completable.
+  public func unfollow(username: String) -> Completable {
+    return provider.request(.unfollow(username: username))
+      .asCompletable()
+  }
+
   // MARK: - Misc
 
   /// Request a random GitHub philosophy.
@@ -120,15 +141,6 @@ public struct Service {
   /// - Returns: RxSwift.Completable.
   public func deleteAuthorization(id: Int) -> Completable {
     return provider.request(.deleteAuthorization(id: id))
-      .map { response -> Moya.Response in
-        if response.statusCode != 204 {
-          Jack("Service.deleteAuthorization").warn("""
-          expect status code 204, got \(response.statusCode)
-          \(Jack.dump(of: response))
-          """)
-        }
-        return response
-      }
       .asCompletable()
   }
 
