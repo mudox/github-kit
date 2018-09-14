@@ -292,7 +292,7 @@ class ServiceSpec: QuickSpec {
         let jack = Jack("Service.followers")
 
         stubIfEnabled(
-          name: "user",
+          name: "followers",
           condition: isMethodGET() && pathMatches("^/users/.*/followers")
         )
 
@@ -313,7 +313,7 @@ class ServiceSpec: QuickSpec {
 
       // MARK: follow
 
-      fit("follow") {
+      it("follow") {
         // Arrange
         let jack = Jack("Service.follow")
 
@@ -337,7 +337,7 @@ class ServiceSpec: QuickSpec {
 
       // MARK: unfollow
 
-      fit("unfollow") {
+      it("unfollow") {
         // Arrange
         let jack = Jack("Service.unfollow")
 

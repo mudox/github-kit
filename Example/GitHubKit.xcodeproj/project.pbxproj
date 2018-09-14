@@ -19,6 +19,7 @@
 		F428133A214B8C590064C8D7 /* isFollowing.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281336214B8C390064C8D7 /* isFollowing.txt */; };
 		F428133D214BD10A0064C8D7 /* follow.txt in Resources */ = {isa = PBXBuildFile; fileRef = F428133B214BD1090064C8D7 /* follow.txt */; };
 		F428133E214BD10A0064C8D7 /* unfollow.txt in Resources */ = {isa = PBXBuildFile; fileRef = F428133C214BD1090064C8D7 /* unfollow.txt */; };
+		F4281357214C11300064C8D7 /* followers.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281356214C11300064C8D7 /* followers.txt */; };
 		F49B2D5A21499FA700F30B6D /* commit.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5721499FA700F30B6D /* commit.txt */; };
 		F49B2D5B21499FA700F30B6D /* tree.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5821499FA700F30B6D /* tree.txt */; };
 		F49B2D5C21499FA700F30B6D /* reference.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5921499FA700F30B6D /* reference.txt */; };
@@ -75,6 +76,7 @@
 		F4281336214B8C390064C8D7 /* isFollowing.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = isFollowing.txt; sourceTree = "<group>"; };
 		F428133B214BD1090064C8D7 /* follow.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = follow.txt; sourceTree = "<group>"; };
 		F428133C214BD1090064C8D7 /* unfollow.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unfollow.txt; sourceTree = "<group>"; };
+		F4281356214C11300064C8D7 /* followers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = followers.txt; sourceTree = "<group>"; };
 		F497DDAB2146062E00F3941E /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 		F497DDAC2146062E00F3941E /* SerivceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerivceSpec.swift; sourceTree = "<group>"; };
 		F49B2D5721499FA700F30B6D /* commit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = commit.txt; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				F4A6932F2147E998000901E9 /* deleteAuthorization.txt */,
 				F4A693362147F394000901E9 /* deleteGrant.txt */,
 				F428133B214BD1090064C8D7 /* follow.txt */,
+				F4281356214C11300064C8D7 /* followers.txt */,
 				F4A693352147F394000901E9 /* grants.txt */,
 				F4281336214B8C390064C8D7 /* isFollowing.txt */,
 				F40EB37A2147D5B400EC440D /* rateLimit.txt */,
@@ -321,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4281357214C11300064C8D7 /* followers.txt in Resources */,
 				F49B2D5C21499FA700F30B6D /* reference.txt in Resources */,
 				F4A693502147F6DE000901E9 /* search_repositories_1.txt in Resources */,
 				F49B2D5A21499FA700F30B6D /* commit.txt in Resources */,
