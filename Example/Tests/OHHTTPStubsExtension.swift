@@ -2,6 +2,19 @@ import Foundation
 
 import OHHTTPStubs
 
+
+/// Parses the input HTTP message text, extracts out 3 components:
+///
+///   1. Status code (`String`)
+///   2. Header fields (`[String: String]`)
+///   3. Body (`Data`), return an empty `Data` instance when no
+///      body has been found.
+///
+/// - Important: If the recorded response has no body (Content-Length: 0), do
+///   NOT omiss the double new line which marks the end of header part.
+///
+/// - Parameter text: Input HTTP message text.
+/// - Returns: The extracted 3 components if parsing succeeded.
 fileprivate func parse(messageText text: String)
   -> (code: Int, header: [String: String], body: Data)
 {
@@ -34,7 +47,7 @@ fileprivate func parse(messageText text: String)
   \\n
   (.*)                               # Header
   \\n\\n
-  (.*)                               # Body
+  (.*)?                              # Body (optional)
   $
   """
 
@@ -86,8 +99,13 @@ fileprivate func parse(messageText text: String)
    *
    */
 
-  let bodyString = (newText as NSString).substring(with: msgMatch.range(at: 3))
-  let body = bodyString.data(using: .utf8)!
+  let body: Data
+  if msgMatch.numberOfRanges > 2 {
+    let bodyString = (newText as NSString).substring(with: msgMatch.range(at: 3))
+    body = bodyString.data(using: .utf8)!
+  } else {
+    body = Data()
+  }
 
   return (code, header, body)
 }
@@ -117,4 +135,5 @@ extension OHHTTPStubsResponse {
     )!
     self.init(url: url)
   }
+  
 }
