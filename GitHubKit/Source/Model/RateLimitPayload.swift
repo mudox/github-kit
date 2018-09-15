@@ -1,8 +1,13 @@
 import Foundation
 
 public struct RateLimitPayload: Decodable {
+  public let rate: Limit
+  public let resources: Resources
+}
 
-  public struct Limit: Decodable {
+public extension RateLimitPayload {
+
+  struct Limit: Decodable {
     public let limit: Int
     public let remaining: Int
     public let resetDate: Date
@@ -26,7 +31,7 @@ public struct RateLimitPayload: Decodable {
     }
   }
 
-  public struct Resources: Decodable {
+  struct Resources: Decodable {
     public let core: Limit
     public let search: Limit
     public let graphQL: Limit
@@ -40,6 +45,4 @@ public struct RateLimitPayload: Decodable {
 
   }
 
-  public let rate: Limit
-  public let resources: Resources
 }
