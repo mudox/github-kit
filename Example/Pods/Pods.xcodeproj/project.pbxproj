@@ -584,6 +584,10 @@
 		F428134F214C06350064C8D7 /* GitHubService+Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428134E214C06350064C8D7 /* GitHubService+Repository.swift */; };
 		F4281355214C076A0064C8D7 /* GitHubService+Showcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281354214C076A0064C8D7 /* GitHubService+Showcase.swift */; };
 		F4281359214C178E0064C8D7 /* PrivateUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */; };
+		F4281367214D1CB20064C8D7 /* Topics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281366214D1CB20064C8D7 /* Topics.swift */; };
+		F4281369214D20EA0064C8D7 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281368214D20EA0064C8D7 /* Tags.swift */; };
+		F428136B214D258F0064C8D7 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428136A214D258E0064C8D7 /* Teams.swift */; };
+		F428136D214D27050064C8D7 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428136C214D27050064C8D7 /* Contributor.swift */; };
 		F47D86A6214A420D00302329 /* RateLimitPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D86A5214A420D00302329 /* RateLimitPayload.swift */; };
 		F47D86A8214AB3A900302329 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D86A7214AB3A900302329 /* Follower.swift */; };
 		F47F2A0B74633AE6764975D5B0449275 /* RxPickerViewDataSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF7C95D294A26BCE870A8EA68EEA71F /* RxPickerViewDataSourceType.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -1483,9 +1487,12 @@
 		F428134A214C052C0064C8D7 /* GitHubService+Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubService+Authorization.swift"; sourceTree = "<group>"; };
 		F428134C214C05730064C8D7 /* GitHubService+GitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubService+GitData.swift"; sourceTree = "<group>"; };
 		F428134E214C06350064C8D7 /* GitHubService+Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubService+Repository.swift"; sourceTree = "<group>"; };
-		F4281350214C06E90064C8D7 /* _old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _old.swift; sourceTree = "<group>"; };
 		F4281354214C076A0064C8D7 /* GitHubService+Showcase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubService+Showcase.swift"; sourceTree = "<group>"; };
 		F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateUserProfile.swift; sourceTree = "<group>"; };
+		F4281366214D1CB20064C8D7 /* Topics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topics.swift; sourceTree = "<group>"; };
+		F4281368214D20EA0064C8D7 /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
+		F428136A214D258E0064C8D7 /* Teams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
+		F428136C214D27050064C8D7 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
 		F45B579D9BC97BD77925FD214621B4EA /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47D86A5214A420D00302329 /* RateLimitPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateLimitPayload.swift; sourceTree = "<group>"; };
 		F47D86A7214AB3A900302329 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
@@ -2132,6 +2139,10 @@
 		5A4A2C9E01F95D3727C6395FF3C0D6A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F428136A214D258E0064C8D7 /* Teams.swift */,
+				F428136C214D27050064C8D7 /* Contributor.swift */,
+				F4281366214D1CB20064C8D7 /* Topics.swift */,
+				F4281368214D20EA0064C8D7 /* Tags.swift */,
 				A0479FB05683F88421B9186585292C27 /* App.swift */,
 				9B3FB42756A457972A48474F12A1CB2A /* Authorization.swift */,
 				F47D86A7214AB3A900302329 /* Follower.swift */,
@@ -2763,7 +2774,6 @@
 		F428133F214BFFE50064C8D7 /* GitHubService */ = {
 			isa = PBXGroup;
 			children = (
-				F4281350214C06E90064C8D7 /* _old.swift */,
 				F4281342214C003A0064C8D7 /* GitHubService.swift */,
 				F428134A214C052C0064C8D7 /* GitHubService+Authorization.swift */,
 				F4281346214C04060064C8D7 /* GitHubService+Follower.swift */,
@@ -3447,6 +3457,7 @@
 			files = (
 				F4281330214B579C0064C8D7 /* IsFollowingResponse.swift in Sources */,
 				F4281359214C178E0064C8D7 /* PrivateUserProfile.swift in Sources */,
+				F4281369214D20EA0064C8D7 /* Tags.swift in Sources */,
 				6CE3D4B94C77251D541372DAEE44438B /* App.swift in Sources */,
 				F47D86A8214AB3A900302329 /* Follower.swift in Sources */,
 				A40D7F5A3127DCF4EB2A3BE370A45B1E /* Authorization.swift in Sources */,
@@ -3459,6 +3470,7 @@
 				F4281355214C076A0064C8D7 /* GitHubService+Showcase.swift in Sources */,
 				F4281341214C000F0064C8D7 /* GitHubService+Search.swift in Sources */,
 				831321005C2826B18BCDA47113089102 /* GitHubKit-dummy.m in Sources */,
+				F428136D214D27050064C8D7 /* Contributor.swift in Sources */,
 				F49B2D552149826300F30B6D /* Commit.swift in Sources */,
 				5BBBA53DB056BF61ECBA7CB5BB779F4F /* Grant.swift in Sources */,
 				511B6F74BADADC475989A5F47A580290 /* HeaderRateLimit.swift in Sources */,
@@ -3470,8 +3482,10 @@
 				F4281343214C003A0064C8D7 /* GitHubService.swift in Sources */,
 				F428134B214C052C0064C8D7 /* GitHubService+Authorization.swift in Sources */,
 				BA5C0A89A3740E6B5242D79035EE4BD5 /* Response.swift in Sources */,
+				F4281367214D1CB20064C8D7 /* Topics.swift in Sources */,
 				F4281347214C04060064C8D7 /* GitHubService+Follower.swift in Sources */,
 				F4281345214C00570064C8D7 /* GitHubService+Misc.swift in Sources */,
+				F428136B214D258F0064C8D7 /* Teams.swift in Sources */,
 				2694FDF03263EAFDABE3D38A10261267 /* MoyaTarget.swift in Sources */,
 				F428134F214C06350064C8D7 /* GitHubService+Repository.swift in Sources */,
 				A8702E6E75C5C60A1B75EE13CE1329AF /* PublicUserProfile.swift in Sources */,

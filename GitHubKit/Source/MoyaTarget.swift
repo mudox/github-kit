@@ -47,8 +47,11 @@ public enum MoyaTarget {
   case myRepositories
   case repositories(ownerName: String)
   case organizationRepositories(organizatinoName: String)
-  case topics(ownerName: String, repositoryName: String)
 
+  case topics(ownerName: String, repositoryName: String)
+  case tags(ownerName: String, repositoryName: String)
+  case contributors(ownerName: String, repositoryName: String)
+  case languages(ownerName: String, repositoryName: String)
 }
 
 extension MoyaTarget: Moya.TargetType {
@@ -95,7 +98,7 @@ extension MoyaTarget: Moya.TargetType {
     // Repository
     case .repository, .myRepositories, .repositories, .organizationRepositories:
       return .get
-    case .topics:
+    case .topics, .tags, .contributors, .languages:
       return .get
     }
 
@@ -162,8 +165,15 @@ extension MoyaTarget: Moya.TargetType {
       return "/users/\(username)/repos"
     case let .organizationRepositories(organizationName):
       return "/orgs/\(organizationName)/repos"
+
     case let .topics(ownerName, repositoryName):
-      return "/users/\(ownerName)/\(repositoryName)"
+      return "/users/\(ownerName)/\(repositoryName)/topics"
+    case let .tags(ownerName, repositoryName):
+      return "/users/\(ownerName)/\(repositoryName)/tags"
+    case let .contributors(ownerName, repositoryName):
+      return "/users/\(ownerName)/\(repositoryName)/contributors"
+    case let .languages(ownerName, repositoryName):
+      return "/users/\(ownerName)/\(repositoryName)/languages"
     }
   }
 
@@ -205,7 +215,9 @@ extension MoyaTarget: Moya.TargetType {
     case .repository, .myRepositories, .repositories, .organizationRepositories:
       return Dev.defaultTokenHeaders
     case .topics:
-      return Dev.topcisHeaders
+      return Dev.topicsTokenHeaders
+    case .tags, .contributors, .languages:
+      return Dev.defaultTokenHeaders
     }
 
   }
@@ -264,7 +276,7 @@ extension MoyaTarget: Moya.TargetType {
     // See https://developer.github.com/v3/repos/#list-your-repositories
     case .repository, .myRepositories, .repositories, .organizationRepositories:
       return .requestPlain
-    case .topics:
+    case .topics, .tags, .contributors, .languages:
       return .requestPlain
     }
 

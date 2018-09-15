@@ -11,7 +11,6 @@ struct Dev {
 
   private static let defaultMediaType = "application/vnd.github.v3+json"
   private static let topicsMediaType = "application/vnd.github.mercy-preview+json"
-  
 
   private static func base64Encode(username: String, password: String) -> String {
     let src = "\(username):\(password)"
@@ -44,8 +43,8 @@ struct Dev {
     "Accept": defaultMediaType,
     "Authorization": tokenAuth
   ]
-  
-  static let topicsHeaders: [String: String] = [
+
+  static let topicsTokenHeaders: [String: String] = [
     "Accept": topicsMediaType,
     "Authorization": tokenAuth
   ]
