@@ -45,5 +45,19 @@ public extension Service {
     return provider.request(.organizationRepositories(organizatinoName: organizationName))
       .map(RepositoriesResponse.init)
   }
+  
+  typealias TopicsResponse = Response<Topics>
+  
+  
+  /// [List all topics for a repository](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository)
+  ///
+  /// - Parameters:
+  ///   - ownerName: Owner name.
+  ///   - repositoryName: Repository name.
+  /// - Returns: `Single<TopicsResponse>`
+  func topics(of ownerName: String, repositoryName: String) -> Single<TopicsResponse> {
+    return provider.request(.topics(ownerName: ownerName, repositoryName: repositoryName))
+      .map(TopicsResponse.init)
+  }
 
 }

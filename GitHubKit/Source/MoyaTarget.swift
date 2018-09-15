@@ -47,6 +47,7 @@ public enum MoyaTarget {
   case myRepositories
   case repositories(ownerName: String)
   case organizationRepositories(organizatinoName: String)
+  case topics(ownerName: String, repositoryName: String)
 
 }
 
@@ -93,6 +94,8 @@ extension MoyaTarget: Moya.TargetType {
 
     // Repository
     case .repository, .myRepositories, .repositories, .organizationRepositories:
+      return .get
+    case .topics:
       return .get
     }
 
@@ -159,7 +162,8 @@ extension MoyaTarget: Moya.TargetType {
       return "/users/\(username)/repos"
     case let .organizationRepositories(organizationName):
       return "/orgs/\(organizationName)/repos"
-
+    case let .topics(ownerName, repositoryName):
+      return "/users/\(ownerName)/\(repositoryName)"
     }
   }
 
@@ -200,6 +204,8 @@ extension MoyaTarget: Moya.TargetType {
     // Repository
     case .repository, .myRepositories, .repositories, .organizationRepositories:
       return Dev.defaultTokenHeaders
+    case .topics:
+      return Dev.topcisHeaders
     }
 
   }
@@ -257,6 +263,8 @@ extension MoyaTarget: Moya.TargetType {
     // There are some paramters for this endpoint, but all optinal (with default value)
     // See https://developer.github.com/v3/repos/#list-your-repositories
     case .repository, .myRepositories, .repositories, .organizationRepositories:
+      return .requestPlain
+    case .topics:
       return .requestPlain
     }
 
