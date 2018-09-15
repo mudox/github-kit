@@ -24,6 +24,10 @@
 		F428135F214CAA2E0064C8D7 /* myRepositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F428135B214CAA2E0064C8D7 /* myRepositories.txt */; };
 		F4281360214CAA2E0064C8D7 /* repository.txt in Resources */ = {isa = PBXBuildFile; fileRef = F428135C214CAA2E0064C8D7 /* repository.txt */; };
 		F4281361214CAA2E0064C8D7 /* repositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F428135D214CAA2E0064C8D7 /* repositories.txt */; };
+		F4281376214D30560064C8D7 /* repositoryContributors.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281372214D30540064C8D7 /* repositoryContributors.txt */; };
+		F4281377214D30560064C8D7 /* repositoryTopics.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281373214D30550064C8D7 /* repositoryTopics.txt */; };
+		F4281378214D30560064C8D7 /* repositoryLanguages.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281374214D30550064C8D7 /* repositoryLanguages.txt */; };
+		F4281379214D30560064C8D7 /* repositoryTags.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281375214D30560064C8D7 /* repositoryTags.txt */; };
 		F49B2D5A21499FA700F30B6D /* commit.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5721499FA700F30B6D /* commit.txt */; };
 		F49B2D5B21499FA700F30B6D /* tree.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5821499FA700F30B6D /* tree.txt */; };
 		F49B2D5C21499FA700F30B6D /* reference.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5921499FA700F30B6D /* reference.txt */; };
@@ -85,6 +89,10 @@
 		F428135B214CAA2E0064C8D7 /* myRepositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myRepositories.txt; sourceTree = "<group>"; };
 		F428135C214CAA2E0064C8D7 /* repository.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repository.txt; sourceTree = "<group>"; };
 		F428135D214CAA2E0064C8D7 /* repositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositories.txt; sourceTree = "<group>"; };
+		F4281372214D30540064C8D7 /* repositoryContributors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryContributors.txt; sourceTree = "<group>"; };
+		F4281373214D30550064C8D7 /* repositoryTopics.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryTopics.txt; sourceTree = "<group>"; };
+		F4281374214D30550064C8D7 /* repositoryLanguages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryLanguages.txt; sourceTree = "<group>"; };
+		F4281375214D30560064C8D7 /* repositoryTags.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryTags.txt; sourceTree = "<group>"; };
 		F497DDAB2146062E00F3941E /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 		F497DDAC2146062E00F3941E /* SerivceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerivceSpec.swift; sourceTree = "<group>"; };
 		F49B2D5721499FA700F30B6D /* commit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = commit.txt; sourceTree = "<group>"; };
@@ -237,6 +245,10 @@
 				F49B2D5921499FA700F30B6D /* reference.txt */,
 				F428135D214CAA2E0064C8D7 /* repositories.txt */,
 				F428135C214CAA2E0064C8D7 /* repository.txt */,
+				F4281374214D30550064C8D7 /* repositoryLanguages.txt */,
+				F4281375214D30560064C8D7 /* repositoryTags.txt */,
+				F4281373214D30550064C8D7 /* repositoryTopics.txt */,
+				F4281372214D30540064C8D7 /* repositoryContributors.txt */,
 				F4A693272147E8B9000901E9 /* search_repositories_0.txt */,
 				F4A693292147E8B9000901E9 /* search_repositories_1.txt */,
 				F4A6932A2147E8BA000901E9 /* search_repositories_2.txt */,
@@ -336,9 +348,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4281376214D30560064C8D7 /* repositoryContributors.txt in Resources */,
 				F4281357214C11300064C8D7 /* followers.txt in Resources */,
 				F49B2D5C21499FA700F30B6D /* reference.txt in Resources */,
+				F4281378214D30560064C8D7 /* repositoryLanguages.txt in Resources */,
 				F4A693502147F6DE000901E9 /* search_repositories_1.txt in Resources */,
+				F4281379214D30560064C8D7 /* repositoryTags.txt in Resources */,
 				F49B2D5A21499FA700F30B6D /* commit.txt in Resources */,
 				F4A6934B2147F6DE000901E9 /* deleteAuthorization.txt in Resources */,
 				F4A693542147F6DE000901E9 /* zen.txt in Resources */,
@@ -355,6 +370,7 @@
 				F428133D214BD10A0064C8D7 /* follow.txt in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				F428135E214CAA2E0064C8D7 /* organizationRepositories.txt in Resources */,
+				F4281377214D30560064C8D7 /* repositoryTopics.txt in Resources */,
 				F4A693522147F6DE000901E9 /* search_repositories_3.txt in Resources */,
 				F4A6934C2147F6DE000901E9 /* deleteGrant.txt in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
@@ -398,7 +414,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxNimble/RxNimble.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
-				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -416,7 +432,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxNimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

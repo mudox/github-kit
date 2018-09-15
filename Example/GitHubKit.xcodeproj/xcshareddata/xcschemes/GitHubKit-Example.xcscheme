@@ -104,7 +104,7 @@
          <EnvironmentVariable
             key = "HTTP_STUBBING"
             value = "YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "OS_ACTIVITY_MODE"

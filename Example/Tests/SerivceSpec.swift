@@ -15,7 +15,7 @@ fileprivate var isStubbingEnabled: Bool = {
   let environValue = ProcessInfo.processInfo.environment["HTTP_STUBBING"] ?? "NO"
   let enabled = (environValue == "YES")
   let jack = Jack("Service")
-  
+
   if enabled {
     jack.debug("""
     OHHTTPStubs is enabled ($HTTP_STUBBING == YES)
@@ -689,7 +689,7 @@ class ServiceSpec: QuickSpec {
 
     // MARK: - Service.Repository
 
-    fdescribe("Service.Repository") {
+    describe("Service.Repository") {
 
       // MARK: repostiory
 
@@ -791,6 +791,114 @@ class ServiceSpec: QuickSpec {
                 jack.info("""
                 \(Jack.dump(of: response))
                 Has \(response.payload.count) repositories
+                """)
+                done()
+              },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+            )
+        }
+      }
+
+      // MARK: repositoryTopics
+
+      it("repositoryTopics") {
+        // Arrange
+        let jack = Jack("Service.repositoryTopics")
+
+        stubIfEnabled(
+          name: "repositoryTopics",
+          condition: isMethodGET() && pathMatches("^/users/.*/topics")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.repositoryTopics(of: "neovim", "neovim")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                \(Jack.dump(of: response.payload))
+                """)
+                done()
+              },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+            )
+        }
+      }
+
+      // MARK: repositoryTags
+
+      it("repositoryTags") {
+        // Arrange
+        let jack = Jack("Service.repositoryTags")
+
+        stubIfEnabled(
+          name: "repositoryTags",
+          condition: isMethodGET() && pathMatches("^/users/.*/tags")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.repositoryTags(of: "neovim", "neovim")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                \(Jack.dump(of: response.payload))
+                """)
+                done()
+              },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+            )
+        }
+      }
+
+      // MARK: repositoryContributors
+
+      it("repositoryContributors") {
+        // Arrange
+        let jack = Jack("Service.repositoryContributors")
+
+        stubIfEnabled(
+          name: "repositoryContributors",
+          condition: isMethodGET() && pathMatches("^/users/.*/contributors")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.repositoryContributors(of: "neovim", "neovim")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                Has \(response.payload.count) contributors.
+                """)
+                done()
+              },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+            )
+        }
+      }
+
+      // MARK: repositoryLanguages
+
+      it("repositoryLanguages") {
+        // Arrange
+        let jack = Jack("Service.repositoryLanguages")
+
+        stubIfEnabled(
+          name: "repositoryLanguages",
+          condition: isMethodGET() && pathMatches("^/users/.*/languages")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.repositoryLanguages(of: "neovim", "neovim")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                Has \(response.payload.count) languages.
                 """)
                 done()
               },

@@ -3,8 +3,6 @@ import Moya
 
 import RxSwift
 
-import Then
-
 public struct Grant: Decodable {
   public let id: Int
   public let app: App
@@ -35,11 +33,10 @@ public struct Grant: Decodable {
      *
      */
 
-    let formatter = DateFormatter().then {
-      $0.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-      $0.timeZone = TimeZone(secondsFromGMT: 0)
-      $0.locale = Locale(identifier: "en_US_POSIX")
-    }
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
 
     let creationDateString = try container.decode(String.self, forKey: .creationDate)
     if let date = formatter.date(from: creationDateString) {

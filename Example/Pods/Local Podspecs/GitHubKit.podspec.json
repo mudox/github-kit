@@ -23,9 +23,6 @@
     "JacKit": [
 
     ],
-    "Then": [
-
-    ],
     "Moya/RxSwift": [
 
     ],
@@ -33,6 +30,9 @@
 
     ],
     "RxCocoa": [
+
+    ],
+    "SSZipArchive": [
 
     ]
   }

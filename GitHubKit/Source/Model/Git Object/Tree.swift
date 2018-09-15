@@ -18,7 +18,7 @@ public extension Tree {
   struct Member: Decodable {
     public let sha: String
     public let path: String
-    public let type: GitObjectType
+    public let type: String
     public let mode: String
   }
 

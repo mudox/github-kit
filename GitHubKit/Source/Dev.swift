@@ -7,7 +7,7 @@ struct Dev {
   static let clientID = "46cfca605f029f4fdb3e"
   static let clientSecret = "fba5480ff4d87ce83daf3b452da1585ddb5f5857"
 
-  private static let accessToken = "efc3c228b0c07d16147644a8a6fe6a7296b7fd19"
+  private static let accessToken = "b3554f2b24f522a441202563199ca3ccdc9df441"
 
   private static let defaultMediaType = "application/vnd.github.v3+json"
   private static let topicsMediaType = "application/vnd.github.mercy-preview+json"

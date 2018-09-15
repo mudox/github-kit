@@ -1,0 +1,30 @@
+HTTP/1.1 200 OK
+Server: GitHub.com
+Date: Sat, 15 Sep 2018 11:40:27 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 256
+Connection: close
+Status: 200 OK
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4998
+X-RateLimit-Reset: 1537014442
+Cache-Control: private, max-age=60, s-maxage=60
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP
+ETag: "8d99e083e53846d14516b5b703a832e3"
+Last-Modified: Sat, 15 Sep 2018 09:39:49 GMT
+X-OAuth-Scopes: user, repo, admin:org, notifications
+X-Accepted-OAuth-Scopes: 
+X-OAuth-Client-Id: 46cfca605f029f4fdb3e
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-Runtime-rack: 0.029032
+X-GitHub-Request-Id: 564F:1A25:55C5A6A:A3AD4D9:5B9CEFAA
+
+{"Vim script":9847271,"C":7978292,"Lua":3126961,"Python":180434,"C++":157653,"Objective-C":125550,"CMake":116669,"Shell":64132,"PostScript":59754,"CSS":23574,"Awk":18801,"Perl":11968,"Makefile":9886,"PowerShell":4130,"HTML":1998,"Batchfile":290,"Ruby":182}

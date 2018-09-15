@@ -34,4 +34,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa'
+
+  s.dependency 'SSZipArchive'
 end
