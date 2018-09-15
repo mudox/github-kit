@@ -18,14 +18,14 @@ public extension Service {
       .map(MyProfileResponse.init)
   }
 
-  typealias UserResponse = Response<PublicUserProfile>
+  typealias ProfileResponse = Response<PublicUserProfile>
 
   /// Get public information of a GitHub user with given username.
   ///
-  /// - Returns: Single\<UserResponse\>.
-  func profile(of username: String) -> Single<UserResponse> {
+  /// - Returns: Single\<ProfileResponse\>.
+  func profile(of username: String) -> Single<ProfileResponse> {
     return provider.request(.profile(username: username))
-      .map(UserResponse.init)
+      .map(ProfileResponse.init)
   }
 
 }
