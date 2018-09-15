@@ -7,8 +7,8 @@ public extension Service {
 
   typealias RepositoryResponse = Response<Repository>
 
-  func repository(of username: String, repositoryName: String) -> Single<RepositoryResponse> {
-    return provider.request(.repository(username: username, repositoryName: repositoryName))
+  func repository(of ownerName: String, _ repositoryName: String) -> Single<RepositoryResponse> {
+    return provider.request(.repository(ownerName: ownerName, repositoryName: repositoryName))
       .map(RepositoryResponse.init)
   }
 
@@ -19,8 +19,13 @@ public extension Service {
       .map(RepositoriesResponse.init)
   }
 
-  func repositories(of username: String) -> Single<RepositoriesResponse> {
-    return provider.request(.repositories(username: username))
+  
+  /// [List your repositories](https://developer.github.com/v3/repos/#list-your-repositories)
+  ///
+  /// - Parameter ownerName: Owner name.
+  /// - Returns: `Single<ResositoryResponse>`
+  func repositories(of ownerName: String) -> Single<RepositoriesResponse> {
+    return provider.request(.repositories(ownerName: ownerName))
       .map(RepositoriesResponse.init)
   }
 
