@@ -64,13 +64,16 @@ identifier_name:
 number_separator:
   minimum_length: 5
 
-#file_name:
-  #excluded:
-    #- main.swift
-    #- LinuxMain.swift
-    #- TestHelpers.swift
-    #- shim.swift
-    #- AutomaticRuleTests.generated.swift
+file_name:
+  excluded:
+    - GitHubService+Authorization.swift
+    - GitHubService+Follower.swift
+    - GitHubService+GitData.swift
+    - GitHubService+Misc.swift
+    - GitHubService+Repository.swift
+    - GitHubService+Search.swift
+    - GitHubService+Showcase.swift
+    - GitHubService+UserProfile.swift
 
 severity: error
 
