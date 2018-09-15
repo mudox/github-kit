@@ -41,6 +41,13 @@ public enum MoyaTarget {
   case follow(username: String)
   case unfollow(username: String)
 
+  // MARK: Repository
+
+  case repository(username: String, repositoryName: String)
+  case myRepositories
+  case repositories(username: String)
+  case organizationRepositories(organizatinoName: String)
+
 }
 
 extension MoyaTarget: Moya.TargetType {
@@ -83,6 +90,10 @@ extension MoyaTarget: Moya.TargetType {
       return .put
     case .unfollow:
       return .delete
+
+    // Repository
+    case .repository, .myRepositories, .repositories, .organizationRepositories:
+      return .get
     }
 
   }
@@ -131,14 +142,24 @@ extension MoyaTarget: Moya.TargetType {
     case let .blob(ownerName, repositoryName, sha):
       return "/repos/\(ownerName)/\(repositoryName)/git/blobs/\(sha)"
 
-      // Follower
-
+    // Follower
     case let .followers(username):
       return "/users/\(username)/followers"
     case let .isFollowing(username, targetUsername):
       return "/users/\(username)/following/\(targetUsername)"
     case let .follow(username), let .unfollow(username):
       return "/user/following/\(username)"
+
+    // Repository
+    case .repository(username: let username, repositoryName: let reponame):
+      return "/repos/\(username)/\(reponame)"
+    case .myRepositories:
+      return "/user/repos"
+    case let .repositories(username):
+      return "/users/\(username)/repos"
+    case let .organizationRepositories(orgname):
+      return "/orgs/\(orgname)/repos"
+
     }
   }
 
@@ -174,6 +195,10 @@ extension MoyaTarget: Moya.TargetType {
     case .followers, .isFollowing, .follow, .unfollow:
       // The .unfollow need basic auth or OAuth with 'user:follow' scope.
       // See https://developer.github.com/v3/users/followers/#unfollow-a-user
+      return Dev.defaultTokenHeaders
+
+    // Repository
+    case .repository, .myRepositories, .repositories, .organizationRepositories:
       return Dev.defaultTokenHeaders
     }
 
@@ -226,6 +251,12 @@ extension MoyaTarget: Moya.TargetType {
 
     // Follower
     case .followers, .isFollowing, .follow, .unfollow:
+      return .requestPlain
+
+    // Repository
+    // There are some paramters for this endpoint, but all optinal (with default value)
+    // See https://developer.github.com/v3/repos/#list-your-repositories
+    case .repository, .myRepositories, .repositories, .organizationRepositories:
       return .requestPlain
     }
 
