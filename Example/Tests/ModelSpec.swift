@@ -11,6 +11,26 @@ class GitHubSpec: QuickSpec { override func spec() {
 
   describe("Pagination") {
 
+    it("repsents single page") {
+      // act
+
+      var p: Pagination?
+      expect {
+        p = try Pagination(from: [:])
+      }.notTo(throwError())
+      
+      switch p! {
+      case .single:
+        break
+      default:
+        fatalError()
+      }
+
+      expect(p!.pageIndex) == 0
+      expect(p!.totalCount) == 1
+
+    }
+
     it("repsents first page") {
       // arrange
       let text = """
@@ -19,12 +39,11 @@ class GitHubSpec: QuickSpec { override func spec() {
       """
 
       // act
-      let p = Pagination(from: ["Link": text])
+      let p = try! Pagination(from: ["Link": text])
 
       // assert
-      expect(p).toNot(beNil())
-      expect(p!.pageIndex) == 0
-      expect(p!.totalCount) == 34
+      expect(p.pageIndex) == 0
+      expect(p.totalCount) == 34
     }
 
     it("repsents middle page") {
@@ -37,12 +56,11 @@ class GitHubSpec: QuickSpec { override func spec() {
       """
 
       // act
-      let p = Pagination(from: ["Link": text])
+      let p = try! Pagination(from: ["Link": text])
 
       // assert
-      expect(p).toNot(beNil())
-      expect(p!.pageIndex) == 2
-      expect(p!.totalCount) == 34
+      expect(p.pageIndex) == 2
+      expect(p.totalCount) == 34
     }
 
     it("repsents last page") {
@@ -53,12 +71,11 @@ class GitHubSpec: QuickSpec { override func spec() {
       """
 
       // act
-      let p = Pagination(from: ["Link": text])
+      let p = try! Pagination(from: ["Link": text])
 
       // assert
-      expect(p).toNot(beNil())
-      expect(p!.pageIndex) == 34
-      expect(p!.totalCount) == 34
+      expect(p.pageIndex) == 34
+      expect(p.totalCount) == 34
     }
 
   }

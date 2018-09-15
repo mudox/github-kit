@@ -151,14 +151,14 @@ extension MoyaTarget: Moya.TargetType {
       return "/user/following/\(username)"
 
     // Repository
-    case let .repository(username: username, repositoryName: reponame):
-      return "/repos/\(username)/\(reponame)"
+    case let .repository(ownerName, repositoryName):
+      return "/repos/\(ownerName)/\(repositoryName)"
     case .myRepositories:
       return "/user/repos"
     case let .repositories(username):
       return "/users/\(username)/repos"
-    case let .organizationRepositories(orgname):
-      return "/orgs/\(orgname)/repos"
+    case let .organizationRepositories(organizationName):
+      return "/orgs/\(organizationName)/repos"
 
     }
   }

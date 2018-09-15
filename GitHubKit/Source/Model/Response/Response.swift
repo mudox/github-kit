@@ -68,6 +68,7 @@ public class PagedResponse<Payload>: Response<Payload>
   public let pagination: Pagination
 
   public required init(response: Moya.Response) throws {
+
     guard let urlResponse = response.response else {
       throw Error.noHTTPURLResponse
     }
@@ -76,11 +77,7 @@ public class PagedResponse<Payload>: Response<Payload>
       throw Error.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
     }
 
-    guard let pagination = Pagination(from: headers) else {
-      throw Error.initPagination(headers: headers)
-    }
-
-    self.pagination = pagination
+    self.pagination = try Pagination(from: headers)
 
     try super.init(response: response)
   }
