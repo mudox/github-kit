@@ -390,7 +390,6 @@
 		981EFF1371FCE40F1907DA262743B93E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B304B4486C3838AF6146DD1F6E2BB48 /* Notifications.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		9847A142ACBDA0C5C160F36EB842F2D3 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C838D89A0575232CC77502A65FB949 /* Then.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		990B86B65B0B84D23B255E561CA7F31F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61474FC2334F3866BA51C8135D81CD1 /* RxSwift.framework */; };
-		99985B9531B5C39C081D199E40F27534 /* RateLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996E39775D9F64ABFA345E543EB8C3 /* RateLimit.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		99BA0708773A466BB145479906F7CCDD /* UISegmentedControl+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0E9815B2EF232683B8647697EFD1CF /* UISegmentedControl+Rx.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		99EA4728D48EF2891C0B4D7A453A9ED8 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B17A965FFE1983B37AEF96F515127B /* Delay.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		99EDC41E9E3824284506C5D0FFB27566 /* ExampleHooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612262A657CE6B7C4A1042C54AB0ED47 /* ExampleHooks.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -1006,7 +1005,6 @@
 		3D20B0B16580C555F0D6409A31E92630 /* Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/Nimble/Utils/Errors.swift; sourceTree = "<group>"; };
 		3DC2BD20465044A5ADBCAD8E25F72031 /* Predicate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Predicate.swift; path = Sources/Nimble/Matchers/Predicate.swift; sourceTree = "<group>"; };
 		3E950D758435FD84928C2CABD01E5B55 /* mach_excServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mach_excServer.h; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/mach_excServer.h; sourceTree = "<group>"; };
-		3F996E39775D9F64ABFA345E543EB8C3 /* RateLimit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RateLimit.swift; sourceTree = "<group>"; };
 		3FAC4DA4E438D64E79FA3D286A1F4A3B /* RxSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RxSwift.modulemap; sourceTree = "<group>"; };
 		4005ED55CA282CCB950DCE6677D1F73E /* BeginWith.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeginWith.swift; path = Sources/Nimble/Matchers/BeginWith.swift; sourceTree = "<group>"; };
 		40A5C112DEAB759E64D2E8B00C1D1B0D /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
@@ -2140,7 +2138,6 @@
 				5A72ECC7576768BE649121D543DE6C1E /* Grant.swift */,
 				C04F6AF16DF038AF16B91EFB391C1339 /* HeaderRateLimit.swift */,
 				55EF488183A5AB0F35984239875B6329 /* Pagination.swift */,
-				3F996E39775D9F64ABFA345E543EB8C3 /* RateLimit.swift */,
 				F47D86A5214A420D00302329 /* RateLimitPayload.swift */,
 				502945AFA6F5B342B53B7E73BD3EA7EB /* Repository.swift */,
 				FB489EA87B73CA78A28C6194E5AFE0C1 /* SearchPayload.swift */,
@@ -3467,7 +3464,6 @@
 				511B6F74BADADC475989A5F47A580290 /* HeaderRateLimit.swift in Sources */,
 				8D2D563F8B411A2DAA41C5B67354578A /* Pagination.swift in Sources */,
 				8379DB4CC5A7C5AB6A8034AA0D5A66D3 /* SearchPayload.swift in Sources */,
-				99985B9531B5C39C081D199E40F27534 /* RateLimit.swift in Sources */,
 				F428132E214B579B0064C8D7 /* ResponseType.swift in Sources */,
 				F4281349214C04DB0064C8D7 /* GitHubService+UserProfile.swift in Sources */,
 				418024BD327985A298924DA34CA1C824 /* Repository.swift in Sources */,

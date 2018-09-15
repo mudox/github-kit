@@ -48,7 +48,7 @@ extension HeaderRateLimit: CustomReflectable {
 
   public var customMirror: Mirror {
     return Mirror(
-      RateLimit.self,
+      HeaderRateLimit.self,
       children: [
         "remain": remainingCount,
         "total": totalCount,

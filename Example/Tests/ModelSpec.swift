@@ -77,7 +77,7 @@ class GitHubSpec: QuickSpec { override func spec() {
 
       // act
       // assert
-      let rateLimit = RateLimit(from: headers)
+      let rateLimit = HeaderRateLimit(from: headers)
       expect(rateLimit).toNot(beNil())
       dump(rateLimit!)
     }
