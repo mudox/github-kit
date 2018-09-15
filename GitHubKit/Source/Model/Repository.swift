@@ -1,8 +1,11 @@
 import Foundation
 
 public struct Repository: Decodable {
+  /// Sorting ranking score, only for repository items returned from GitHub
+  /// search endpoints.
+  public let score: Double?
+
   public let id: Int
-  public let nodeID: String
   public let name: String
   public let fullName: String
   public let owner: Owner
@@ -17,10 +20,15 @@ public struct Repository: Decodable {
   public let homepage: String?
 
   // Counts
+  public let forksCount: Int
+  public let openIssuesCount: Int
   public let stargazersCount: Int
   public let watchersCount: Int
-  public let openIssuesCount: Int
-  public let forksCount: Int
+
+  // Only available for GitHub listing authenticated user's repositories
+  // endpoint.
+  public let subscribersCount: Int?
+  public let networksCount: Int?
 
   public let size: Int
 
@@ -32,18 +40,14 @@ public struct Repository: Decodable {
   public let hasPages: Bool
   public let archived: Bool
   public let license: License?
-  public let forks: Int
-  public let openIssues: Int
   public let defaultBranch: String
   public let permissions: Permissions?
-  public let score: Double
 
   private enum CodingKeys: String, CodingKey {
     case archived
     case creationDate = "created_at"
     case defaultBranch = "default_branch"
     case description
-    case forks
     case forksCount = "forks_count"
     case fullName = "full_name"
     case hasDownloads = "has_downloads"
@@ -57,8 +61,6 @@ public struct Repository: Decodable {
     case language
     case license
     case name
-    case nodeID = "node_id"
-    case openIssues = "open_issues"
     case openIssuesCount = "open_issues_count"
     case owner
     case permissions
@@ -69,39 +71,44 @@ public struct Repository: Decodable {
     case stargazersCount = "stargazers_count"
     case updateDate = "updated_at"
     case watchersCount = "watchers"
+    case subscribersCount = "subscribers_count"
+    case networksCount = "network_count"
   }
 
   // swiftlint:disable:next function_body_length
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    archived = try container.decode(Bool.self, forKey: .archived)
-    defaultBranch = try container.decode(String.self, forKey: .defaultBranch)
-    description = try container.decodeIfPresent(String.self, forKey: .description)
-    forks = try container.decode(Int.self, forKey: .forks)
-    forksCount = try container.decode(Int.self, forKey: .forksCount)
-    fullName = try container.decode(String.self, forKey: .fullName)
-    hasDownloads = try container.decode(Bool.self, forKey: .hasDownloads)
-    hasIssues = try container.decode(Bool.self, forKey: .hasIssues)
-    hasPages = try container.decode(Bool.self, forKey: .hasPages)
-    hasProjects = try container.decode(Bool.self, forKey: .hasProjects)
-    hasWiki = try container.decode(Bool.self, forKey: .hasWiki)
-    homepage = try container.decodeIfPresent(String.self, forKey: .homepage)
-    id = try container.decode(Int.self, forKey: .id)
-    isFork = try container.decode(Bool.self, forKey: .isFork)
-    language = try container.decodeIfPresent(String.self, forKey: .language)
-    license = try container.decodeIfPresent(License.self, forKey: .license)
-    name = try container.decode(String.self, forKey: .name)
-    nodeID = try container.decode(String.self, forKey: .nodeID)
-    openIssues = try container.decode(Int.self, forKey: .openIssues)
-    openIssuesCount = try container.decode(Int.self, forKey: .openIssuesCount)
-    owner = try container.decode(Owner.self, forKey: .owner)
-    permissions = try container.decodeIfPresent(Permissions.self, forKey: .permissions)
-    purplePrivate = try container.decode(Bool.self, forKey: .purplePrivate)
-    score = try container.decode(Double.self, forKey: .score)
-    size = try container.decode(Int.self, forKey: .size)
-    stargazersCount = try container.decode(Int.self, forKey: .stargazersCount)
-    watchersCount = try container.decode(Int.self, forKey: .watchersCount)
+    // swiftformat:disable consecutiveSpaces
+    // swiftlint:disable operator_usage_whitespace comma
+    archived         = try container.decode(Bool.self,                 forKey: .archived)
+    defaultBranch    = try container.decode(String.self,               forKey: .defaultBranch)
+    description      = try container.decodeIfPresent(String.self,      forKey: .description)
+    forksCount       = try container.decode(Int.self,                  forKey: .forksCount)
+    fullName         = try container.decode(String.self,               forKey: .fullName)
+    hasDownloads     = try container.decode(Bool.self,                 forKey: .hasDownloads)
+    hasIssues        = try container.decode(Bool.self,                 forKey: .hasIssues)
+    hasPages         = try container.decode(Bool.self,                 forKey: .hasPages)
+    hasProjects      = try container.decode(Bool.self,                 forKey: .hasProjects)
+    hasWiki          = try container.decode(Bool.self,                 forKey: .hasWiki)
+    homepage         = try container.decodeIfPresent(String.self,      forKey: .homepage)
+    id               = try container.decode(Int.self,                  forKey: .id)
+    isFork           = try container.decode(Bool.self,                 forKey: .isFork)
+    language         = try container.decodeIfPresent(String.self,      forKey: .language)
+    license          = try container.decodeIfPresent(License.self,     forKey: .license)
+    name             = try container.decode(String.self,               forKey: .name)
+    networksCount    = try container.decodeIfPresent(Int.self,         forKey: .networksCount)
+    openIssuesCount  = try container.decode(Int.self,                  forKey: .openIssuesCount)
+    owner            = try container.decode(Owner.self,                forKey: .owner)
+    permissions      = try container.decodeIfPresent(Permissions.self, forKey: .permissions)
+    purplePrivate    = try container.decode(Bool.self,                 forKey: .purplePrivate)
+    score            = try container.decodeIfPresent(Double.self,      forKey: .score)
+    size             = try container.decode(Int.self,                  forKey: .size)
+    stargazersCount  = try container.decode(Int.self,                  forKey: .stargazersCount)
+    subscribersCount = try container.decodeIfPresent(Int.self,         forKey: .subscribersCount)
+    watchersCount    = try container.decode(Int.self,                  forKey: .watchersCount)
+    // swiftlint:enable operator_usage_whitespace comma
+    // swiftformat:enable consecutiveSpaces
 
     // Custom date decoding as RFC3339 format
     let formatter = DateFormatter()

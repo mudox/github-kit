@@ -691,7 +691,7 @@ class ServiceSpec: QuickSpec {
 
       // MARK: - repostiory
 
-      fit("repository") {
+      it("repository") {
         // Arrange
         let jack = Jack("Service.repository")
 
