@@ -5,7 +5,7 @@ import RxSwift
 
 public extension Service {
 
-  typealias RepositoryResponse = PagedResponse<Repository>
+  typealias RepositoryResponse = Response<Repository>
 
   func repository(of username: String, repositoryName: String) -> Single<RepositoryResponse> {
     return provider.request(.repository(username: username, repositoryName: repositoryName))
