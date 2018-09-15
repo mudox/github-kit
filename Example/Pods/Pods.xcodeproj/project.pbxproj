@@ -586,7 +586,6 @@
 		F4281359214C178E0064C8D7 /* PrivateUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */; };
 		F4281367214D1CB20064C8D7 /* Topics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281366214D1CB20064C8D7 /* Topics.swift */; };
 		F4281369214D20EA0064C8D7 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281368214D20EA0064C8D7 /* Tags.swift */; };
-		F428136B214D258F0064C8D7 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428136A214D258E0064C8D7 /* Teams.swift */; };
 		F428136D214D27050064C8D7 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428136C214D27050064C8D7 /* Contributor.swift */; };
 		F47D86A6214A420D00302329 /* RateLimitPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D86A5214A420D00302329 /* RateLimitPayload.swift */; };
 		F47D86A8214AB3A900302329 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D86A7214AB3A900302329 /* Follower.swift */; };
@@ -1491,7 +1490,6 @@
 		F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateUserProfile.swift; sourceTree = "<group>"; };
 		F4281366214D1CB20064C8D7 /* Topics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topics.swift; sourceTree = "<group>"; };
 		F4281368214D20EA0064C8D7 /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
-		F428136A214D258E0064C8D7 /* Teams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		F428136C214D27050064C8D7 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
 		F45B579D9BC97BD77925FD214621B4EA /* OHHTTPStubs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OHHTTPStubs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47D86A5214A420D00302329 /* RateLimitPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateLimitPayload.swift; sourceTree = "<group>"; };
@@ -2139,23 +2137,14 @@
 		5A4A2C9E01F95D3727C6395FF3C0D6A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F428136A214D258E0064C8D7 /* Teams.swift */,
-				F428136C214D27050064C8D7 /* Contributor.swift */,
-				F4281366214D1CB20064C8D7 /* Topics.swift */,
-				F4281368214D20EA0064C8D7 /* Tags.swift */,
 				A0479FB05683F88421B9186585292C27 /* App.swift */,
-				9B3FB42756A457972A48474F12A1CB2A /* Authorization.swift */,
-				F47D86A7214AB3A900302329 /* Follower.swift */,
-				5A72ECC7576768BE649121D543DE6C1E /* Grant.swift */,
 				C04F6AF16DF038AF16B91EFB391C1339 /* HeaderRateLimit.swift */,
 				55EF488183A5AB0F35984239875B6329 /* Pagination.swift */,
 				F47D86A5214A420D00302329 /* RateLimitPayload.swift */,
-				502945AFA6F5B342B53B7E73BD3EA7EB /* Repository.swift */,
 				FB489EA87B73CA78A28C6194E5AFE0C1 /* SearchPayload.swift */,
-				317DD86C6CD384F45610C4175A6295C4 /* PublicUserProfile.swift */,
-				F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */,
 				F49B2D5121497B9F00F30B6D /* Git Object */,
 				F4281333214B57C90064C8D7 /* Response */,
+				F4281371214D2EA40064C8D7 /* User */,
 			);
 			name = Model;
 			path = GitHubKit/Source/Model;
@@ -2785,6 +2774,30 @@
 				F4281348214C04DB0064C8D7 /* GitHubService+UserProfile.swift */,
 			);
 			path = GitHubService;
+			sourceTree = "<group>";
+		};
+		F4281370214D2E7A0064C8D7 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				F428136C214D27050064C8D7 /* Contributor.swift */,
+				F4281366214D1CB20064C8D7 /* Topics.swift */,
+				F4281368214D20EA0064C8D7 /* Tags.swift */,
+				502945AFA6F5B342B53B7E73BD3EA7EB /* Repository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		F4281371214D2EA40064C8D7 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9B3FB42756A457972A48474F12A1CB2A /* Authorization.swift */,
+				F47D86A7214AB3A900302329 /* Follower.swift */,
+				5A72ECC7576768BE649121D543DE6C1E /* Grant.swift */,
+				F4281358214C178E0064C8D7 /* PrivateUserProfile.swift */,
+				317DD86C6CD384F45610C4175A6295C4 /* PublicUserProfile.swift */,
+				F4281370214D2E7A0064C8D7 /* Repository */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		F49B2D5121497B9F00F30B6D /* Git Object */ = {
@@ -3485,7 +3498,6 @@
 				F4281367214D1CB20064C8D7 /* Topics.swift in Sources */,
 				F4281347214C04060064C8D7 /* GitHubService+Follower.swift in Sources */,
 				F4281345214C00570064C8D7 /* GitHubService+Misc.swift in Sources */,
-				F428136B214D258F0064C8D7 /* Teams.swift in Sources */,
 				2694FDF03263EAFDABE3D38A10261267 /* MoyaTarget.swift in Sources */,
 				F428134F214C06350064C8D7 /* GitHubService+Repository.swift in Sources */,
 				A8702E6E75C5C60A1B75EE13CE1329AF /* PublicUserProfile.swift in Sources */,

@@ -10,21 +10,18 @@ import GitHubKit
 import JacKit
 fileprivate let jack = Jack()
 
-extension Jack {
-  static let service = Jack("Service")
-}
-
 /// Set `$HTTP_STUBBING` to 'YES' to enabled stubbing.
 fileprivate var isStubbingEnabled: Bool = {
   let environValue = ProcessInfo.processInfo.environment["HTTP_STUBBING"] ?? "NO"
   let enabled = (environValue == "YES")
-
+  let jack = Jack("Service")
+  
   if enabled {
-    Jack.service.debug("""
+    jack.debug("""
     OHHTTPStubs is enabled ($HTTP_STUBBING == YES)
     """, options: [.compact, .noLocation])
   } else {
-    Jack.service.debug("""
+    jack.debug("""
     OHHTTPStubs is NOT enabled ($HTTP_STUBBING != YES)
     """, options: [.compact, .noLocation])
   }
