@@ -241,7 +241,7 @@ class ServiceSpec: QuickSpec {
         }
       }
 
-      // MARK: isFollowing
+      // MARK: - isFollowing
 
       it("isFollowing") {
         // Arrange
@@ -688,8 +688,13 @@ class ServiceSpec: QuickSpec {
         }
       }
 
+    } // Service.GitData
 
-      // MARK: - repostiory
+    // MARK: - Service.Repository
+
+    fdescribe("Service.Repository") {
+
+      // MARK: repostiory
 
       it("repository") {
         // Arrange
@@ -706,16 +711,98 @@ class ServiceSpec: QuickSpec {
             .subscribe(
               onSuccess: { response in
                 jack.info("""
-                  \(Jack.dump(of: response))
-                  \(Jack.dump(of: response.payload))
-                  """)
+                \(Jack.dump(of: response))
+                \(Jack.dump(of: response.payload))
+                """)
                 done()
-            },
+              },
               onError: { jack.error(Jack.dump(of: $0)); fatalError() }
-          )
+            )
         }
       }
 
-    } // describe("Service")
+      // MARK: myRepositories
+
+      it("myRepositories") {
+        // Arrange
+        let jack = Jack("Service.myRepositories")
+
+        stubIfEnabled(
+          name: "myRepositories",
+          condition: isMethodGET() && isPath("/user/repos")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.myRepositories()
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                Has \(response.payload.count) repositories
+                """)
+                done()
+              },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+            )
+        }
+      }
+
+      // MARK: repositories
+
+      it("repositories") {
+        // Arrange
+        let jack = Jack("Service.repositories")
+
+        stubIfEnabled(
+          name: "repositories",
+          condition: isMethodGET() && pathMatches("^/users/.*/repos")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.repositories(of: "mudox")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                Has \(response.payload.count) repositories
+                """)
+                done()
+              },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+            )
+        }
+      }
+
+      // MARK: organizationRepositories
+
+      it("organizationRepositories") {
+        // Arrange
+        let jack = Jack("Service.organizationRepositories")
+
+        stubIfEnabled(
+          name: "organizationRepositories",
+          condition: isMethodGET() && pathMatches("^/orgs/.*/repos")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.organizationRepositories(of: "neovim")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                \(Jack.dump(of: response))
+                Has \(response.payload.count) repositories
+                """)
+                done()
+              },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+            )
+        }
+      }
+
+    } // Service.Repository
+
   } // spec()
-}
+} // class ServiceSpec
