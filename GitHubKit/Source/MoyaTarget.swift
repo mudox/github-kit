@@ -43,9 +43,9 @@ public enum MoyaTarget {
 
   // MARK: Repository
 
-  case repository(username: String, repositoryName: String)
+  case repository(ownerName: String, repositoryName: String)
   case myRepositories
-  case repositories(username: String)
+  case repositories(ownerName: String)
   case organizationRepositories(organizatinoName: String)
 
 }

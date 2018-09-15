@@ -358,7 +358,7 @@ class ServiceSpec: QuickSpec {
           )
         }
       }
-      
+
     } // describe("Service.PublicUserProfile")
 
     // MARK: - Service.Authorization
@@ -685,6 +685,34 @@ class ServiceSpec: QuickSpec {
               },
               onError: { jack.error(Jack.dump(of: $0)); fatalError() }
             )
+        }
+      }
+
+
+      // MARK: - repostiory
+
+      fit("repository") {
+        // Arrange
+        let jack = Jack("Service.repository")
+
+        stubIfEnabled(
+          name: "repository",
+          condition: isMethodGET() && pathMatches("^/repos/[^/]+/[^/]+")
+        )
+
+        // Act, Assert
+        waitUntil(timeout: timeout) { done in
+          _ = Service.shared.repository(of: "github", "explore")
+            .subscribe(
+              onSuccess: { response in
+                jack.info("""
+                  \(Jack.dump(of: response))
+                  \(Jack.dump(of: response.payload))
+                  """)
+                done()
+            },
+              onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          )
         }
       }
 
