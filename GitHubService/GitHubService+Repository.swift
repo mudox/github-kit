@@ -7,6 +7,12 @@ public extension Service {
 
   typealias RepositoryResponse = Response<Repository>
 
+  /// [Get a single repository](https://developer.github.com/v3/repos/#get)
+  ///
+  /// - Parameters:
+  ///   - ownerName: Owner name.
+  ///   - repositoryName: Repository name.
+  /// - Returns: `Single<Respository>`
   func repository(of ownerName: String, _ repositoryName: String) -> Single<RepositoryResponse> {
     return provider.request(.repository(ownerName: ownerName, repositoryName: repositoryName))
       .map(RepositoryResponse.init)
@@ -14,13 +20,15 @@ public extension Service {
 
   typealias RepositoriesResponse = PagedResponse<[Repository]>
 
+  /// [List your repositories](https://developer.github.com/v3/repos/#list-your-repositories)
+  ///
+  /// - Returns: `Single<RepositoriesResponse>`
   func myRepositories() -> Single<RepositoriesResponse> {
     return provider.request(.myRepositories)
       .map(RepositoriesResponse.init)
   }
 
-  
-  /// [List your repositories](https://developer.github.com/v3/repos/#list-your-repositories)
+  /// [List user repositories](https://developer.github.com/v3/repos/#list-user-repositories)
   ///
   /// - Parameter ownerName: Owner name.
   /// - Returns: `Single<ResositoryResponse>`
@@ -29,6 +37,10 @@ public extension Service {
       .map(RepositoriesResponse.init)
   }
 
+  /// [List organization repositories](https://developer.github.com/v3/repos/#list-organization-repositories)
+  ///
+  /// - Parameter organizationName: Organization name.
+  /// - Returns: `Single<RepositoriesResponse>`
   func organizationRepositories(of organizationName: String) -> Single<RepositoriesResponse> {
     return provider.request(.organizationRepositories(organizatinoName: organizationName))
       .map(RepositoriesResponse.init)
