@@ -2,7 +2,6 @@ import Foundation
 
 import OHHTTPStubs
 
-
 /// Parses the input HTTP message text, extracts out 3 components:
 ///
 ///   1. Status code (`String`)

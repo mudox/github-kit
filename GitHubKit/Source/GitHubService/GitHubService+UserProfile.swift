@@ -9,9 +9,9 @@ public extension Service {
 
   typealias MyProfileResponse = Response<PrivateUserProfile>
 
-  /// Get public as well as private information of current (signed-in) GitHub user.
+  /// [Get the authenticated user](https://developer.github.com/v3/users/#get-the-authenticated-user)
   ///
-  /// - Returns: Single\<CurrentUserResponse\>.
+  /// - Returns: `Single<CurrentUserResponse>`
   func myProfile
     () -> Single<MyProfileResponse> {
     return provider.request(.myProfile)
@@ -20,9 +20,9 @@ public extension Service {
 
   typealias ProfileResponse = Response<PublicUserProfile>
 
-  /// Get public information of a GitHub user with given username.
+  /// [Get a single user](https://developer.github.com/v3/users/#get-a-single-user)
   ///
-  /// - Returns: Single\<ProfileResponse\>.
+  /// - Returns: `Single<ProfileResponse>`
   func profile(of username: String) -> Single<ProfileResponse> {
     return provider.request(.profile(username: username))
       .map(ProfileResponse.init)

@@ -28,6 +28,14 @@
 		F4281377214D30560064C8D7 /* repositoryTopics.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281373214D30550064C8D7 /* repositoryTopics.txt */; };
 		F4281378214D30560064C8D7 /* repositoryLanguages.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281374214D30550064C8D7 /* repositoryLanguages.txt */; };
 		F4281379214D30560064C8D7 /* repositoryTags.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4281375214D30560064C8D7 /* repositoryTags.txt */; };
+		F428138F214D46AB0064C8D7 /* NetworkStubbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428138D214D46890064C8D7 /* NetworkStubbing.swift */; };
+		F42813A7214D50BF0064C8D7 /* RepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281391214D4B8B0064C8D7 /* RepositorySpec.swift */; };
+		F42813A8214D50BF0064C8D7 /* GitDataSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281393214D4C300064C8D7 /* GitDataSpec.swift */; };
+		F42813A9214D50BF0064C8D7 /* MiscSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAC2146062E00F3941E /* MiscSpec.swift */; };
+		F42813AA214D50BF0064C8D7 /* UserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281397214D4CFB0064C8D7 /* UserSpec.swift */; };
+		F42813AB214D50BF0064C8D7 /* AuthorizationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428139A214D50630064C8D7 /* AuthorizationSpec.swift */; };
+		F42813AD214D50BF0064C8D7 /* SearchSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281398214D4F610064C8D7 /* SearchSpec.swift */; };
+		F42813AE214D50BF0064C8D7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281395214D4CD80064C8D7 /* Config.swift */; };
 		F49B2D5A21499FA700F30B6D /* commit.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5721499FA700F30B6D /* commit.txt */; };
 		F49B2D5B21499FA700F30B6D /* tree.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5821499FA700F30B6D /* tree.txt */; };
 		F49B2D5C21499FA700F30B6D /* reference.txt in Resources */ = {isa = PBXBuildFile; fileRef = F49B2D5921499FA700F30B6D /* reference.txt */; };
@@ -45,7 +53,6 @@
 		F4A693532147F6DE000901E9 /* profile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4A693202147DA74000901E9 /* profile.txt */; };
 		F4A693542147F6DE000901E9 /* zen.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40EB37C2147D71200EC440D /* zen.txt */; };
 		F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAB2146062E00F3941E /* ModelSpec.swift */; };
-		F4EE0DB6214622BC00CACB2A /* SerivceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAC2146062E00F3941E /* SerivceSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,8 +100,15 @@
 		F4281373214D30550064C8D7 /* repositoryTopics.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryTopics.txt; sourceTree = "<group>"; };
 		F4281374214D30550064C8D7 /* repositoryLanguages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryLanguages.txt; sourceTree = "<group>"; };
 		F4281375214D30560064C8D7 /* repositoryTags.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryTags.txt; sourceTree = "<group>"; };
+		F428138D214D46890064C8D7 /* NetworkStubbing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStubbing.swift; sourceTree = "<group>"; };
+		F4281391214D4B8B0064C8D7 /* RepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySpec.swift; sourceTree = "<group>"; };
+		F4281393214D4C300064C8D7 /* GitDataSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitDataSpec.swift; sourceTree = "<group>"; };
+		F4281395214D4CD80064C8D7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		F4281397214D4CFB0064C8D7 /* UserSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSpec.swift; sourceTree = "<group>"; };
+		F4281398214D4F610064C8D7 /* SearchSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSpec.swift; sourceTree = "<group>"; };
+		F428139A214D50630064C8D7 /* AuthorizationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationSpec.swift; sourceTree = "<group>"; };
 		F497DDAB2146062E00F3941E /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
-		F497DDAC2146062E00F3941E /* SerivceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerivceSpec.swift; sourceTree = "<group>"; };
+		F497DDAC2146062E00F3941E /* MiscSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSpec.swift; sourceTree = "<group>"; };
 		F49B2D5721499FA700F30B6D /* commit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = commit.txt; sourceTree = "<group>"; };
 		F49B2D5821499FA700F30B6D /* tree.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.txt; sourceTree = "<group>"; };
 		F49B2D5921499FA700F30B6D /* reference.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reference.txt; sourceTree = "<group>"; };
@@ -199,8 +213,9 @@
 			children = (
 				F427794221476EE500FCD28D /* Resources */,
 				F497DDAB2146062E00F3941E /* ModelSpec.swift */,
+				F428138D214D46890064C8D7 /* NetworkStubbing.swift */,
 				F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */,
-				F497DDAC2146062E00F3941E /* SerivceSpec.swift */,
+				F4281390214D4B730064C8D7 /* GitHubServiceTests */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -258,6 +273,20 @@
 				F40EB37C2147D71200EC440D /* zen.txt */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F4281390214D4B730064C8D7 /* GitHubServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				F428139A214D50630064C8D7 /* AuthorizationSpec.swift */,
+				F4281395214D4CD80064C8D7 /* Config.swift */,
+				F4281393214D4C300064C8D7 /* GitDataSpec.swift */,
+				F497DDAC2146062E00F3941E /* MiscSpec.swift */,
+				F4281391214D4B8B0064C8D7 /* RepositorySpec.swift */,
+				F4281398214D4F610064C8D7 /* SearchSpec.swift */,
+				F4281397214D4CFB0064C8D7 /* UserSpec.swift */,
+			);
+			path = GitHubServiceTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,8 +534,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F42813A9214D50BF0064C8D7 /* MiscSpec.swift in Sources */,
+				F428138F214D46AB0064C8D7 /* NetworkStubbing.swift in Sources */,
+				F42813AA214D50BF0064C8D7 /* UserSpec.swift in Sources */,
+				F42813AE214D50BF0064C8D7 /* Config.swift in Sources */,
+				F42813A8214D50BF0064C8D7 /* GitDataSpec.swift in Sources */,
 				F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */,
-				F4EE0DB6214622BC00CACB2A /* SerivceSpec.swift in Sources */,
+				F42813A7214D50BF0064C8D7 /* RepositorySpec.swift in Sources */,
+				F42813AB214D50BF0064C8D7 /* AuthorizationSpec.swift in Sources */,
+				F42813AD214D50BF0064C8D7 /* SearchSpec.swift in Sources */,
 				F427793E2146DB1900FCD28D /* OHHTTPStubsExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
