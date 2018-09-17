@@ -216,8 +216,8 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F497DDAB2146062E00F3941E /* ModelSpec.swift */,
 				F42813B2214E5DA30064C8D7 /* GitHubExploreSpec.swift */,
+				F497DDAB2146062E00F3941E /* ModelSpec.swift */,
 				F4281390214D4B730064C8D7 /* GitHubServiceTests */,
 				F42813AF214D52120064C8D7 /* NetworkStubbing */,
 				F427794221476EE500FCD28D /* Resources */,
