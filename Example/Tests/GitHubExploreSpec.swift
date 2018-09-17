@@ -22,7 +22,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
   // MARK: downloadGitHubExplore
 
-  fdescribe("GitHubExplore") {
+  describe("GitHubExplore") {
 
     it("curatedTopics") {
       // Arrange

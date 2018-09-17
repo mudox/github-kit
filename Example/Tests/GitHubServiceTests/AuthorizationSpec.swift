@@ -89,51 +89,26 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   // MARK: deleteAuthorization
 
-  it("deleteAuthorization") {
+  fit("deleteAuthorization") {
     // Arrange
     let jack = Jack("Service.deleteAuthorization")
+    
+    guard NetworkStubbing.isEnabled else {
+      jack.warn("only run on netwokring stubbing being enabled, skip ...")
+      return
+    }
 
     NetworkStubbing.stubIfEnabled(
       name: "deleteAuthorization",
       condition: isMethodDELETE() && pathStartsWith("/authorizations")
     )
 
-    NetworkStubbing.stubIfEnabled(
-      name: "authorizations",
-      condition: isMethodGET() && isPath("/authorizations")
-    )
-
     // Act, Assert
     waitUntil(timeout: timeout) { done in
-      let id = 217_869_482
+      let id = 1
       _ = Service.shared.deleteAuthorization(id: id).subscribe(
         onCompleted: {
           jack.info("deleted authorization with ID: \(id)")
-        },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
-      )
-      _ = Service.shared.authorizations().subscribe(
-        onSuccess: { response in
-          let hydraAuths = response.payload
-            .filter { $0.app.name == "Hydra" }
-            .enumerated()
-            .map { index, auth in
-              """
-              [\(index)]
-              - id           : \(auth.id)
-              - note         : \(auth.note ?? "n/a")
-              - created      : \(auth.creationDate)
-              - fingerprint  : \(auth.fingerprint ?? "n/a")
-              - scopes       : \(auth.scopes.sorted().joined(separator: " | "))
-              """
-            }
-            .joined(separator: "\n")
-
-          jack.info("""
-          \(Jack.dump(of: response))
-          Total: \(hydraAuths.count) authorizations of Hydra:
-          \(hydraAuths)
-          """)
           done()
         },
         onError: { jack.error(Jack.dump(of: $0)); fatalError() }
@@ -182,43 +157,26 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   // MARK: deleteGrant
 
-  it("deleteGrant") {
+  fit("deleteGrant") {
     // Arrange
     let jack = Jack("Service.deleteGrant")
+    
+    guard NetworkStubbing.isEnabled else {
+      jack.warn("only run on netwokring stubbing being enabled, skip ...")
+      return
+    }
 
     NetworkStubbing.stubIfEnabled(
-      name: "grants",
+      name: "deleteGrant",
       condition: isMethodDELETE() && pathStartsWith("/applications/grants")
     )
 
     // Act, Assert
     waitUntil(timeout: timeout) { done in
-      let id = 73_626_521
+      let id = 1
       _ = Service.shared.deleteGrant(id: id).subscribe(
         onCompleted: {
           jack.info("deleted grant with ID: \(id)")
-        },
-        onError: { jack.error(Jack.dump(of: $0)); done() }
-      )
-      _ = Service.shared.grants().subscribe(
-        onSuccess: { response in
-          let list = response.payload
-            .enumerated()
-            .map { index, grant in
-              """
-              [\(index)]
-              - id      : \(grant.id)
-              - app     : \(grant.app.name)
-              - scopes  : \(grant.scopes.sorted().joined(separator: " | "))
-              """
-            }
-            .joined(separator: "\n")
-
-          jack.info("""
-          \(Jack.dump(of: response))
-          Total: \(response.payload.count)
-          \(list)
-          """)
           done()
         },
         onError: { jack.error(Jack.dump(of: $0)); fatalError() }

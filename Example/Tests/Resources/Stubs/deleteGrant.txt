@@ -1,13 +1,12 @@
-HTTP/1.1 404 Not Found
-Date: Thu, 06 Sep 2018 14:55:57 GMT
-Content-Type: application/json; charset=utf-8
-Content-Length: 114
-Connection: close
+HTTP/1.1 204 No Content
 Server: GitHub.com
-Status: 404 Not Found
+Date: Mon, 17 Sep 2018 16:36:05 GMT
+Content-Type: application/octet-stream
+Connection: close
+Status: 204 No Content
 X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4996
-X-RateLimit-Reset: 1536248585
+X-RateLimit-Remaining: 4994
+X-RateLimit-Reset: 1537205326
 X-GitHub-Media-Type: github.v3; format=json
 Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
 Access-Control-Allow-Origin: *
@@ -17,7 +16,6 @@ X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
 Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
 Content-Security-Policy: default-src 'none'
-X-Runtime-rack: 0.043924
-X-GitHub-Request-Id: 52FF:21BF:EDC274:13C1F99:5B913FFC
+X-Runtime-rack: 0.109968
+X-GitHub-Request-Id: 4DF4:3BD3:2526AC:4FCC4B:5B9FD7F4
 
-{"message":"Not Found","documentation_url":"https://developer.github.com/v3/oauth_authorizations/#delete-a-grant"}
