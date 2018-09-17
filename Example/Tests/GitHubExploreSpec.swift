@@ -24,12 +24,31 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
   describe("GitHubExplore") {
 
+    it("synchronize") {
+      // Arrange
+      let jack = Jack("curatedTopics")
+
+      // Act, Assert
+      waitUntil(timeout: timeout) { done in
+        _ = GitHubExplore.synchronize
+          .subscribe(
+            onCompleted: {
+              done()
+            },
+            onError: { error in
+              jack.error(Jack.dump(of: error))
+              fatalError()
+            }
+          )
+      }
+    }
+
     it("curatedTopics") {
       // Arrange
       let jack = Jack("curatedTopics")
 
       // Act, Assert
-      waitUntil(action: { done in
+      waitUntil(timeout: timeout) { done in
         _ = GitHubExplore.curatedTopics
           .subscribe(
             onSuccess: { topics in
@@ -41,7 +60,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
               fatalError()
             }
           )
-      })
+      }
     }
 
     it("collections") {
@@ -49,7 +68,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
       let jack = Jack("collections")
 
       // Act, Assert
-      waitUntil(action: { done in
+      waitUntil(timeout: timeout) { done in
         _ = GitHubExplore.collections
           .subscribe(
             onSuccess: { collections in
@@ -61,7 +80,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
               fatalError()
             }
           )
-      })
+      }
     }
   } // describe("GitHubExplore")
 

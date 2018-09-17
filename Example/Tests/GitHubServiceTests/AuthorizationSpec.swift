@@ -89,7 +89,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   // MARK: deleteAuthorization
 
-  fit("deleteAuthorization") {
+  it("deleteAuthorization") {
     // Arrange
     let jack = Jack("Service.deleteAuthorization")
     
@@ -157,7 +157,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   // MARK: deleteGrant
 
-  fit("deleteGrant") {
+  it("deleteGrant") {
     // Arrange
     let jack = Jack("Service.deleteGrant")
     

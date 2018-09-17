@@ -43,7 +43,10 @@ public struct GitHubExplore {
       return RxAlamofire.download(request, to: destination)
         .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
         .subscribe(onCompleted: {
-          Jack("GitHubExplore.download").info("completed", options: .short)
+          SSZipArchive.unzipFile(
+            atPath: zipURL.path,
+            toDestination: zipURL.deletingLastPathComponent().path
+          )
           completable(.completed)
         })
     } // .create
@@ -54,12 +57,6 @@ public struct GitHubExplore {
   /// file as an instance of `GitHubExplore.CuratedTopic`.
   public static var curatedTopics: Single<[CuratedTopic]> {
     return .create { single in
-
-      // Unzip
-      SSZipArchive.unzipFile(
-        atPath: zipURL.path,
-        toDestination: zipURL.deletingLastPathComponent().path
-      )
 
       // Parse folder
       do {
