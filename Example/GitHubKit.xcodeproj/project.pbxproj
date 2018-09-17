@@ -211,11 +211,10 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F427794221476EE500FCD28D /* Resources */,
 				F497DDAB2146062E00F3941E /* ModelSpec.swift */,
-				F428138D214D46890064C8D7 /* NetworkStubbing.swift */,
-				F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */,
 				F4281390214D4B730064C8D7 /* GitHubServiceTests */,
+				F42813AF214D52120064C8D7 /* NetworkStubbing */,
+				F427794221476EE500FCD28D /* Resources */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -287,6 +286,15 @@
 				F4281397214D4CFB0064C8D7 /* UserSpec.swift */,
 			);
 			path = GitHubServiceTests;
+			sourceTree = "<group>";
+		};
+		F42813AF214D52120064C8D7 /* NetworkStubbing */ = {
+			isa = PBXGroup;
+			children = (
+				F428138D214D46890064C8D7 /* NetworkStubbing.swift */,
+				F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */,
+			);
+			path = NetworkStubbing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
