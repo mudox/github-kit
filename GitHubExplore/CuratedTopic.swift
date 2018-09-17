@@ -4,52 +4,15 @@ import Yams
 
 import JacKit
 
-private func parse(text: String) throws -> (yamlString: String, description: String) {
-  let nl = "(?:\\n|\\r\\n|\\r)"
-
-  let pattern = """
-  ^
-  --- \\s* \(nl)
-  (.*)                # YAML
-  --- \\s* \(nl)
-  (.*)
-  $                   # Description
-  """
-
-  let regex = try NSRegularExpression(
-    pattern: pattern,
-    options: [
-      .allowCommentsAndWhitespace,
-      .dotMatchesLineSeparators,
-    ]
-  )
-
-  let range = NSRange(text.startIndex ..< text.endIndex, in: text)
-  guard let match = regex.firstMatch(in: text, range: range) else {
-    throw CuratedTopic.Error.regexMatch
-  }
-
-  let nsText = text as NSString
-  let yamlString = nsText.substring(with: match.range(at: 1)) as String
-  let description = nsText.substring(with: match.range(at: 2)) as String
-
-  return (yamlString, description)
-}
-
 public extension GitHubExplore {
+  
   struct CuratedTopic {
-
-    enum Error: Swift.Error {
-      case regexMatch
-    }
 
     /// Initialize an instance of CuratedTopic from an index.md file from github/explore repository.
     ///
     /// - Parameter url: URL of the index.md file.
-    public init(indexFileURL: URL) throws {
-
-      let text = try String(contentsOf: indexFileURL)
-      let (yamlString, desc) = try parse(text: text)
+    /// - Throws: Swift.Decoding.Error
+    public init(yamlString: String, description: String) throws {
 
       let decoder = YAMLDecoder()
       let decoded = try decoder.decode(_YAML.self, from: yamlString)
@@ -69,7 +32,7 @@ public extension GitHubExplore {
       releaseDate = decoded.released.flatMap(formatter.date)
 
       summary = decoded.short_description
-      description = desc
+      self.description = description
 
       url = decoded.url
       githubURL = decoded.github_url
@@ -100,7 +63,9 @@ public extension GitHubExplore {
 }
 
 // MARK: - YAML Representation
+
 fileprivate extension GitHubExplore.CuratedTopic {
+  
   /// YAML reprentation in `github/explore`
   struct _YAML: Decodable {
     // swiftlint:disable identifier_name
@@ -117,4 +82,5 @@ fileprivate extension GitHubExplore.CuratedTopic {
     let wikipedia_url: URL?
     // swiftlint:enable identifier_name
   }
+  
 }

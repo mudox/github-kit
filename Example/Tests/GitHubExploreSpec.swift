@@ -23,39 +23,46 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
   // MARK: downloadGitHubExplore
 
   fdescribe("GitHubExplore") {
-    
-    it("test") {
+
+    it("curatedTopics") {
       // Arrange
-      let jack = Jack("GitHubExplore")
+      let jack = Jack("curatedTopics")
 
       // Act, Assert
-      waitUntil(timeout: timeout) { done in
-        _ = GitHubExplore.test()
+      waitUntil(action: { done in
+        _ = GitHubExplore.curatedTopics
           .subscribe(
             onSuccess: { topics in
-              expect(topics.isEmpty) != true
+              jack.info("Found \(topics.count) curated topics")
               done()
             },
             onError: { error in
-              jack.error("\(Jack.dump(of: error))")
+              jack.error(Jack.dump(of: error))
               fatalError()
             }
           )
-      }
+      })
     }
 
-    it("CuratedTopic") {
+    it("collections") {
       // Arrange
-      let jack = Jack("CuratedTopic")
+      let jack = Jack("collections")
 
       // Act, Assert
-      let url = Bundle.main.url(forResource: "explore_topic", withExtension: "txt")!
-      expect {
-        let topic = try CuratedTopic(indexFileURL: url)
-        return topic
-      }.toNot(throwError())
+      waitUntil(action: { done in
+        _ = GitHubExplore.collections
+          .subscribe(
+            onSuccess: { collections in
+              jack.info("Found \(collections.count) collections")
+              done()
+            },
+            onError: { error in
+              jack.error(Jack.dump(of: error))
+              fatalError()
+            }
+          )
+      })
     }
-
   } // describe("GitHubExplore")
 
 } }

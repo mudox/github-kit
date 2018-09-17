@@ -666,6 +666,7 @@
 		F3ED34D5F708A8CC470EE003E5AE54E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37237542FF195690B26B165DECCAB709 /* Foundation.framework */; };
 		F4275CCA214F8E62007D266B /* GitHubExplore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4275CC9214F8E62007D266B /* GitHubExplore.swift */; };
 		F438A3EC214FB7C5009B0D89 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F438A3EB214FB7C5009B0D89 /* Collection.swift */; };
+		F438A3EF214FE4B5009B0D89 /* ParseMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F438A3ED214FE4B1009B0D89 /* ParseMarkdown.swift */; };
 		F502E3830EE090939ABA75B69A06C90E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59386B562481AC2D1DD92706602DB3 /* Queue.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F520D40A84FE5761D281BFE165360EB0 /* RxPickerViewDataSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E079D65353F06BB62A6C851A3DF9869 /* RxPickerViewDataSourceType.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F5E9B74F708B8E832B9097EEFEA36778 /* DDOSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B29BF15EBDD20C5C07D9DEFDAC0A91F /* DDOSLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1788,6 +1789,7 @@
 		F4275CC9214F8E62007D266B /* GitHubExplore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubExplore.swift; sourceTree = "<group>"; };
 		F42E8EAEF777569CE98DD059B60DAB8E /* UINavigationController+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+Rx.swift"; path = "RxCocoa/iOS/UINavigationController+Rx.swift"; sourceTree = "<group>"; };
 		F438A3EB214FB7C5009B0D89 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		F438A3ED214FE4B1009B0D89 /* ParseMarkdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseMarkdown.swift; sourceTree = "<group>"; };
 		F46566E0F0D3F2030CBB5C76AC7F3797 /* UIAlertAction+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIAlertAction+Rx.swift"; path = "RxCocoa/iOS/UIAlertAction+Rx.swift"; sourceTree = "<group>"; };
 		F47858EA929FB11F031A48C741139FA0 /* ScheduledItemType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScheduledItemType.swift; path = RxSwift/Schedulers/Internal/ScheduledItemType.swift; sourceTree = "<group>"; };
 		F486E196B0EA84467B4DA543575A55FB /* ShareReplayScope.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShareReplayScope.swift; path = RxSwift/Observables/ShareReplayScope.swift; sourceTree = "<group>"; };
@@ -3283,6 +3285,7 @@
 			isa = PBXGroup;
 			children = (
 				4E420971CFEA671EAB49E6B8A9DB15CF /* CuratedTopic.swift */,
+				F438A3ED214FE4B1009B0D89 /* ParseMarkdown.swift */,
 				F438A3EB214FB7C5009B0D89 /* Collection.swift */,
 				F4275CC9214F8E62007D266B /* GitHubExplore.swift */,
 			);
@@ -3983,6 +3986,7 @@
 				8EC220F3B0500FF50FC9782F473D3FEA /* Authorization.swift in Sources */,
 				9ABDD55723BB77092724A338376DC538 /* Commit.swift in Sources */,
 				F438A3EC214FB7C5009B0D89 /* Collection.swift in Sources */,
+				F438A3EF214FE4B5009B0D89 /* ParseMarkdown.swift in Sources */,
 				F8661CE893698FB0D874F32D7C54B120 /* Contributor.swift in Sources */,
 				CAA5B380DC09E3E34E4B8C74EBC0DAB9 /* CuratedTopic.swift in Sources */,
 				0DB8B4476A0C148B2370D18CE79F9744 /* Dev.swift in Sources */,

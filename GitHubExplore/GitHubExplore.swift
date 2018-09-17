@@ -24,7 +24,13 @@ public struct GitHubExplore {
       .appendingPathComponent("explore-master")
   }()
 
-  internal static var download: Completable {
+  // MARK: - Interface
+
+  public enum Error: Swift.Error {
+    case regexMatchMarkdownContent
+  }
+
+  public static var synchronize: Completable {
 
     return .create { completable in
 
@@ -44,7 +50,9 @@ public struct GitHubExplore {
 
   }
 
-  internal static var parse: Single<[CuratedTopic]> {
+  /// Scan the downloaded 'github/explore' folder, parse each 'topics/\*/index.md'
+  /// file as an instance of `GitHubExplore.CuratedTopic`.
+  public static var curatedTopics: Single<[CuratedTopic]> {
     return .create { single in
 
       // Unzip
@@ -52,32 +60,78 @@ public struct GitHubExplore {
         atPath: zipURL.path,
         toDestination: zipURL.deletingLastPathComponent().path
       )
-      Jack("GitHubExplore.parse.unzip").info("completed", options: .short)
 
       // Parse folder
       do {
         let topicsDirectoryURL = url.appendingPathComponent("topics")
-        let indexFileURLs = try FileManager.default
+
+        let curatedTopics = try FileManager.default
           .contentsOfDirectory(atPath: topicsDirectoryURL.path)
+          // Append `/topics/index.md`
           .map { path -> URL in
-            let filePath = path.appending("/index.md")
-            return url.appendingPathComponent("/topics/\(filePath)")
+            let markdownPath = path.appending("/index.md")
+            return url.appendingPathComponent("/topics/\(markdownPath)")
           }
-          .filter { FileManager.default.fileExists(atPath: $0.path) }
-        Jack("GitHubExplore.parse.filemanager").debug("found totally \(indexFileURLs.count) index.md files")
-        single(.success(try indexFileURLs.map(CuratedTopic.init)))
-        Jack("GitHubExplore.parse").info("completed", options: .short)
+          // Filter out non-existing files.
+          .filter { url in
+            FileManager.default.fileExists(atPath: url.path)
+          }
+          // Parse each `index.md` file as an instance of `GitHubExplore.CuratedTopic`
+          .map { url -> CuratedTopic in
+            let text = try String(contentsOf: url)
+            let (yamlString, description) = try parse(text: text)
+            return try CuratedTopic(yamlString: yamlString, description: description)
+          }
+
+        single(.success(curatedTopics))
       } catch {
         single(.error(error))
-        Jack("GitHubExplore.parse").error("failed", options: .short)
       }
 
       return Disposables.create()
     }
   }
 
-  public static func test() -> Single<[CuratedTopic]> {
-    return download.andThen(parse)
+  /// Scan the downloaded 'github/explore' folder, parse each 'collections/\*/index.md'
+  /// file as an instance of `GitHubExplore.Collection`.
+  public static var collections: Single<[Collection]> {
+    return .create { single in
+
+      // Unzip
+      SSZipArchive.unzipFile(
+        atPath: zipURL.path,
+        toDestination: zipURL.deletingLastPathComponent().path
+      )
+
+      // Parse folder
+      do {
+        let collectionsDirectoryURL = url.appendingPathComponent("collections")
+
+        let collections = try FileManager.default
+          .contentsOfDirectory(atPath: collectionsDirectoryURL.path)
+          // Append `/collections/index.md`
+          .map { path -> URL in
+            let markdownPath = path.appending("/index.md")
+            return url.appendingPathComponent("/collections/\(markdownPath)")
+          }
+          // Filter out non-existing files.
+          .filter { url in
+            FileManager.default.fileExists(atPath: url.path)
+          }
+          // Parse each `index.md` file as an instance of `GitHubExplore.Collection`
+          .map { url -> Collection in
+            let text = try String(contentsOf: url)
+            let (yamlString, description) = try parse(text: text)
+            return try Collection(yamlString: yamlString, description: description)
+          }
+
+        single(.success(collections))
+      } catch {
+        single(.error(error))
+      }
+
+      return Disposables.create()
+    }
   }
 
 }

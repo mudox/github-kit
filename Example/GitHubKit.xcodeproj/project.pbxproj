@@ -127,6 +127,7 @@
 		F438A3E8214FAAEA009B0D89 /* explore_topic.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = explore_topic.txt; sourceTree = "<group>"; };
 		F497DDAB2146062E00F3941E /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 		F497DDAC2146062E00F3941E /* MiscSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSpec.swift; sourceTree = "<group>"; };
+		F4A733DA214FF77500F78E2C /* explore_collection.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = explore_collection.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				F438A3AD214FAAB6009B0D89 /* Stubs */,
+				F4A733DA214FF77500F78E2C /* explore_collection.txt */,
 				F438A3E8214FAAEA009B0D89 /* explore_topic.txt */,
 			);
 			path = Resources;

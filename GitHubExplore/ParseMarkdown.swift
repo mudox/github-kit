@@ -11,7 +11,7 @@ internal extension GitHubExplore {
   /// - Parameter text: String content of the **index.md** file.
   /// - Returns: A tuple of YAML document string and the longer description string.
   /// - Throws: `NSError` thrown by initializing `NSRegularExpression`
-  func parse(text: String) throws -> (yamlString: String, description: String) {
+  static func parse(text: String) throws -> (yamlString: String, description: String) {
     let nl = "(?:\\n|\\r\\n|\\r)"
 
     let pattern = """
@@ -33,7 +33,7 @@ internal extension GitHubExplore {
 
     let range = NSRange(text.startIndex ..< text.endIndex, in: text)
     guard let match = regex.firstMatch(in: text, range: range) else {
-      throw CuratedTopic.Error.regexMatch
+      throw Error.regexMatchMarkdownContent
     }
 
     let nsText = text as NSString
