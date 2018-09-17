@@ -60,6 +60,7 @@ opt_in_rules:
 identifier_name:
   excluded:
       - id
+      - nl
 
 number_separator:
   minimum_length: 5

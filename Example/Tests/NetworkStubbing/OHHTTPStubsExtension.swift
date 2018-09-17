@@ -20,7 +20,7 @@ fileprivate func parse(messageText text: String)
 
   /*
    *
-   * Step 0 - Unify EOL to '\n'
+   * Step 0 - Unify EOLs to '\n'
    *
    */
 

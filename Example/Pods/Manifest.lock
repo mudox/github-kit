@@ -6,9 +6,11 @@ PODS:
   - GitHubKit (0.1.0):
     - JacKit
     - Moya/RxSwift
+    - RxAlamofire
     - RxCocoa
     - RxSwift
     - SSZipArchive
+    - Yams
   - JacKit (1.0):
     - CocoaLumberjack/Swift (~> 3.3.0)
   - Moya/Core (11.0.2):
@@ -33,6 +35,11 @@ PODS:
     - OHHTTPStubs/Default
   - Quick (1.3.1)
   - Result (3.2.4)
+  - RxAlamofire (4.2.0):
+    - RxAlamofire/Core (= 4.2.0)
+  - RxAlamofire/Core (4.2.0):
+    - Alamofire (~> 4.5)
+    - RxSwift (~> 4)
   - RxBlocking (4.2.0):
     - RxSwift (~> 4.0)
   - RxCocoa (4.2.0):
@@ -46,6 +53,7 @@ PODS:
     - RxSwift (~> 4.0)
   - SSZipArchive (2.1.4)
   - SwiftLint (0.27.0)
+  - Yams (1.0.1)
 
 DEPENDENCIES:
   - GitHubKit (from `../`)
@@ -67,6 +75,7 @@ SPEC REPOS:
     - OHHTTPStubs
     - Quick
     - Result
+    - RxAlamofire
     - RxBlocking
     - RxCocoa
     - RxNimble
@@ -74,6 +83,7 @@ SPEC REPOS:
     - RxTest
     - SSZipArchive
     - SwiftLint
+    - Yams
 
 EXTERNAL SOURCES:
   GitHubKit:
@@ -84,13 +94,14 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
-  GitHubKit: f978b8c13eb9520ee34f2db52282b477a1da837a
+  GitHubKit: c46201efa57f5edd02ddb206a5cc6659829c1374
   JacKit: b0038a8a0acaaaa1117e14a0276cabcf6b4c3d10
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Nimble: c8d6a1f463701921c46de965c673e13cafa09196
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RxAlamofire: 87a9c588541210cc3e4a1f843ccc3ecf3eb98b31
   RxBlocking: e339d8a6e752e25ade95ff858466c55436668f59
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxNimble: e5a34bf3b18d85406fc2a6e2cbc73aa2b4a858f0
@@ -98,7 +109,8 @@ SPEC CHECKSUMS:
   RxTest: 8da864c0ee47534f586ff18fb0c7e5b2f1fe5023
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  Yams: 572f625a8b719b73e0b57fd313c680f3e2161fe9
 
-PODFILE CHECKSUM: 3defa77dbde09ae70d74754f1cb6eb497d6d6fe6
+PODFILE CHECKSUM: 569b3b30155100ee75b167e7aecf61b8cff5028a
 
 COCOAPODS: 1.5.3

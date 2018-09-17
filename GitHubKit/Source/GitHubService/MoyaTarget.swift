@@ -52,7 +52,7 @@ public enum MoyaTarget {
   case tags(ownerName: String, repositoryName: String)
   case contributors(ownerName: String, repositoryName: String)
   case languages(ownerName: String, repositoryName: String)
-  
+
   // MARK: Showcase
 }
 

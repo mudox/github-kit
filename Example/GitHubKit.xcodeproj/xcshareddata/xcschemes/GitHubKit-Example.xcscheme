@@ -45,7 +45,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "248A774D1630F6B1F51E0B08182B9922"
+            BlueprintIdentifier = "B8F94AECA85CECCDA96AD138688C14C1"
             BuildableName = "GitHubKit.framework"
             BlueprintName = "GitHubKit"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -104,7 +104,7 @@
          <EnvironmentVariable
             key = "HTTP_STUBBING"
             value = "YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "OS_ACTIVITY_MODE"

@@ -2,7 +2,10 @@ use_frameworks!
 platform :ios, '10.0'
 
 target 'GitHubKit_Example' do
+
   pod 'SwiftLint'
+
+  pod 'GitHubKit', :path => '../'
 
   inhibit_all_warnings!
 

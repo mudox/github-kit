@@ -23,6 +23,9 @@
     "JacKit": [
 
     ],
+    "RxAlamofire": [
+
+    ],
     "Moya/RxSwift": [
 
     ],
@@ -33,6 +36,9 @@
 
     ],
     "SSZipArchive": [
+
+    ],
+    "Yams": [
 
     ]
   }

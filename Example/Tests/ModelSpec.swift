@@ -5,14 +5,14 @@ import Quick
 
 import GitHubKit
 
-class GitHubSpec: QuickSpec { override func spec() {
+class ModelSpec: QuickSpec { override func spec() {
 
   // MARK: Pagination
 
   describe("Pagination") {
 
     it("repsents single page") {
-      // act
+      // Act
 
       var p: Pagination?
       expect {
@@ -32,22 +32,22 @@ class GitHubSpec: QuickSpec { override func spec() {
     }
 
     it("repsents first page") {
-      // arrange
+      // Arrange
       let text = """
       <https://api.com/search/repositories?q=neovim&sort=stars&order=desc&page=2>; rel="next", \
       <https://api.com/search/repositories?q=neovim&sort=stars&order=desc&page=34>; rel="last"
       """
 
-      // act
+      // Act
       let p = try! Pagination(from: ["Link": text])
 
-      // assert
+      // Assert
       expect(p.pageIndex) == 0
       expect(p.totalCount) == 34
     }
 
     it("repsents middle page") {
-      // arrange
+      // Arrange
       let text = """
       <https://api.com/search/repositories?q=neovim&sort=stars&order=desc&page=1>; rel="prev", \
       <https://api.com/search/repositories?q=neovim&sort=stars&order=desc&page=3>; rel="next", \
@@ -55,7 +55,7 @@ class GitHubSpec: QuickSpec { override func spec() {
       <https://api.com/search/repositories?q=neovim&sort=stars&order=desc&page=1>; rel="first"
       """
 
-      // act
+      // Act
       let p = try! Pagination(from: ["Link": text])
 
       // assert
@@ -64,16 +64,16 @@ class GitHubSpec: QuickSpec { override func spec() {
     }
 
     it("repsents last page") {
-      // arrange
+      // Arrange
       let text = """
       <https://api.com/search/repositories?q=neovim&sort=stars&order=desc&page=33>; rel="prev", \
       <https://api.com/search/repositories?q=neovim&sort=stars&order=desc&page=1>; rel="first"
       """
 
-      // act
+      // Act
       let p = try! Pagination(from: ["Link": text])
 
-      // assert
+      // Assert
       expect(p.pageIndex) == 34
       expect(p.totalCount) == 34
     }
@@ -85,15 +85,14 @@ class GitHubSpec: QuickSpec { override func spec() {
   describe("RateLimit") {
 
     it("init from response header fields") {
-      // arrange
+      // Arrange
       let headers = [
         "X-RateLimit-Limit": "30",
         "X-RateLimit-Reset": "1536306663",
         "X-RateLimit-Remaining": "29",
       ]
 
-      // act
-      // assert
+      // Act & Assert
       let rateLimit = HeaderRateLimit(from: headers)
       expect(rateLimit).toNot(beNil())
       dump(rateLimit!)

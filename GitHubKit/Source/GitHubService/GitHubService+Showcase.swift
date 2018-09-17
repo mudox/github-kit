@@ -3,6 +3,8 @@ import Foundation
 import Moya
 import RxSwift
 
+import JacKit
+
 public extension Service {
 
   func collections() {
