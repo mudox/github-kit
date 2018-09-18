@@ -39,6 +39,8 @@ Pod::Spec.new do |s|
   s.dependency 'SSZipArchive'
 
   s.dependency 'Yams'
+
   s.dependency 'Kanna'
+  s.pod_target_xcconfig = { 'HEADER_SEARCH_PATHS' => "$(SDKROOT)/usr/include/libxml2" }
 
 end
