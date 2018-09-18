@@ -33,7 +33,7 @@ internal extension GitHubExplore {
 
     let range = NSRange(text.startIndex ..< text.endIndex, in: text)
     guard let match = regex.firstMatch(in: text, range: range) else {
-      throw Error.regexMatchMarkdownContent
+      throw Error.regexMatchingMarkdownContent
     }
 
     let nsText = text as NSString

@@ -22,7 +22,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
   // MARK: downloadGitHubExplore
 
-  describe("GitHubExplore") {
+  fdescribe("GitHubExplore") {
 
     it("synchronize") {
       // Arrange
@@ -49,7 +49,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHubExplore.curatedTopics
+        _ = GitHubExplore.curatedTopics(aftreSync: true)
           .subscribe(
             onSuccess: { topics in
               jack.info("Found \(topics.count) curated topics")
@@ -69,7 +69,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHubExplore.collections
+        _ = GitHubExplore.collections(afterSync: true)
           .subscribe(
             onSuccess: { collections in
               jack.info("Found \(collections.count) collections")

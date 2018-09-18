@@ -18,16 +18,18 @@ public struct GitHubExplore {
     return url.appendingPathComponent("GitHubKit/GitHubExplore/master.zip")
   }()
 
-  fileprivate static let url: URL = {
-    zipURL
-      .deletingPathExtension()
-      .appendingPathComponent("explore-master")
-  }()
+  fileprivate static let unzipURL = zipURL.deletingPathExtension()
+
+  fileprivate static let url = unzipURL.appendingPathComponent("explore-master")
+
+  fileprivate static var localCloneExistis: Bool {
+    return FileManager.default.fileExists(atPath: url.path)
+  }
 
   // MARK: - Interface
 
   public enum Error: Swift.Error {
-    case regexMatchMarkdownContent
+    case regexMatchingMarkdownContent
   }
 
   public static var synchronize: Completable {
@@ -52,16 +54,14 @@ public struct GitHubExplore {
     } // .create
 
   }
-
-  /// Scan the downloaded 'github/explore' folder, parse each 'topics/\*/index.md'
-  /// file as an instance of `GitHubExplore.CuratedTopic`.
-  public static var curatedTopics: Single<[CuratedTopic]> {
+  
+  public static var loadCuratedTopics: Single<[CuratedTopic]> {
     return .create { single in
-
+      
       // Parse folder
       do {
         let topicsDirectoryURL = url.appendingPathComponent("topics")
-
+        
         let curatedTopics = try FileManager.default
           .contentsOfDirectory(atPath: topicsDirectoryURL.path)
           // Append `/topics/index.md`
@@ -78,32 +78,40 @@ public struct GitHubExplore {
             let text = try String(contentsOf: url)
             let (yamlString, description) = try parse(text: text)
             return try CuratedTopic(yamlString: yamlString, description: description)
-          }
-
+        }
+        
         single(.success(curatedTopics))
       } catch {
         single(.error(error))
       }
-
+      
       return Disposables.create()
     }
   }
 
-  /// Scan the downloaded 'github/explore' folder, parse each 'collections/\*/index.md'
-  /// file as an instance of `GitHubExplore.Collection`.
-  public static var collections: Single<[Collection]> {
+  /// Scan the downloaded 'github/explore' folder, parse each 'topics/\*/index.md'
+  /// file as an instance of `GitHubExplore.CuratedTopic`.
+  public static func curatedTopics(aftreSync sync: Bool = false) -> Single<[CuratedTopic]> {
+    if !localCloneExistis || sync {
+      return synchronize.andThen(loadCuratedTopics)
+    } else {
+      return loadCuratedTopics
+    }
+  }
+  
+  public static var loadCollections: Single<[Collection]> {
     return .create { single in
-
+      
       // Unzip
       SSZipArchive.unzipFile(
         atPath: zipURL.path,
         toDestination: zipURL.deletingLastPathComponent().path
       )
-
+      
       // Parse folder
       do {
         let collectionsDirectoryURL = url.appendingPathComponent("collections")
-
+        
         let collections = try FileManager.default
           .contentsOfDirectory(atPath: collectionsDirectoryURL.path)
           // Append `/collections/index.md`
@@ -120,14 +128,24 @@ public struct GitHubExplore {
             let text = try String(contentsOf: url)
             let (yamlString, description) = try parse(text: text)
             return try Collection(yamlString: yamlString, description: description)
-          }
-
+        }
+        
         single(.success(collections))
       } catch {
         single(.error(error))
       }
-
+      
       return Disposables.create()
+    }
+  }
+
+  /// Scan the downloaded 'github/explore' folder, parse each 'collections/\*/index.md'
+  /// file as an instance of `GitHubExplore.Collection`.
+  public static func collections(afterSync sync: Bool = false) -> Single<[Collection]> {
+    if !localCloneExistis || sync {
+      return synchronize.andThen(loadCollections)
+    } else {
+      return loadCollections
     }
   }
 
