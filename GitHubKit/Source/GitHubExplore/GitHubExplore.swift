@@ -54,14 +54,14 @@ public struct GitHubExplore {
     } // .create
 
   }
-  
+
   public static var loadCuratedTopics: Single<[CuratedTopic]> {
     return .create { single in
-      
+
       // Parse folder
       do {
         let topicsDirectoryURL = url.appendingPathComponent("topics")
-        
+
         let curatedTopics = try FileManager.default
           .contentsOfDirectory(atPath: topicsDirectoryURL.path)
           // Append `/topics/index.md`
@@ -78,13 +78,13 @@ public struct GitHubExplore {
             let text = try String(contentsOf: url)
             let (yamlString, description) = try parse(text: text)
             return try CuratedTopic(yamlString: yamlString, description: description)
-        }
-        
+          }
+
         single(.success(curatedTopics))
       } catch {
         single(.error(error))
       }
-      
+
       return Disposables.create()
     }
   }
@@ -98,20 +98,20 @@ public struct GitHubExplore {
       return loadCuratedTopics
     }
   }
-  
+
   public static var loadCollections: Single<[Collection]> {
     return .create { single in
-      
+
       // Unzip
       SSZipArchive.unzipFile(
         atPath: zipURL.path,
         toDestination: zipURL.deletingLastPathComponent().path
       )
-      
+
       // Parse folder
       do {
         let collectionsDirectoryURL = url.appendingPathComponent("collections")
-        
+
         let collections = try FileManager.default
           .contentsOfDirectory(atPath: collectionsDirectoryURL.path)
           // Append `/collections/index.md`
@@ -128,13 +128,13 @@ public struct GitHubExplore {
             let text = try String(contentsOf: url)
             let (yamlString, description) = try parse(text: text)
             return try Collection(yamlString: yamlString, description: description)
-        }
-        
+          }
+
         single(.success(collections))
       } catch {
         single(.error(error))
       }
-      
+
       return Disposables.create()
     }
   }

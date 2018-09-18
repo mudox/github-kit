@@ -20,9 +20,9 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
     OHHTTPStubs.removeAllStubs()
   }
 
-  // MARK: downloadGitHubExplore
+  describe("GitHubExplore") {
 
-  fdescribe("GitHubExplore") {
+    // MARK: synchronize
 
     it("synchronize") {
       // Arrange
@@ -42,6 +42,8 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
           )
       }
     }
+
+    // MARK: curatedTopics
 
     it("curatedTopics") {
       // Arrange
@@ -63,6 +65,8 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
       }
     }
 
+    // MARK: collections
+
     it("collections") {
       // Arrange
       let jack = Jack("collections")
@@ -82,6 +86,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
           )
       }
     }
+
   } // describe("GitHubExplore")
 
 } }

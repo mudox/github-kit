@@ -8,6 +8,7 @@ public extension GitHubExplore {
 
   struct Collection {
 
+    // swiftlint:disable:next nesting
     enum Error: Swift.Error {
       case regexMatch
     }

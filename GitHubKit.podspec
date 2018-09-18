@@ -39,4 +39,6 @@ Pod::Spec.new do |s|
   s.dependency 'SSZipArchive'
 
   s.dependency 'Yams'
+  s.dependency 'Kanna'
+
 end

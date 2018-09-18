@@ -54,6 +54,7 @@
 		F438A3E6214FAAB6009B0D89 /* tree.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C9214FAAB6009B0D89 /* tree.txt */; };
 		F438A3E7214FAAB6009B0D89 /* profile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3CA214FAAB6009B0D89 /* profile.txt */; };
 		F438A3E9214FAAEA009B0D89 /* explore_topic.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3E8214FAAEA009B0D89 /* explore_topic.txt */; };
+		F4A3F9D82150E7EB007854E1 /* GitHubTrendingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3F9D72150E7EB007854E1 /* GitHubTrendingSpec.swift */; };
 		F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAB2146062E00F3941E /* ModelSpec.swift */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +128,7 @@
 		F438A3E8214FAAEA009B0D89 /* explore_topic.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = explore_topic.txt; sourceTree = "<group>"; };
 		F497DDAB2146062E00F3941E /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 		F497DDAC2146062E00F3941E /* MiscSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSpec.swift; sourceTree = "<group>"; };
+		F4A3F9D72150E7EB007854E1 /* GitHubTrendingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubTrendingSpec.swift; sourceTree = "<group>"; };
 		F4A733DA214FF77500F78E2C /* explore_collection.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = explore_collection.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,8 +219,9 @@
 			isa = PBXGroup;
 			children = (
 				F42813B2214E5DA30064C8D7 /* GitHubExploreSpec.swift */,
+				F4A3F9D72150E7EB007854E1 /* GitHubTrendingSpec.swift */,
 				F497DDAB2146062E00F3941E /* ModelSpec.swift */,
-				F4281390214D4B730064C8D7 /* GitHubServiceTests */,
+				F4281390214D4B730064C8D7 /* GitHubServiceSpecs */,
 				F42813AF214D52120064C8D7 /* NetworkStubbing */,
 				F427794221476EE500FCD28D /* Resources */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -254,7 +257,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F4281390214D4B730064C8D7 /* GitHubServiceTests */ = {
+		F4281390214D4B730064C8D7 /* GitHubServiceSpecs */ = {
 			isa = PBXGroup;
 			children = (
 				F428139A214D50630064C8D7 /* AuthorizationSpec.swift */,
@@ -265,7 +268,7 @@
 				F4281398214D4F610064C8D7 /* SearchSpec.swift */,
 				F4281397214D4CFB0064C8D7 /* UserSpec.swift */,
 			);
-			path = GitHubServiceTests;
+			path = GitHubServiceSpecs;
 			sourceTree = "<group>";
 		};
 		F42813AF214D52120064C8D7 /* NetworkStubbing */ = {
@@ -459,6 +462,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/GitHubKit/GitHubKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JacKit/JacKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
@@ -473,6 +477,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GitHubKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JacKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
@@ -497,6 +502,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/GitHubKit/GitHubKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JacKit/JacKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
@@ -517,6 +523,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GitHubKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JacKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
@@ -609,6 +616,7 @@
 				F42813A8214D50BF0064C8D7 /* GitDataSpec.swift in Sources */,
 				F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */,
 				F42813B3214E5DA40064C8D7 /* GitHubExploreSpec.swift in Sources */,
+				F4A3F9D82150E7EB007854E1 /* GitHubTrendingSpec.swift in Sources */,
 				F42813A7214D50BF0064C8D7 /* RepositorySpec.swift in Sources */,
 				F42813AB214D50BF0064C8D7 /* AuthorizationSpec.swift in Sources */,
 				F42813AD214D50BF0064C8D7 /* SearchSpec.swift in Sources */,

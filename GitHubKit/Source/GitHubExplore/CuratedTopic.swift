@@ -5,7 +5,7 @@ import Yams
 import JacKit
 
 public extension GitHubExplore {
-  
+
   struct CuratedTopic {
 
     /// Initialize an instance of CuratedTopic from an index.md file from github/explore repository.
@@ -65,7 +65,7 @@ public extension GitHubExplore {
 // MARK: - YAML Representation
 
 fileprivate extension GitHubExplore.CuratedTopic {
-  
+
   /// YAML reprentation in `github/explore`
   struct _YAML: Decodable {
     // swiftlint:disable identifier_name
@@ -82,5 +82,5 @@ fileprivate extension GitHubExplore.CuratedTopic {
     let wikipedia_url: URL?
     // swiftlint:enable identifier_name
   }
-  
+
 }
