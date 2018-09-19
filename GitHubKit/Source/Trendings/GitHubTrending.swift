@@ -3,7 +3,7 @@ import Foundation
 import RxAlamofire
 import RxSwift
 
-//import Kanna
+import Kanna
 
 import JacKit
 
@@ -22,7 +22,12 @@ public struct GitHubTrending {
 
   fileprivate static let developerBaseURLString = "https://github.com/trending/developers"
 
-  fileprivate static func htmlPageURL(of catetory: Category, language: String? = nil, period: Period = .daily) -> URL {
+  fileprivate static func htmlPageURL(
+    of catetory: Category,
+    language: String? = nil,
+    period: Period = .daily
+  )
+    -> URL {
 
     var urlComponents: URLComponents
     switch catetory {
@@ -41,9 +46,19 @@ public struct GitHubTrending {
     return urlComponents.url!
   }
 
-  public static func test(of category: Category, language: String? = nil, period: Period = .daily) -> Single<String> {
+  public static func trendings(
+    of category: Category,
+    language: String? = nil,
+    period: Period = .daily
+  )
+    -> Single<[GitHubTrending.Repository]?> {
+    let jack = Jack("GitHubTrending")
+
     let url = htmlPageURL(of: category, language: language, period: period)
-    return string(.get, url).asSingle()
+    return string(.get, url)
+      .asSingle()
+      // Parse HTML string for `Trending` arrays
+      .map(GitHubTrending.Repository.trendings)
   }
 
 }
