@@ -44,7 +44,7 @@ fileprivate func parse(messageText text: String)
   ^
   HTTP/1.1 \\s+ (\\d+) \\s+ [^\\n]*  # Status Line
   \\n
-  (.*)                               # Header
+  (.*?)                              # Header
   \\n\\n
   (.*)?                              # Body (optional)
   $
