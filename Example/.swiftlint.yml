@@ -75,6 +75,8 @@ file_name:
     - GitHubService+Search.swift
     - GitHubService+Showcase.swift
     - GitHubService+UserProfile.swift
+    - TrendingRepository.swift
+    - TrendingDeveloper.swift
     - ParseMarkdown.swift
 
 severity: error
