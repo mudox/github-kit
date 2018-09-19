@@ -1838,6 +1838,7 @@
 		F461A43F2151E3D60063B66C /* Pagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		F461A4402151E3D60063B66C /* RateLimitPayload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateLimitPayload.swift; sourceTree = "<group>"; };
 		F461A4412151E3D60063B66C /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		F461A45821524FBB0063B66C /* TrendingDeveloper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingDeveloper.swift; sourceTree = "<group>"; };
 		F5E5C93434A8AA454A3738CC479EB77B /* Timeout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = RxSwift/Observables/Timeout.swift; sourceTree = "<group>"; };
 		F60DA96D4382564703DD61AAF52227EB /* SynchronizedDisposeType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedDisposeType.swift; path = RxSwift/Concurrency/SynchronizedDisposeType.swift; sourceTree = "<group>"; };
 		F6270544884C354D4B43AB70C231B9DA /* RxTabBarDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTabBarDelegateProxy.swift; path = RxCocoa/iOS/Proxies/RxTabBarDelegateProxy.swift; sourceTree = "<group>"; };
@@ -3161,6 +3162,7 @@
 			isa = PBXGroup;
 			children = (
 				D05F4AAE8C8824B6582EC3DA9622E249 /* GitHubTrending.swift */,
+				F461A45821524FBB0063B66C /* TrendingDeveloper.swift */,
 				D358397922F354B4C445EDBC7D4BBF91 /* TrendingRepository.swift */,
 			);
 			name = Trendings;

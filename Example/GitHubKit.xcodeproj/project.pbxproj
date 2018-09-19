@@ -54,6 +54,8 @@
 		F438A3E6214FAAB6009B0D89 /* tree.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C9214FAAB6009B0D89 /* tree.txt */; };
 		F438A3E7214FAAB6009B0D89 /* profile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3CA214FAAB6009B0D89 /* profile.txt */; };
 		F438A3E9214FAAEA009B0D89 /* explore_topic.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3E8214FAAEA009B0D89 /* explore_topic.txt */; };
+		F461A45C21527DEE0063B66C /* developer-trending.txt in Resources */ = {isa = PBXBuildFile; fileRef = F461A45A21527DED0063B66C /* developer-trending.txt */; };
+		F461A45D21527DEE0063B66C /* repository-trending.txt in Resources */ = {isa = PBXBuildFile; fileRef = F461A45B21527DEE0063B66C /* repository-trending.txt */; };
 		F4A3F9D82150E7EB007854E1 /* GitHubTrendingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3F9D72150E7EB007854E1 /* GitHubTrendingSpec.swift */; };
 		F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAB2146062E00F3941E /* ModelSpec.swift */; };
 /* End PBXBuildFile section */
@@ -126,6 +128,8 @@
 		F438A3C9214FAAB6009B0D89 /* tree.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.txt; sourceTree = "<group>"; };
 		F438A3CA214FAAB6009B0D89 /* profile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = profile.txt; sourceTree = "<group>"; };
 		F438A3E8214FAAEA009B0D89 /* explore_topic.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = explore_topic.txt; sourceTree = "<group>"; };
+		F461A45A21527DED0063B66C /* developer-trending.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "developer-trending.txt"; sourceTree = "<group>"; };
+		F461A45B21527DEE0063B66C /* repository-trending.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "repository-trending.txt"; sourceTree = "<group>"; };
 		F497DDAB2146062E00F3941E /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 		F497DDAC2146062E00F3941E /* MiscSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSpec.swift; sourceTree = "<group>"; };
 		F4A3F9D72150E7EB007854E1 /* GitHubTrendingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubTrendingSpec.swift; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 		F438A3AD214FAAB6009B0D89 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
+				F461A45A21527DED0063B66C /* developer-trending.txt */,
+				F461A45B21527DEE0063B66C /* repository-trending.txt */,
 				F438A3B9214FAAB6009B0D89 /* authorizations.txt */,
 				F438A3B0214FAAB6009B0D89 /* authorize.txt */,
 				F438A3C8214FAAB6009B0D89 /* blob.txt */,
@@ -410,6 +416,7 @@
 				F438A3CB214FAAB6009B0D89 /* search_repositories_0.txt in Resources */,
 				F438A3DB214FAAB6009B0D89 /* grants.txt in Resources */,
 				F438A3DF214FAAB6009B0D89 /* repositoryTopics.txt in Resources */,
+				F461A45D21527DEE0063B66C /* repository-trending.txt in Resources */,
 				F438A3E4214FAAB6009B0D89 /* repositoryTags.txt in Resources */,
 				F438A3D7214FAAB6009B0D89 /* commit.txt in Resources */,
 				F438A3E2214FAAB6009B0D89 /* repository.txt in Resources */,
@@ -421,6 +428,7 @@
 				F438A3E5214FAAB6009B0D89 /* blob.txt in Resources */,
 				F438A3D6214FAAB6009B0D89 /* authorizations.txt in Resources */,
 				F438A3CC214FAAB6009B0D89 /* search_repositories_1.txt in Resources */,
+				F461A45C21527DEE0063B66C /* developer-trending.txt in Resources */,
 				F438A3E7214FAAB6009B0D89 /* profile.txt in Resources */,
 				F438A3E6214FAAB6009B0D89 /* tree.txt in Resources */,
 				F438A3E1214FAAB6009B0D89 /* zen.txt in Resources */,

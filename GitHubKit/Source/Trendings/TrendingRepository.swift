@@ -6,22 +6,21 @@ import JacKit
 
 fileprivate extension Jack {
   func cssError(tag: String, css: String) {
-    error("css selecting title <\(tag)> (`\(css)`) returned empty set")
+    error("css selecting \(tag) (`\(css)`) returned empty set")
   }
 
   func emptyError(subject: String) {
     error("\(subject) is empty")
   }
+
+  func countError(subject: String, text: String) {
+    error("invalid count number text: \(text)")
+  }
 }
 
-extension GitHubTrending {
+public extension GitHubTrending {
 
-  public struct Repository {
-
-    enum Error: Swift.Error {
-      case htmlDocInit
-      case emptyCSSSelector(String)
-    }
+  struct Repository {
 
     let title: String
     let description: String
@@ -30,7 +29,7 @@ extension GitHubTrending {
 
     let starsCount: Int
     let forksCount: Int
-//  let gainedStarsCount: Int
+    let gainedStarsCount: Int
 //
 //  let contibutors: [String]
 
@@ -88,7 +87,7 @@ extension GitHubTrending {
       // The bar comprises of 4 or 5 components with language part optional.
       let languageSpan: XMLElement?
       let starsAnchor: XMLElement
-      let forksAnchor: XMLElement
+      let forksAnchor: XMLElement?
       let contributorsSpan: XMLElement
       let gainedStarsSpan: XMLElement
 
@@ -107,20 +106,6 @@ extension GitHubTrending {
         return nil
       }
 
-      // Stars and forks anchor
-      if let anchor = barDiv.css("a[href$=stargazers]").first {
-        starsAnchor = anchor
-      } else {
-        jack.cssError(tag: "stars <a>", css: "a:nth-child(1)")
-        return nil
-      }
-      if let anchor = barDiv.css("a[href$=network]").first {
-        forksAnchor = anchor
-      } else {
-        jack.cssError(tag: "stars <a>", css: "a:nth-child(1)")
-        return nil
-      }
-
       // Language span
       if languageSpan == nil {
         language = nil
@@ -134,15 +119,17 @@ extension GitHubTrending {
         {
           // language color
           let span0 = spans[0]
-          if
-            let style = span0["style"] as? NSString,
-            let regex = try? NSRegularExpression(pattern: "#(.*);"),
-            let match = regex.firstMatch(in: style as String, options: [], range: NSRange(location: 0, length: style.length))
-          {
-            color = style.substring(with: match.range(at: 1))
-          } else {
-            color = nil
+          guard let style = span0["style"] else {
+            jack.emptyError(subject: "language color <span> style attribute")
+            return nil
           }
+
+          guard let languageColorString = Repository.colorString(from: style) else {
+            jack.error("extract color text from language color <span> sytle attribute failed")
+            return nil
+          }
+          color = languageColorString
+
           // language
           let span1 = spans[1]
           name = span1.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -159,29 +146,45 @@ extension GitHubTrending {
 
       }
 
-      guard let starsText = starsAnchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-        jack.emptyError(subject: "stars <a>")
+      // Stars anchor
+      if let anchor = barDiv.css("a[href$=stargazers]").first {
+        starsAnchor = anchor
+      } else {
+        jack.cssError(tag: "stars <a>", css: "a[href$=stargazers]")
         return nil
       }
 
-      let formatter = NumberFormatter()
-      formatter.numberStyle = .decimal
+      // Stars count
+      guard let starsCount = Repository.number(from: starsAnchor, subject: "stars <a>") else { return nil }
+      self.starsCount = starsCount
 
-      guard let starsCount = formatter.number(from: starsText) else {
-        jack.error("invalid stars count text: \(starsText)")
-        return nil
+      // Forks anchor (optional)
+      if let anchor = barDiv.css("a[href$=network]").first {
+        forksAnchor = anchor
+      } else {
+        jack.cssError(tag: "forks <a>", css: "a[href$=network]")
+        forksAnchor = nil
       }
-      self.starsCount = starsCount.intValue
 
-      guard let forksText = forksAnchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-        jack.emptyError(subject: "forks <a>")
+      // Forks count
+      if let anchor = forksAnchor {
+        guard let forksCount = Repository.number(from: anchor, subject: "forks <a>") else { return nil }
+        self.forksCount = forksCount
+      } else {
+        forksCount = 0
+      }
+
+      // Gained stars count
+      guard let gainedStarsText = gainedStarsSpan.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+        jack.emptyError(subject: "gained stars <span>")
         return nil
       }
-      guard let forksCount = formatter.number(from: forksText) else {
-        jack.error("invalid stars count text: \(forksText)")
+      guard let gainedStarsCount = Repository.starsCount(from: gainedStarsText) else {
+        jack.error("extract stars number from gained stars <span> failed")
         return nil
       }
-      self.forksCount = forksCount.intValue
+
+      self.gainedStarsCount = gainedStarsCount
 
     }
 
@@ -216,9 +219,10 @@ extension GitHubTrending {
           title:           \(trending.title)
           description:     \(trending.description)
           --
-          language style:  \(languageText ?? "n/a")
+          language:        \(languageText ?? "n/a")
           stars:           \(trending.starsCount)
           forks:           \(trending.forksCount)
+          gained stars:    \(trending.gainedStarsCount)
           """, options: .noLocation)
 
         } else {
@@ -231,5 +235,53 @@ extension GitHubTrending {
 
     } // func trendings(from:)
 
+  }
+}
+
+// MARK: - Parsing helpers
+
+internal extension GitHubTrending.Repository {
+
+  static func colorString(from text: String) -> String? {
+    let nsText = text as NSString
+    let nsRange = NSRange(location: 0, length: nsText.length)
+    let pattern = "background-color\\s*:\\s*#([^;]+);"
+
+    guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
+    guard let match = regex.firstMatch(in: text, options: [], range: nsRange) else { return nil }
+
+    return nsText.substring(with: match.range(at: 1))
+  }
+
+  static func starsCount(from text: String) -> Int? {
+    let nsText = text as NSString
+    let nsRange = NSRange(location: 0, length: nsText.length)
+    let pattern = "(\\d+)\\s*stars"
+
+    guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
+    guard let match = regex.firstMatch(in: text, options: [], range: nsRange) else { return nil }
+
+    let digitsText = nsText.substring(with: match.range(at: 1)) as String
+    return Int(digitsText)
+  }
+
+  static func number(from element: XMLElement, subject: String) -> Int? {
+    let jack = Jack("GitHubTrending.Repository")
+
+    // element -> text
+    guard let text = element.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+      jack.emptyError(subject: subject)
+      return nil
+    }
+
+    // text -> number
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    guard let number = formatter.number(from: text) else {
+      jack.countError(subject: subject, text: text)
+      return nil
+    }
+
+    return number.intValue
   }
 }

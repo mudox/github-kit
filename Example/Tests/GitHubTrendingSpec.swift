@@ -23,10 +23,15 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
   // MARK: downloadGitHubExplore
 
   describe("GitHubTrending") {
-    
-    it("lists trending repositories") {
+
+    fit("lists trending repositories") {
       // Arrange
       let jack = Jack("Trending.repositories")
+
+      NetworkStubbing.stubIfEnabled(
+        name: "repository-trending",
+        condition: isMethodGET() && pathStartsWith("/trending")
+      )
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
@@ -43,9 +48,14 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
       }
     }
 
-    fit("lists trending developers") {
+    it("lists trending developers") {
       // Arrange
       let jack = Jack("Trending.developers")
+
+      NetworkStubbing.stubIfEnabled(
+        name: "developer-trending",
+        condition: isMethodGET() && pathStartsWith("/trending/developers")
+      )
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
