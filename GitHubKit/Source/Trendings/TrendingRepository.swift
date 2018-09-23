@@ -16,8 +16,9 @@ public extension GitHubTrending {
     let starsCount: Int
     let forksCount: Int?
     let gainedStarsCount: Int
-//
-//  let contibutors: [String]
+
+    typealias Contributor = (name: String, avatar: URL)
+    let contributors: [Contributor]
   }
 }
 
@@ -92,6 +93,7 @@ fileprivate extension GitHubTrending.Repository {
     }
 
     let forksCount = self.forksCount(from: element)
+    let contributors = self.contributors(from: element)
 
     return GitHubTrending.Repository(
       title: title,
@@ -99,7 +101,8 @@ fileprivate extension GitHubTrending.Repository {
       language: language,
       starsCount: starsCount,
       forksCount: forksCount,
-      gainedStarsCount: gainedStarsCount
+      gainedStarsCount: gainedStarsCount,
+      contributors: contributors
     )
 
   }
@@ -142,7 +145,7 @@ fileprivate extension GitHubTrending.Repository {
     // Color string
 
     let colorSelector = """
-    div.f6.text-gray.mt-2 \
+    div.f6.text-gray.mt-2      \
     > span.d-inline-block.mr-3 \
     > span.repo-language-color.ml-0
     """
@@ -164,7 +167,7 @@ fileprivate extension GitHubTrending.Repository {
 
     // Language name
     let nameSelector = """
-    div.f6.text-gray.mt-2 \
+    div.f6.text-gray.mt-2      \
     > span.d-inline-block.mr-3 \
     > span[itemprop=programmingLanguage]
     """
@@ -273,7 +276,35 @@ fileprivate extension GitHubTrending.Repository {
     return count
   }
 
-  static func contributors(from element: Kanna.XMLElement) -> [String]? {
-    fatalError("Unimplemented")
+  static func contributors(from element: Kanna.XMLElement) -> [Contributor] {
+    let jack = Jack("GitHubTrending.Repository.contributors(from:)")
+
+    let selector = """
+    div.f6.text-gray.mt-2      \
+    > span.d-inline-block.mr-3 \
+    > a                        \
+    > img
+    """
+
+    let imgs = element.css(selector)
+    // swiftlint:disable:next empty_count
+    guard imgs.count > 0 else {
+      jack.error("fail to extract contributors")
+      return []
+    }
+
+    return imgs.map { img -> Contributor in
+      let anchor = img.parent!
+      let href = anchor["href"]!
+      let avatar = img["src"]!
+
+      // Rip off leading `/`
+      let index = href.index(after: href.startIndex)
+
+      return (
+        name: href.substring(from: index),
+        avatar: URL(string: avatar)!
+      )
+    }
   }
 }
