@@ -73,7 +73,6 @@ file_name:
     - GitHubService+Misc.swift
     - GitHubService+Repository.swift
     - GitHubService+Search.swift
-    - GitHubService+Showcase.swift
     - GitHubService+UserProfile.swift
     - TrendingRepository.swift
     - TrendingDeveloper.swift
