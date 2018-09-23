@@ -20,20 +20,6 @@
                ReferencedContainer = "container:GitHubKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "GitHubKit_Tests.xctest"
-               BlueprintName = "GitHubKit_Tests"
-               ReferencedContainer = "container:GitHubKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -45,7 +31,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65975958A9B0EAA766A8C8AC1EF3F2B2"
+            BlueprintIdentifier = "B41C41F846B012F3927EF75983432956"
             BuildableName = "GitHubKit.framework"
             BlueprintName = "GitHubKit"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -56,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BlueprintIdentifier = "F40AB9862155341C00DC8DA4"
                BuildableName = "GitHubKit_Tests.xctest"
                BlueprintName = "GitHubKit_Tests"
                ReferencedContainer = "container:GitHubKit.xcodeproj">
@@ -104,7 +90,7 @@
          <EnvironmentVariable
             key = "HTTP_STUBBING"
             value = "YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "OS_ACTIVITY_MODE"

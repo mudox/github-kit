@@ -11,6 +11,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+    _ = GitHubTrending.developers()
+      .subscribe(
+        onSuccess: { _ in
+          print("done")
+        },
+        onError: { error in
+          dump(error)
+        }
+      )
+
     return true
   }
 

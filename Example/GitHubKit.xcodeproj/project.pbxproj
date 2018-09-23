@@ -13,60 +13,61 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		E41DBDE1FD0E90D90EB78B29 /* Pods_GitHubKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45927C2CC163E0D5ADC054C3 /* Pods_GitHubKit_Tests.framework */; };
-		F427793E2146DB1900FCD28D /* OHHTTPStubsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */; };
-		F428138F214D46AB0064C8D7 /* NetworkStubbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428138D214D46890064C8D7 /* NetworkStubbing.swift */; };
-		F42813A7214D50BF0064C8D7 /* RepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281391214D4B8B0064C8D7 /* RepositorySpec.swift */; };
-		F42813A8214D50BF0064C8D7 /* GitDataSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281393214D4C300064C8D7 /* GitDataSpec.swift */; };
-		F42813A9214D50BF0064C8D7 /* MiscSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAC2146062E00F3941E /* MiscSpec.swift */; };
-		F42813AA214D50BF0064C8D7 /* UserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281397214D4CFB0064C8D7 /* UserSpec.swift */; };
-		F42813AB214D50BF0064C8D7 /* AuthorizationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F428139A214D50630064C8D7 /* AuthorizationSpec.swift */; };
-		F42813AD214D50BF0064C8D7 /* SearchSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281398214D4F610064C8D7 /* SearchSpec.swift */; };
-		F42813AE214D50BF0064C8D7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4281395214D4CD80064C8D7 /* Config.swift */; };
-		F42813B3214E5DA40064C8D7 /* GitHubExploreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42813B2214E5DA30064C8D7 /* GitHubExploreSpec.swift */; };
-		F438A3CB214FAAB6009B0D89 /* search_repositories_0.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3AE214FAAB6009B0D89 /* search_repositories_0.txt */; };
-		F438A3CC214FAAB6009B0D89 /* search_repositories_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3AF214FAAB6009B0D89 /* search_repositories_1.txt */; };
-		F438A3CD214FAAB6009B0D89 /* authorize.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B0214FAAB6009B0D89 /* authorize.txt */; };
-		F438A3CE214FAAB6009B0D89 /* search_repositories_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B1214FAAB6009B0D89 /* search_repositories_3.txt */; };
-		F438A3CF214FAAB6009B0D89 /* repositoryContributors.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B2214FAAB6009B0D89 /* repositoryContributors.txt */; };
-		F438A3D0214FAAB6009B0D89 /* search_repositories_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B3214FAAB6009B0D89 /* search_repositories_2.txt */; };
-		F438A3D1214FAAB6009B0D89 /* unfollow.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B4214FAAB6009B0D89 /* unfollow.txt */; };
-		F438A3D2214FAAB6009B0D89 /* followers.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B5214FAAB6009B0D89 /* followers.txt */; };
-		F438A3D3214FAAB6009B0D89 /* isFollowing.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B6214FAAB6009B0D89 /* isFollowing.txt */; };
-		F438A3D4214FAAB6009B0D89 /* organizationRepositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B7214FAAB6009B0D89 /* organizationRepositories.txt */; };
-		F438A3D5214FAAB6009B0D89 /* myProfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B8214FAAB6009B0D89 /* myProfile.txt */; };
-		F438A3D6214FAAB6009B0D89 /* authorizations.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3B9214FAAB6009B0D89 /* authorizations.txt */; };
-		F438A3D7214FAAB6009B0D89 /* commit.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3BA214FAAB6009B0D89 /* commit.txt */; };
-		F438A3D8214FAAB6009B0D89 /* reference.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3BB214FAAB6009B0D89 /* reference.txt */; };
-		F438A3D9214FAAB6009B0D89 /* repositoryLanguages.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3BC214FAAB6009B0D89 /* repositoryLanguages.txt */; };
-		F438A3DA214FAAB6009B0D89 /* myRepositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3BD214FAAB6009B0D89 /* myRepositories.txt */; };
-		F438A3DB214FAAB6009B0D89 /* grants.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3BE214FAAB6009B0D89 /* grants.txt */; };
-		F438A3DC214FAAB6009B0D89 /* deleteGrant.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3BF214FAAB6009B0D89 /* deleteGrant.txt */; };
-		F438A3DD214FAAB6009B0D89 /* deleteAuthorization.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C0214FAAB6009B0D89 /* deleteAuthorization.txt */; };
-		F438A3DE214FAAB6009B0D89 /* follow.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C1214FAAB6009B0D89 /* follow.txt */; };
-		F438A3DF214FAAB6009B0D89 /* repositoryTopics.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C2214FAAB6009B0D89 /* repositoryTopics.txt */; };
-		F438A3E0214FAAB6009B0D89 /* rateLimit.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C3214FAAB6009B0D89 /* rateLimit.txt */; };
-		F438A3E1214FAAB6009B0D89 /* zen.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C4214FAAB6009B0D89 /* zen.txt */; };
-		F438A3E2214FAAB6009B0D89 /* repository.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C5214FAAB6009B0D89 /* repository.txt */; };
-		F438A3E3214FAAB6009B0D89 /* repositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C6214FAAB6009B0D89 /* repositories.txt */; };
-		F438A3E4214FAAB6009B0D89 /* repositoryTags.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C7214FAAB6009B0D89 /* repositoryTags.txt */; };
-		F438A3E5214FAAB6009B0D89 /* blob.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C8214FAAB6009B0D89 /* blob.txt */; };
-		F438A3E6214FAAB6009B0D89 /* tree.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3C9214FAAB6009B0D89 /* tree.txt */; };
-		F438A3E7214FAAB6009B0D89 /* profile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3CA214FAAB6009B0D89 /* profile.txt */; };
-		F438A3E9214FAAEA009B0D89 /* explore_topic.txt in Resources */ = {isa = PBXBuildFile; fileRef = F438A3E8214FAAEA009B0D89 /* explore_topic.txt */; };
-		F461A45C21527DEE0063B66C /* developer-trending.txt in Resources */ = {isa = PBXBuildFile; fileRef = F461A45A21527DED0063B66C /* developer-trending.txt */; };
-		F461A45D21527DEE0063B66C /* repository-trending.txt in Resources */ = {isa = PBXBuildFile; fileRef = F461A45B21527DEE0063B66C /* repository-trending.txt */; };
-		F4A3F9D82150E7EB007854E1 /* GitHubTrendingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3F9D72150E7EB007854E1 /* GitHubTrendingSpec.swift */; };
-		F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497DDAB2146062E00F3941E /* ModelSpec.swift */; };
+		61837A86A63B9248D8A34F61 /* Pods_GitHubKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45927C2CC163E0D5ADC054C3 /* Pods_GitHubKit_Tests.framework */; };
+		F40AB9D7215536E700DC8DA4 /* explore_topic.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9B4215536DE00DC8DA4 /* explore_topic.txt */; };
+		F40AB9D8215536E700DC8DA4 /* explore_collection.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9B5215536DE00DC8DA4 /* explore_collection.txt */; };
+		F40AB9D9215536F200DC8DA4 /* search_repositories_0.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB995215536DE00DC8DA4 /* search_repositories_0.txt */; };
+		F40AB9DA215536F200DC8DA4 /* search_repositories_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB996215536DE00DC8DA4 /* search_repositories_1.txt */; };
+		F40AB9DB215536F200DC8DA4 /* authorize.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB997215536DE00DC8DA4 /* authorize.txt */; };
+		F40AB9DC215536F200DC8DA4 /* search_repositories_3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB998215536DE00DC8DA4 /* search_repositories_3.txt */; };
+		F40AB9DD215536F200DC8DA4 /* repositoryContributors.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB999215536DE00DC8DA4 /* repositoryContributors.txt */; };
+		F40AB9DE215536F200DC8DA4 /* developer-trending.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB99A215536DE00DC8DA4 /* developer-trending.txt */; };
+		F40AB9DF215536F200DC8DA4 /* search_repositories_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB99B215536DE00DC8DA4 /* search_repositories_2.txt */; };
+		F40AB9E0215536F200DC8DA4 /* unfollow.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB99C215536DE00DC8DA4 /* unfollow.txt */; };
+		F40AB9E1215536F200DC8DA4 /* followers.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB99D215536DE00DC8DA4 /* followers.txt */; };
+		F40AB9E2215536F200DC8DA4 /* isFollowing.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB99E215536DE00DC8DA4 /* isFollowing.txt */; };
+		F40AB9E3215536F200DC8DA4 /* organizationRepositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB99F215536DE00DC8DA4 /* organizationRepositories.txt */; };
+		F40AB9E4215536F200DC8DA4 /* myProfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A0215536DE00DC8DA4 /* myProfile.txt */; };
+		F40AB9E5215536F200DC8DA4 /* authorizations.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A1215536DE00DC8DA4 /* authorizations.txt */; };
+		F40AB9E6215536F200DC8DA4 /* commit.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A2215536DE00DC8DA4 /* commit.txt */; };
+		F40AB9E7215536F200DC8DA4 /* reference.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A3215536DE00DC8DA4 /* reference.txt */; };
+		F40AB9E8215536F200DC8DA4 /* repositoryLanguages.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A4215536DE00DC8DA4 /* repositoryLanguages.txt */; };
+		F40AB9E9215536F200DC8DA4 /* myRepositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A5215536DE00DC8DA4 /* myRepositories.txt */; };
+		F40AB9EA215536F200DC8DA4 /* grants.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A6215536DE00DC8DA4 /* grants.txt */; };
+		F40AB9EB215536F200DC8DA4 /* repository-trending.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A7215536DE00DC8DA4 /* repository-trending.txt */; };
+		F40AB9EC215536F200DC8DA4 /* deleteGrant.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A8215536DE00DC8DA4 /* deleteGrant.txt */; };
+		F40AB9ED215536F200DC8DA4 /* deleteAuthorization.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9A9215536DE00DC8DA4 /* deleteAuthorization.txt */; };
+		F40AB9EE215536F200DC8DA4 /* follow.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9AA215536DE00DC8DA4 /* follow.txt */; };
+		F40AB9EF215536F200DC8DA4 /* repositoryTopics.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9AB215536DE00DC8DA4 /* repositoryTopics.txt */; };
+		F40AB9F0215536F200DC8DA4 /* rateLimit.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9AC215536DE00DC8DA4 /* rateLimit.txt */; };
+		F40AB9F1215536F200DC8DA4 /* zen.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9AD215536DE00DC8DA4 /* zen.txt */; };
+		F40AB9F2215536F200DC8DA4 /* repository.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9AE215536DE00DC8DA4 /* repository.txt */; };
+		F40AB9F3215536F200DC8DA4 /* repositories.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9AF215536DE00DC8DA4 /* repositories.txt */; };
+		F40AB9F4215536F200DC8DA4 /* repositoryTags.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9B0215536DE00DC8DA4 /* repositoryTags.txt */; };
+		F40AB9F5215536F200DC8DA4 /* blob.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9B1215536DE00DC8DA4 /* blob.txt */; };
+		F40AB9F6215536F200DC8DA4 /* tree.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9B2215536DE00DC8DA4 /* tree.txt */; };
+		F40AB9F7215536F200DC8DA4 /* profile.txt in Resources */ = {isa = PBXBuildFile; fileRef = F40AB9B3215536DE00DC8DA4 /* profile.txt */; };
+		F40ABA002155371900DC8DA4 /* AuthorizationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AB9F92155371900DC8DA4 /* AuthorizationSpec.swift */; };
+		F40ABA012155371900DC8DA4 /* MiscSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AB9FA2155371900DC8DA4 /* MiscSpec.swift */; };
+		F40ABA022155371900DC8DA4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AB9FB2155371900DC8DA4 /* Config.swift */; };
+		F40ABA032155371900DC8DA4 /* SearchSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AB9FC2155371900DC8DA4 /* SearchSpec.swift */; };
+		F40ABA042155371900DC8DA4 /* GitDataSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AB9FD2155371900DC8DA4 /* GitDataSpec.swift */; };
+		F40ABA052155371900DC8DA4 /* UserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AB9FE2155371900DC8DA4 /* UserSpec.swift */; };
+		F40ABA062155371900DC8DA4 /* RepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40AB9FF2155371900DC8DA4 /* RepositorySpec.swift */; };
+		F40ABA0A2155372B00DC8DA4 /* NetworkStubbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA082155372B00DC8DA4 /* NetworkStubbing.swift */; };
+		F40ABA0B2155372B00DC8DA4 /* OHHTTPStubsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA092155372B00DC8DA4 /* OHHTTPStubsExtension.swift */; };
+		F40ABA0D2155374200DC8DA4 /* GitHubExploreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */; };
+		F40ABA0F2155374900DC8DA4 /* GitHubTrendingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */; };
+		F40ABA112155375000DC8DA4 /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA102155375000DC8DA4 /* ModelSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		607FACE61AFB9204008FA782 /* PBXContainerItemProxy */ = {
+		F40AB98C2155341C00DC8DA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
-			remoteInfo = GitHubKit;
+			remoteInfo = GitHubKit_Example;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -81,59 +82,59 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACE51AFB9204008FA782 /* GitHubKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		745F665264BBA1E8817EC61A /* GitHubKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GitHubKit.podspec; path = ../GitHubKit.podspec; sourceTree = "<group>"; };
 		979259AB40175D59B993514B /* Pods_GitHubKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E2F7B69189A15DB4C1C1A7E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A8D0E12497DD0FD36DC6F0B9 /* Pods-GitHubKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubKit_Tests/Pods-GitHubKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C659CBA66F0717FB10087F61 /* Pods-GitHubKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		DF6BA7A8B419A3B7DA274CEE /* Pods-GitHubKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHHTTPStubsExtension.swift; sourceTree = "<group>"; };
-		F428138D214D46890064C8D7 /* NetworkStubbing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStubbing.swift; sourceTree = "<group>"; };
-		F4281391214D4B8B0064C8D7 /* RepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySpec.swift; sourceTree = "<group>"; };
-		F4281393214D4C300064C8D7 /* GitDataSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitDataSpec.swift; sourceTree = "<group>"; };
-		F4281395214D4CD80064C8D7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		F4281397214D4CFB0064C8D7 /* UserSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSpec.swift; sourceTree = "<group>"; };
-		F4281398214D4F610064C8D7 /* SearchSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSpec.swift; sourceTree = "<group>"; };
-		F428139A214D50630064C8D7 /* AuthorizationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationSpec.swift; sourceTree = "<group>"; };
-		F42813B2214E5DA30064C8D7 /* GitHubExploreSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubExploreSpec.swift; sourceTree = "<group>"; };
-		F438A3AE214FAAB6009B0D89 /* search_repositories_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_0.txt; sourceTree = "<group>"; };
-		F438A3AF214FAAB6009B0D89 /* search_repositories_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_1.txt; sourceTree = "<group>"; };
-		F438A3B0214FAAB6009B0D89 /* authorize.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = authorize.txt; sourceTree = "<group>"; };
-		F438A3B1214FAAB6009B0D89 /* search_repositories_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_3.txt; sourceTree = "<group>"; };
-		F438A3B2214FAAB6009B0D89 /* repositoryContributors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryContributors.txt; sourceTree = "<group>"; };
-		F438A3B3214FAAB6009B0D89 /* search_repositories_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_2.txt; sourceTree = "<group>"; };
-		F438A3B4214FAAB6009B0D89 /* unfollow.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unfollow.txt; sourceTree = "<group>"; };
-		F438A3B5214FAAB6009B0D89 /* followers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = followers.txt; sourceTree = "<group>"; };
-		F438A3B6214FAAB6009B0D89 /* isFollowing.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = isFollowing.txt; sourceTree = "<group>"; };
-		F438A3B7214FAAB6009B0D89 /* organizationRepositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = organizationRepositories.txt; sourceTree = "<group>"; };
-		F438A3B8214FAAB6009B0D89 /* myProfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myProfile.txt; sourceTree = "<group>"; };
-		F438A3B9214FAAB6009B0D89 /* authorizations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = authorizations.txt; sourceTree = "<group>"; };
-		F438A3BA214FAAB6009B0D89 /* commit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = commit.txt; sourceTree = "<group>"; };
-		F438A3BB214FAAB6009B0D89 /* reference.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reference.txt; sourceTree = "<group>"; };
-		F438A3BC214FAAB6009B0D89 /* repositoryLanguages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryLanguages.txt; sourceTree = "<group>"; };
-		F438A3BD214FAAB6009B0D89 /* myRepositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myRepositories.txt; sourceTree = "<group>"; };
-		F438A3BE214FAAB6009B0D89 /* grants.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grants.txt; sourceTree = "<group>"; };
-		F438A3BF214FAAB6009B0D89 /* deleteGrant.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deleteGrant.txt; sourceTree = "<group>"; };
-		F438A3C0214FAAB6009B0D89 /* deleteAuthorization.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deleteAuthorization.txt; sourceTree = "<group>"; };
-		F438A3C1214FAAB6009B0D89 /* follow.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = follow.txt; sourceTree = "<group>"; };
-		F438A3C2214FAAB6009B0D89 /* repositoryTopics.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryTopics.txt; sourceTree = "<group>"; };
-		F438A3C3214FAAB6009B0D89 /* rateLimit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rateLimit.txt; sourceTree = "<group>"; };
-		F438A3C4214FAAB6009B0D89 /* zen.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zen.txt; sourceTree = "<group>"; };
-		F438A3C5214FAAB6009B0D89 /* repository.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repository.txt; sourceTree = "<group>"; };
-		F438A3C6214FAAB6009B0D89 /* repositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositories.txt; sourceTree = "<group>"; };
-		F438A3C7214FAAB6009B0D89 /* repositoryTags.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryTags.txt; sourceTree = "<group>"; };
-		F438A3C8214FAAB6009B0D89 /* blob.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = blob.txt; sourceTree = "<group>"; };
-		F438A3C9214FAAB6009B0D89 /* tree.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.txt; sourceTree = "<group>"; };
-		F438A3CA214FAAB6009B0D89 /* profile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = profile.txt; sourceTree = "<group>"; };
-		F438A3E8214FAAEA009B0D89 /* explore_topic.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = explore_topic.txt; sourceTree = "<group>"; };
-		F461A45A21527DED0063B66C /* developer-trending.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "developer-trending.txt"; sourceTree = "<group>"; };
-		F461A45B21527DEE0063B66C /* repository-trending.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "repository-trending.txt"; sourceTree = "<group>"; };
-		F497DDAB2146062E00F3941E /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
-		F497DDAC2146062E00F3941E /* MiscSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSpec.swift; sourceTree = "<group>"; };
-		F4A3F9D72150E7EB007854E1 /* GitHubTrendingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubTrendingSpec.swift; sourceTree = "<group>"; };
-		F4A733DA214FF77500F78E2C /* explore_collection.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = explore_collection.txt; sourceTree = "<group>"; };
+		F40AB9872155341C00DC8DA4 /* GitHubKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F40AB98B2155341C00DC8DA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F40AB995215536DE00DC8DA4 /* search_repositories_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_0.txt; sourceTree = "<group>"; };
+		F40AB996215536DE00DC8DA4 /* search_repositories_1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_1.txt; sourceTree = "<group>"; };
+		F40AB997215536DE00DC8DA4 /* authorize.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = authorize.txt; sourceTree = "<group>"; };
+		F40AB998215536DE00DC8DA4 /* search_repositories_3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_3.txt; sourceTree = "<group>"; };
+		F40AB999215536DE00DC8DA4 /* repositoryContributors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryContributors.txt; sourceTree = "<group>"; };
+		F40AB99A215536DE00DC8DA4 /* developer-trending.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "developer-trending.txt"; sourceTree = "<group>"; };
+		F40AB99B215536DE00DC8DA4 /* search_repositories_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_2.txt; sourceTree = "<group>"; };
+		F40AB99C215536DE00DC8DA4 /* unfollow.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unfollow.txt; sourceTree = "<group>"; };
+		F40AB99D215536DE00DC8DA4 /* followers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = followers.txt; sourceTree = "<group>"; };
+		F40AB99E215536DE00DC8DA4 /* isFollowing.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = isFollowing.txt; sourceTree = "<group>"; };
+		F40AB99F215536DE00DC8DA4 /* organizationRepositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = organizationRepositories.txt; sourceTree = "<group>"; };
+		F40AB9A0215536DE00DC8DA4 /* myProfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myProfile.txt; sourceTree = "<group>"; };
+		F40AB9A1215536DE00DC8DA4 /* authorizations.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = authorizations.txt; sourceTree = "<group>"; };
+		F40AB9A2215536DE00DC8DA4 /* commit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = commit.txt; sourceTree = "<group>"; };
+		F40AB9A3215536DE00DC8DA4 /* reference.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reference.txt; sourceTree = "<group>"; };
+		F40AB9A4215536DE00DC8DA4 /* repositoryLanguages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryLanguages.txt; sourceTree = "<group>"; };
+		F40AB9A5215536DE00DC8DA4 /* myRepositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myRepositories.txt; sourceTree = "<group>"; };
+		F40AB9A6215536DE00DC8DA4 /* grants.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = grants.txt; sourceTree = "<group>"; };
+		F40AB9A7215536DE00DC8DA4 /* repository-trending.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "repository-trending.txt"; sourceTree = "<group>"; };
+		F40AB9A8215536DE00DC8DA4 /* deleteGrant.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deleteGrant.txt; sourceTree = "<group>"; };
+		F40AB9A9215536DE00DC8DA4 /* deleteAuthorization.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deleteAuthorization.txt; sourceTree = "<group>"; };
+		F40AB9AA215536DE00DC8DA4 /* follow.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = follow.txt; sourceTree = "<group>"; };
+		F40AB9AB215536DE00DC8DA4 /* repositoryTopics.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryTopics.txt; sourceTree = "<group>"; };
+		F40AB9AC215536DE00DC8DA4 /* rateLimit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rateLimit.txt; sourceTree = "<group>"; };
+		F40AB9AD215536DE00DC8DA4 /* zen.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zen.txt; sourceTree = "<group>"; };
+		F40AB9AE215536DE00DC8DA4 /* repository.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repository.txt; sourceTree = "<group>"; };
+		F40AB9AF215536DE00DC8DA4 /* repositories.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositories.txt; sourceTree = "<group>"; };
+		F40AB9B0215536DE00DC8DA4 /* repositoryTags.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repositoryTags.txt; sourceTree = "<group>"; };
+		F40AB9B1215536DE00DC8DA4 /* blob.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = blob.txt; sourceTree = "<group>"; };
+		F40AB9B2215536DE00DC8DA4 /* tree.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tree.txt; sourceTree = "<group>"; };
+		F40AB9B3215536DE00DC8DA4 /* profile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = profile.txt; sourceTree = "<group>"; };
+		F40AB9B4215536DE00DC8DA4 /* explore_topic.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = explore_topic.txt; sourceTree = "<group>"; };
+		F40AB9B5215536DE00DC8DA4 /* explore_collection.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = explore_collection.txt; sourceTree = "<group>"; };
+		F40AB9F92155371900DC8DA4 /* AuthorizationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationSpec.swift; sourceTree = "<group>"; };
+		F40AB9FA2155371900DC8DA4 /* MiscSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSpec.swift; sourceTree = "<group>"; };
+		F40AB9FB2155371900DC8DA4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		F40AB9FC2155371900DC8DA4 /* SearchSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSpec.swift; sourceTree = "<group>"; };
+		F40AB9FD2155371900DC8DA4 /* GitDataSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitDataSpec.swift; sourceTree = "<group>"; };
+		F40AB9FE2155371900DC8DA4 /* UserSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSpec.swift; sourceTree = "<group>"; };
+		F40AB9FF2155371900DC8DA4 /* RepositorySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositorySpec.swift; sourceTree = "<group>"; };
+		F40ABA082155372B00DC8DA4 /* NetworkStubbing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkStubbing.swift; sourceTree = "<group>"; };
+		F40ABA092155372B00DC8DA4 /* OHHTTPStubsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OHHTTPStubsExtension.swift; sourceTree = "<group>"; };
+		F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubExploreSpec.swift; sourceTree = "<group>"; };
+		F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubTrendingSpec.swift; sourceTree = "<group>"; };
+		F40ABA102155375000DC8DA4 /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,11 +146,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		607FACE21AFB9204008FA782 /* Frameworks */ = {
+		F40AB9842155341C00DC8DA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E41DBDE1FD0E90D90EB78B29 /* Pods_GitHubKit_Tests.framework in Frameworks */,
+				61837A86A63B9248D8A34F61 /* Pods_GitHubKit_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +182,7 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for GitHubKit */,
-				607FACE81AFB9204008FA782 /* Tests */,
+				F40AB9882155341C00DC8DA4 /* GitHubKit_Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				2E41B3703899F48C0AC1152F /* Pods */,
 				498D623E0058959AF04C25F1 /* Frameworks */,
@@ -192,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD01AFB9204008FA782 /* GitHubKit_Example.app */,
-				607FACE51AFB9204008FA782 /* GitHubKit_Tests.xctest */,
+				F40AB9872155341C00DC8DA4 /* GitHubKit_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,28 +220,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		607FACE81AFB9204008FA782 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				F42813B2214E5DA30064C8D7 /* GitHubExploreSpec.swift */,
-				F4A3F9D72150E7EB007854E1 /* GitHubTrendingSpec.swift */,
-				F497DDAB2146062E00F3941E /* ModelSpec.swift */,
-				F4281390214D4B730064C8D7 /* GitHubServiceSpecs */,
-				F42813AF214D52120064C8D7 /* NetworkStubbing */,
-				F427794221476EE500FCD28D /* Resources */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		607FACE91AFB9204008FA782 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEA1AFB9204008FA782 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,75 +230,89 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		F427794221476EE500FCD28D /* Resources */ = {
+		F40AB9882155341C00DC8DA4 /* GitHubKit_Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F438A3AD214FAAB6009B0D89 /* Stubs */,
-				F4A733DA214FF77500F78E2C /* explore_collection.txt */,
-				F438A3E8214FAAEA009B0D89 /* explore_topic.txt */,
+				F40ABA102155375000DC8DA4 /* ModelSpec.swift */,
+				F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */,
+				F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */,
+				F40ABA072155372B00DC8DA4 /* NetworkStubbing */,
+				F40AB9F82155371900DC8DA4 /* GitHubServiceSpecs */,
+				F40AB993215536DE00DC8DA4 /* Resources */,
+				F40AB98B2155341C00DC8DA4 /* Info.plist */,
+			);
+			path = GitHubKit_Tests;
+			sourceTree = "<group>";
+		};
+		F40AB993215536DE00DC8DA4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F40AB994215536DE00DC8DA4 /* Stubs */,
+				F40AB9B4215536DE00DC8DA4 /* explore_topic.txt */,
+				F40AB9B5215536DE00DC8DA4 /* explore_collection.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F4281390214D4B730064C8D7 /* GitHubServiceSpecs */ = {
+		F40AB994215536DE00DC8DA4 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
-				F428139A214D50630064C8D7 /* AuthorizationSpec.swift */,
-				F4281395214D4CD80064C8D7 /* Config.swift */,
-				F4281393214D4C300064C8D7 /* GitDataSpec.swift */,
-				F497DDAC2146062E00F3941E /* MiscSpec.swift */,
-				F4281391214D4B8B0064C8D7 /* RepositorySpec.swift */,
-				F4281398214D4F610064C8D7 /* SearchSpec.swift */,
-				F4281397214D4CFB0064C8D7 /* UserSpec.swift */,
+				F40AB995215536DE00DC8DA4 /* search_repositories_0.txt */,
+				F40AB996215536DE00DC8DA4 /* search_repositories_1.txt */,
+				F40AB997215536DE00DC8DA4 /* authorize.txt */,
+				F40AB998215536DE00DC8DA4 /* search_repositories_3.txt */,
+				F40AB999215536DE00DC8DA4 /* repositoryContributors.txt */,
+				F40AB99A215536DE00DC8DA4 /* developer-trending.txt */,
+				F40AB99B215536DE00DC8DA4 /* search_repositories_2.txt */,
+				F40AB99C215536DE00DC8DA4 /* unfollow.txt */,
+				F40AB99D215536DE00DC8DA4 /* followers.txt */,
+				F40AB99E215536DE00DC8DA4 /* isFollowing.txt */,
+				F40AB99F215536DE00DC8DA4 /* organizationRepositories.txt */,
+				F40AB9A0215536DE00DC8DA4 /* myProfile.txt */,
+				F40AB9A1215536DE00DC8DA4 /* authorizations.txt */,
+				F40AB9A2215536DE00DC8DA4 /* commit.txt */,
+				F40AB9A3215536DE00DC8DA4 /* reference.txt */,
+				F40AB9A4215536DE00DC8DA4 /* repositoryLanguages.txt */,
+				F40AB9A5215536DE00DC8DA4 /* myRepositories.txt */,
+				F40AB9A6215536DE00DC8DA4 /* grants.txt */,
+				F40AB9A7215536DE00DC8DA4 /* repository-trending.txt */,
+				F40AB9A8215536DE00DC8DA4 /* deleteGrant.txt */,
+				F40AB9A9215536DE00DC8DA4 /* deleteAuthorization.txt */,
+				F40AB9AA215536DE00DC8DA4 /* follow.txt */,
+				F40AB9AB215536DE00DC8DA4 /* repositoryTopics.txt */,
+				F40AB9AC215536DE00DC8DA4 /* rateLimit.txt */,
+				F40AB9AD215536DE00DC8DA4 /* zen.txt */,
+				F40AB9AE215536DE00DC8DA4 /* repository.txt */,
+				F40AB9AF215536DE00DC8DA4 /* repositories.txt */,
+				F40AB9B0215536DE00DC8DA4 /* repositoryTags.txt */,
+				F40AB9B1215536DE00DC8DA4 /* blob.txt */,
+				F40AB9B2215536DE00DC8DA4 /* tree.txt */,
+				F40AB9B3215536DE00DC8DA4 /* profile.txt */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		F40AB9F82155371900DC8DA4 /* GitHubServiceSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				F40AB9F92155371900DC8DA4 /* AuthorizationSpec.swift */,
+				F40AB9FA2155371900DC8DA4 /* MiscSpec.swift */,
+				F40AB9FB2155371900DC8DA4 /* Config.swift */,
+				F40AB9FC2155371900DC8DA4 /* SearchSpec.swift */,
+				F40AB9FD2155371900DC8DA4 /* GitDataSpec.swift */,
+				F40AB9FE2155371900DC8DA4 /* UserSpec.swift */,
+				F40AB9FF2155371900DC8DA4 /* RepositorySpec.swift */,
 			);
 			path = GitHubServiceSpecs;
 			sourceTree = "<group>";
 		};
-		F42813AF214D52120064C8D7 /* NetworkStubbing */ = {
+		F40ABA072155372B00DC8DA4 /* NetworkStubbing */ = {
 			isa = PBXGroup;
 			children = (
-				F428138D214D46890064C8D7 /* NetworkStubbing.swift */,
-				F427793C2146DB1400FCD28D /* OHHTTPStubsExtension.swift */,
+				F40ABA082155372B00DC8DA4 /* NetworkStubbing.swift */,
+				F40ABA092155372B00DC8DA4 /* OHHTTPStubsExtension.swift */,
 			);
 			path = NetworkStubbing;
-			sourceTree = "<group>";
-		};
-		F438A3AD214FAAB6009B0D89 /* Stubs */ = {
-			isa = PBXGroup;
-			children = (
-				F461A45A21527DED0063B66C /* developer-trending.txt */,
-				F461A45B21527DEE0063B66C /* repository-trending.txt */,
-				F438A3B9214FAAB6009B0D89 /* authorizations.txt */,
-				F438A3B0214FAAB6009B0D89 /* authorize.txt */,
-				F438A3C8214FAAB6009B0D89 /* blob.txt */,
-				F438A3BA214FAAB6009B0D89 /* commit.txt */,
-				F438A3C0214FAAB6009B0D89 /* deleteAuthorization.txt */,
-				F438A3BF214FAAB6009B0D89 /* deleteGrant.txt */,
-				F438A3C1214FAAB6009B0D89 /* follow.txt */,
-				F438A3B5214FAAB6009B0D89 /* followers.txt */,
-				F438A3BE214FAAB6009B0D89 /* grants.txt */,
-				F438A3B6214FAAB6009B0D89 /* isFollowing.txt */,
-				F438A3B8214FAAB6009B0D89 /* myProfile.txt */,
-				F438A3BD214FAAB6009B0D89 /* myRepositories.txt */,
-				F438A3B7214FAAB6009B0D89 /* organizationRepositories.txt */,
-				F438A3CA214FAAB6009B0D89 /* profile.txt */,
-				F438A3C3214FAAB6009B0D89 /* rateLimit.txt */,
-				F438A3BB214FAAB6009B0D89 /* reference.txt */,
-				F438A3C6214FAAB6009B0D89 /* repositories.txt */,
-				F438A3C5214FAAB6009B0D89 /* repository.txt */,
-				F438A3B2214FAAB6009B0D89 /* repositoryContributors.txt */,
-				F438A3BC214FAAB6009B0D89 /* repositoryLanguages.txt */,
-				F438A3C7214FAAB6009B0D89 /* repositoryTags.txt */,
-				F438A3C2214FAAB6009B0D89 /* repositoryTopics.txt */,
-				F438A3AE214FAAB6009B0D89 /* search_repositories_0.txt */,
-				F438A3AF214FAAB6009B0D89 /* search_repositories_1.txt */,
-				F438A3B3214FAAB6009B0D89 /* search_repositories_2.txt */,
-				F438A3B1214FAAB6009B0D89 /* search_repositories_3.txt */,
-				F438A3C9214FAAB6009B0D89 /* tree.txt */,
-				F438A3B4214FAAB6009B0D89 /* unfollow.txt */,
-				F438A3C4214FAAB6009B0D89 /* zen.txt */,
-			);
-			path = Stubs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,24 +338,24 @@
 			productReference = 607FACD01AFB9204008FA782 /* GitHubKit_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		607FACE41AFB9204008FA782 /* GitHubKit_Tests */ = {
+		F40AB9862155341C00DC8DA4 /* GitHubKit_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GitHubKit_Tests" */;
+			buildConfigurationList = F40AB98E2155341C00DC8DA4 /* Build configuration list for PBXNativeTarget "GitHubKit_Tests" */;
 			buildPhases = (
-				FEB18A1F79DBFCDEDBB844FE /* [CP] Check Pods Manifest.lock */,
-				607FACE11AFB9204008FA782 /* Sources */,
-				607FACE21AFB9204008FA782 /* Frameworks */,
-				607FACE31AFB9204008FA782 /* Resources */,
-				3CC9C3A21F406B4C10779624 /* [CP] Embed Pods Frameworks */,
+				E8A14E54D136732CE76A983E /* [CP] Check Pods Manifest.lock */,
+				F40AB9832155341C00DC8DA4 /* Sources */,
+				F40AB9842155341C00DC8DA4 /* Frameworks */,
+				F40AB9852155341C00DC8DA4 /* Resources */,
+				04D7DA12FA1E6AE352DA1CC0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
+				F40AB98D2155341C00DC8DA4 /* PBXTargetDependency */,
 			);
 			name = GitHubKit_Tests;
-			productName = Tests;
-			productReference = 607FACE51AFB9204008FA782 /* GitHubKit_Tests.xctest */;
+			productName = GitHubKit_Tests;
+			productReference = F40AB9872155341C00DC8DA4 /* GitHubKit_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -371,7 +364,7 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
@@ -380,9 +373,10 @@
 						DevelopmentTeam = YSQ5ZCLFSD;
 						LastSwiftMigration = 0900;
 					};
-					607FACE41AFB9204008FA782 = {
-						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0900;
+					F40AB9862155341C00DC8DA4 = {
+						CreatedOnToolsVersion = 9.4.1;
+						DevelopmentTeam = YSQ5ZCLFSD;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -401,7 +395,7 @@
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* GitHubKit_Example */,
-				607FACE41AFB9204008FA782 /* GitHubKit_Tests */,
+				F40AB9862155341C00DC8DA4 /* GitHubKit_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -411,45 +405,46 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F438A3D1214FAAB6009B0D89 /* unfollow.txt in Resources */,
-				F438A3D4214FAAB6009B0D89 /* organizationRepositories.txt in Resources */,
-				F438A3CB214FAAB6009B0D89 /* search_repositories_0.txt in Resources */,
-				F438A3DB214FAAB6009B0D89 /* grants.txt in Resources */,
-				F438A3DF214FAAB6009B0D89 /* repositoryTopics.txt in Resources */,
-				F461A45D21527DEE0063B66C /* repository-trending.txt in Resources */,
-				F438A3E4214FAAB6009B0D89 /* repositoryTags.txt in Resources */,
-				F438A3D7214FAAB6009B0D89 /* commit.txt in Resources */,
-				F438A3E2214FAAB6009B0D89 /* repository.txt in Resources */,
-				F438A3D9214FAAB6009B0D89 /* repositoryLanguages.txt in Resources */,
-				F438A3DC214FAAB6009B0D89 /* deleteGrant.txt in Resources */,
-				F438A3CF214FAAB6009B0D89 /* repositoryContributors.txt in Resources */,
-				F438A3E3214FAAB6009B0D89 /* repositories.txt in Resources */,
-				F438A3D0214FAAB6009B0D89 /* search_repositories_2.txt in Resources */,
-				F438A3E5214FAAB6009B0D89 /* blob.txt in Resources */,
-				F438A3D6214FAAB6009B0D89 /* authorizations.txt in Resources */,
-				F438A3CC214FAAB6009B0D89 /* search_repositories_1.txt in Resources */,
-				F461A45C21527DEE0063B66C /* developer-trending.txt in Resources */,
-				F438A3E7214FAAB6009B0D89 /* profile.txt in Resources */,
-				F438A3E6214FAAB6009B0D89 /* tree.txt in Resources */,
-				F438A3E1214FAAB6009B0D89 /* zen.txt in Resources */,
+				F40AB9E1215536F200DC8DA4 /* followers.txt in Resources */,
+				F40AB9E0215536F200DC8DA4 /* unfollow.txt in Resources */,
+				F40AB9D7215536E700DC8DA4 /* explore_topic.txt in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
-				F438A3DA214FAAB6009B0D89 /* myRepositories.txt in Resources */,
-				F438A3CD214FAAB6009B0D89 /* authorize.txt in Resources */,
-				F438A3D8214FAAB6009B0D89 /* reference.txt in Resources */,
-				F438A3E0214FAAB6009B0D89 /* rateLimit.txt in Resources */,
+				F40AB9E5215536F200DC8DA4 /* authorizations.txt in Resources */,
+				F40AB9ED215536F200DC8DA4 /* deleteAuthorization.txt in Resources */,
+				F40AB9F3215536F200DC8DA4 /* repositories.txt in Resources */,
+				F40AB9E8215536F200DC8DA4 /* repositoryLanguages.txt in Resources */,
+				F40AB9D8215536E700DC8DA4 /* explore_collection.txt in Resources */,
+				F40AB9DC215536F200DC8DA4 /* search_repositories_3.txt in Resources */,
+				F40AB9F7215536F200DC8DA4 /* profile.txt in Resources */,
+				F40AB9E4215536F200DC8DA4 /* myProfile.txt in Resources */,
+				F40AB9DA215536F200DC8DA4 /* search_repositories_1.txt in Resources */,
+				F40AB9EA215536F200DC8DA4 /* grants.txt in Resources */,
+				F40AB9F1215536F200DC8DA4 /* zen.txt in Resources */,
+				F40AB9EF215536F200DC8DA4 /* repositoryTopics.txt in Resources */,
+				F40AB9E6215536F200DC8DA4 /* commit.txt in Resources */,
+				F40AB9EC215536F200DC8DA4 /* deleteGrant.txt in Resources */,
+				F40AB9F5215536F200DC8DA4 /* blob.txt in Resources */,
+				F40AB9E3215536F200DC8DA4 /* organizationRepositories.txt in Resources */,
+				F40AB9F4215536F200DC8DA4 /* repositoryTags.txt in Resources */,
+				F40AB9F0215536F200DC8DA4 /* rateLimit.txt in Resources */,
+				F40AB9EB215536F200DC8DA4 /* repository-trending.txt in Resources */,
+				F40AB9D9215536F200DC8DA4 /* search_repositories_0.txt in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				F438A3D2214FAAB6009B0D89 /* followers.txt in Resources */,
-				F438A3CE214FAAB6009B0D89 /* search_repositories_3.txt in Resources */,
-				F438A3DD214FAAB6009B0D89 /* deleteAuthorization.txt in Resources */,
-				F438A3E9214FAAEA009B0D89 /* explore_topic.txt in Resources */,
+				F40AB9DE215536F200DC8DA4 /* developer-trending.txt in Resources */,
+				F40AB9DB215536F200DC8DA4 /* authorize.txt in Resources */,
+				F40AB9DF215536F200DC8DA4 /* search_repositories_2.txt in Resources */,
+				F40AB9DD215536F200DC8DA4 /* repositoryContributors.txt in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				F438A3D3214FAAB6009B0D89 /* isFollowing.txt in Resources */,
-				F438A3D5214FAAB6009B0D89 /* myProfile.txt in Resources */,
-				F438A3DE214FAAB6009B0D89 /* follow.txt in Resources */,
+				F40AB9E7215536F200DC8DA4 /* reference.txt in Resources */,
+				F40AB9EE215536F200DC8DA4 /* follow.txt in Resources */,
+				F40AB9F2215536F200DC8DA4 /* repository.txt in Resources */,
+				F40AB9E9215536F200DC8DA4 /* myRepositories.txt in Resources */,
+				F40AB9E2215536F200DC8DA4 /* isFollowing.txt in Resources */,
+				F40AB9F6215536F200DC8DA4 /* tree.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		607FACE31AFB9204008FA782 /* Resources */ = {
+		F40AB9852155341C00DC8DA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -459,47 +454,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C477E0E636AF159A8ADBCDD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/GitHubKit/GitHubKit.framework",
-				"${BUILT_PRODUCTS_DIR}/JacKit/JacKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
-				"${BUILT_PRODUCTS_DIR}/Yams/Yams.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GitHubKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JacKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Yams.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3CC9C3A21F406B4C10779624 /* [CP] Embed Pods Frameworks */ = {
+		04D7DA12FA1E6AE352DA1CC0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -551,6 +506,46 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GitHubKit_Tests/Pods-GitHubKit_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		0C477E0E636AF159A8ADBCDD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/GitHubKit/GitHubKit.framework",
+				"${BUILT_PRODUCTS_DIR}/JacKit/JacKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/Yams/Yams.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GitHubKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JacKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Yams.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C9624106D63B78EBD1B22875 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -563,6 +558,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-GitHubKit_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8A14E54D136732CE76A983E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GitHubKit_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -583,24 +596,6 @@
 			shellPath = /bin/sh;
 			shellScript = "LINTER=\"${PODS_ROOT}/SwiftLint/swiftlint\"\nlint() {\n  if which swiftlint >/dev/null; then\n    $LINTER autocorrect\n    $LINTER\n  else\n    echo \"warning: SwiftLint not installed\"\n  fi\n}\nlint";
 		};
-		FEB18A1F79DBFCDEDBB844FE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GitHubKit_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -613,32 +608,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		607FACE11AFB9204008FA782 /* Sources */ = {
+		F40AB9832155341C00DC8DA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F42813A9214D50BF0064C8D7 /* MiscSpec.swift in Sources */,
-				F428138F214D46AB0064C8D7 /* NetworkStubbing.swift in Sources */,
-				F42813AA214D50BF0064C8D7 /* UserSpec.swift in Sources */,
-				F42813AE214D50BF0064C8D7 /* Config.swift in Sources */,
-				F42813A8214D50BF0064C8D7 /* GitDataSpec.swift in Sources */,
-				F4EE0DB5214622B900CACB2A /* ModelSpec.swift in Sources */,
-				F42813B3214E5DA40064C8D7 /* GitHubExploreSpec.swift in Sources */,
-				F4A3F9D82150E7EB007854E1 /* GitHubTrendingSpec.swift in Sources */,
-				F42813A7214D50BF0064C8D7 /* RepositorySpec.swift in Sources */,
-				F42813AB214D50BF0064C8D7 /* AuthorizationSpec.swift in Sources */,
-				F42813AD214D50BF0064C8D7 /* SearchSpec.swift in Sources */,
-				F427793E2146DB1900FCD28D /* OHHTTPStubsExtension.swift in Sources */,
+				F40ABA0A2155372B00DC8DA4 /* NetworkStubbing.swift in Sources */,
+				F40ABA032155371900DC8DA4 /* SearchSpec.swift in Sources */,
+				F40ABA0B2155372B00DC8DA4 /* OHHTTPStubsExtension.swift in Sources */,
+				F40ABA0F2155374900DC8DA4 /* GitHubTrendingSpec.swift in Sources */,
+				F40ABA042155371900DC8DA4 /* GitDataSpec.swift in Sources */,
+				F40ABA012155371900DC8DA4 /* MiscSpec.swift in Sources */,
+				F40ABA0D2155374200DC8DA4 /* GitHubExploreSpec.swift in Sources */,
+				F40ABA002155371900DC8DA4 /* AuthorizationSpec.swift in Sources */,
+				F40ABA022155371900DC8DA4 /* Config.swift in Sources */,
+				F40ABA062155371900DC8DA4 /* RepositorySpec.swift in Sources */,
+				F40ABA112155375000DC8DA4 /* ModelSpec.swift in Sources */,
+				F40ABA052155371900DC8DA4 /* UserSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
+		F40AB98D2155341C00DC8DA4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 607FACCF1AFB9204008FA782 /* GitHubKit_Example */;
-			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
+			targetProxy = F40AB98C2155341C00DC8DA4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -799,34 +794,56 @@
 			};
 			name = Release;
 		};
-		607FACF31AFB9204008FA782 /* Debug */ = {
+		F40AB98F2155341C00DC8DA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0318AAC0DF06F89D2A55C3FC /* Pods-GitHubKit_Tests.debug.xcconfig */;
 			buildSettings = {
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Tests/Info.plist;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YSQ5ZCLFSD;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = GitHubKit_Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mudox.GitHubKit-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubKit_Example.app/GitHubKit_Example";
 			};
 			name = Debug;
 		};
-		607FACF41AFB9204008FA782 /* Release */ = {
+		F40AB9902155341C00DC8DA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A8D0E12497DD0FD36DC6F0B9 /* Pods-GitHubKit_Tests.release.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YSQ5ZCLFSD;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = GitHubKit_Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mudox.GitHubKit-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubKit_Example.app/GitHubKit_Example";
 			};
 			name = Release;
@@ -852,11 +869,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GitHubKit_Tests" */ = {
+		F40AB98E2155341C00DC8DA4 /* Build configuration list for PBXNativeTarget "GitHubKit_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				607FACF31AFB9204008FA782 /* Debug */,
-				607FACF41AFB9204008FA782 /* Release */,
+				F40AB98F2155341C00DC8DA4 /* Debug */,
+				F40AB9902155341C00DC8DA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

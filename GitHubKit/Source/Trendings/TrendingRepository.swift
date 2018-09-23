@@ -188,7 +188,7 @@ public extension GitHubTrending {
 
     }
 
-    public static func trendings(from htmlString: String) -> [GitHubTrending.Repository]? {
+    internal static func list(from htmlString: String) -> [GitHubTrending.Repository]? {
 
       let jack = Jack("Trending.trendingsMapping")
 
