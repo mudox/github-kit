@@ -20,15 +20,22 @@ public extension GitHubTrending {
 
 internal extension GitHubTrending.Developer {
 
-  static func list(from text: String) -> [GitHubTrending.Developer]? {
+  static func list(from htmlString: String) -> [GitHubTrending.Developer]? {
     let jack = Jack("GitHubTrending.Developer.list(from:)").set(options: [.noLocation])
 
-    guard let doc = try? HTML(html: text, encoding: .utf8) else {
+    guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       jack.error("init `Kanna.HTML` failed")
       return nil
     }
 
-    let items = doc.css("div.application-main div.explore-content > ol.list-style-none > li[id^=pa-]")
+    let selector = """
+    div.application-main \
+    div.explore-content \
+    > ol.list-style-none \
+    > li[id^=pa-]
+    """
+
+    let items = doc.css(selector)
     jack.debug("found \(items.count) items", options: .short)
 
     var developers = [GitHubTrending.Developer]()
@@ -45,7 +52,7 @@ internal extension GitHubTrending.Developer {
 
 }
 
-// MARK: - Fielprivate
+// MARK: - Fileprivate
 
 fileprivate extension GitHubTrending.Developer {
 
@@ -69,7 +76,7 @@ fileprivate extension GitHubTrending.Developer {
   }
 
   static func logo(from element: Kanna.XMLElement) -> URL? {
-    let jack = Jack("GitHubTrending.Developer")
+    let jack = Jack("GitHubTrending.Developer.logo(from:)")
 
     guard let img = element.css("div > a > img").first else {
       jack.error("failed to get the <img> element which should contain the url of the developer's logo")
@@ -85,7 +92,7 @@ fileprivate extension GitHubTrending.Developer {
   }
 
   static func names(from element: XMLElement) -> (name: String, displayName: String?)? {
-    let jack = Jack("GitHubTrending.Developer")
+    let jack = Jack("GitHubTrending.Developer.names(from:)")
 
     // Name of developer
     guard let anchor = element.css("div > div > h2 > a").first else {
@@ -124,7 +131,7 @@ fileprivate extension GitHubTrending.Developer {
   }
 
   static func repository(from element: XMLElement) -> (name: String, description: String)? {
-    let jack = Jack("GitHubTrending.Developer")
+    let jack = Jack("GitHubTrending.Developer.repository(from:)")
 
     guard let span = element.css("div > div > a > span[class^=\"repo-snipit-name\"]").first else {
       jack.error("failed to get the <span> element which should contain the name of the repository")

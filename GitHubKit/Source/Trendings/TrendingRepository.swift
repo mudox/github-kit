@@ -14,7 +14,7 @@ public extension GitHubTrending {
     let language: (name: String, color: String)?
 
     let starsCount: Int
-    let forksCount: Int
+    let forksCount: Int?
     let gainedStarsCount: Int
 //
 //  let contibutors: [String]
@@ -42,15 +42,22 @@ internal extension GitHubTrending.Repository {
 
 internal extension GitHubTrending.Repository {
 
-  func list(from htmlString: String) -> [GitHubTrending.Repository]? {
-    let jack = Jack("GitHubTrending.Repository.list(from:)").set(options: [.noLocation])
+  static func list(from htmlString: String) -> [GitHubTrending.Repository]? {
+    let jack = Jack("GitHubTrending.Repository.list(from:)").set(options: .short)
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       jack.error("init `Kanna.HTML` failed")
       return nil
     }
 
-    let items = doc.css("div.application-main div.explore-content > ol.repo-list > li[id^=pa-]")
+    let selector = """
+    div.application-main \
+    div.explore-content \
+    > ol.repo-list \
+    > li[id^=pa-]
+    """
+
+    let items = doc.css(selector)
     jack.debug("found \(items.count) items", options: .short)
 
     var repositories = [GitHubTrending.Repository]()
@@ -72,18 +79,19 @@ internal extension GitHubTrending.Repository {
 
 fileprivate extension GitHubTrending.Repository {
 
-  func single(from element: Kanna.XMLElement) -> GitHubTrending.Repository? {
+  static func single(from element: Kanna.XMLElement) -> GitHubTrending.Repository? {
 
     guard
       let title = title(from: element),
       let description = description(from: element),
       let language = language(from: element),
       let starsCount = starsCount(from: element),
-      let forksCount = forksCount(from: element),
       let gainedStarsCount = gainedStarsCount(from: element)
     else {
       return nil
     }
+
+    let forksCount = self.forksCount(from: element)
 
     return GitHubTrending.Repository(
       title: title,
@@ -96,7 +104,7 @@ fileprivate extension GitHubTrending.Repository {
 
   }
 
-  func title(from element: Kanna.XMLElement) -> String? {
+  static func title(from element: Kanna.XMLElement) -> String? {
     let jack = Jack("GitHubTrending.Repository.title(from:)")
 
     guard let anchor = element.css("div > h3 > a").first else {
@@ -112,10 +120,10 @@ fileprivate extension GitHubTrending.Repository {
     return name.trimmingCharacters(in: .whitespacesAndNewlines)
   }
 
-  func description(from element: Kanna.XMLElement) -> String? {
+  static func description(from element: Kanna.XMLElement) -> String? {
     let jack = Jack("GitHubTrending.Repository.description(from:)")
 
-    guard let div = element.css("> div:nth-child(3)").first else {
+    guard let div = element.css("div:nth-child(3)").first else {
       jack.error("failed to get the <div> element which should contain the description of the repository")
       return nil
     }
@@ -128,7 +136,7 @@ fileprivate extension GitHubTrending.Repository {
     return description.trimmingCharacters(in: .whitespacesAndNewlines)
   }
 
-  func language(from element: Kanna.XMLElement) -> (name: String, color: String)? {
+  static func language(from element: Kanna.XMLElement) -> (name: String, color: String)? {
     let jack = Jack("GitHubTrending.Repository.language(from:)")
 
     // Color string
@@ -174,7 +182,7 @@ fileprivate extension GitHubTrending.Repository {
     return (name, colorString)
   }
 
-  func starsCount(from element: Kanna.XMLElement) -> Int? {
+  static func starsCount(from element: Kanna.XMLElement) -> Int? {
     let jack = Jack("GitHubTrending.Repository.starsCount(from:)")
 
     let selector = """
@@ -187,20 +195,23 @@ fileprivate extension GitHubTrending.Repository {
       return nil
     }
 
-    guard let text = anchor.text else {
+    guard let text = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       jack.error("`anchor.text` returned nil, expecting stars count of the repository")
       return nil
     }
 
-    guard let count = Int(text) else {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    formatter.number(from: text)
+    guard let count = formatter.number(from: text) else {
       jack.error("cast string (\(text)) to number failed, expecting stars count of the repository")
       return nil
     }
 
-    return count
+    return count.intValue
   }
 
-  func forksCount(from element: Kanna.XMLElement) -> Int? {
+  static func forksCount(from element: Kanna.XMLElement) -> Int? {
     let jack = Jack("GitHubTrending.Repository.forksCount(from:)")
 
     let selector = """
@@ -209,24 +220,27 @@ fileprivate extension GitHubTrending.Repository {
     """
 
     guard let anchor = element.css(selector).first else {
-      jack.error("failed to get the <a> element which should forks count of the repository")
+      jack.error("failed to get the <a> element which should contain forks count of the repository")
       return nil
     }
 
-    guard let text = anchor.text else {
+    guard let text = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       jack.error("`anchor.text` returned nil, expecting forks count of the repository")
       return nil
     }
 
-    guard let count = Int(text) else {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    formatter.number(from: text)
+    guard let count = formatter.number(from: text) else {
       jack.error("cast string (\(text)) to number failed, expecting forks count of the repository")
       return nil
     }
 
-    return count
+    return count.intValue
   }
 
-  func gainedStarsCount(from element: Kanna.XMLElement) -> Int? {
+  static func gainedStarsCount(from element: Kanna.XMLElement) -> Int? {
     let jack = Jack("GitHubTrending.Repository.gainedStarsCount(from:)")
 
     let selector = """
@@ -259,7 +273,7 @@ fileprivate extension GitHubTrending.Repository {
     return count
   }
 
-  func contributors(from element: Kanna.XMLElement) -> [String]? {
+  static func contributors(from element: Kanna.XMLElement) -> [String]? {
     fatalError("Unimplemented")
   }
 }

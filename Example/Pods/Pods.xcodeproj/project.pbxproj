@@ -602,7 +602,6 @@
 		D775563A51F1128D2DAD2EED693CA9D7 /* Pods-GitHubKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DED7BF76B27151B40C0AD7F6298653A4 /* Pods-GitHubKit_Example-dummy.m */; };
 		D829CDFE18B5A8CD856493157DE2922A /* Expectation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E16C40F6635A9BA367C11CCA54D77F /* Expectation+Ext.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D919540FED5DF916FFED430FD4302A16 /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9747D1B96756228651F539AF045B85 /* AssertionRecorder.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D9B78B69C08763761A4D5F58C5886EF0 /* TrendingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BC5996319A33CC664865B7EDA86629 /* TrendingRepository.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		DA1AC76C093B07F235C538777FF602A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B908E0CC508D72090542FB9E2D3386E /* CFNetwork.framework */; };
 		DB90ACCAC8ECF500D45679A71E0029F3 /* SingleAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88907DE250FC652FAEFF7CE7F8E07FE /* SingleAsync.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		DBE5E387B89863558306D7C253E6D836 /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217B3CA883071D69B70E827D2F848539 /* DisposeBag.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -680,6 +679,7 @@
 		F492A5BA2157294B00FCBFD0 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492A5B92157294B00FCBFD0 /* Scope.swift */; };
 		F492A5BC21573D1100FCBFD0 /* HasFallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492A5BB21573D1100FCBFD0 /* HasFallback.swift */; };
 		F492A5BE2157610900FCBFD0 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492A5BD2157610900FCBFD0 /* Options.swift */; };
+		F492A5BF21578D6400FCBFD0 /* TrendingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BC5996319A33CC664865B7EDA86629 /* TrendingRepository.swift */; };
 		F4AF0FC2D4218ECD1177E3D61AE419D2 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12CDDB2FF440E8755DD039E84A2C035 /* TextInput.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F5004B4370A5C240F0F1AC67D850F21F /* RunLoopLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B53C943262195BA174C2466DA79474E /* RunLoopLock.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F523BA41F5C89BCFC7CD8D745DC0C64A /* Yams-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15394B3151EBC54E7BE79384EBDA024E /* Yams-dummy.m */; };
@@ -4700,6 +4700,7 @@
 				766ECBCB3629ACC6FB0FD636A5D7C7C4 /* GitHubService+Repository.swift in Sources */,
 				A478BD4E64D24257CE4912701D8B4D98 /* GitHubService+Search.swift in Sources */,
 				F9DD75246E120D5D2AC8CAD3C3EFE052 /* GitHubService+UserProfile.swift in Sources */,
+				F492A5BF21578D6400FCBFD0 /* TrendingRepository.swift in Sources */,
 				4BDF26A6A4C60FEB95A278E7D31224DF /* GitHubTrending.swift in Sources */,
 				B18FB01D066DBEBCD11767EE3F983124 /* Grant.swift in Sources */,
 				F9F25203D67F9C132EE718194A35BCED /* HeaderRateLimit.swift in Sources */,
@@ -4722,7 +4723,6 @@
 				10A424D84C602C773F34E49DCBFE3BB1 /* Topics.swift in Sources */,
 				C296384CFCCAFEFF8DC627B9F53FDCDA /* Tree.swift in Sources */,
 				9EB84917E7C1011CF8B966EE4329C307 /* TrendingDeveloper.swift in Sources */,
-				D9B78B69C08763761A4D5F58C5886EF0 /* TrendingRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,17 +16,17 @@ public struct GitHubTrending {
   }
 
   public enum Category {
-    case repository
-    case developer
+    case trendingRepositories
+    case trendingDevelopers
   }
 
   fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .pastDay) -> URL {
 
     var urlComponents: URLComponents
     switch catetory {
-    case .repository:
+    case .trendingRepositories:
       urlComponents = URLComponents(string: "https://github.com/trending")!
-    case .developer:
+    case .trendingDevelopers:
       urlComponents = URLComponents(string: "https://github.com/trending/developers")!
     }
 
@@ -39,19 +39,18 @@ public struct GitHubTrending {
     return urlComponents.url!
   }
 
-//  public static func repositories(of language: String? = nil, in period: Period = .pastDay)
-//    -> Single<[GitHubTrending.Repository]?>
-//  {
-//    let url = self.url(of: .repository, language: language, period: period)
-//
-//    return RxAlamofire.string(.get, url)
-//      .asSingle()
-//      .map(GitHubTrending.Repository.list)
-//  }
+  public static func repositories(of language: String? = nil, in period: Period = .pastDay)
+    -> Single<[GitHubTrending.Repository]?> {
+    let url = self.url(of: .trendingRepositories, language: language, period: period)
+
+    return RxAlamofire.string(.get, url)
+      .asSingle()
+      .map(GitHubTrending.Repository.list)
+  }
 
   public static func developers(of language: String? = nil, in period: Period = .pastDay)
     -> Single<[GitHubTrending.Developer]?> {
-    let url = self.url(of: .developer, language: language, period: period)
+    let url = self.url(of: .trendingDevelopers, language: language, period: period)
 
     return RxAlamofire.string(.get, url)
       .asSingle()

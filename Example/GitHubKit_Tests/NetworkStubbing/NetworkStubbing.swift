@@ -29,7 +29,9 @@ public struct NetworkStubbing {
 
   public static func setup() {
     guard isEnabled else { return }
-
+    
+    let jack = Jack("OHHTTPStubs").set(options: .noLocation)
+    
     OHHTTPStubs.onStubActivation { request, stub, _ in
       Jack("OHHTTPStubs").debug("""
       hit : \(request)

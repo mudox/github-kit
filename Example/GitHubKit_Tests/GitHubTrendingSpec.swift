@@ -11,43 +11,42 @@ import JacKit
 
 class GitHubTrendingSpec: QuickSpec { override func spec() {
 
-  // MARK: downloadGitHubExplore
-
+  beforeEach {
+    NetworkStubbing.setup()
+  }
+  
+  afterEach {
+    OHHTTPStubs.removeAllStubs()
+  }
+  
   describe("GitHubTrending") {
 
-    beforeEach {
-      NetworkStubbing.setup()
-    }
-    
-    afterEach {
-      OHHTTPStubs.removeAllStubs()
+
+    fit("lists trending repositories") {
+      // Arrange
+      let jack = Jack("Test.GitHubTrending.repositories(of:in:)")
+
+      NetworkStubbing.stubIfEnabled(
+        name: "repository-trending",
+        condition: isMethodGET() && pathStartsWith("/trending")
+      )
+
+      // Act, Assert
+      waitUntil(timeout: timeout) { done in
+        _ = GitHubTrending.repositories(of: "swift", in: .pastMonth)
+          .subscribe(
+            onSuccess: { _ in
+              done()
+            },
+            onError: { error in
+              jack.error(Jack.dump(of: error))
+              fatalError()
+            }
+          )
+      }
     }
 
-//    it("lists trending repositories") {
-//      // Arrange
-//      let jack = Jack("test.githubtrending.repositories")
-//
-//      NetworkStubbing.stubIfEnabled(
-//        name: "repository-trending",
-//        condition: isMethodGET() && pathStartsWith("/trending")
-//      )
-//
-//      // Act, Assert
-//      waitUntil(timeout: timeout) { done in
-//        _ = GitHubTrending.repositories(of: "swift", in: .pastMonth)
-//          .subscribe(
-//            onSuccess: { _ in
-//              done()
-//            },
-//            onError: { error in
-//              jack.error(Jack.dump(of: error))
-//              fatalError()
-//            }
-//          )
-//      }
-//    }
-
-    fit("lists trending developers") {
+    it("lists trending developers") {
       // Arrange
       let jack = Jack("Test.GitHubTrending.developers(of:in)")
 
