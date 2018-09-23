@@ -12,7 +12,7 @@ import JacKit
 class GitDataSpec: QuickSpec { override func spec() {
 
   beforeEach {
-    Jack.formattingOptions = [.noLocation]
+    Jack.defaultOptions = [.noLocation]
     NetworkStubbing.setup()
   }
   

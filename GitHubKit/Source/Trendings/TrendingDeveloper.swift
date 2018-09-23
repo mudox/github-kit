@@ -21,7 +21,7 @@ public extension GitHubTrending {
 internal extension GitHubTrending.Developer {
 
   static func list(from text: String) -> [GitHubTrending.Developer]? {
-    let jack = Jack("GitHubTrending.Developer.list(from:)")
+    let jack = Jack("GitHubTrending.Developer.list(from:)").set(options: [.noLocation])
 
     guard let doc = try? HTML(html: text, encoding: .utf8) else {
       jack.error("init `Kanna.HTML` failed")
@@ -38,7 +38,6 @@ internal extension GitHubTrending.Developer {
       }
 
       jack.debug(Jack.dump(of: developer))
-
       developers.append(developer)
     }
     return developers
@@ -94,9 +93,16 @@ fileprivate extension GitHubTrending.Developer {
       return nil
     }
 
-    guard let name = anchor.text else {
+    guard let anchorText = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       jack.error("`anchor.text` returned nil, expecting the url name of the developer")
       return nil
+    }
+
+    let name: String
+    if let index = anchorText.index(of: "\n") {
+      name = anchorText.substring(to: index)
+    } else {
+      name = anchorText
     }
 
     // Display name of developer is optional

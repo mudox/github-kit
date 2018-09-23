@@ -12,7 +12,7 @@ import JacKit
 class RepositorySpec: QuickSpec { override func spec() {
 
   beforeEach {
-    Jack.formattingOptions = [.noLocation]
+    Jack.defaultOptions = [.noLocation]
     NetworkStubbing.setup()
   }
 
