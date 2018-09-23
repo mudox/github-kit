@@ -12,7 +12,6 @@ import JacKit
 class GitHubExploreSpec: QuickSpec { override func spec() {
 
   beforeEach {
-    Jack.formattingOptions = [.noLocation]
     NetworkStubbing.setup()
   }
 
