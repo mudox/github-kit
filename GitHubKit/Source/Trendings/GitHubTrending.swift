@@ -10,35 +10,28 @@ import JacKit
 public struct GitHubTrending {
 
   public enum Period: String {
-    case daily
-    case weekly
-    case monthly
+    case pastDay = "daily"
+    case pastWeek = "weekly"
+    case pastMonth = "monthly"
   }
 
   public enum Category {
     case repository
-    case deveoloper
+    case developer
   }
 
-  fileprivate static let developerBaseURLString = "https://github.com/trending/developers"
-
-  fileprivate static func htmlPageURL(
-    of catetory: Category,
-    language: String? = nil,
-    period: Period = .daily
-  )
-    -> URL {
+  fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .pastDay) -> URL {
 
     var urlComponents: URLComponents
     switch catetory {
     case .repository:
       urlComponents = URLComponents(string: "https://github.com/trending")!
-    case .deveoloper:
+    case .developer:
       urlComponents = URLComponents(string: "https://github.com/trending/developers")!
     }
 
-    if let lan = language {
-      urlComponents.path.append("/\(lan)")
+    if let language = language {
+      urlComponents.path.append("/\(language)")
     }
 
     urlComponents.queryItems = [URLQueryItem(name: "since", value: period.rawValue)]
@@ -46,19 +39,23 @@ public struct GitHubTrending {
     return urlComponents.url!
   }
 
-  public static func trendings(
-    of category: Category,
-    language: String? = nil,
-    period: Period = .daily
-  )
-    -> Single<[GitHubTrending.Repository]?> {
-    let jack = Jack("GitHubTrending")
+//  public static func repositories(of language: String? = nil, in period: Period = .pastDay)
+//    -> Single<[GitHubTrending.Repository]?>
+//  {
+//    let url = self.url(of: .repository, language: language, period: period)
+//
+//    return RxAlamofire.string(.get, url)
+//      .asSingle()
+//      .map(GitHubTrending.Repository.list)
+//  }
 
-    let url = htmlPageURL(of: category, language: language, period: period)
-    return string(.get, url)
+  public static func developers(of language: String? = nil, in period: Period = .pastDay)
+    -> Single<[GitHubTrending.Developer]?> {
+    let url = self.url(of: .developer, language: language, period: period)
+
+    return RxAlamofire.string(.get, url)
       .asSingle()
-      // Parse HTML string for `Trending` arrays
-      .map(GitHubTrending.Repository.trendings)
+      .map(GitHubTrending.Developer.list)
   }
 
 }
