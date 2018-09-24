@@ -22,7 +22,7 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
   describe("GitHubTrending") {
 
 
-    it("lists trending repositories") {
+    it("repositories") {
       // Arrange
       let jack = Jack("Test.GitHubTrending.repositories(of:in:)")
 
@@ -46,7 +46,7 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
       }
     }
 
-    it("lists trending developers") {
+    it("developers") {
       // Arrange
       let jack = Jack("Test.GitHubTrending.developers(of:in)")
 

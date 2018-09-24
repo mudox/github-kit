@@ -225,7 +225,7 @@ fileprivate extension GitHubTrending.Repository {
     """
 
     guard let anchor = element.css(selector).first else {
-      jack.error("failed to get the <a> element which should contain forks count of the repository")
+      jack.debug("failed to get the <a> element which should contain forks count of the repository, repository may have no forks.")
       return nil
     }
 

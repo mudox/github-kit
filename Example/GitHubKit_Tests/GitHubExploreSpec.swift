@@ -21,32 +21,11 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
   describe("GitHubExplore") {
 
-    // MARK: synchronize
-
-    it("synchronize") {
-      // Arrange
-      let jack = Jack("curatedTopics")
-
-      // Act, Assert
-      waitUntil(timeout: timeout) { done in
-        _ = GitHubExplore.synchronize
-          .subscribe(
-            onCompleted: {
-              done()
-            },
-            onError: { error in
-              jack.error(Jack.dump(of: error))
-              fatalError()
-            }
-          )
-      }
-    }
-
     // MARK: curatedTopics
 
     it("curatedTopics") {
       // Arrange
-      let jack = Jack("curatedTopics")
+      let jack = Jack("Test.GitHubExplore.curatedTopics")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
@@ -68,7 +47,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
     it("collections") {
       // Arrange
-      let jack = Jack("collections")
+      let jack = Jack("Test.GitHubExplore.collections")
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in

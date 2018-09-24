@@ -22,7 +22,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
   describe("GitHubLanguage") {
 
 
-    fit("lists all github languages") {
+    it("lists all github languages") {
       // Arrange
       let jack = Jack("Test.GitHubLanguage.all")
 
