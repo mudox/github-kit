@@ -86,7 +86,7 @@ public struct GitHubExplore {
       }
 
       return Disposables.create()
-    }
+    } // return .create
   }
 
   /// Scan the downloaded 'github/explore' folder, parse each 'topics/\*/index.md'

@@ -59,6 +59,7 @@
 		F40ABA0D2155374200DC8DA4 /* GitHubExploreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */; };
 		F40ABA0F2155374900DC8DA4 /* GitHubTrendingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */; };
 		F40ABA112155375000DC8DA4 /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA102155375000DC8DA4 /* ModelSpec.swift */; };
+		F42A12A12158901200EBB9A8 /* GitHubLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A12A02158901200EBB9A8 /* GitHubLanguage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +83,7 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		745F665264BBA1E8817EC61A /* GitHubKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GitHubKit.podspec; path = ../GitHubKit.podspec; sourceTree = "<group>"; };
+		745F665264BBA1E8817EC61A /* GitHubKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GitHubKit.podspec; path = ../GitHubKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		979259AB40175D59B993514B /* Pods_GitHubKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E2F7B69189A15DB4C1C1A7E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A8D0E12497DD0FD36DC6F0B9 /* Pods-GitHubKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubKit_Tests/Pods-GitHubKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 		F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubExploreSpec.swift; sourceTree = "<group>"; };
 		F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubTrendingSpec.swift; sourceTree = "<group>"; };
 		F40ABA102155375000DC8DA4 /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
+		F42A12A02158901200EBB9A8 /* GitHubLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubLanguage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,13 +235,14 @@
 		F40AB9882155341C00DC8DA4 /* GitHubKit_Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F40ABA102155375000DC8DA4 /* ModelSpec.swift */,
-				F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */,
-				F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */,
-				F40ABA072155372B00DC8DA4 /* NetworkStubbing */,
-				F40AB9F82155371900DC8DA4 /* GitHubServiceSpecs */,
-				F40AB993215536DE00DC8DA4 /* Resources */,
 				F40AB98B2155341C00DC8DA4 /* Info.plist */,
+				F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */,
+				F42A12A02158901200EBB9A8 /* GitHubLanguage.swift */,
+				F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */,
+				F40ABA102155375000DC8DA4 /* ModelSpec.swift */,
+				F40AB9F82155371900DC8DA4 /* GitHubServiceSpecs */,
+				F40ABA072155372B00DC8DA4 /* NetworkStubbing */,
+				F40AB993215536DE00DC8DA4 /* Resources */,
 			);
 			path = GitHubKit_Tests;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				F40ABA0D2155374200DC8DA4 /* GitHubExploreSpec.swift in Sources */,
 				F40ABA002155371900DC8DA4 /* AuthorizationSpec.swift in Sources */,
 				F40ABA022155371900DC8DA4 /* Config.swift in Sources */,
+				F42A12A12158901200EBB9A8 /* GitHubLanguage.swift in Sources */,
 				F40ABA062155371900DC8DA4 /* RepositorySpec.swift in Sources */,
 				F40ABA112155375000DC8DA4 /* ModelSpec.swift in Sources */,
 				F40ABA052155371900DC8DA4 /* UserSpec.swift in Sources */,

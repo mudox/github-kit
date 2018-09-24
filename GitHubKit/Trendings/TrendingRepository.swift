@@ -17,7 +17,9 @@ public extension GitHubTrending {
     let forksCount: Int?
     let gainedStarsCount: Int
 
+    // swiftlint:disable:next nesting
     typealias Contributor = (name: String, avatar: URL)
+
     let contributors: [Contributor]
   }
 }
