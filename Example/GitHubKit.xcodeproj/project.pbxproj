@@ -59,7 +59,8 @@
 		F40ABA0D2155374200DC8DA4 /* GitHubExploreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */; };
 		F40ABA0F2155374900DC8DA4 /* GitHubTrendingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */; };
 		F40ABA112155375000DC8DA4 /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA102155375000DC8DA4 /* ModelSpec.swift */; };
-		F42A12A12158901200EBB9A8 /* GitHubLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A12A02158901200EBB9A8 /* GitHubLanguage.swift */; };
+		F42A12A12158901200EBB9A8 /* GitHubLanguageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A12A02158901200EBB9A8 /* GitHubLanguageSpec.swift */; };
+		F42A12A42158934000EBB9A8 /* github-languages.txt in Resources */ = {isa = PBXBuildFile; fileRef = F42A12A22158913000EBB9A8 /* github-languages.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,7 +137,8 @@
 		F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubExploreSpec.swift; sourceTree = "<group>"; };
 		F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubTrendingSpec.swift; sourceTree = "<group>"; };
 		F40ABA102155375000DC8DA4 /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
-		F42A12A02158901200EBB9A8 /* GitHubLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubLanguage.swift; sourceTree = "<group>"; };
+		F42A12A02158901200EBB9A8 /* GitHubLanguageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubLanguageSpec.swift; sourceTree = "<group>"; };
+		F42A12A22158913000EBB9A8 /* github-languages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "github-languages.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +239,7 @@
 			children = (
 				F40AB98B2155341C00DC8DA4 /* Info.plist */,
 				F40ABA0C2155374200DC8DA4 /* GitHubExploreSpec.swift */,
-				F42A12A02158901200EBB9A8 /* GitHubLanguage.swift */,
+				F42A12A02158901200EBB9A8 /* GitHubLanguageSpec.swift */,
 				F40ABA0E2155374900DC8DA4 /* GitHubTrendingSpec.swift */,
 				F40ABA102155375000DC8DA4 /* ModelSpec.swift */,
 				F40AB9F82155371900DC8DA4 /* GitHubServiceSpecs */,
@@ -260,37 +262,38 @@
 		F40AB994215536DE00DC8DA4 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
+				F40AB9A1215536DE00DC8DA4 /* authorizations.txt */,
+				F40AB997215536DE00DC8DA4 /* authorize.txt */,
+				F40AB9B1215536DE00DC8DA4 /* blob.txt */,
+				F40AB9A2215536DE00DC8DA4 /* commit.txt */,
+				F40AB9A9215536DE00DC8DA4 /* deleteAuthorization.txt */,
+				F40AB9A8215536DE00DC8DA4 /* deleteGrant.txt */,
+				F40AB99A215536DE00DC8DA4 /* developer-trending.txt */,
+				F40AB9AA215536DE00DC8DA4 /* follow.txt */,
+				F40AB99D215536DE00DC8DA4 /* followers.txt */,
+				F42A12A22158913000EBB9A8 /* github-languages.txt */,
+				F40AB9A6215536DE00DC8DA4 /* grants.txt */,
+				F40AB99E215536DE00DC8DA4 /* isFollowing.txt */,
+				F40AB9A0215536DE00DC8DA4 /* myProfile.txt */,
+				F40AB9A5215536DE00DC8DA4 /* myRepositories.txt */,
+				F40AB99F215536DE00DC8DA4 /* organizationRepositories.txt */,
+				F40AB9B3215536DE00DC8DA4 /* profile.txt */,
+				F40AB9AC215536DE00DC8DA4 /* rateLimit.txt */,
+				F40AB9A3215536DE00DC8DA4 /* reference.txt */,
+				F40AB9AF215536DE00DC8DA4 /* repositories.txt */,
+				F40AB9A7215536DE00DC8DA4 /* repository-trending.txt */,
+				F40AB9AE215536DE00DC8DA4 /* repository.txt */,
+				F40AB999215536DE00DC8DA4 /* repositoryContributors.txt */,
+				F40AB9A4215536DE00DC8DA4 /* repositoryLanguages.txt */,
+				F40AB9B0215536DE00DC8DA4 /* repositoryTags.txt */,
+				F40AB9AB215536DE00DC8DA4 /* repositoryTopics.txt */,
 				F40AB995215536DE00DC8DA4 /* search_repositories_0.txt */,
 				F40AB996215536DE00DC8DA4 /* search_repositories_1.txt */,
-				F40AB997215536DE00DC8DA4 /* authorize.txt */,
-				F40AB998215536DE00DC8DA4 /* search_repositories_3.txt */,
-				F40AB999215536DE00DC8DA4 /* repositoryContributors.txt */,
-				F40AB99A215536DE00DC8DA4 /* developer-trending.txt */,
 				F40AB99B215536DE00DC8DA4 /* search_repositories_2.txt */,
-				F40AB99C215536DE00DC8DA4 /* unfollow.txt */,
-				F40AB99D215536DE00DC8DA4 /* followers.txt */,
-				F40AB99E215536DE00DC8DA4 /* isFollowing.txt */,
-				F40AB99F215536DE00DC8DA4 /* organizationRepositories.txt */,
-				F40AB9A0215536DE00DC8DA4 /* myProfile.txt */,
-				F40AB9A1215536DE00DC8DA4 /* authorizations.txt */,
-				F40AB9A2215536DE00DC8DA4 /* commit.txt */,
-				F40AB9A3215536DE00DC8DA4 /* reference.txt */,
-				F40AB9A4215536DE00DC8DA4 /* repositoryLanguages.txt */,
-				F40AB9A5215536DE00DC8DA4 /* myRepositories.txt */,
-				F40AB9A6215536DE00DC8DA4 /* grants.txt */,
-				F40AB9A7215536DE00DC8DA4 /* repository-trending.txt */,
-				F40AB9A8215536DE00DC8DA4 /* deleteGrant.txt */,
-				F40AB9A9215536DE00DC8DA4 /* deleteAuthorization.txt */,
-				F40AB9AA215536DE00DC8DA4 /* follow.txt */,
-				F40AB9AB215536DE00DC8DA4 /* repositoryTopics.txt */,
-				F40AB9AC215536DE00DC8DA4 /* rateLimit.txt */,
-				F40AB9AD215536DE00DC8DA4 /* zen.txt */,
-				F40AB9AE215536DE00DC8DA4 /* repository.txt */,
-				F40AB9AF215536DE00DC8DA4 /* repositories.txt */,
-				F40AB9B0215536DE00DC8DA4 /* repositoryTags.txt */,
-				F40AB9B1215536DE00DC8DA4 /* blob.txt */,
+				F40AB998215536DE00DC8DA4 /* search_repositories_3.txt */,
 				F40AB9B2215536DE00DC8DA4 /* tree.txt */,
-				F40AB9B3215536DE00DC8DA4 /* profile.txt */,
+				F40AB99C215536DE00DC8DA4 /* unfollow.txt */,
+				F40AB9AD215536DE00DC8DA4 /* zen.txt */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				F40AB9DA215536F200DC8DA4 /* search_repositories_1.txt in Resources */,
 				F40AB9EA215536F200DC8DA4 /* grants.txt in Resources */,
 				F40AB9F1215536F200DC8DA4 /* zen.txt in Resources */,
+				F42A12A42158934000EBB9A8 /* github-languages.txt in Resources */,
 				F40AB9EF215536F200DC8DA4 /* repositoryTopics.txt in Resources */,
 				F40AB9E6215536F200DC8DA4 /* commit.txt in Resources */,
 				F40AB9EC215536F200DC8DA4 /* deleteGrant.txt in Resources */,
@@ -624,7 +628,7 @@
 				F40ABA0D2155374200DC8DA4 /* GitHubExploreSpec.swift in Sources */,
 				F40ABA002155371900DC8DA4 /* AuthorizationSpec.swift in Sources */,
 				F40ABA022155371900DC8DA4 /* Config.swift in Sources */,
-				F42A12A12158901200EBB9A8 /* GitHubLanguage.swift in Sources */,
+				F42A12A12158901200EBB9A8 /* GitHubLanguageSpec.swift in Sources */,
 				F40ABA062155371900DC8DA4 /* RepositorySpec.swift in Sources */,
 				F40ABA112155375000DC8DA4 /* ModelSpec.swift in Sources */,
 				F40ABA052155371900DC8DA4 /* UserSpec.swift in Sources */,

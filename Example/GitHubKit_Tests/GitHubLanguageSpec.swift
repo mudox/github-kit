@@ -27,15 +27,18 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
       let jack = Jack("Test.GitHubLanguage.all")
 
       NetworkStubbing.stubIfEnabled(
-        name: "repository-trending",
-        condition: isMethodGET() && pathStartsWith("/trending")
+        name: "github-languages",
+        condition: isMethodGET() && pathEndsWith("/languages.yml")
       )
 
       // Act, Assert
       waitUntil(timeout: timeout) { done in
-        _ = GitHubTrending.repositories(of: "swift", in: .pastMonth)
+        _ = GitHubLanguage.all
           .subscribe(
-            onSuccess: { _ in
+            onSuccess: { languages in
+              languages[...4].forEach { language in
+                jack.debug(Jack.dump(of: language))
+              }
               done()
             },
             onError: { error in
