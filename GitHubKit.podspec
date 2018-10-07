@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'GitHubKit/Source/**/*'
+  s.source_files = 'GitHubKit/**/*.swift'
 
   # s.resource_bundles = {
   #   'GitHubKit' => ['GitHubKit/Assets/*.png']
