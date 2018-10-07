@@ -28,7 +28,6 @@ public struct AuthorizationScope: OptionSet {
   // MARK: - Scopes
   // See https://developer.github.com/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/
 
-
   /// Grants read/write access to code, commit statuses, invitations,
   /// collaborators, adding team memberships, and deployment statuses for public
   /// and private repositories and organizations.
@@ -112,4 +111,3 @@ public struct AuthorizationScope: OptionSet {
   /// List and view details for GPG keys.
   public static let writeGPGKey = AuthorizationScope(rawValue: ["write:gpg_key"])
 }
-

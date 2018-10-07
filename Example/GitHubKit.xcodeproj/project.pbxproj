@@ -601,7 +601,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "LINTER=\"${PODS_ROOT}/SwiftLint/swiftlint\"\nlint() {\n  if which swiftlint >/dev/null; then\n    $LINTER autocorrect\n    $LINTER\n  else\n    echo \"warning: SwiftLint not installed\"\n  fi\n}\nlint";
+			shellScript = "LINTER=\"${PODS_ROOT}/SwiftLint/swiftlint\"\nlint() {\n  if which swiftlint >/dev/null; then\n    $LINTER autocorrect\n    $LINTER\n  else\n    echo \"warning: SwiftLint not installed\"\n  fi\n}\nlint\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

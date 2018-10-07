@@ -14,9 +14,8 @@ import OHHTTPStubs
 ///
 /// - Parameter text: Input HTTP message text.
 /// - Returns: The extracted 3 components if parsing succeeded.
-fileprivate func parse(messageText text: String)
-  -> (code: Int, header: [String: String], body: Data)
-{
+private func parse(messageText text: String)
+  -> (code: Int, header: [String: String], body: Data) {
 
   /*
    *
@@ -30,7 +29,7 @@ fileprivate func parse(messageText text: String)
     pattern: "(?:\\n|\\r\\n|\\r)"
   )
 
-  eolRegex.replaceMatches(in: mutableText, range: NSMakeRange(0, mutableText.length), withTemplate: "\n")
+  eolRegex.replaceMatches(in: mutableText, range: NSRange(location: 0, length: mutableText.length), withTemplate: "\n")
 
   let newText = mutableText as String
 
@@ -54,14 +53,14 @@ fileprivate func parse(messageText text: String)
     pattern: pattern,
     options: [
       .allowCommentsAndWhitespace,
-      .dotMatchesLineSeparators,
+      .dotMatchesLineSeparators
     ]
   )
 
   let msgMatch = msgRegex.firstMatch(
     in: newText,
     options: [],
-    range: NSMakeRange(0, (newText as NSString).length)
+    range: NSRange(location: 0, length: (newText as NSString).length)
   )!
 
   /*

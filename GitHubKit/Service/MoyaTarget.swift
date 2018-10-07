@@ -245,11 +245,11 @@ extension MoyaTarget: Moya.TargetType {
       return .requestPlain
 
     // Authorization
-    case .authorize(let authParam):
+    case let .authorize(authParam):
       var param: [String: Any] = [
         "client_id": authParam.appID,
         "client_secret": authParam.appSecret,
-        "scopes": authParam.scopes
+        "scopes": authParam.scope.rawValue, // which is a Set, can be JSON encoded into an array
       ]
       if let note = authParam.note {
         param["note"] = note

@@ -32,7 +32,7 @@ extension GitHubLanguage {
       .map { string -> [GitHubLanguage] in
         let decoder = YAMLDecoder()
         return try decoder.decode([String: _YAML].self, from: string).map { key, value in
-          return GitHubLanguage(name: key, color: value.color)
+          GitHubLanguage(name: key, color: value.color)
         }
       }
   }

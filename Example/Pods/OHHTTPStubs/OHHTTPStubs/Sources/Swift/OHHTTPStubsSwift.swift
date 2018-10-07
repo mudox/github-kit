@@ -26,7 +26,6 @@
  * Swift Helpers
  */
 
-
 #if !swift(>=3.0)
   extension OHHTTPStubs {
     private class func stubRequests(passingTest passingTest: OHHTTPStubsTestBlock, withStubResponse: OHHTTPStubsResponseBlock) -> OHHTTPStubsDescriptor {
@@ -65,7 +64,6 @@
     }
   }
 #endif
-
 
 // MARK: Syntaxic Sugar for OHHTTPStubs
 
@@ -108,8 +106,6 @@
   return OHHTTPStubs.stubRequests(passingTest: condition, withStubResponse: response)
   }
 #endif
-
-
 
 // MARK: Create OHHTTPStubsTestBlock matchers
 
@@ -335,12 +331,12 @@ public func isExtension(_ ext: String) -> OHHTTPStubsTestBlock {
  *          (2) using `[q:nil]`, which matches a query parameter "?q" without a value at all
  */
 @available(iOS 8.0, OSX 10.10, *)
-public func containsQueryParams(_ params: [String:String?]) -> OHHTTPStubsTestBlock {
+public func containsQueryParams(_ params: [String: String?]) -> OHHTTPStubsTestBlock {
   return { req in
     if let url = req.url {
       let comps = NSURLComponents(url: url, resolvingAgainstBaseURL: true)
       if let queryItems = comps?.queryItems {
-        for (k,v) in params {
+        for (k, v) in params {
           if queryItems.filter({ qi in qi.name == k && qi.value == v }).count == 0 { return false }
         }
         return true
@@ -399,11 +395,11 @@ public func hasHeaderNamed(_ name: String, value: String) -> OHHTTPStubsTestBloc
  * - Returns: a matcher that returns true if the `NSURLRequest`'s body contains a JSON object with the same keys and values as the parameter value
  */
 #if swift(>=3.0)
-public func hasJsonBody(_ jsonObject: [AnyHashable : Any]) -> OHHTTPStubsTestBlock {
+public func hasJsonBody(_ jsonObject: [AnyHashable: Any]) -> OHHTTPStubsTestBlock {
   return { req in
     guard
       let httpBody = req.ohhttpStubs_httpBody,
-      let jsonBody = (try? JSONSerialization.jsonObject(with: httpBody, options: [])) as? [AnyHashable : Any]
+      let jsonBody = (try? JSONSerialization.jsonObject(with: httpBody, options: [])) as? [AnyHashable: Any]
     else {
       return false
     }

@@ -92,7 +92,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
   it("deleteAuthorization") {
     // Arrange
     let jack = Jack("Service.deleteAuthorization")
-    
+
     guard NetworkStubbing.isEnabled else {
       jack.warn("only run on netwokring stubbing being enabled, skip ...")
       return
@@ -160,7 +160,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
   it("deleteGrant") {
     // Arrange
     let jack = Jack("Service.deleteGrant")
-    
+
     guard NetworkStubbing.isEnabled else {
       jack.warn("only run on netwokring stubbing being enabled, skip ...")
       return

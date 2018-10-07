@@ -15,11 +15,11 @@ class GitDataSpec: QuickSpec { override func spec() {
     Jack.defaultOptions = [.noLocation]
     NetworkStubbing.setup()
   }
-  
+
   afterEach {
     OHHTTPStubs.removeAllStubs()
   }
-  
+
   // MARK: reference
 
   it("reference") {

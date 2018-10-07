@@ -61,6 +61,7 @@ identifier_name:
   excluded:
       - id
       - nl
+      - to
 
 number_separator:
   minimum_length: 5

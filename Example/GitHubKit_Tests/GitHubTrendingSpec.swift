@@ -14,13 +14,12 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
   beforeEach {
     NetworkStubbing.setup()
   }
-  
+
   afterEach {
     OHHTTPStubs.removeAllStubs()
   }
-  
-  describe("GitHubTrending") {
 
+  describe("GitHubTrending") {
 
     it("repositories") {
       // Arrange

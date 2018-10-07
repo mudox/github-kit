@@ -14,13 +14,12 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
   beforeEach {
     NetworkStubbing.setup()
   }
-  
+
   afterEach {
     OHHTTPStubs.removeAllStubs()
   }
-  
-  describe("GitHubLanguage") {
 
+  describe("GitHubLanguage") {
 
     it("lists all github languages") {
       // Arrange

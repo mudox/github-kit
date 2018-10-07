@@ -5,7 +5,7 @@ import OHHTTPStubs
 import JacKit
 
 public struct NetworkStubbing {
-  
+
   private init() {}
 
   /// Set `$HTTP_STUBBING` to 'YES' to enabled stubbing.
@@ -29,16 +29,16 @@ public struct NetworkStubbing {
 
   public static func setup() {
     guard isEnabled else { return }
-    
+
     let jack = Jack("OHHTTPStubs").set(options: .noLocation)
-    
+
     OHHTTPStubs.onStubActivation { request, stub, _ in
       Jack("OHHTTPStubs").debug("""
       hit : \(request)
       by  : \(stub.name ?? "<anonymous stub>")
       """)
     }
-    
+
     OHHTTPStubs.onStubMissing { request in
       Jack("OHHTTPStubs").warn("""
       miss hit test: \(request.httpMethod!) - \(request.url!)"
@@ -51,8 +51,7 @@ public struct NetworkStubbing {
     name: String,
     condition: @escaping OHHTTPStubsTestBlock
   )
-    -> OHHTTPStubsDescriptor?
-  {
+    -> OHHTTPStubsDescriptor? {
     if isEnabled {
       let s = stub(
         condition: condition,

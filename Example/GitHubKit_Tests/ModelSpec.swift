@@ -18,7 +18,7 @@ class ModelSpec: QuickSpec { override func spec() {
       expect {
         p = try Pagination(from: [:])
       }.notTo(throwError())
-      
+
       switch p! {
       case .single:
         break
@@ -89,7 +89,7 @@ class ModelSpec: QuickSpec { override func spec() {
       let headers = [
         "X-RateLimit-Limit": "30",
         "X-RateLimit-Reset": "1536306663",
-        "X-RateLimit-Remaining": "29",
+        "X-RateLimit-Remaining": "29"
       ]
 
       // Act & Assert

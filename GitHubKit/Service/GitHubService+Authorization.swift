@@ -7,19 +7,18 @@ public struct AuthorizationParameter {
   // Required
   public let appID: String
   public let appSecret: String
-  public let scopes: String
+  public let scope: AuthorizationScope
 
   // Optional
   public let note: String?
 
-  init(appID: String, appSecret: String, scopes: String, note: String? = nil) {
+  init(appID: String, appSecret: String, scope: AuthorizationScope, note: String? = nil) {
     self.appID = appID
     self.appSecret = appSecret
-    self.scopes = scopes
-    self.note = note
+    self.scope = scope
+      self.note = note
   }
 }
-
 
 public extension GitHubService {
   // MARK: - Authorization
