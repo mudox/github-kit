@@ -1,6 +1,6 @@
 import Moya
 
-public enum MoyaTarget {
+public enum GitHubAPIv3 {
 
   // MARK: Search
 
@@ -56,7 +56,8 @@ public enum MoyaTarget {
   // MARK: Showcase
 }
 
-extension MoyaTarget: Moya.TargetType {
+extension GitHubAPIv3: Moya.TargetType {
+
   public var method: Moya.Method {
     switch self {
     // Search
@@ -180,20 +181,21 @@ extension MoyaTarget: Moya.TargetType {
   }
 
   public var headers: [String: String]? {
+    
     switch self {
     // Search
     case .searchRepository:
-      return Dev.defaultTokenHeaders
+      return Headers.acceptJSON
 
     // PublicUserProfile
     case .profile, .myProfile:
-      return Dev.defaultTokenHeaders
+      return Headers.acceptJSON
 
     // Misc
     case .zen:
-      return Dev.defaultTokenHeaders
+      return Headers.acceptJSON
     case .rateLimit:
-      return Dev.defaultMudoxAuthHeaders
+      return Headers.acceptJSON
 
     // Authorization
     case .authorize, .deleteAuthorization, .authorizations:
