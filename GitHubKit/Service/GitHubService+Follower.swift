@@ -3,7 +3,7 @@ import Foundation
 import Moya
 import RxSwift
 
-public extension Service {
+public extension GitHubService {
 
   // swiftlint:disable:next line_length
   /// [Check if one user follows another](https://developer.github.com/v3/users/followers/#check-if-one-user-follows-another)

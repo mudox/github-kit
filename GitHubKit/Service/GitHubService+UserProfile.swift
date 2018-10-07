@@ -3,7 +3,7 @@ import Foundation
 import Moya
 import RxSwift
 
-public extension Service {
+public extension GitHubService {
 
   // MARK: - PublicUserProfile
 
