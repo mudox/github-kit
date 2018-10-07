@@ -18,7 +18,7 @@ public enum MoyaTarget {
 
   // MARK: Authorization
 
-  case authorize
+  case authorize(AuthorizationParameter)
   case deleteAuthorization(id: Int)
   case authorizations
 
@@ -245,18 +245,15 @@ extension MoyaTarget: Moya.TargetType {
       return .requestPlain
 
     // Authorization
-    case .authorize:
-      let param: [String: Any] = [
-        "note": "Test Service.authorize",
-        "client_id": Dev.clientID,
-        "client_secret": Dev.clientSecret,
-        "scopes": [
-          "user",
-          "repo",
-          "admin:org",
-          "notifications",
-        ],
+    case .authorize(let authParam):
+      var param: [String: Any] = [
+        "client_id": authParam.appID,
+        "client_secret": authParam.appSecret,
+        "scopes": authParam.scopes
       ]
+      if let note = authParam.note {
+        param["note"] = note
+      }
       return .requestParameters(parameters: param, encoding: JSONEncoding.default)
     case .deleteAuthorization, .authorizations:
       return .requestPlain

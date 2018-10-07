@@ -3,8 +3,25 @@ import Foundation
 import Moya
 import RxSwift
 
-public extension GitHubService {
+public struct AuthorizationParameter {
+  // Required
+  public let appID: String
+  public let appSecret: String
+  public let scopes: String
 
+  // Optional
+  public let note: String?
+
+  init(appID: String, appSecret: String, scopes: String, note: String? = nil) {
+    self.appID = appID
+    self.appSecret = appSecret
+    self.scopes = scopes
+    self.note = note
+  }
+}
+
+
+public extension GitHubService {
   // MARK: - Authorization
 
   typealias AuthorizeResponse = Response<Authorization>
@@ -12,8 +29,8 @@ public extension GitHubService {
   /// Create a new authorization.
   ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
-  func authorize() -> Single<AuthorizeResponse> {
-    return provider.request(.authorize)
+  func authorize(with paramters: AuthorizationParameter) -> Single<AuthorizeResponse> {
+    return provider.request(.authorize(paramters))
       .map(AuthorizeResponse.init)
   }
 
@@ -56,5 +73,4 @@ public extension GitHubService {
     return provider.request(.deleteGrant(id: id))
       .asCompletable()
   }
-
 }
