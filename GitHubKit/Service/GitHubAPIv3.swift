@@ -56,6 +56,8 @@ public enum GitHubAPIv3 {
   // MARK: Showcase
 }
 
+// MARK: - Moya.TargetType
+
 extension GitHubAPIv3: Moya.TargetType {
 
   public var method: Moya.Method {
@@ -181,49 +183,49 @@ extension GitHubAPIv3: Moya.TargetType {
   }
 
   public var headers: [String: String]? {
-    
     switch self {
     // Search
     case .searchRepository:
-      return Headers.acceptJSON
+      return Headers.Accept.default
 
     // PublicUserProfile
     case .profile, .myProfile:
-      return Headers.acceptJSON
+      return Headers.Accept.default
 
     // Misc
     case .zen:
-      return Headers.acceptJSON
+      return Headers.Accept.default
     case .rateLimit:
-      return Headers.acceptJSON
+      return Headers.Accept.default
 
     // Authorization
     case .authorize, .deleteAuthorization, .authorizations:
-      return Dev.defaultMudoxAuthHeaders
+      return Headers.Accept.default
 
     // Grant
     case .grants, .deleteGrant:
-      return Dev.defaultMudoxAuthHeaders
+      return Headers.Accept.default
 
     // Data
-    case .reference, .commit, .tree, .blob:
-      return Dev.defaultTokenHeaders
+    case .reference, .commit, .tree:
+      return Headers.Accept.default
+    case .blob:
+      return Headers.Accept.raw
 
     // Follower
     case .followers, .isFollowing, .follow, .unfollow:
       // The .unfollow need basic auth or OAuth with 'user:follow' scope.
       // See https://developer.github.com/v3/users/followers/#unfollow-a-user
-      return Dev.defaultTokenHeaders
+      return Headers.Accept.default
 
     // Repository
     case .repository, .myRepositories, .repositories, .organizationRepositories:
-      return Dev.defaultTokenHeaders
+      return Headers.Accept.default
     case .topics:
-      return Dev.topicsTokenHeaders
+      return Headers.Accept.topics
     case .tags, .contributors, .languages:
-      return Dev.defaultTokenHeaders
+      return Headers.Accept.default
     }
-
   }
 
   public var task: Task {
@@ -309,5 +311,56 @@ extension GitHubAPIv3: Moya.TargetType {
 
   public var sampleData: Data {
     return Data()
+  }
+}
+
+// MARK: - Authentication Type
+
+extension GitHubAPIv3 {
+  enum AuthenticationType {
+    case none
+    case user
+    case app
+    case token
+  }
+
+  var authenticationType: AuthenticationType {
+    switch self {
+    // Search
+    case .searchRepository:
+      return .token
+
+    // PublicUserProfile
+    case .profile, .myProfile:
+      return .token
+
+    // Misc
+    case .zen, .rateLimit:
+      return .token
+
+    // Authorization
+    case .authorize, .deleteAuthorization, .authorizations:
+      return .user
+
+    // Grant
+    case .grants, .deleteGrant:
+      return .user
+
+    // Data
+    case .reference, .commit, .tree, .blob:
+      return .token
+
+    // Follower
+    case .followers, .isFollowing, .follow, .unfollow:
+      return .token
+
+    // Repository
+    case .repository, .myRepositories, .repositories, .organizationRepositories:
+      return .token
+    case .topics:
+      return .token
+    case .tags, .contributors, .languages:
+      return .token
+    }
   }
 }
