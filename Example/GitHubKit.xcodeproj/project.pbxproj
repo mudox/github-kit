@@ -61,6 +61,7 @@
 		F40ABA112155375000DC8DA4 /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ABA102155375000DC8DA4 /* ModelSpec.swift */; };
 		F42A12A12158901200EBB9A8 /* GitHubLanguageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42A12A02158901200EBB9A8 /* GitHubLanguageSpec.swift */; };
 		F42A12A42158934000EBB9A8 /* github-languages.txt in Resources */ = {isa = PBXBuildFile; fileRef = F42A12A22158913000EBB9A8 /* github-languages.txt */; };
+		F4C92309216B334D00AC3DCF /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C92308216B334D00AC3DCF /* Auth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		F40ABA102155375000DC8DA4 /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 		F42A12A02158901200EBB9A8 /* GitHubLanguageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubLanguageSpec.swift; sourceTree = "<group>"; };
 		F42A12A22158913000EBB9A8 /* github-languages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "github-languages.txt"; sourceTree = "<group>"; };
+		F4C92308216B334D00AC3DCF /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 				F40AB9FD2155371900DC8DA4 /* GitDataSpec.swift */,
 				F40AB9FE2155371900DC8DA4 /* UserSpec.swift */,
 				F40AB9FF2155371900DC8DA4 /* RepositorySpec.swift */,
+				F4C92308216B334D00AC3DCF /* Auth.swift */,
 			);
 			path = GitHubServiceSpecs;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				F40ABA022155371900DC8DA4 /* Config.swift in Sources */,
 				F42A12A12158901200EBB9A8 /* GitHubLanguageSpec.swift in Sources */,
 				F40ABA062155371900DC8DA4 /* RepositorySpec.swift in Sources */,
+				F4C92309216B334D00AC3DCF /* Auth.swift in Sources */,
 				F40ABA112155375000DC8DA4 /* ModelSpec.swift in Sources */,
 				F40ABA052155371900DC8DA4 /* UserSpec.swift in Sources */,
 			);
