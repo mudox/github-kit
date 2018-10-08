@@ -2,13 +2,13 @@ import Moya
 
 import JacKit
 
-internal struct AuthPlugin: PluginType {
+public class AuthPlugin: PluginType {
 
-  let token: String?
-  let user: (name: String, password: String)?
-  let app: (key: String, secret: String)?
+  public var token: String?
+  public var user: (name: String, password: String)?
+  public var app: (key: String, secret: String)?
 
-  func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+  public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
     guard let target = target as? GitHubAPIv3 else {
       Jack("GitHubKit.AuthenticationPlugin").warn(
         "the target type is not `GitHubKit.GitHubAPIv3`", options: .short

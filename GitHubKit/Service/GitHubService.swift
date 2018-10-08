@@ -4,12 +4,14 @@ import Moya
 
 public class GitHubService {
 
-  public let accessToken: String
+  public let auth: AuthPlugin
   public let provider: MoyaProvider<GitHubAPIv3>
 
-  public init(accessToken: String) {
-    self.accessToken = accessToken
-    provider = MoyaProvider<GitHubAPIv3>()
+  public init(authPlugin: AuthPlugin) {
+    self.auth = authPlugin
+    provider = MoyaProvider<GitHubAPIv3>(
+      plugins: [auth]
+    )
   }
 
 }
