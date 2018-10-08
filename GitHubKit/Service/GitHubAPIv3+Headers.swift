@@ -10,29 +10,40 @@ extension GitHubAPIv3 {
 //
 //  private static let accessToken = "b3554f2b24f522a441202563199ca3ccdc9df441"
 
-  struct Headers {
-    
-    static let acceptJSON = ["Accept": "application/vnd.github.v3+json"]
-    static let acceptTopics = ["Accept": "application/vnd.github.mercy-preview+jso"]
+  internal struct Headers {
 
-    // MARK: - Authorization Header Values
+    // MARK: - Accept
 
-    private static func base64Encode(username: String, password: String) -> String {
-      let text = "\(username):\(password)"
-      let data = text.data(using: .utf8)!
-      return data.base64EncodedString()
+    // swiftlint:disable:next nesting
+    internal enum Accept {
+      static let `default` = ["Accept": "application/vnd.github.v3+json"]
+      static let topics = ["Accept": "application/vnd.github.mercy-preview+json"]
+      static let textMatch = ["Accept": "application/vnd.github.v3.text-match+json"]
+      static let raw = ["Accept": "application/vnd.github.v3.raw+json"]
     }
 
-    internal static func authorization(username: String, password: String) -> [String: String] {
-      return ["Authorization": "Basic \(base64Encode(username: username, password: password))"]
-    }
+    // MARK: - Authorization
 
-    internal static func authorization(appKey: String, appSecret: String) -> [String: String] {
-      return ["Authorization": "Basic \(base64Encode(username: appKey, password: appSecret))"]
-    }
+    // swiftlint:disable:next nesting
+    internal enum Authorization {
 
-    internal static func authorization(accessToken: String) -> String {
-      return "Token \(accessToken)"
+      private static func base64Encode(username: String, password: String) -> String {
+        let text = "\(username):\(password)"
+        let data = text.data(using: .utf8)!
+        return data.base64EncodedString()
+      }
+
+      internal static func user(name: String, password: String) -> [String: String] {
+        return ["Authorization": "Basic \(base64Encode(username: name, password: password))"]
+      }
+
+      internal static func app(key: String, secret: String) -> [String: String] {
+        return ["Authorization": "Basic \(base64Encode(username: key, password: secret))"]
+      }
+
+      internal static func accessToken(_ token: String) -> String {
+        return "Token \(token)"
+      }
     }
 
   }

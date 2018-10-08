@@ -29,7 +29,7 @@ public extension GitHubService {
   ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
   func authorize(with paramters: AuthorizationParameter) -> Single<AuthorizeResponse> {
-    return provider.request(.authorize(paramters))
+    return provider.rx.request(.authorize(paramters))
       .map(AuthorizeResponse.init)
   }
 
@@ -38,7 +38,7 @@ public extension GitHubService {
   /// - Parameter id: Authorization ID.
   /// - Returns: RxSwift.Completable.
   func deleteAuthorization(id: Int) -> Completable {
-    return provider.request(.deleteAuthorization(id: id))
+    return provider.rx.request(.deleteAuthorization(id: id))
       .asCompletable()
   }
 
@@ -48,7 +48,7 @@ public extension GitHubService {
   ///
   /// - Returns: Single\<AuthorizationsResponse\>.
   func authorizations() -> Single<AuthorizationsResponse> {
-    return provider.request(.authorizations)
+    return provider.rx.request(.authorizations)
       .map(AuthorizationsResponse.init)
   }
 
@@ -60,7 +60,7 @@ public extension GitHubService {
   typealias GrantsResponse = Response<[Grant]>
 
   func grants() -> Single<GrantsResponse> {
-    return provider.request(.grants)
+    return provider.rx.request(.grants)
       .map(GrantsResponse.init)
   }
 
@@ -69,7 +69,7 @@ public extension GitHubService {
   /// - Parameter id: Grant ID.
   /// - Returns: RxSwift.Completable.
   func deleteGrant(id: Int) -> Completable {
-    return provider.request(.deleteGrant(id: id))
+    return provider.rx.request(.deleteGrant(id: id))
       .asCompletable()
   }
 }

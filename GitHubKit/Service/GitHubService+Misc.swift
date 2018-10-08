@@ -8,14 +8,14 @@ public extension GitHubService {
   ///
   /// - Returns: RxSwift.Single\<String\>.
   func zen() -> Single<String> {
-    return provider.request(.zen).mapString()
+    return provider.rx.request(.zen).mapString()
   }
 
   /// Request rate limit status for current user.
   ///
   /// - Returns: Single\<RateLimitPayload\>.
   func rateLimit() -> Single<RateLimitPayload> {
-    return provider.request(.rateLimit)
+    return provider.rx.request(.rateLimit)
       .map(RateLimitPayload.self)
   }
 

@@ -12,7 +12,7 @@ public extension GitHubService {
     withPath path: String
   )
     -> Single<ReferenceResponse> {
-    return provider.request(.reference(ownerName: ownerName, repositoryName: repositoryName, path: path))
+    return provider.rx.request(.reference(ownerName: ownerName, repositoryName: repositoryName, path: path))
       .map(ReferenceResponse.init)
   }
 
@@ -24,7 +24,7 @@ public extension GitHubService {
   )
     -> Single<CommitResponse> {
 
-    return provider.request(.commit(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
+    return provider.rx.request(.commit(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(CommitResponse.init)
   }
 
@@ -35,7 +35,7 @@ public extension GitHubService {
     withSHA sha: String
   )
     -> Single<TreeResponse> {
-    return provider.request(.tree(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
+    return provider.rx.request(.tree(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(TreeResponse.init)
   }
 
@@ -53,7 +53,7 @@ public extension GitHubService {
     withSHA sha: String
   )
     -> Single<BlobRawResponse> {
-    return provider.request(.blob(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
+    return provider.rx.request(.blob(ownerName: ownerName, repositoryName: repositoryName, sha: sha))
       .map(BlobRawResponse.init)
   }
 

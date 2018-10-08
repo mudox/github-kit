@@ -13,7 +13,7 @@ public extension GitHubService {
   ///   - targetUsername: Target user name.
   /// - Returns: Single<Bool>
   func isFollowing(from username: String, to targetUsername: String) -> Single<IsFollowingResponse> {
-    return provider.request(.isFollowing(username: username, targetUsername: targetUsername))
+    return provider.rx.request(.isFollowing(username: username, targetUsername: targetUsername))
       .map(IsFollowingResponse.init)
   }
 
@@ -26,7 +26,7 @@ public extension GitHubService {
   ///   - username: User name.
   /// - Returns: `FollowersResponse`, alias of `Response<[Follower]>`.
   func followers(of username: String) -> Single<FollowersResponse> {
-    return provider.request(.followers(username: username))
+    return provider.rx.request(.followers(username: username))
       .map(FollowersResponse.init)
   }
 
@@ -35,7 +35,7 @@ public extension GitHubService {
   /// - Parameter username: Username.
   /// - Returns: Completable.
   func follow(username: String) -> Completable {
-    return provider.request(.follow(username: username))
+    return provider.rx.request(.follow(username: username))
       .asCompletable()
   }
 
@@ -47,7 +47,7 @@ public extension GitHubService {
   /// - Parameter username: Username.
   /// - Returns: Completable.
   func unfollow(username: String) -> Completable {
-    return provider.request(.unfollow(username: username))
+    return provider.rx.request(.unfollow(username: username))
       .asCompletable()
   }
 

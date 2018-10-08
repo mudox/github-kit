@@ -2,10 +2,14 @@ import Foundation
 
 import Moya
 
-public struct GitHubService {
+public class GitHubService {
 
-  public let provider = MoyaProvider<MoyaTarget>().rx
+  public let accessToken: String
+  public let provider: MoyaProvider<GitHubAPIv3>
 
-  public init() {}
+  public init(accessToken: String) {
+    self.accessToken = accessToken
+    provider = MoyaProvider<GitHubAPIv3>()
+  }
 
 }

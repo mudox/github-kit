@@ -17,7 +17,7 @@ public extension GitHubService {
   ///
   /// - Returns: Single\<SearchRepositoryResponse\>.
   func searchRepository(_ query: String) -> Single<SearchRepositoryResponse> {
-    return provider.request(.searchRepository(query))
+    return provider.rx.request(.searchRepository(query))
       .map(SearchRepositoryResponse.init)
   }
 

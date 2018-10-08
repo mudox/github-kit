@@ -5,7 +5,7 @@ import Moya
 public protocol ResponseType {
   /// Add convenient initiailizer that enables syntax like
   ///
-  ///     return provider.request(...)
+  ///     return provider.rx.request(...)
   ///       .map(CommitResponse.init)
   ///
   init(response: Moya.Response) throws

@@ -14,7 +14,7 @@ public extension GitHubService {
   /// - Returns: `Single<CurrentUserResponse>`
   func myProfile
     () -> Single<MyProfileResponse> {
-    return provider.request(.myProfile)
+    return provider.rx.request(.myProfile)
       .map(MyProfileResponse.init)
   }
 
@@ -24,7 +24,7 @@ public extension GitHubService {
   ///
   /// - Returns: `Single<ProfileResponse>`
   func profile(of username: String) -> Single<ProfileResponse> {
-    return provider.request(.profile(username: username))
+    return provider.rx.request(.profile(username: username))
       .map(ProfileResponse.init)
   }
 
