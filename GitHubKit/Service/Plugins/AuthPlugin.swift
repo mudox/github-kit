@@ -8,6 +8,16 @@ public class AuthPlugin: PluginType {
   public var user: (name: String, password: String)?
   public var app: (key: String, secret: String)?
 
+  public init(
+    token: String? = nil,
+    user: (name: String, password: String)? = nil,
+    app: (key: String, secret: String)? = nil
+  ) {
+    self.token = token
+    self.user = user
+    self.app = app
+  }
+
   public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
     guard let target = target as? GitHubAPIv3 else {
       Jack("GitHubKit.AuthenticationPlugin").warn(
