@@ -19,10 +19,10 @@ public class AuthPlugin: PluginType {
   }
 
   public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+    let jack = Jack("GitHubKit.AuthPlugin").set(options: .short)
+
     guard let target = target as? GitHubAPIv3 else {
-      Jack("GitHubKit.AuthenticationPlugin").warn(
-        "the target type is not `GitHubKit.GitHubAPIv3`", options: .short
-      )
+      jack.warn("the target type is not `GitHub.APIv3`")
       return request
     }
 
@@ -33,22 +33,24 @@ public class AuthPlugin: PluginType {
       break
     case .user:
       guard let (name, password) = user else {
+        jack.warn("username & password is missing")
         return request
       }
       let field = Headers.Authorization.user(name: name, password: password)
       request.setValue(field, forHTTPHeaderField: "Authorization")
     case .app:
       guard let (key, secret) = app else {
+        jack.warn("app key & secret is missing")
         return request
       }
       let field = Headers.Authorization.app(key: key, secret: secret)
       request.setValue(field, forHTTPHeaderField: "Authorization")
     case .token:
-      guard let (name, password) = user else {
+      guard let token = token else {
+        jack.warn("access token is missing")
         return request
       }
-      let field = Headers.Authorization.user(name: name, password: password)
-      request.setValue(field, forHTTPHeaderField: "Authorization")
+      request.setValue(token, forHTTPHeaderField: "Authorization")
     }
 
     return request
