@@ -7,7 +7,7 @@ import Kanna
 
 import JacKit
 
-public struct GitHubTrending {
+public struct Trending {
 
   public enum Period: String {
     case pastDay = "daily"
@@ -40,21 +40,21 @@ public struct GitHubTrending {
   }
 
   public static func repositories(of language: String? = nil, in period: Period = .pastDay)
-    -> Single<[GitHubTrending.Repository]?> {
+    -> Single<[Trending.Repository]?> {
     let url = self.url(of: .trendingRepositories, language: language, period: period)
 
     return RxAlamofire.string(.get, url)
       .asSingle()
-      .map(GitHubTrending.Repository.list)
+      .map(Trending.Repository.list)
   }
 
   public static func developers(of language: String? = nil, in period: Period = .pastDay)
-    -> Single<[GitHubTrending.Developer]?> {
+    -> Single<[Trending.Developer]?> {
     let url = self.url(of: .trendingDevelopers, language: language, period: period)
 
     return RxAlamofire.string(.get, url)
       .asSingle()
-      .map(GitHubTrending.Developer.list)
+      .map(Trending.Developer.list)
   }
 
 }

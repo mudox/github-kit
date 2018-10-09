@@ -4,7 +4,7 @@ import Kanna
 
 import JacKit
 
-public extension GitHubTrending {
+public extension Trending {
 
   struct Repository {
 
@@ -26,7 +26,7 @@ public extension GitHubTrending {
 
 // MARK: - Parsing helpers
 
-internal extension GitHubTrending.Repository {
+internal extension Trending.Repository {
 
   static func colorString(from styleText: String) -> String? {
     let nsText = styleText as NSString
@@ -43,10 +43,10 @@ internal extension GitHubTrending.Repository {
 
 // MARK: - Internal
 
-internal extension GitHubTrending.Repository {
+internal extension Trending.Repository {
 
-  static func list(from htmlString: String) -> [GitHubTrending.Repository]? {
-    let jack = Jack("GitHubTrending.Repository.list(from:)").set(options: .short)
+  static func list(from htmlString: String) -> [Trending.Repository]? {
+    let jack = Jack("GitHub.Trending.Repository.list(from:)").set(options: .short)
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       jack.error("init `Kanna.HTML` failed")
@@ -63,7 +63,7 @@ internal extension GitHubTrending.Repository {
     let items = doc.css(selector)
     jack.debug("found \(items.count) items", options: .short)
 
-    var repositories = [GitHubTrending.Repository]()
+    var repositories = [Trending.Repository]()
     for item in items {
       guard let repository = single(from: item) else {
         return nil
@@ -80,9 +80,9 @@ internal extension GitHubTrending.Repository {
 
 // MARK: - Fileprivate
 
-fileprivate extension GitHubTrending.Repository {
+fileprivate extension Trending.Repository {
 
-  static func single(from element: Kanna.XMLElement) -> GitHubTrending.Repository? {
+  static func single(from element: Kanna.XMLElement) -> Trending.Repository? {
 
     guard
       let title = title(from: element),
@@ -97,7 +97,7 @@ fileprivate extension GitHubTrending.Repository {
     let forksCount = self.forksCount(from: element)
     let contributors = self.contributors(from: element)
 
-    return GitHubTrending.Repository(
+    return Trending.Repository(
       title: title,
       description: description,
       language: language,
@@ -110,7 +110,7 @@ fileprivate extension GitHubTrending.Repository {
   }
 
   static func title(from element: Kanna.XMLElement) -> String? {
-    let jack = Jack("GitHubTrending.Repository.title(from:)")
+    let jack = Jack("GitHub.Trending.Repository.title(from:)")
 
     guard let anchor = element.css("div > h3 > a").first else {
       jack.error("failed to get the <a> element which should contain the title of the repository")
@@ -126,7 +126,7 @@ fileprivate extension GitHubTrending.Repository {
   }
 
   static func description(from element: Kanna.XMLElement) -> String? {
-    let jack = Jack("GitHubTrending.Repository.description(from:)")
+    let jack = Jack("GitHub.Trending.Repository.description(from:)")
 
     guard let div = element.css("div:nth-child(3)").first else {
       jack.error("failed to get the <div> element which should contain the description of the repository")
@@ -142,7 +142,7 @@ fileprivate extension GitHubTrending.Repository {
   }
 
   static func language(from element: Kanna.XMLElement) -> (name: String, color: String)? {
-    let jack = Jack("GitHubTrending.Repository.language(from:)")
+    let jack = Jack("GitHub.Trending.Repository.language(from:)")
 
     // Color string
 
@@ -162,7 +162,7 @@ fileprivate extension GitHubTrending.Repository {
       return nil
     }
 
-    guard let colorString = GitHubTrending.Repository.colorString(from: style) else {
+    guard let colorString = Trending.Repository.colorString(from: style) else {
       jack.error("failed to extract color string from style string: \(style)")
       return nil
     }
@@ -188,7 +188,7 @@ fileprivate extension GitHubTrending.Repository {
   }
 
   static func starsCount(from element: Kanna.XMLElement) -> Int? {
-    let jack = Jack("GitHubTrending.Repository.starsCount(from:)")
+    let jack = Jack("GitHub.Trending.Repository.starsCount(from:)")
 
     let selector = """
     div.f6.text-gray.mt-2 \
@@ -217,7 +217,7 @@ fileprivate extension GitHubTrending.Repository {
   }
 
   static func forksCount(from element: Kanna.XMLElement) -> Int? {
-    let jack = Jack("GitHubTrending.Repository.forksCount(from:)")
+    let jack = Jack("GitHub.Trending.Repository.forksCount(from:)")
 
     let selector = """
     div.f6.text-gray.mt-2 \
@@ -248,7 +248,7 @@ fileprivate extension GitHubTrending.Repository {
   }
 
   static func gainedStarsCount(from element: Kanna.XMLElement) -> Int? {
-    let jack = Jack("GitHubTrending.Repository.gainedStarsCount(from:)")
+    let jack = Jack("GitHub.Trending.Repository.gainedStarsCount(from:)")
 
     let selector = """
     div.f6.text-gray.mt-2 \
@@ -281,7 +281,7 @@ fileprivate extension GitHubTrending.Repository {
   }
 
   static func contributors(from element: Kanna.XMLElement) -> [Contributor] {
-    let jack = Jack("GitHubTrending.Repository.contributors(from:)")
+    let jack = Jack("GitHub.Trending.Repository.contributors(from:)")
 
     let selector = """
     div.f6.text-gray.mt-2      \

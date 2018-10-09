@@ -45,7 +45,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
 
     it("lists trending developers") {
       // Arrange
-      let jack = Jack("Test.GitHubTrending.developers(of:in)")
+      let jack = Jack("Test.GitHub.Trending.developers(of:in)")
 
       NetworkStubbing.stubIfEnabled(
         name: "developer-trending",
@@ -54,7 +54,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = GitHubTrending.developers(of: "swift", in: .pastWeek)
+        _ = Trending.developers(of: "swift", in: .pastWeek)
           .subscribe(
             onSuccess: { _ in
               done()

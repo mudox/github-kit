@@ -4,7 +4,7 @@ import Kanna
 
 import JacKit
 
-public extension GitHubTrending {
+public extension Trending {
 
   struct Developer {
     let logoURL: URL
@@ -18,10 +18,10 @@ public extension GitHubTrending {
 
 // MARK: - Internal
 
-internal extension GitHubTrending.Developer {
+internal extension Trending.Developer {
 
-  static func list(from htmlString: String) -> [GitHubTrending.Developer]? {
-    let jack = Jack("GitHubTrending.Developer.list(from:)")
+  static func list(from htmlString: String) -> [Trending.Developer]? {
+    let jack = Jack("GitHub.Trending.Developer.list(from:)")
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       jack.error("init `Kanna.HTML` failed")
@@ -38,7 +38,7 @@ internal extension GitHubTrending.Developer {
     let items = doc.css(selector)
     jack.debug("found \(items.count) items", options: .short)
 
-    var developers = [GitHubTrending.Developer]()
+    var developers = [Trending.Developer]()
     for item in items {
       guard let developer = single(from: item) else {
         return nil
@@ -54,9 +54,9 @@ internal extension GitHubTrending.Developer {
 
 // MARK: - Fileprivate
 
-fileprivate extension GitHubTrending.Developer {
+fileprivate extension Trending.Developer {
 
-  static func single(from element: Kanna.XMLElement) -> GitHubTrending.Developer? {
+  static func single(from element: Kanna.XMLElement) -> Trending.Developer? {
 
     guard
       let logoURL = logo(from: element),
@@ -66,7 +66,7 @@ fileprivate extension GitHubTrending.Developer {
       return nil
     }
 
-    return GitHubTrending.Developer(
+    return Trending.Developer(
       logoURL: logoURL,
       name: name,
       displayName: displayName,
@@ -76,7 +76,7 @@ fileprivate extension GitHubTrending.Developer {
   }
 
   static func logo(from element: Kanna.XMLElement) -> URL? {
-    let jack = Jack("GitHubTrending.Developer.logo(from:)")
+    let jack = Jack("GitHub.Trending.Developer.logo(from:)")
 
     guard let img = element.css("div > a > img").first else {
       jack.error("failed to get the <img> element which should contain the url of the developer's logo")
@@ -92,7 +92,7 @@ fileprivate extension GitHubTrending.Developer {
   }
 
   static func names(from element: XMLElement) -> (name: String, displayName: String?)? {
-    let jack = Jack("GitHubTrending.Developer.names(from:)")
+    let jack = Jack("GitHub.Trending.Developer.names(from:)")
 
     // Name of developer
     guard let anchor = element.css("div > div > h2 > a").first else {
@@ -131,7 +131,7 @@ fileprivate extension GitHubTrending.Developer {
   }
 
   static func repository(from element: XMLElement) -> (name: String, description: String)? {
-    let jack = Jack("GitHubTrending.Developer.repository(from:)")
+    let jack = Jack("GitHub.Trending.Developer.repository(from:)")
 
     guard let span = element.css("div > div > a > span[class^=\"repo-snipit-name\"]").first else {
       jack.error("failed to get the <span> element which should contain the name of the repository")

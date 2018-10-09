@@ -188,7 +188,7 @@
 		3A58A4FDD5AAE8ED7D661333BFD138B4 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E5C93434A8AA454A3738CC479EB77B /* Timeout.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3A95E4E5601113F596FFC3DEDDE7D9D8 /* HotObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140071DCC93F484DC05207727ADE5E76 /* HotObservable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3BD01F8E61667B00047170FC27494FCE /* OHHTTPStubsResponse+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 286CB2BD2291744E3FDC47F1CAA3F65F /* OHHTTPStubsResponse+JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3BF91B7F9240498055A047A96E6117D0 /* GitHubTrending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87011DD7E55E8D680793B63D3FD50D69 /* GitHubTrending.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		3BF91B7F9240498055A047A96E6117D0 /* Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87011DD7E55E8D680793B63D3FD50D69 /* Trending.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3C8B6ADDF45A91979E84E67F6D049989 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E4F99963E92CBB430E1A17EECDBED5 /* Pagination.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3D121C30F859F404B2D61DC65563900E /* MainScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0369198865C7664EEE06808EAF345AA /* MainScheduler.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3D40A58AF0C156984EBB7D3B6F68B09C /* PrimitiveSequence+Zip+arity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F7A8DFEF502FAEF693BE2B00CB0AE /* PrimitiveSequence+Zip+arity.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -1505,7 +1505,7 @@
 		86EA4168B61628D009FF0B2A7F4BA952 /* Collection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		86EB224FBCB62DC838DA799F245B5460 /* QCKDSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QCKDSL.h; path = Sources/QuickObjectiveC/DSL/QCKDSL.h; sourceTree = "<group>"; };
 		86FFC0C43CA766F5A7C89AE508A8B40A /* UIProgressView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIProgressView+Rx.swift"; path = "RxCocoa/iOS/UIProgressView+Rx.swift"; sourceTree = "<group>"; };
-		87011DD7E55E8D680793B63D3FD50D69 /* GitHubTrending.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GitHubTrending.swift; sourceTree = "<group>"; };
+		87011DD7E55E8D680793B63D3FD50D69 /* Trending.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Trending.swift; sourceTree = "<group>"; };
 		8707DB0DBF0898448F49F834B8A84FA8 /* minishared.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = minishared.c; path = SSZipArchive/minizip/minishared.c; sourceTree = "<group>"; };
 		87A2C208771B4145391557611E05C981 /* Reactive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reactive.swift; path = RxSwift/Reactive.swift; sourceTree = "<group>"; };
 		87D28CFD4627685611083DCC24F70F71 /* ValidationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ValidationType.swift; path = Sources/Moya/ValidationType.swift; sourceTree = "<group>"; };
@@ -3429,7 +3429,7 @@
 		FA9B3896010414AB820D88E8C90A81AB /* Trendings */ = {
 			isa = PBXGroup;
 			children = (
-				87011DD7E55E8D680793B63D3FD50D69 /* GitHubTrending.swift */,
+				87011DD7E55E8D680793B63D3FD50D69 /* Trending.swift */,
 				10C099EA1FCC372EA622C76B3F180CE8 /* TrendingDeveloper.swift */,
 				7C210E5891E309B23713A6857C538AF8 /* TrendingRepository.swift */,
 			);
@@ -4182,7 +4182,7 @@
 				071888629CFBF8811CBB81B3D931162D /* GitHubService+Search.swift in Sources */,
 				3A4229B0F6A51E198DAC980A9A14617C /* GitHubService+UserProfile.swift in Sources */,
 				EC784567C963BF5EF62246D639992C94 /* Service.swift in Sources */,
-				3BF91B7F9240498055A047A96E6117D0 /* GitHubTrending.swift in Sources */,
+				3BF91B7F9240498055A047A96E6117D0 /* Trending.swift in Sources */,
 				7B7A099A431DE0DF1912EB83E2CBC34E /* Grant.swift in Sources */,
 				7405E00306D628A92E91C0116484DACC /* HeaderRateLimit.swift in Sources */,
 				55D0DC4315F16FFF28257BBFA7587F47 /* Headers.swift in Sources */,
