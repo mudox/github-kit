@@ -39,6 +39,8 @@ class AuthorizationSpec: QuickSpec { override func spec() {
           \(Jack.dump(of: response))
           \(Jack.dump(of: response.payload))
           """)
+          
+          Vault.token = response.payload.token
           done()
         },
         onError: { jack.error(Jack.dump(of: $0)); fatalError() }
