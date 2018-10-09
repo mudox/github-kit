@@ -28,9 +28,9 @@ enum Fixtures {
     OHHTTPStubs.removeAllStubs()
   }
 
-  static var gitHubService: Service = {
+  static var gitHubService: GitHub.Service = {
     let plugin = AuthPlugin(token: Vault.token, user: Vault.user, app: Vault.app)
-    return Service(authPlugin: plugin)
+    return GitHub.Service(authPlugin: plugin)
   }()
   
 }

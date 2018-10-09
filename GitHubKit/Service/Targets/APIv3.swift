@@ -1,7 +1,7 @@
 import Moya
 
 // MARK: Endpoints
-public enum GitHubAPIv3 {
+public enum APIv3 {
 
   // MARK: Search
 
@@ -59,7 +59,7 @@ public enum GitHubAPIv3 {
 
 // MARK: - Moya.TargetType
 
-extension GitHubAPIv3: Moya.TargetType {
+extension APIv3: Moya.TargetType {
 
   public var method: Moya.Method {
     switch self {
@@ -318,7 +318,7 @@ extension GitHubAPIv3: Moya.TargetType {
 
 // MARK: - Authentication Type
 
-extension GitHubAPIv3 {
+extension APIv3 {
   enum AuthenticationType {
     case none
     case user

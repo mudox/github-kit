@@ -21,7 +21,7 @@ public class AuthPlugin: PluginType {
   public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
     let jack = Jack("GitHubKit.AuthPlugin").set(options: .short)
 
-    guard let target = target as? GitHubAPIv3 else {
+    guard let target = target as? APIv3 else {
       jack.warn("the target type is not `GitHub.APIv3`")
       return request
     }

@@ -1,6 +1,6 @@
 import Moya
 
-public enum GitHubAPIv4 {
+public enum APIv4 {
 
   // Unplanned
 
