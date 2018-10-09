@@ -252,10 +252,9 @@ extension APIv3: Moya.TargetType {
     // Authorization
     case let .authorize(authParam):
       var param: [String: Any] = [
-        "client_id": authParam.appKey,
-        "client_secret": authParam.appSecret,
-//        "scopes": Array(authParam.scope.rawValue), // which is a Set, can be JSON encoded into an array
-        "scopes": ["user"],
+        "client_id": authParam.app.key,
+        "client_secret": authParam.app.secret,
+        "scopes": Array(authParam.scope.rawValue)
       ]
       if let note = authParam.note {
         param["note"] = note

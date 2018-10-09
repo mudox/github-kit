@@ -3,20 +3,30 @@ import Foundation
 import Moya
 import RxSwift
 
+import  JacKit
+
+private let jack = Jack("GitHub.Service.Authorization")
+
 public struct AuthorizationParameter {
   // Required
-  public let appKey: String
-  public let appSecret: String
+  public let user: (name: String, password: String)
+  public let app: (key: String, secret: String)
+
   public let scope: AuthorizationScope
 
   // Optional
   public let note: String?
 
-  public init(appKey: String, appSecret: String, scope: AuthorizationScope, note: String? = nil) {
-    self.appKey = appKey
-    self.appSecret = appSecret
+  public init(
+    user: (name: String, password: String),
+    app: (key: String, secret: String),
+    scope: AuthorizationScope,
+    note: String? = nil
+  ) {
+    self.app = app
+    self.user = user
     self.scope = scope
-      self.note = note
+    self.note = note
   }
 }
 
