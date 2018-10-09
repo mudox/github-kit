@@ -19,7 +19,7 @@ public enum APIv3 {
 
   // MARK: Authorization
 
-  case authorize(AuthorizationParameter)
+  case authorize(AuthParameter)
   case deleteAuthorization(id: Int)
   case authorizations
 
