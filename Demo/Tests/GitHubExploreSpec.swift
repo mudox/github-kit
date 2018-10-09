@@ -15,7 +15,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
   afterEach(Fixtures.cleanup)
 
   describe("GitHubExplore") {
-
+    
     // MARK: curatedTopics
 
     it("curatedTopics") {
@@ -24,14 +24,14 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = GitHubExplore.curatedTopics(aftreSync: true)
+        _ = GitHubExplore.curatedTopics(aftreSync: false)
           .subscribe(
             onSuccess: { topics in
-              jack.info("Found \(topics.count) curated topics")
+              jack.descendant("onSuccess").info("Found \(topics.count) curated topics")
               done()
             },
             onError: { error in
-              jack.error(Jack.dump(of: error))
+              jack.descendant("onError").error(Jack.dump(of: error))
               fatalError()
             }
           )
@@ -46,7 +46,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = GitHubExplore.collections(afterSync: true)
+        _ = GitHubExplore.collections(afterSync: false)
           .subscribe(
             onSuccess: { collections in
               jack.info("Found \(collections.count) collections")

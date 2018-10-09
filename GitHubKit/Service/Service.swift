@@ -2,7 +2,7 @@ import Foundation
 
 import Moya
 
-public class GitHubService {
+public class Service {
 
   public let authPlugin: AuthPlugin
   public let loggingPlugin: LoggingPlugin

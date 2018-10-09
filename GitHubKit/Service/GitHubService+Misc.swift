@@ -2,7 +2,7 @@ import Foundation
 
 import RxSwift
 
-public extension GitHubService {
+public extension Service {
 
   /// Request a random GitHub philosophy.
   ///

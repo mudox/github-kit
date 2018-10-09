@@ -20,7 +20,7 @@ public struct AuthorizationParameter {
   }
 }
 
-public extension GitHubService {
+public extension Service {
   // MARK: - Authorization
 
   typealias AuthorizeResponse = Response<Authorization>
