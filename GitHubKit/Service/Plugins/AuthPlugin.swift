@@ -4,18 +4,18 @@ import JacKit
 
 private let jack = Jack("GitHub.AuthPlugin").set(options: .short)
 
-public protocol CredentialProdiver {
-  var token: String? { get }
-  var user: (name: String, password: String)? { get }
-  var app: (key: String, secret: String)? { get }
+public protocol CredentialServiceType: class {
+  var token: String? { get set }
+  var user: (name: String, password: String)? { get set }
+  var app: (key: String, secret: String)? { get set }
 }
 
 public class AuthPlugin: PluginType {
 
-  private let credentialProvider: CredentialProdiver
+  private let credentialService: CredentialServiceType
 
-  public init(credentialProvider: CredentialProdiver) {
-    self.credentialProvider = credentialProvider
+  public init(credentialService: CredentialServiceType) {
+    self.credentialService = credentialService
   }
 
   // MARK: - PluginType
@@ -32,21 +32,21 @@ public class AuthPlugin: PluginType {
     case .none:
       break
     case .user:
-      guard let (name, password) = credentialProvider.user else {
+      guard let (name, password) = credentialService.user else {
         jack.warn("username & password is missing")
         return request
       }
       let field = Headers.Authorization.user(name: name, password: password)
       request.setValue(field, forHTTPHeaderField: "Authorization")
     case .app:
-      guard let (key, secret) = credentialProvider.app else {
+      guard let (key, secret) = credentialService.app else {
         jack.warn("app key & secret is missing")
         return request
       }
       let field = Headers.Authorization.app(key: key, secret: secret)
       request.setValue(field, forHTTPHeaderField: "Authorization")
     case .token:
-      guard let token = credentialProvider.token else {
+      guard let token = credentialService.token else {
         jack.warn("access token is missing")
         return request
       }
