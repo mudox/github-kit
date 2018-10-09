@@ -7,12 +7,12 @@ import  JacKit
 
 private let jack = Jack("GitHub.Service.Authorization")
 
-public struct AuthorizationParameter {
+public struct AuthParameter {
   // Required
   public let user: (name: String, password: String)
   public let app: (key: String, secret: String)
 
-  public let scope: AuthorizationScope
+  public let scope: AuthScope
 
   // Optional
   public let note: String?
@@ -20,7 +20,7 @@ public struct AuthorizationParameter {
   public init(
     user: (name: String, password: String),
     app: (key: String, secret: String),
-    scope: AuthorizationScope,
+    scope: AuthScope,
     note: String? = nil
   ) {
     self.app = app
@@ -38,9 +38,19 @@ public extension Service {
   /// Create a new authorization.
   ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
-  func authorize(with paramters: AuthorizationParameter) -> Single<AuthorizeResponse> {
+  func authorize(with paramters: AuthParameter) -> Single<AuthorizeResponse> {
     return provider.rx.request(.authorize(paramters))
       .map(AuthorizeResponse.init)
+      .do(onSuccess: { [weak self] reponse in
+        guard let `self` = self else {
+          jack.descendant("authorize.do.onSuccess").warn("weakly captured self is nil")
+          return
+        }
+        
+        self.credentialService.token = reponse.payload.token
+        self.credentialService.user = paramters.user
+        self.credentialService.app = paramters.app
+      })
   }
 
   /// Revoke an authorization with given ID.
