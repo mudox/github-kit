@@ -4,7 +4,7 @@ import Yams
 
 import JacKit
 
-internal extension GitHubExplore {
+internal extension Explore {
 
   /// Parse the **index.md** markdown files from github/explore repository.
   ///

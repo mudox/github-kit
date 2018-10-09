@@ -9,24 +9,24 @@ import Yams
 
 import JacKit
 
-public struct GitHubExplore {
+public struct Explore {
 
   private static let downloadURL = URL(string: "https://github.com/github/explore/archive/master.zip")!
 
-  /// Application Support/GitHubKit/GitHubExplore
+  /// Application Support/GitHubKit/GitHub.Explore
   private static let rootDirectoryURL: URL = {
     let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-    return url.appendingPathComponent("GitHubKit/GitHubExplore")
+    return url.appendingPathComponent("GitHubKit/GitHub.Explore")
   }()
 
-  /// Application Support/GitHubKit/GitHubExplore/master.zip
+  /// Application Support/GitHubKit/GitHub.Explore/master.zip
   private static let downloadedZipFileURL = rootDirectoryURL.appendingPathComponent("downloaded.zip")
 
-  /// Application Support/GitHubKit/GitHubExplore/unzipped
+  /// Application Support/GitHubKit/GitHub.Explore/unzipped
   private static let unzippedDirectoryURL = rootDirectoryURL.appendingPathComponent("explore-master")
 
   private static var isCached: Bool {
-    let jack = Jack("GitHubExplore.isCached").set(options: .short)
+    let jack = Jack("GitHub.Explore.isCached").set(options: .short)
     if  FileManager.default.fileExists(atPath: unzippedDirectoryURL.path) {
       jack.verbose("repo github/explore is cached")
       return true
@@ -45,7 +45,7 @@ public struct GitHubExplore {
   public static var synchronize: Completable {
 
     return .create { completable in
-      Jack("GitHubExplore.synchronize").info("download github/explore/master.zip ...")
+      Jack("GitHub.Explore.synchronize").info("download github/explore/master.zip ...")
 
       let request = URLRequest(url: downloadURL)
 
@@ -84,7 +84,7 @@ public struct GitHubExplore {
           .filter { url in
             FileManager.default.fileExists(atPath: url.path)
           }
-          // Parse each `index.md` file as an instance of `GitHubExplore.CuratedTopic`
+          // Parse each `index.md` file as an instance of `GitHub.Explore.CuratedTopic`
           .map { url -> CuratedTopic in
             let text = try String(contentsOf: url)
             let (yamlString, description) = try parse(text: text)
@@ -101,7 +101,7 @@ public struct GitHubExplore {
   }
 
   /// Scan the downloaded 'github/explore' folder, parse each 'topics/\*/index.md'
-  /// file as an instance of `GitHubExplore.CuratedTopic`.
+  /// file as an instance of `GitHub.Explore.CuratedTopic`.
   public static func curatedTopics(aftreSync sync: Bool = false) -> Single<[CuratedTopic]> {
     if !isCached || sync {
       return synchronize.andThen(loadCuratedTopics)
@@ -134,7 +134,7 @@ public struct GitHubExplore {
           .filter { url in
             FileManager.default.fileExists(atPath: url.path)
           }
-          // Parse each `index.md` file as an instance of `GitHubExplore.Collection`
+          // Parse each `index.md` file as an instance of `GitHub.Explore.Collection`
           .map { url -> Collection in
             let text = try String(contentsOf: url)
             let (yamlString, description) = try parse(text: text)
@@ -151,7 +151,7 @@ public struct GitHubExplore {
   }
 
   /// Scan the downloaded 'github/explore' folder, parse each 'collections/\*/index.md'
-  /// file as an instance of `GitHubExplore.Collection`.
+  /// file as an instance of `GitHub.Explore.Collection`.
   public static func collections(afterSync sync: Bool = false) -> Single<[Collection]> {
     if !isCached || sync {
       return synchronize.andThen(loadCollections)

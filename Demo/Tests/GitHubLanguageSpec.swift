@@ -14,11 +14,11 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
   beforeEach(Fixtures.setup)
   afterEach(Fixtures.cleanup)
 
-  describe("GitHubLanguage") {
+  describe("GitHub.Language") {
 
     it("lists all github languages") {
       // Arrange
-      let jack = Jack("Test.GitHubLanguage.all")
+      let jack = Jack("Test.GitHub.Language.all")
 
       NetworkStubbing.stubIfEnabled(
         name: "github-languages",
@@ -27,7 +27,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = GitHubLanguage.all
+        _ = GitHub.Language.all
           .subscribe(
             onSuccess: { languages in
               languages[...4].forEach { language in

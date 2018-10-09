@@ -4,7 +4,7 @@ import Yams
 
 import JacKit
 
-public extension GitHubExplore {
+public extension Explore {
 
   struct CuratedTopic {
 
@@ -64,7 +64,7 @@ public extension GitHubExplore {
 
 // MARK: - YAML Representation
 
-fileprivate extension GitHubExplore.CuratedTopic {
+fileprivate extension Explore.CuratedTopic {
 
   /// YAML reprentation in `github/explore`
   struct _YAML: Decodable {

@@ -7,14 +7,14 @@ import Yams
 
 import JacKit
 
-public struct GitHubLanguage: Decodable {
+public struct Language: Decodable {
 
   let name: String
   let color: String?
 
 }
 
-extension GitHubLanguage {
+extension Language {
 
 //  private static let cacheDirectory: URL = {
 //    let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
@@ -25,14 +25,14 @@ extension GitHubLanguage {
 //    cacheDirectory.appendingPathComponent("languages.yml")
 //  }()
 
-  public static var all: Single<[GitHubLanguage]> {
+  public static var all: Single<[Language]> {
     let url = URL(string: "https://github.com/github/linguist/raw/master/lib/linguist/languages.yml")!
     return RxAlamofire.string(.get, url)
       .asSingle()
-      .map { string -> [GitHubLanguage] in
+      .map { string -> [Language] in
         let decoder = YAMLDecoder()
         return try decoder.decode([String: _YAML].self, from: string).map { key, value in
-          GitHubLanguage(name: key, color: value.color)
+          Language(name: key, color: value.color)
         }
       }
   }
