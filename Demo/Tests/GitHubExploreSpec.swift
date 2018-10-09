@@ -10,14 +10,9 @@ import GitHub
 import JacKit
 
 class GitHubExploreSpec: QuickSpec { override func spec() {
-
-  beforeEach {
-    NetworkStubbing.setup()
-  }
-
-  afterEach {
-    OHHTTPStubs.removeAllStubs()
-  }
+  
+  beforeEach(Fixtures.setup)
+  afterEach(Fixtures.cleanup)
 
   describe("GitHubExplore") {
 

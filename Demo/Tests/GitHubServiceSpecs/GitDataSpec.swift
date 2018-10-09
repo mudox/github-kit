@@ -11,9 +11,9 @@ import JacKit
 
 class GitDataSpec: QuickSpec { override func spec() {
 
-beforeEach(Fixtures.setup)
+  beforeEach(Fixtures.setup)
+  afterEach(Fixtures.cleanup)
 
-afterEach(Fixtures.cleanup)
 
   // MARK: reference
 

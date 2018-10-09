@@ -12,7 +12,6 @@ import JacKit
 class SearchSpec: QuickSpec { override func spec() {
 
   beforeEach(Fixtures.setup)
-
   afterEach(Fixtures.cleanup)
 
   // MARK: searchRepository

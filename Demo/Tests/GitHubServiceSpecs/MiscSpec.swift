@@ -12,7 +12,6 @@ import JacKit
 class MiscSpec: QuickSpec { override func spec() {
 
 beforeEach(Fixtures.setup)
-
 afterEach(Fixtures.cleanup)
 
   // MARK: zen

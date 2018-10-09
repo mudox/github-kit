@@ -13,7 +13,6 @@ class RepositorySpec: QuickSpec { override func spec() {
 
 
   beforeEach(Fixtures.setup)
-  
   afterEach(Fixtures.cleanup)
   
   // MARK: repostiory

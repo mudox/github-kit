@@ -11,13 +11,8 @@ import JacKit
 
 class GitHubLanguageSpec: QuickSpec { override func spec() {
   
-  beforeEach {
-    NetworkStubbing.setup()
-  }
-
-  afterEach {
-    OHHTTPStubs.removeAllStubs()
-  }
+  beforeEach(Fixtures.setup)
+  afterEach(Fixtures.cleanup)
 
   describe("GitHubLanguage") {
 
