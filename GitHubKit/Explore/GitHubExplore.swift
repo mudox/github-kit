@@ -11,19 +11,29 @@ import JacKit
 
 public struct GitHubExplore {
 
-  fileprivate static let downloadURL = URL(string: "https://github.com/github/explore/archive/master.zip")!
+  private static let downloadURL = URL(string: "https://github.com/github/explore/archive/master.zip")!
 
-  fileprivate static let zipURL: URL = {
+  /// Application Support/GitHubKit/GitHubExplore
+  private static let rootDirectoryURL: URL = {
     let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-    return url.appendingPathComponent("GitHubKit/GitHubExplore/master.zip")
+    return url.appendingPathComponent("GitHubKit/GitHubExplore")
   }()
 
-  fileprivate static let unzipURL = zipURL.deletingPathExtension()
+  /// Application Support/GitHubKit/GitHubExplore/master.zip
+  private static let downloadedZipFileURL = rootDirectoryURL.appendingPathComponent("downloaded.zip")
 
-  fileprivate static let url = unzipURL.appendingPathComponent("explore-master")
+  /// Application Support/GitHubKit/GitHubExplore/unzipped
+  private static let unzippedDirectoryURL = rootDirectoryURL.appendingPathComponent("explore-master")
 
-  fileprivate static var localCloneExistis: Bool {
-    return FileManager.default.fileExists(atPath: url.path)
+  private static var isCached: Bool {
+    let jack = Jack("GitHubExplore.isCached").set(options: .short)
+    if  FileManager.default.fileExists(atPath: unzippedDirectoryURL.path) {
+      jack.verbose("repo github/explore is cached")
+      return true
+    } else {
+      jack.verbose("repo github/explore is NOT cached")
+      return false
+    }
   }
 
   // MARK: - Interface
@@ -35,19 +45,20 @@ public struct GitHubExplore {
   public static var synchronize: Completable {
 
     return .create { completable in
+      Jack("GitHubExplore.synchronize").info("download github/explore/master.zip ...")
 
       let request = URLRequest(url: downloadURL)
 
       let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-        (zipURL, [.removePreviousFile, .createIntermediateDirectories])
+        (downloadedZipFileURL, [.removePreviousFile, .createIntermediateDirectories])
       }
 
       return RxAlamofire.download(request, to: destination)
         .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
         .subscribe(onCompleted: {
           SSZipArchive.unzipFile(
-            atPath: zipURL.path,
-            toDestination: zipURL.deletingLastPathComponent().path
+            atPath: downloadedZipFileURL.path,
+            toDestination: downloadedZipFileURL.deletingLastPathComponent().path
           )
           completable(.completed)
         })
@@ -60,14 +71,14 @@ public struct GitHubExplore {
 
       // Parse folder
       do {
-        let topicsDirectoryURL = url.appendingPathComponent("topics")
+        let topicsDirectoryURL = unzippedDirectoryURL.appendingPathComponent("topics")
 
         let curatedTopics = try FileManager.default
           .contentsOfDirectory(atPath: topicsDirectoryURL.path)
           // Append `/topics/index.md`
           .map { path -> URL in
             let markdownPath = path.appending("/index.md")
-            return url.appendingPathComponent("/topics/\(markdownPath)")
+            return unzippedDirectoryURL.appendingPathComponent("/topics/\(markdownPath)")
           }
           // Filter out non-existing files.
           .filter { url in
@@ -92,7 +103,7 @@ public struct GitHubExplore {
   /// Scan the downloaded 'github/explore' folder, parse each 'topics/\*/index.md'
   /// file as an instance of `GitHubExplore.CuratedTopic`.
   public static func curatedTopics(aftreSync sync: Bool = false) -> Single<[CuratedTopic]> {
-    if !localCloneExistis || sync {
+    if !isCached || sync {
       return synchronize.andThen(loadCuratedTopics)
     } else {
       return loadCuratedTopics
@@ -104,20 +115,20 @@ public struct GitHubExplore {
 
       // Unzip
       SSZipArchive.unzipFile(
-        atPath: zipURL.path,
-        toDestination: zipURL.deletingLastPathComponent().path
+        atPath: downloadedZipFileURL.path,
+        toDestination: downloadedZipFileURL.deletingLastPathComponent().path
       )
 
       // Parse folder
       do {
-        let collectionsDirectoryURL = url.appendingPathComponent("collections")
+        let collectionsDirectoryURL = unzippedDirectoryURL.appendingPathComponent("collections")
 
         let collections = try FileManager.default
           .contentsOfDirectory(atPath: collectionsDirectoryURL.path)
           // Append `/collections/index.md`
           .map { path -> URL in
             let markdownPath = path.appending("/index.md")
-            return url.appendingPathComponent("/collections/\(markdownPath)")
+            return unzippedDirectoryURL.appendingPathComponent("/collections/\(markdownPath)")
           }
           // Filter out non-existing files.
           .filter { url in
@@ -142,7 +153,7 @@ public struct GitHubExplore {
   /// Scan the downloaded 'github/explore' folder, parse each 'collections/\*/index.md'
   /// file as an instance of `GitHubExplore.Collection`.
   public static func collections(afterSync sync: Bool = false) -> Single<[Collection]> {
-    if !localCloneExistis || sync {
+    if !isCached || sync {
       return synchronize.andThen(loadCollections)
     } else {
       return loadCollections
