@@ -1,5 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'GitHubKit'
+  s.module_name      = 'GitHub'
   s.version          = '0.1.0'
   s.summary          = 'Yet another Swift implementation of GitHub API v3 (RESTful)'
 
