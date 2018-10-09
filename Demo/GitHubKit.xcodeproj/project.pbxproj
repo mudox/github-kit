@@ -50,7 +50,7 @@
 		F41074C7216CC02600F0987D /* GitHubTrendingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4107495216CC02600F0987D /* GitHubTrendingSpec.swift */; };
 		F41074C8216CC02600F0987D /* GitHubExploreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4107496216CC02600F0987D /* GitHubExploreSpec.swift */; };
 		F41074C9216CC02600F0987D /* AuthorizationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4107498216CC02600F0987D /* AuthorizationSpec.swift */; };
-		F41074CA216CC02600F0987D /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4107499216CC02600F0987D /* Vault.swift */; };
+		F41074CA216CC02600F0987D /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4107499216CC02600F0987D /* Credentials.swift */; };
 		F41074CB216CC02600F0987D /* MiscSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410749A216CC02600F0987D /* MiscSpec.swift */; };
 		F41074CC216CC02600F0987D /* SearchSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410749B216CC02600F0987D /* SearchSpec.swift */; };
 		F41074CD216CC02600F0987D /* GitDataSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410749C216CC02600F0987D /* GitDataSpec.swift */; };
@@ -133,7 +133,7 @@
 		F4107495216CC02600F0987D /* GitHubTrendingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubTrendingSpec.swift; sourceTree = "<group>"; };
 		F4107496216CC02600F0987D /* GitHubExploreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubExploreSpec.swift; sourceTree = "<group>"; };
 		F4107498216CC02600F0987D /* AuthorizationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationSpec.swift; sourceTree = "<group>"; };
-		F4107499216CC02600F0987D /* Vault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
+		F4107499216CC02600F0987D /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		F410749A216CC02600F0987D /* MiscSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSpec.swift; sourceTree = "<group>"; };
 		F410749B216CC02600F0987D /* SearchSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSpec.swift; sourceTree = "<group>"; };
 		F410749C216CC02600F0987D /* GitDataSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitDataSpec.swift; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				F4107498216CC02600F0987D /* AuthorizationSpec.swift */,
-				F4107499216CC02600F0987D /* Vault.swift */,
+				F4107499216CC02600F0987D /* Credentials.swift */,
 				F410749A216CC02600F0987D /* MiscSpec.swift */,
 				F410749B216CC02600F0987D /* SearchSpec.swift */,
 				F410749C216CC02600F0987D /* GitDataSpec.swift */,
@@ -641,7 +641,7 @@
 				F41074C7216CC02600F0987D /* GitHubTrendingSpec.swift in Sources */,
 				F41074CC216CC02600F0987D /* SearchSpec.swift in Sources */,
 				F41074CF216CC02600F0987D /* RepositorySpec.swift in Sources */,
-				F41074CA216CC02600F0987D /* Vault.swift in Sources */,
+				F41074CA216CC02600F0987D /* Credentials.swift in Sources */,
 				F41074CE216CC02600F0987D /* UserSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

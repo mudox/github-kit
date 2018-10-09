@@ -29,7 +29,7 @@ enum Fixtures {
   }
 
   static var gitHubService: GitHub.Service = {
-    let plugin = AuthPlugin(token: Vault.token, user: Vault.user, app: Vault.app)
+    let plugin = AuthPlugin(credentialProvider: Credentials.shared)
     return GitHub.Service(authPlugin: plugin)
   }()
   

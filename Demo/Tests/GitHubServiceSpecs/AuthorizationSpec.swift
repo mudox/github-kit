@@ -28,8 +28,8 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     // Act, Assert
     waitUntil { done in
       let param = AuthorizationParameter(
-        appKey: Vault.app.key,
-        appSecret: Vault.app.secret,
+        appKey: Credentials.shared.app!.key,
+        appSecret: Credentials.shared.app!.secret,
         scope: [.user, .repository]
       )
 
@@ -40,7 +40,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
           \(Jack.dump(of: response.payload))
           """)
           
-          Vault.token = response.payload.token
+          Credentials.shared.token = response.payload.token
           done()
         },
         onError: { jack.error(Jack.dump(of: $0)); fatalError() }

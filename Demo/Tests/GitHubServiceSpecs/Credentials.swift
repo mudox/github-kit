@@ -1,10 +1,18 @@
 import Foundation
 
+import GitHub
+
 import JacKit
 
-struct Vault {
+class Credentials: CredentialProdiver {
+  
+  // MARK: - Singleton
+  
+  static let shared = Credentials()
+  
+  private init() {}
 
-  static var token: String? {
+  var token: String? {
     get {
       if let token = UserDefaults.standard.string(forKey: "accessToken") {
         return token
@@ -15,16 +23,16 @@ struct Vault {
     }
     set {
       UserDefaults.standard.set(newValue, forKey: "accessToken")
-      
+
     }
   }
 
-  static let user = (
+  let user: (name: String, password: String)? = (
     name: "cement_ce@163.com",
     password: "zheshi1geceshihao"
   )
 
-  static let app = (
+  let app: (key: String, secret: String)? = (
     key: "c2dc8eb1cd09ac1e2381",
     secret: "1e6558ef27cd7844047b9de69dc009d0bd05579b"
   )
