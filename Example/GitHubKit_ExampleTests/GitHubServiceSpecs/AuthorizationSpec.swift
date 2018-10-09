@@ -5,52 +5,73 @@ import Quick
 
 import OHHTTPStubs
 
-import GitHubKit
+@testable import GitHubKit
 
 import JacKit
 
-class AuthorizationSpec: QuickSpec { override func spec() {
+class AuthorizationSpec: GitHubServiceSpec { override func spec() {
 
-  beforeEach {
-    Jack.defaultOptions = [.noLocation]
-    NetworkStubbing.setup()
-  }
+//  beforeEach(beforeEachClosure)
 
-  afterEach {
-    OHHTTPStubs.removeAllStubs()
-  }
+//  afterEach(afterEachClosure)
 
   // MARK: authorize
 
-  it("authorize") {
+  fit("authorize") {
     // Arrange
-    let jack = Jack("Service.authorize")
+    let jack = Jack("Test.Service.authorize")
 
-    NetworkStubbing.stubIfEnabled(
-      name: "authorize",
-      condition: isMethodPOST() && isPath("/authorizations")
-    )
+//    NetworkStubbing.stubIfEnabled(
+//      name: "authorize",
+//      condition: isMethodPOST() && isPath("/authorizations")
+//    )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.authorize().subscribe(
-        onSuccess: { response in
-          jack.info("""
-          \(Jack.dump(of: response))
-          \(Jack.dump(of: response.payload))
-          """)
-          done()
-        },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
-      )
-    }
+//    waitUntil { [weak self] done in
+//      let param = AuthorizationParameter(
+//        appKey: Auth.app.key,
+//        appSecret: Auth.app.secret,
+//        scope: [.user, .repository]
+//      )
+//
+//      _ = self?.service.authorize(with: param).subscribe(
+//        onSuccess: { response in
+//          jack.info("""
+//          \(Jack.dump(of: response))
+//          \(Jack.dump(of: response.payload))
+//          """)
+//          done()
+//        },
+//        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+//      )
+//    }
+    AsyncDefaults.Timeout = 10
+    var done = false
+    let param = AuthorizationParameter(
+      appKey: Auth.app.key,
+      appSecret: Auth.app.secret,
+      scope: [.user, .repository]
+    )
+
+    _ = self.service.authorize(with: param).subscribe(
+      onSuccess: { response in
+        jack.info("""
+        \(Jack.dump(of: response))
+        \(Jack.dump(of: response.payload))
+        """)
+        done = true
+      },
+      onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+    )
+    
+    expect(done).toEventually(beTrue())
   }
 
   // MARK: authorizations
 
   it("authorizations") {
     // Arrange
-    let jack = Jack("Service.authorizations")
+    let jack = Jack("Test.Service.authorizations")
 
     NetworkStubbing.stubIfEnabled(
       name: "authorizations",
@@ -58,8 +79,8 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.authorizations().subscribe(
+    waitUntil { done in
+      _ = self.service.authorizations().subscribe(
         onSuccess: { response in
           let hydraAuths = response.payload
             .filter { $0.app.name == "Hydra" }
@@ -91,7 +112,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   it("deleteAuthorization") {
     // Arrange
-    let jack = Jack("Service.deleteAuthorization")
+    let jack = Jack("Test.Service.deleteAuthorization")
 
     guard NetworkStubbing.isEnabled else {
       jack.warn("only run on netwokring stubbing being enabled, skip ...")
@@ -104,9 +125,9 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
+    waitUntil { done in
       let id = 1
-      _ = Service.shared.deleteAuthorization(id: id).subscribe(
+      _ = self.service.deleteAuthorization(id: id).subscribe(
         onCompleted: {
           jack.info("deleted authorization with ID: \(id)")
           done()
@@ -120,7 +141,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   it("grants") {
     // Arrange
-    let jack = Jack("Service.grants")
+    let jack = Jack("Test.Service.grants")
 
     NetworkStubbing.stubIfEnabled(
       name: "grants",
@@ -128,8 +149,8 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.grants().subscribe(
+    waitUntil { done in
+      _ = self.service.grants().subscribe(
         onSuccess: { response in
           let list = response.payload
             .enumerated()
@@ -159,7 +180,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   it("deleteGrant") {
     // Arrange
-    let jack = Jack("Service.deleteGrant")
+    let jack = Jack("Test.Service.deleteGrant")
 
     guard NetworkStubbing.isEnabled else {
       jack.warn("only run on netwokring stubbing being enabled, skip ...")
@@ -172,9 +193,9 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
+    waitUntil { done in
       let id = 1
-      _ = Service.shared.deleteGrant(id: id).subscribe(
+      _ = self.service.deleteGrant(id: id).subscribe(
         onCompleted: {
           jack.info("deleted grant with ID: \(id)")
           done()

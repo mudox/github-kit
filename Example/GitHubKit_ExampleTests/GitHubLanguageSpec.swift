@@ -10,7 +10,7 @@ import GitHubKit
 import JacKit
 
 class GitHubLanguageSpec: QuickSpec { override func spec() {
-
+  
   beforeEach {
     NetworkStubbing.setup()
   }
@@ -31,7 +31,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
       )
 
       // Act, Assert
-      waitUntil(timeout: timeout) { done in
+      waitUntil { done in
         _ = GitHubLanguage.all
           .subscribe(
             onSuccess: { languages in
@@ -58,7 +58,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
       )
 
       // Act, Assert
-      waitUntil(timeout: timeout) { done in
+      waitUntil { done in
         _ = GitHubTrending.developers(of: "swift", in: .pastWeek)
           .subscribe(
             onSuccess: { _ in

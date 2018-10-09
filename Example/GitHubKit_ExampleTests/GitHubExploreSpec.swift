@@ -10,7 +10,7 @@ import GitHubKit
 import JacKit
 
 class GitHubExploreSpec: QuickSpec { override func spec() {
-
+  
   beforeEach {
     NetworkStubbing.setup()
   }
@@ -28,7 +28,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
       let jack = Jack("Test.GitHubExplore.curatedTopics")
 
       // Act, Assert
-      waitUntil(timeout: timeout) { done in
+      waitUntil { done in
         _ = GitHubExplore.curatedTopics(aftreSync: true)
           .subscribe(
             onSuccess: { topics in
@@ -50,7 +50,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
       let jack = Jack("Test.GitHubExplore.collections")
 
       // Act, Assert
-      waitUntil(timeout: timeout) { done in
+      waitUntil { done in
         _ = GitHubExplore.collections(afterSync: true)
           .subscribe(
             onSuccess: { collections in

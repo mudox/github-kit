@@ -32,8 +32,8 @@ class GitDataSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.reference(of: "github", "explore", withPath: "heads/master")
+    waitUntil { done in
+      _ = self.service.reference(of: "github", "explore", withPath: "heads/master")
         .subscribe(
           onSuccess: { response in
             jack.info("""
@@ -59,8 +59,8 @@ class GitDataSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.commit(
+    waitUntil { done in
+      _ = self.service.commit(
         of: "github", "explore", withSHA: "04da4c2fa18043112ebcc8ca7e95fc14957f4aa1"
       )
       .subscribe(
@@ -88,9 +88,9 @@ class GitDataSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
+    waitUntil { done in
       let sha = "4b66c5bf104ff7424da52d82c05cfb6a061b7d49"
-      _ = Service.shared.tree(of: "github", "explore", withSHA: sha)
+      _ = self.service.tree(of: "github", "explore", withSHA: sha)
         .subscribe(
           onSuccess: { response in
             jack.info("""
@@ -116,9 +116,9 @@ class GitDataSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
+    waitUntil { done in
       let sha = "60c424465c52b757d9fca910ef2560e17ef0f626"
-      _ = Service.shared.blob(of: "github", "explore", withSHA: sha)
+      _ = self.service.blob(of: "github", "explore", withSHA: sha)
         .subscribe(
           onSuccess: { response in
             jack.info("""

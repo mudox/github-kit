@@ -32,8 +32,8 @@ class UserSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.myProfile().subscribe(
+    waitUntil { done in
+      _ = self.service.myProfile().subscribe(
         onSuccess: { response in
           jack.info("""
           \(Jack.dump(of: response))
@@ -58,8 +58,8 @@ class UserSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.profile(of: "mudox").subscribe(
+    waitUntil { done in
+      _ = self.service.profile(of: "mudox").subscribe(
         onSuccess: { response in
           jack.info("""
           \(Jack.dump(of: response))
@@ -84,8 +84,8 @@ class UserSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.isFollowing(from: "tracy", to: "mudox")
+    waitUntil { done in
+      _ = self.service.isFollowing(from: "tracy", to: "mudox")
         .subscribe(
           onSuccess: { response in
             jack.info("""
@@ -100,8 +100,8 @@ class UserSpec: QuickSpec { override func spec() {
     }
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.isFollowing(from: "mudox", to: "kevinzhow")
+    waitUntil { done in
+      _ = self.service.isFollowing(from: "mudox", to: "kevinzhow")
         .subscribe(
           onSuccess: { response in
             jack.info("""
@@ -128,8 +128,8 @@ class UserSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.followers(of: "mudox").subscribe(
+    waitUntil { done in
+      _ = self.service.followers(of: "mudox").subscribe(
         onSuccess: { response in
           jack.info("""
           \(Jack.dump(of: response))
@@ -154,9 +154,9 @@ class UserSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
+    waitUntil { done in
       let username = "kevinzhow"
-      _ = Service.shared.follow(username: username).subscribe(
+      _ = self.service.follow(username: username).subscribe(
         onCompleted: {
           jack.info("Followed user \(username)")
           done()
@@ -178,9 +178,9 @@ class UserSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
+    waitUntil { done in
       let username = "kevinzhow"
-      _ = Service.shared.unfollow(username: username).subscribe(
+      _ = self.service.unfollow(username: username).subscribe(
         onCompleted: {
           jack.info("Unfollowed user \(username)")
           done()

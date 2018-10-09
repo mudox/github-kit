@@ -10,7 +10,7 @@ import GitHubKit
 import JacKit
 
 class GitHubTrendingSpec: QuickSpec { override func spec() {
-
+  
   beforeEach {
     NetworkStubbing.setup()
   }
@@ -31,7 +31,7 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
       )
 
       // Act, Assert
-      waitUntil(timeout: timeout) { done in
+      waitUntil { done in
         _ = GitHubTrending.repositories(of: "swift", in: .pastMonth)
           .subscribe(
             onSuccess: { _ in
@@ -55,7 +55,7 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
       )
 
       // Act, Assert
-      waitUntil(timeout: timeout) { done in
+      waitUntil { done in
         _ = GitHubTrending.developers(of: "swift", in: .pastWeek)
           .subscribe(
             onSuccess: { _ in

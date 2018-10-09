@@ -28,19 +28,20 @@ public struct NetworkStubbing {
   }()
 
   public static func setup() {
+    
     guard isEnabled else { return }
 
-    let jack = Jack("OHHTTPStubs").set(options: .noLocation)
+    let jack = Jack("Test.OHHTTPStubs").set(options: .noLocation)
 
     OHHTTPStubs.onStubActivation { request, stub, _ in
-      Jack("OHHTTPStubs").debug("""
+      jack.descendant("onStubActivation").debug("""
       hit : \(request)
       by  : \(stub.name ?? "<anonymous stub>")
       """)
     }
 
     OHHTTPStubs.onStubMissing { request in
-      Jack("OHHTTPStubs").warn("""
+      jack.descendant("onStubMissing").warn("""
       miss hit test: \(request.httpMethod!) - \(request.url!)"
       """)
     }

@@ -32,8 +32,8 @@ class MiscSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.zen().subscribe(
+    waitUntil { done in
+      _ = self.service.zen().subscribe(
         onSuccess: { zen in
           jack.info("GitHub Zen: \(zen)")
           done()
@@ -55,8 +55,8 @@ class MiscSpec: QuickSpec { override func spec() {
     )
 
     // Act, Assert
-    waitUntil(timeout: timeout) { done in
-      _ = Service.shared.rateLimit().subscribe(
+    waitUntil { done in
+      _ = self.service.rateLimit().subscribe(
         onSuccess: { rateLimit in
           jack.info(Jack.dump(of: rateLimit))
           done()

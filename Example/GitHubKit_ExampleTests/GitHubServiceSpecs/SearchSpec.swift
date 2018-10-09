@@ -33,8 +33,8 @@ class SearchSpec: QuickSpec { override func spec() {
       )
 
       // Act, Assert
-      waitUntil(timeout: timeout) { done in
-        _ = Service.shared.searchRepository("neovim").subscribe(
+      waitUntil { done in
+        _ = self.service.searchRepository("neovim").subscribe(
           onSuccess: { response in
             jack.info("""
             \(Jack.dump(of: response))
