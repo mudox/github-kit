@@ -1,5 +1,6 @@
 import Moya
 
+// MARK: Endpoints
 public enum GitHubAPIv3 {
 
   // MARK: Search
@@ -251,9 +252,10 @@ extension GitHubAPIv3: Moya.TargetType {
     // Authorization
     case let .authorize(authParam):
       var param: [String: Any] = [
-        "client_id": authParam.appID,
+        "client_id": authParam.appKey,
         "client_secret": authParam.appSecret,
-        "scopes": authParam.scope.rawValue, // which is a Set, can be JSON encoded into an array
+//        "scopes": Array(authParam.scope.rawValue), // which is a Set, can be JSON encoded into an array
+        "scopes": ["user"],
       ]
       if let note = authParam.note {
         param["note"] = note

@@ -36,19 +36,19 @@ public class AuthPlugin: PluginType {
         return request
       }
       let field = Headers.Authorization.user(name: name, password: password)
-      request.setValue(field, forHTTPHeaderField: "Accept")
+      request.setValue(field, forHTTPHeaderField: "Authorization")
     case .app:
       guard let (key, secret) = app else {
         return request
       }
       let field = Headers.Authorization.app(key: key, secret: secret)
-      request.setValue(field, forHTTPHeaderField: "Accept")
+      request.setValue(field, forHTTPHeaderField: "Authorization")
     case .token:
       guard let (name, password) = user else {
         return request
       }
       let field = Headers.Authorization.user(name: name, password: password)
-      request.setValue(field, forHTTPHeaderField: "Accept")
+      request.setValue(field, forHTTPHeaderField: "Authorization")
     }
 
     return request

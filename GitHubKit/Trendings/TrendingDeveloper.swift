@@ -21,7 +21,7 @@ public extension GitHubTrending {
 internal extension GitHubTrending.Developer {
 
   static func list(from htmlString: String) -> [GitHubTrending.Developer]? {
-    let jack = Jack("GitHubTrending.Developer.list(from:)").set(options: [.noLocation])
+    let jack = Jack("GitHubTrending.Developer.list(from:)")
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       jack.error("init `Kanna.HTML` failed")

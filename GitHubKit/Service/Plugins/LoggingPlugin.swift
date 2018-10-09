@@ -9,7 +9,7 @@ public class LoggingPlugin: PluginType {
     let urlRequest = request.request
 
     Jack("GitHubKit.LoggingPlugin.willSend").debug("""
-    \(Jack.dump(of: request))
+    \(String(reflecting: request))
     """, options: .noLocation)
   }
 

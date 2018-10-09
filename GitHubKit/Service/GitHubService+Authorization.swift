@@ -5,15 +5,15 @@ import RxSwift
 
 public struct AuthorizationParameter {
   // Required
-  public let appID: String
+  public let appKey: String
   public let appSecret: String
   public let scope: AuthorizationScope
 
   // Optional
   public let note: String?
 
-  init(appID: String, appSecret: String, scope: AuthorizationScope, note: String? = nil) {
-    self.appID = appID
+  public init(appKey: String, appSecret: String, scope: AuthorizationScope, note: String? = nil) {
+    self.appKey = appKey
     self.appSecret = appSecret
     self.scope = scope
       self.note = note
