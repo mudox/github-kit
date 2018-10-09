@@ -102,7 +102,7 @@ public struct Explore {
 
   /// Scan the downloaded 'github/explore' folder, parse each 'topics/\*/index.md'
   /// file as an instance of `GitHub.Explore.CuratedTopic`.
-  public static func curatedTopics(aftreSync sync: Bool = false) -> Single<[CuratedTopic]> {
+  public static func curatedTopics(afterSync sync: Bool = false) -> Single<[CuratedTopic]> {
     if !isCached || sync {
       return synchronize.andThen(loadCuratedTopics)
     } else {

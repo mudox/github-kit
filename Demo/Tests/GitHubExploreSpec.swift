@@ -17,14 +17,34 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
   describe("GitHub.Explore") {
     
     // MARK: curatedTopics
-
+    
+    it("synchronize") {
+      // Arrange
+      let jack = Jack("Test.GitHub.Explore.synchronize")
+      
+      // Act, Assert
+      waitUntil { done in
+        _ = GitHub.Explore.synchronize
+          .subscribe(
+            onCompleted: {
+              jack.descendant("onCompleted").info("downloading completed successfully")
+              done()
+          },
+            onError: { error in
+              jack.descendant("onError").error(Jack.dump(of: error))
+              fatalError()
+          }
+        )
+      }
+    }
+    
     it("curatedTopics") {
       // Arrange
       let jack = Jack("Test.GitHub.Explore.curatedTopics")
 
       // Act, Assert
       waitUntil { done in
-        _ = GitHub.Explore.curatedTopics(aftreSync: false)
+        _ = GitHub.Explore.curatedTopics()
           .subscribe(
             onSuccess: { topics in
               jack.descendant("onSuccess").info("Found \(topics.count) curated topics")
@@ -46,7 +66,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = GitHub.Explore.collections(afterSync: false)
+        _ = GitHub.Explore.collections()
           .subscribe(
             onSuccess: { collections in
               jack.info("Found \(collections.count) collections")
