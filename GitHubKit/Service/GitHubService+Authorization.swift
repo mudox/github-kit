@@ -46,7 +46,7 @@ public extension Service {
           jack.descendant("authorize.do.onSuccess").warn("weakly captured self is nil")
           return
         }
-        
+
         self.credentialService.token = reponse.payload.token
         self.credentialService.user = paramters.user
         self.credentialService.app = paramters.app

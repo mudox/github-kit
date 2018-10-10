@@ -12,7 +12,7 @@ public class Service {
 
   public init(credentialService: CredentialServiceType) {
     self.credentialService = credentialService
-    
+
     authPlugin = AuthPlugin(credentialService: credentialService)
     loggingPlugin = LoggingPlugin()
 

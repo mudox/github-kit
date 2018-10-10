@@ -4,7 +4,7 @@ import JacKit
 
 private let jack = Jack("GitHub.AuthPlugin").set(options: .short)
 
-public protocol CredentialServiceType: class {
+public protocol CredentialServiceType: AnyObject {
   var token: String? { get set }
   var user: (name: String, password: String)? { get set }
   var app: (key: String, secret: String)? { get set }
