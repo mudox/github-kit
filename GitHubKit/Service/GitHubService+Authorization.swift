@@ -38,8 +38,10 @@ public extension Service {
   /// Create a new authorization.
   ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
-  func authorize(with paramters: AuthParameter) -> Single<AuthorizeResponse> {
-    return provider.rx.request(.authorize(paramters))
+  func authorize(with parameters: AuthParameter) -> Single<AuthorizeResponse> {
+    credentialService.user = parameters.user
+    
+    return provider.rx.request(.authorize(parameters))
       .map(AuthorizeResponse.init)
       .do(onSuccess: { [weak self] reponse in
         guard let `self` = self else {
@@ -48,8 +50,8 @@ public extension Service {
         }
 
         self.credentialService.token = reponse.payload.token
-        self.credentialService.user = paramters.user
-        self.credentialService.app = paramters.app
+        self.credentialService.user = parameters.user
+        self.credentialService.app = parameters.app
       })
   }
 
