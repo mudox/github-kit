@@ -19,7 +19,7 @@ public enum APIv3 {
 
   // MARK: Authorization
 
-  case authorize(AuthParameter)
+  case authorize(appKey: String, appSecret: String, authScope: AuthScope, note: String?)
   case deleteAuthorization(id: Int)
   case authorizations
 
@@ -183,6 +183,9 @@ extension APIv3: Moya.TargetType {
     }
   }
 
+  /// - Note: Authentication information if given here, this library use an
+  ///   plugin named `AuthPlugin` to setup each request with authentication
+  ///   information.
   public var headers: [String: String]? {
     switch self {
     // Search
@@ -250,13 +253,14 @@ extension APIv3: Moya.TargetType {
       return .requestPlain
 
     // Authorization
-    case let .authorize(authParam):
+    case let .authorize(appKey, appSecret, scope, note):
       var param: [String: Any] = [
-        "client_id": authParam.app.key,
-        "client_secret": authParam.app.secret,
-        "scopes": Array(authParam.scope.rawValue)
+        "client_id": appKey,
+        "client_secret": appSecret,
+        "scopes": Array(scope.rawValue)
       ]
-      if let note = authParam.note {
+
+      if let note = note {
         param["note"] = note
       }
       return .requestParameters(parameters: param, encoding: JSONEncoding.default)

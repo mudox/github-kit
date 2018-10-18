@@ -26,6 +26,7 @@ public struct AuthScope: OptionSet {
   }
 
   // MARK: - Scopes
+
   // See https://developer.github.com/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/
 
   /// Grants read/write access to code, commit statuses, invitations,

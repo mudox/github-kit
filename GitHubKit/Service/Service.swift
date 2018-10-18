@@ -22,3 +22,11 @@ public class Service {
   }
 
 }
+
+public extension Service {
+
+  enum Error: Swift.Error {
+    case invalidParameter(String)
+  }
+
+}

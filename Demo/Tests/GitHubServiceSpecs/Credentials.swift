@@ -19,7 +19,7 @@ class Credentials: CredentialServiceType {
       if let token = UserDefaults.standard.string(forKey: "accessToken") {
         return token
       } else {
-        Jack("Vault").warn("no access token")
+        Jack("Credentials").warn("no access token")
         return nil
       }
     }

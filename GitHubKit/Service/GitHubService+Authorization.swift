@@ -3,32 +3,9 @@ import Foundation
 import Moya
 import RxSwift
 
-import  JacKit
+import JacKit
 
 private let jack = Jack("GitHub.Service.Authorization")
-
-public struct AuthParameter {
-  // Required
-  public let user: (name: String, password: String)
-  public let app: (key: String, secret: String)
-
-  public let scope: AuthScope
-
-  // Optional
-  public let note: String?
-
-  public init(
-    user: (name: String, password: String),
-    app: (key: String, secret: String),
-    scope: AuthScope,
-    note: String? = nil
-  ) {
-    self.app = app
-    self.user = user
-    self.scope = scope
-    self.note = note
-  }
-}
 
 public extension Service {
   // MARK: - Authorization
@@ -37,21 +14,36 @@ public extension Service {
 
   /// Create a new authorization.
   ///
+  /// - Important: Before using this method, set __service.credentialService.user__
+  ///   and __service.credentialService.app__ to valid credentials.
+  ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
-  func authorize(with parameters: AuthParameter) -> Single<AuthorizeResponse> {
-    credentialService.user = parameters.user
-    
-    return provider.rx.request(.authorize(parameters))
+  func authorize(authScope: AuthScope, note: String? = nil) -> Single<AuthorizeResponse> {
+
+    guard credentialService.user != nil else {
+      return .error(Error.invalidParameter("need an non-nil `self.credentialService.user`"))
+    }
+
+    guard let app = credentialService.app else {
+      return .error(Error.invalidParameter("need an non-nil `self.credentialService.app`"))
+    }
+
+    let target = APIv3.authorize(
+      appKey: app.key,
+      appSecret: app.secret,
+      authScope: authScope,
+      note: note
+    )
+
+    return provider.rx.request(target)
       .map(AuthorizeResponse.init)
       .do(onSuccess: { [weak self] reponse in
+        // Store the access token
         guard let `self` = self else {
           jack.descendant("authorize.do.onSuccess").warn("weakly captured self is nil")
           return
         }
-
         self.credentialService.token = reponse.payload.token
-        self.credentialService.user = parameters.user
-        self.credentialService.app = parameters.app
       })
   }
 

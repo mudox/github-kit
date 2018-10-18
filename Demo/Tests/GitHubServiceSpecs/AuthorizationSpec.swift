@@ -16,7 +16,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   // MARK: authorize
 
-  it("authorize") {
+  fit("authorize") {
     // Arrange
     let jack = Jack("Test.Service.authorize")
 
@@ -27,13 +27,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
     // Act, Assert
     waitUntil { done in
-      let param = AuthParameter(
-        user: Credentials.shared.user!,
-        app: Credentials.shared.app!,
-        scope: [.user, .repository, .notification, .gist, .organization]
-      )
-
-      _ = Fixtures.gitHubService.authorize(with: param).subscribe(
+      _ = Fixtures.gitHubService.authorize(authScope: [.user, .repository]).subscribe(
         onSuccess: { response in
           jack.info("""
           \(Jack.dump(of: response))
