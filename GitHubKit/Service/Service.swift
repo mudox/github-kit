@@ -4,14 +4,17 @@ import Moya
 
 public class Service {
 
-  public let credentialService: CredentialServiceType
-  public let authPlugin: AuthPlugin
-  public let loggingPlugin: LoggingPlugin
-
+  /// Use it when you need non-FRP interface.
   public let provider: MoyaProvider<APIv3>
 
+  /// Storage object to get and store credentials needed by service.
+  public let credentials: CredentialServiceType
+
+  private let authPlugin: AuthPlugin
+  private let loggingPlugin: LoggingPlugin
+
   public init(credentialService: CredentialServiceType) {
-    self.credentialService = credentialService
+    credentials = credentialService
 
     authPlugin = AuthPlugin(credentialService: credentialService)
     loggingPlugin = LoggingPlugin()
@@ -22,6 +25,8 @@ public class Service {
   }
 
 }
+
+// MARK: - GitHub.Service.Error
 
 public extension Service {
 

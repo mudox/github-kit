@@ -17,6 +17,10 @@ public extension Service {
   /// - Important: Before using this method, set __service.credentialService.user__
   ///   and __service.credentialService.app__ to valid credentials.
   ///
+  /// ```
+  /// 
+  /// ```
+  ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
   func authorize(authScope: AuthScope, note: String? = nil) -> Single<AuthorizeResponse> {
 

@@ -12,10 +12,10 @@ public protocol CredentialServiceType: AnyObject {
 
 public class AuthPlugin: PluginType {
 
-  private let credentialService: CredentialServiceType
+  private let credentials: CredentialServiceType
 
   public init(credentialService: CredentialServiceType) {
-    self.credentialService = credentialService
+    self.credentials = credentialService
   }
 
   // MARK: - PluginType
@@ -32,21 +32,21 @@ public class AuthPlugin: PluginType {
     case .none:
       break
     case .user:
-      guard let (name, password) = credentialService.user else {
+      guard let (name, password) = credentials.user else {
         jack.warn("username & password is missing")
         return request
       }
       let field = Headers.Authorization.user(name: name, password: password)
       request.setValue(field, forHTTPHeaderField: "Authorization")
     case .app:
-      guard let (key, secret) = credentialService.app else {
+      guard let (key, secret) = credentials.app else {
         jack.warn("app key & secret is missing")
         return request
       }
       let field = Headers.Authorization.app(key: key, secret: secret)
       request.setValue(field, forHTTPHeaderField: "Authorization")
     case .token:
-      guard let token = credentialService.token else {
+      guard let token = credentials.token else {
         jack.warn("access token is missing")
         return request
       }
