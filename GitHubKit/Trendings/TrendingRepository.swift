@@ -69,7 +69,7 @@ internal extension Trending.Repository {
         return nil
       }
 
-      jack.debug(Jack.dump(of: repository))
+      jack.debug(dump(of: repository))
       repositories.append(repository)
     }
 

@@ -50,7 +50,7 @@ public class Response<Payload>: ResponseType, CustomReflectable
     return Mirror(
       self,
       children: [
-        "status": "\(Jack.description(ofHTTPStatusCode: moyaResponse.statusCode))",
+        "status": "\(description(ofHTTPStatusCode: moyaResponse.statusCode))",
         "rate limit": rateLimit,
         "payload type": type(of: payload)
       ],

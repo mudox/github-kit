@@ -8,6 +8,11 @@ import JacKit
 private let jack = Jack("GitHub.Service.Authorization")
 
 public extension Service {
+
+  var isAuthorized: Bool {
+    return credentials.isAuthorized
+  }
+
   // MARK: - Authorization
 
   typealias AuthorizeResponse = Response<Authorization>
@@ -17,21 +22,17 @@ public extension Service {
   /// - Important: Before using this method, set __service.credentialService.user__
   ///   and __service.credentialService.app__ to valid credentials.
   ///
-  /// ```
-  /// 
-  /// ```
-  ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
   func authorize(authScope: AuthScope, note: String? = nil) -> Single<AuthorizeResponse> {
 
-    guard credentialService.user != nil else {
-      return .error(Error.invalidParameter("need an non-nil `self.credentialService.user`"))
+    guard credentials.user != nil else {
+      return .error(Error.invalidParameter("`self.credentials.user` must not be nil"))
     }
 
-    guard let app = credentialService.app else {
-      return .error(Error.invalidParameter("need an non-nil `self.credentialService.app`"))
+    guard let app = credentials.app else {
+      return .error(Error.invalidParameter("`self.credentials.app` must not be nil"))
     }
-
+    
     let target = APIv3.authorize(
       appKey: app.key,
       appSecret: app.secret,
@@ -47,7 +48,7 @@ public extension Service {
           jack.descendant("authorize.do.onSuccess").warn("weakly captured self is nil")
           return
         }
-        self.credentialService.token = reponse.payload.token
+        self.credentials.token = reponse.payload.token
       })
   }
 

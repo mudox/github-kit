@@ -44,7 +44,7 @@ internal extension Trending.Developer {
         return nil
       }
 
-      jack.debug(Jack.dump(of: developer))
+      jack.debug(dump(of: developer))
       developers.append(developer)
     }
     return developers

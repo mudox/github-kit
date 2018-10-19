@@ -7,12 +7,12 @@ public protocol CredentialServiceType: AnyObject {
   var user: (name: String, password: String)? { get set }
   var app: (key: String, secret: String)? { get set }
 
-  var isLoggedIn: Bool { get }
+  var isAuthorized: Bool { get }
 }
 
-extension CredentialServiceType {
+public extension CredentialServiceType {
 
-  var isLoggedIn: Bool {
+  var isAuthorized: Bool {
     if token != nil {
       if user == nil {
         jack.descendant("isLoggedIn").warn("""
