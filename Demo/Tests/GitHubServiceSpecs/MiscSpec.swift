@@ -20,7 +20,7 @@ afterEach(Fixtures.cleanup)
     // Arrange
     let jack = Jack("Service.user")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "zen",
       condition: isMethodGET() && isPath("/zen")
     )
@@ -32,7 +32,7 @@ afterEach(Fixtures.cleanup)
           jack.info("GitHub Zen: \(zen)")
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -43,7 +43,7 @@ afterEach(Fixtures.cleanup)
     // Arrange
     let jack = Jack("Service.rateLimit")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "rateLimit",
       condition: isMethodGET() && isPath("/rate_limit")
     )
@@ -52,10 +52,10 @@ afterEach(Fixtures.cleanup)
     waitUntil { done in
       _ = Fixtures.gitHubService.rateLimit().subscribe(
         onSuccess: { rateLimit in
-          jack.info(Jack.dump(of: rateLimit))
+          jack.info(dump(of: rateLimit))
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }

@@ -34,9 +34,9 @@ public class IsFollowingResponse: ResponseType, CustomReflectable {
     return Mirror(
       self,
       children: [
-        "status": "\(description(ofHTTPStatusCode: moyaResponse.statusCode))",
+        "status": "\(string(fromHTTPStatusCode: moyaResponse.statusCode))",
         "rate limit": rateLimit,
-        "boolean payload": payload
+        "is following": payload
       ],
       displayStyle: .class
     )

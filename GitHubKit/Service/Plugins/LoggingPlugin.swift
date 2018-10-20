@@ -28,7 +28,7 @@ public class LoggingPlugin: PluginType {
     \(dump(of: result))
     """, options: .noLocation)
   }
-  
+
   private func dump(of result: Result<Moya.Response, MoyaError>) -> String {
     switch result {
     case let .success(response):

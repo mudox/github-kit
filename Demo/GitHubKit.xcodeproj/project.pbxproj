@@ -10,7 +10,7 @@
 		D8F431C88C25D3FA598A460A /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8129120A016B0D0349B0B646 /* Pods_Tests.framework */; };
 		DDCBA286F7EADA5E13510AE6 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED9FB035EF79833B35C22E0 /* Pods_Demo.framework */; };
 		F41074A1216CC02600F0987D /* GitHubLanguageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410746C216CC02600F0987D /* GitHubLanguageSpec.swift */; };
-		F41074A2216CC02600F0987D /* NetworkStubbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410746E216CC02600F0987D /* NetworkStubbing.swift */; };
+		F41074A2216CC02600F0987D /* HTTPStubbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410746E216CC02600F0987D /* HTTPStubbing.swift */; };
 		F41074A3216CC02600F0987D /* OHHTTPStubsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410746F216CC02600F0987D /* OHHTTPStubsExtension.swift */; };
 		F41074A4216CC02600F0987D /* explore_topic.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4107471216CC02600F0987D /* explore_topic.txt */; };
 		F41074A5216CC02600F0987D /* search_repositories_0.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4107473216CC02600F0987D /* search_repositories_0.txt */; };
@@ -93,7 +93,7 @@
 		DF6BA7A8B419A3B7DA274CEE /* Pods-GitHubKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubKit_Example/Pods-GitHubKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F4097CB2216C82440041C465 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F410746C216CC02600F0987D /* GitHubLanguageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubLanguageSpec.swift; sourceTree = "<group>"; };
-		F410746E216CC02600F0987D /* NetworkStubbing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkStubbing.swift; sourceTree = "<group>"; };
+		F410746E216CC02600F0987D /* HTTPStubbing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStubbing.swift; sourceTree = "<group>"; };
 		F410746F216CC02600F0987D /* OHHTTPStubsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OHHTTPStubsExtension.swift; sourceTree = "<group>"; };
 		F4107471216CC02600F0987D /* explore_topic.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = explore_topic.txt; sourceTree = "<group>"; };
 		F4107473216CC02600F0987D /* search_repositories_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search_repositories_0.txt; sourceTree = "<group>"; };
@@ -240,19 +240,19 @@
 				F4107495216CC02600F0987D /* GitHubTrendingSpec.swift */,
 				F4107494216CC02600F0987D /* ModelSpec.swift */,
 				F4107497216CC02600F0987D /* GitHubServiceSpecs */,
-				F410746D216CC02600F0987D /* NetworkStubbing */,
+				F410746D216CC02600F0987D /* HTTPStubbing */,
 				F4107470216CC02600F0987D /* Resources */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		F410746D216CC02600F0987D /* NetworkStubbing */ = {
+		F410746D216CC02600F0987D /* HTTPStubbing */ = {
 			isa = PBXGroup;
 			children = (
-				F410746E216CC02600F0987D /* NetworkStubbing.swift */,
+				F410746E216CC02600F0987D /* HTTPStubbing.swift */,
 				F410746F216CC02600F0987D /* OHHTTPStubsExtension.swift */,
 			);
-			path = NetworkStubbing;
+			path = HTTPStubbing;
 			sourceTree = "<group>";
 		};
 		F4107470216CC02600F0987D /* Resources */ = {
@@ -629,7 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F41074A2216CC02600F0987D /* NetworkStubbing.swift in Sources */,
+				F41074A2216CC02600F0987D /* HTTPStubbing.swift in Sources */,
 				F41074C9216CC02600F0987D /* AuthorizationSpec.swift in Sources */,
 				F41074C8216CC02600F0987D /* GitHubExploreSpec.swift in Sources */,
 				F41074CD216CC02600F0987D /* GitDataSpec.swift in Sources */,

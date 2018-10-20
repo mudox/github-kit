@@ -20,7 +20,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Test.Service.authorize")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "authorize",
       condition: isMethodPOST() && isPath("/authorizations")
     )
@@ -30,14 +30,14 @@ class AuthorizationSpec: QuickSpec { override func spec() {
       _ = Fixtures.gitHubService.authorize(authScope: [.user, .repository]).subscribe(
         onSuccess: { response in
           jack.info("""
-          \(Jack.dump(of: response))
-          \(Jack.dump(of: response.payload))
+          \(dump(of: response))
+          \(dump(of: response.payload))
           """)
           
           Credentials.shared.token = response.payload.token
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -48,7 +48,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Test.Service.authorizations")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "authorizations",
       condition: isMethodGET() && isPath("/authorizations")
     )
@@ -72,13 +72,13 @@ class AuthorizationSpec: QuickSpec { override func spec() {
             }.joined(separator: "\n")
 
           jack.info("""
-          \(Jack.dump(of: response))
+          \(dump(of: response))
           Total: \(response.payload.count), authorizations of Hydra:
           \(hydraAuths)
           """)
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -89,12 +89,12 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Test.Service.deleteAuthorization")
 
-    guard NetworkStubbing.isEnabled else {
+    guard HTTPStubbing.isEnabled else {
       jack.warn("only run on netwokring stubbing being enabled, skip ...")
       return
     }
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "deleteAuthorization",
       condition: isMethodDELETE() && pathStartsWith("/authorizations")
     )
@@ -107,7 +107,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
           jack.info("deleted authorization with ID: \(id)")
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -118,7 +118,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Test.Service.grants")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "grants",
       condition: isMethodGET() && isPath("/applications/grants")
     )
@@ -140,13 +140,13 @@ class AuthorizationSpec: QuickSpec { override func spec() {
             .joined(separator: "\n")
 
           jack.info("""
-          \(Jack.dump(of: response))
+          \(dump(of: response))
           Total: \(response.payload.count)
           \(list)
           """)
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -157,12 +157,12 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Test.Service.deleteGrant")
 
-    guard NetworkStubbing.isEnabled else {
+    guard HTTPStubbing.isEnabled else {
       jack.warn("only run on netwokring stubbing being enabled, skip ...")
       return
     }
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "deleteGrant",
       condition: isMethodDELETE() && pathStartsWith("/applications/grants")
     )
@@ -175,7 +175,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
           jack.info("deleted grant with ID: \(id)")
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }

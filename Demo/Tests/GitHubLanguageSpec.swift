@@ -20,7 +20,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
       // Arrange
       let jack = Jack("Test.GitHub.Language.all")
 
-      NetworkStubbing.stubIfEnabled(
+      HTTPStubbing.stubIfEnabled(
         name: "github-languages",
         condition: isMethodGET() && pathEndsWith("/languages.yml")
       )
@@ -31,12 +31,12 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
           .subscribe(
             onSuccess: { languages in
               languages[...4].forEach { language in
-                jack.debug(Jack.dump(of: language))
+                jack.debug(dump(of: language))
               }
               done()
             },
             onError: { error in
-              jack.error(Jack.dump(of: error))
+              jack.error(dump(of: error))
               fatalError()
             }
           )
@@ -47,7 +47,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
       // Arrange
       let jack = Jack("Test.GitHub.Trending.developers(of:in)")
 
-      NetworkStubbing.stubIfEnabled(
+      HTTPStubbing.stubIfEnabled(
         name: "developer-trending",
         condition: isMethodGET() && pathStartsWith("/trending/developers")
       )
@@ -60,7 +60,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
               done()
             },
             onError: { error in
-              jack.error(Jack.dump(of: error))
+              jack.error(dump(of: error))
               fatalError()
             }
           )

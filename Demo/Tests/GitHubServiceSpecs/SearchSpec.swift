@@ -21,7 +21,7 @@ class SearchSpec: QuickSpec { override func spec() {
     let jack = Jack("Service.search")
 
     for index in 0 ..< 4 {
-      NetworkStubbing.stubIfEnabled(
+      HTTPStubbing.stubIfEnabled(
         name: "search_repositories_\(index)",
         condition: isMethodGET() && isPath("/search/repositories")
       )
@@ -31,13 +31,13 @@ class SearchSpec: QuickSpec { override func spec() {
         _ = Fixtures.gitHubService.searchRepository("neovim").subscribe(
           onSuccess: { response in
             jack.info("""
-            \(Jack.dump(of: response))
+            \(dump(of: response))
             Found \(response.payload.items.count) results
             """)
 
             done()
           },
-          onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          onError: { jack.error(dump(of: $0)); fatalError() }
         )
       }
     }

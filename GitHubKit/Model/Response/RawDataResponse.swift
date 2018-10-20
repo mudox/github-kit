@@ -24,7 +24,7 @@ public class RawDataResponse: ResponseType, CustomReflectable {
     return Mirror(
       self,
       children: [
-        "status": "\(description(ofHTTPStatusCode: moyaResponse.statusCode))",
+        "status": "\(string(fromHTTPStatusCode: moyaResponse.statusCode))",
         "rate limit": rateLimit,
         "raw data": payload
       ],

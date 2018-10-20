@@ -21,7 +21,7 @@ class GitDataSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.reference")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "reference",
       condition: isMethodGET() && pathMatches("^/repos/.*/git/refs/")
     )
@@ -32,12 +32,12 @@ class GitDataSpec: QuickSpec { override func spec() {
         .subscribe(
           onSuccess: { response in
             jack.info("""
-            \(Jack.dump(of: response))
-            \(Jack.dump(of: response.payload))
+            \(dump(of: response))
+            \(dump(of: response.payload))
             """)
             done()
           },
-          onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          onError: { jack.error(dump(of: $0)); fatalError() }
         )
     }
   }
@@ -48,7 +48,7 @@ class GitDataSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.commit")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "commit",
       condition: isMethodGET() && pathMatches("^/repos/.*/git/commits/")
     )
@@ -61,12 +61,12 @@ class GitDataSpec: QuickSpec { override func spec() {
       .subscribe(
         onSuccess: { response in
           jack.info("""
-          \(Jack.dump(of: response))
-          \(Jack.dump(of: response.payload))
+          \(dump(of: response))
+          \(dump(of: response.payload))
           """)
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -77,7 +77,7 @@ class GitDataSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.tree")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "tree",
       condition: isMethodGET() && pathMatches("^/repos/.*/git/trees/")
     )
@@ -89,12 +89,12 @@ class GitDataSpec: QuickSpec { override func spec() {
         .subscribe(
           onSuccess: { response in
             jack.info("""
-            \(Jack.dump(of: response))
-            \(Jack.dump(of: response.payload))
+            \(dump(of: response))
+            \(dump(of: response.payload))
             """)
             done()
           },
-          onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          onError: { jack.error(dump(of: $0)); fatalError() }
         )
     }
   }
@@ -105,7 +105,7 @@ class GitDataSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.blob")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "blob",
       condition: isMethodGET() && pathMatches("^/repos/.*/git/blobs/")
     )
@@ -117,12 +117,12 @@ class GitDataSpec: QuickSpec { override func spec() {
         .subscribe(
           onSuccess: { response in
             jack.info("""
-            \(Jack.dump(of: response))
-            \(Jack.dump(of: response.payload))
+            \(dump(of: response))
+            \(dump(of: response.payload))
             """)
             done()
           },
-          onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          onError: { jack.error(dump(of: $0)); fatalError() }
         )
     }
   }

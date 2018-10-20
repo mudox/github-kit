@@ -31,7 +31,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
               done()
           },
             onError: { error in
-              jack.descendant("onError").error(Jack.dump(of: error))
+              jack.descendant("onError").error(dump(of: error))
               fatalError()
           }
         )
@@ -51,7 +51,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
               done()
             },
             onError: { error in
-              jack.descendant("onError").error(Jack.dump(of: error))
+              jack.descendant("onError").error(dump(of: error))
               fatalError()
             }
           )
@@ -73,7 +73,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
               done()
             },
             onError: { error in
-              jack.error(Jack.dump(of: error))
+              jack.error(dump(of: error))
               fatalError()
             }
           )

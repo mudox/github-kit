@@ -16,6 +16,12 @@ public class Response<Payload>: ResponseType, CustomReflectable
   public let payload: Payload
 
   public required init(response: Moya.Response) throws {
+    /*
+     *
+     * Step 1 - Parse out `RateLimit`
+     *
+     */
+
     guard let urlResponse = response.response else {
       throw Error.noHTTPURLResponse
     }
@@ -27,6 +33,12 @@ public class Response<Payload>: ResponseType, CustomReflectable
     guard let rateLimit = HeaderRateLimit(from: headers) else {
       throw Error.initRateLimit(headers: headers)
     }
+
+    /*
+     *
+     * Step 2 - Decode out `Payload`
+     *
+     */
 
     let payload = try JSONDecoder().decode(Payload.self, from: response.data)
 
@@ -50,9 +62,9 @@ public class Response<Payload>: ResponseType, CustomReflectable
     return Mirror(
       self,
       children: [
-        "status": "\(description(ofHTTPStatusCode: moyaResponse.statusCode))",
+        "status": "\(string(fromHTTPStatusCode: moyaResponse.statusCode))",
         "rate limit": rateLimit,
-        "payload type": type(of: payload)
+        "payload type": type(of: payload),
       ],
       displayStyle: .class
     )
@@ -77,7 +89,7 @@ public class PagedResponse<Payload>: Response<Payload>
       throw Error.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
     }
 
-    self.pagination = try Pagination(from: headers)
+    pagination = try Pagination(from: headers)
 
     try super.init(response: response)
   }
@@ -86,7 +98,7 @@ public class PagedResponse<Payload>: Response<Payload>
     return Mirror(
       self,
       children: [
-        "pagination": pagination
+        "pagination": pagination,
       ],
       displayStyle: .class,
       ancestorRepresentation: .customized { super.customMirror }

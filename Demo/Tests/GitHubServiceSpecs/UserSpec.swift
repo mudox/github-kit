@@ -20,7 +20,7 @@ class UserSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.myProfile")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "myProfile",
       condition: isMethodGET() && isPath("/user")
     )
@@ -30,12 +30,12 @@ class UserSpec: QuickSpec { override func spec() {
       _ = Fixtures.gitHubService.myProfile().subscribe(
         onSuccess: { response in
           jack.info("""
-          \(Jack.dump(of: response))
-          \(Jack.dump(of: response.payload))
+          \(dump(of: response))
+          \(dump(of: response.payload))
           """)
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -46,7 +46,7 @@ class UserSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.profile")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "profile",
       condition: isMethodGET() && pathStartsWith("/users")
     )
@@ -56,12 +56,12 @@ class UserSpec: QuickSpec { override func spec() {
       _ = Fixtures.gitHubService.profile(of: "mudox").subscribe(
         onSuccess: { response in
           jack.info("""
-          \(Jack.dump(of: response))
-          \(Jack.dump(of: response.payload))
+          \(dump(of: response))
+          \(dump(of: response.payload))
           """)
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -72,7 +72,7 @@ class UserSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.isFollowing")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "isFollowing",
       condition: isMethodGET() && pathMatches("^/users/.*/following/")
     )
@@ -84,12 +84,12 @@ class UserSpec: QuickSpec { override func spec() {
           onSuccess: { response in
             jack.info("""
             Is tracy following mudox?
-            \(Jack.dump(of: response))
-            \(Jack.dump(of: response.payload))
+            \(dump(of: response))
+            \(dump(of: response.payload))
             """)
             done()
           },
-          onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          onError: { jack.error(dump(of: $0)); fatalError() }
         )
     }
 
@@ -100,12 +100,12 @@ class UserSpec: QuickSpec { override func spec() {
           onSuccess: { response in
             jack.info("""
             Is mudox following kevinzhow?
-              \(Jack.dump(of: response))
-              \(Jack.dump(of: response.payload))
+              \(dump(of: response))
+              \(dump(of: response.payload))
             """)
             done()
           },
-          onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+          onError: { jack.error(dump(of: $0)); fatalError() }
         )
     }
   }
@@ -116,7 +116,7 @@ class UserSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.followers")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "followers",
       condition: isMethodGET() && pathMatches("^/users/.*/followers")
     )
@@ -126,12 +126,12 @@ class UserSpec: QuickSpec { override func spec() {
       _ = Fixtures.gitHubService.followers(of: "mudox").subscribe(
         onSuccess: { response in
           jack.info("""
-          \(Jack.dump(of: response))
+          \(dump(of: response))
           Has \(response.payload.count) followers
           """)
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -142,7 +142,7 @@ class UserSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.follow")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "follow",
       condition: isMethodPUT() && pathStartsWith("/user/following")
     )
@@ -155,7 +155,7 @@ class UserSpec: QuickSpec { override func spec() {
           jack.info("Followed user \(username)")
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }
@@ -166,7 +166,7 @@ class UserSpec: QuickSpec { override func spec() {
     // Arrange
     let jack = Jack("Service.unfollow")
 
-    NetworkStubbing.stubIfEnabled(
+    HTTPStubbing.stubIfEnabled(
       name: "unfollow",
       condition: isMethodDELETE() && pathStartsWith("/user/following")
     )
@@ -179,7 +179,7 @@ class UserSpec: QuickSpec { override func spec() {
           jack.info("Unfollowed user \(username)")
           done()
         },
-        onError: { jack.error(Jack.dump(of: $0)); fatalError() }
+        onError: { jack.error(dump(of: $0)); fatalError() }
       )
     }
   }

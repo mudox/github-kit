@@ -17,7 +17,7 @@ enum Fixtures {
     //      .set(level: .verbose)
 
     // Stubbing
-    NetworkStubbing.setup()
+    HTTPStubbing.setup()
 
     // Nimble
     AsyncDefaults.Timeout = 1000

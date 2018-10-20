@@ -31,7 +31,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E92CAAD051F66B76D8FA640144C5D018"
+            BlueprintIdentifier = "7BA8781AD4331317C685CEBF84ECB6E9"
             BuildableName = "GitHub.framework"
             BlueprintName = "GitHubKit"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -88,8 +88,13 @@
             isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "MOYA_LOGGING_PLUGIN"
+            value = "enable"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "HTTP_STUBBING"
-            value = "YES"
+            value = "enable"
             isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
