@@ -23,7 +23,7 @@ public extension Service {
   ///   and __service.credentialService.app__ to valid credentials.
   ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
-  func authorize(authScope: AuthScope, note: String? = nil) -> Single<AuthorizeResponse> {
+  func authorize(scope: AuthScope, note: String? = nil) -> Single<AuthorizeResponse> {
 
     guard credentials.user != nil else {
       return .error(Error.missingCredential("user name & password in `GitHub.Service.credentials.user`"))
@@ -36,7 +36,7 @@ public extension Service {
     let target = APIv3.authorize(
       appKey: app.key,
       appSecret: app.secret,
-      authScope: authScope,
+      authScope: scope,
       note: note
     )
 

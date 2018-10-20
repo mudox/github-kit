@@ -2,6 +2,7 @@ import XCTest
 
 import Nimble
 import Quick
+import RxNimble
 
 import OHHTTPStubs
 
@@ -16,7 +17,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   // MARK: authorize
 
-  fit("authorize") {
+  it("authorize") {
     // Arrange
     let jack = Jack("Test.Service.authorize")
 
@@ -27,17 +28,73 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
     // Act, Assert
     waitUntil { done in
-      _ = Fixtures.gitHubService.authorize(authScope: [.user, .repository]).subscribe(
+      _ = Fixtures.gitHubService.authorize(scope: [.user, .repository]).subscribe(
         onSuccess: { response in
           jack.info("""
           \(dump(of: response))
           \(dump(of: response.payload))
           """)
-          
-          Credentials.shared.token = response.payload.token
           done()
         },
         onError: { jack.error(dump(of: $0)); fatalError() }
+      )
+    }
+  }
+
+  it("authorize invalid credentials") {
+    // Arrange
+    let jack = Jack("Test.Service.authorize.throwErrors")
+    
+    let credentials = Credentials(user: Credentials.invalidUser, app: Credentials.validApp)
+    let service = GitHub.Service(credentialService: credentials)
+    
+    // Act, Assert
+    waitUntil { done in
+      _ = service.authorize(scope: [.user, .repository]).subscribe(
+        onSuccess: { response in
+          jack.info("""
+            \(dump(of: response))
+            \(dump(of: response.payload))
+            """)
+          fatalError("expect to fail")
+      },
+        onError: { error in
+          jack.info("error: \(dump(of: error))")
+          if case GitHub.Error.invalidCredential = error {
+            done()
+          } else {
+            fatalError()
+          }
+      }
+      )
+    }
+  }
+  
+  fit("authorize invalid request parameter") {
+    // Arrange
+    let jack = Jack("Test.Service.authorize.throwErrors")
+    
+    let credentials = Credentials(user: Credentials.validUser, app: Credentials.invalidApp)
+    let service = GitHub.Service(credentialService: credentials)
+    
+    // Act, Assert
+    waitUntil { done in
+      _ = service.authorize(scope: [.user, .repository]).subscribe(
+        onSuccess: { response in
+          jack.info("""
+            \(dump(of: response))
+            \(dump(of: response.payload))
+            """)
+          fatalError("expect to fail")
+      },
+        onError: { error in
+          jack.info("error: \(dump(of: error))")
+          if case GitHub.Error.invalidRequestParameter = error {
+            done()
+          } else {
+            fatalError()
+          }
+      }
       )
     }
   }

@@ -34,7 +34,7 @@ public class LoggingPlugin: PluginType {
     case let .success(response):
       return """
       Result.success
-      \(dump(of: response))
+      \(self.dump(of: response))
       """
     case let .failure(error):
       return """

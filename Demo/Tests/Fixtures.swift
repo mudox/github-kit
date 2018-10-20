@@ -11,10 +11,9 @@ import GitHub
 enum Fixtures {
   
   static let setup: BeforeExampleClosure = { () -> Void in
+    
     // Logging
-    Jack("Test")
-      .set(options: .noLocation)
-    //      .set(level: .verbose)
+    Jack("Test").set(options: .noLocation)
 
     // Stubbing
     HTTPStubbing.setup()
@@ -29,7 +28,7 @@ enum Fixtures {
   }
 
   static var gitHubService: GitHub.Service = {
-    return GitHub.Service(credentialService: Credentials.shared)
+    return GitHub.Service(credentialService: Credentials.valid)
   }()
   
 }
