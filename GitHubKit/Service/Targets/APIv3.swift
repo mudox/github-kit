@@ -294,6 +294,8 @@ extension APIv3: Moya.TargetType {
     switch self {
 
     // Authorization
+    case .authorize:
+      return .customCodes([201])
     case .deleteAuthorization:
       return .customCodes([204])
 

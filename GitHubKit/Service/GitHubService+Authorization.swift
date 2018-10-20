@@ -26,13 +26,13 @@ public extension Service {
   func authorize(authScope: AuthScope, note: String? = nil) -> Single<AuthorizeResponse> {
 
     guard credentials.user != nil else {
-      return .error(Error.invalidParameter("`self.credentials.user` must not be nil"))
+      return .error(Error.missingCredential("user name & password in `GitHub.Service.credentials.user`"))
     }
 
     guard let app = credentials.app else {
-      return .error(Error.invalidParameter("`self.credentials.app` must not be nil"))
+      return .error(Error.missingCredential("application key & secret in `GitHub.Service.credentials.app`"))
     }
-    
+
     let target = APIv3.authorize(
       appKey: app.key,
       appSecret: app.secret,
@@ -42,14 +42,20 @@ public extension Service {
 
     return provider.rx.request(target)
       .map(AuthorizeResponse.init)
+      // Store the access token on success.
       .do(onSuccess: { [weak self] reponse in
-        // Store the access token
         guard let `self` = self else {
-          jack.descendant("authorize.do.onSuccess").warn("weakly captured self is nil")
+          jack.descendant("authorize.do.onSuccess").warn("""
+          weakly captured self is nil, the access token is not stored.
+          """)
           return
         }
         self.credentials.token = reponse.payload.token
       })
+      // Try elevate error on failure
+      .catchError { error in
+        return .error(elevate(error: error))
+      }
   }
 
   /// Revoke an authorization with given ID.

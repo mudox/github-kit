@@ -25,13 +25,3 @@ public class Service {
   }
 
 }
-
-// MARK: - GitHub.Service.Error
-
-public extension Service {
-
-  enum Error: Swift.Error {
-    case invalidParameter(String)
-  }
-
-}
