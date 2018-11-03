@@ -10,23 +10,23 @@ import JacKit
 public struct Trending {
 
   public enum Period: String {
-    case pastDay = "daily"
-    case pastWeek = "weekly"
-    case pastMonth = "monthly"
+    case day = "daily"
+    case week = "weekly"
+    case month = "monthly"
   }
 
   public enum Category {
-    case trendingRepositories
-    case trendingDevelopers
+    case repository
+    case developer
   }
 
-  fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .pastDay) -> URL {
+  fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .day) -> URL {
 
     var urlComponents: URLComponents
     switch catetory {
-    case .trendingRepositories:
+    case .repository:
       urlComponents = URLComponents(string: "https://github.com/trending")!
-    case .trendingDevelopers:
+    case .developer:
       urlComponents = URLComponents(string: "https://github.com/trending/developers")!
     }
 
@@ -39,18 +39,18 @@ public struct Trending {
     return urlComponents.url!
   }
 
-  public static func repositories(of language: String? = nil, in period: Period = .pastDay)
+  public static func repositories(of language: String? = nil, in period: Period = .day)
     -> Single<[Trending.Repository]?> {
-    let url = self.url(of: .trendingRepositories, language: language, period: period)
+    let url = self.url(of: .repository, language: language, period: period)
 
     return RxAlamofire.string(.get, url)
       .asSingle()
       .map(Trending.Repository.list)
   }
 
-  public static func developers(of language: String? = nil, in period: Period = .pastDay)
+  public static func developers(of language: String? = nil, in period: Period = .day)
     -> Single<[Trending.Developer]?> {
-    let url = self.url(of: .trendingDevelopers, language: language, period: period)
+    let url = self.url(of: .developer, language: language, period: period)
 
     return RxAlamofire.string(.get, url)
       .asSingle()

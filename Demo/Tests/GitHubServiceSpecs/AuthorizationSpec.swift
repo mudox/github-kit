@@ -43,7 +43,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
 
   it("authorize invalid credentials") {
     // Arrange
-    let jack = Jack("Test.Service.authorize.throwErrors")
+    let jack = Jack("Test.Service.authorize.error.invalidCredential")
     
     let credentials = Credentials(user: Credentials.invalidUser, app: Credentials.validApp)
     let service = GitHub.Service(credentialService: credentials)
@@ -70,9 +70,9 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     }
   }
   
-  fit("authorize invalid request parameter") {
+  it("authorize invalid request parameter") {
     // Arrange
-    let jack = Jack("Test.Service.authorize.throwErrors")
+    let jack = Jack("Test.Service.authorize.error.invalidRequestParameter")
     
     let credentials = Credentials(user: Credentials.validUser, app: Credentials.invalidApp)
     let service = GitHub.Service(credentialService: credentials)
