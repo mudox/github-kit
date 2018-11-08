@@ -1,0 +1,8 @@
+coverage_service: coveralls
+
+xcodeproj: Demo/GitHubKit.xcodeproj
+workspace: Demo/GitHubKit.xcworkspace
+
+scheme: GitHubKit-Demo
+
+source_directory: GitHubKit
