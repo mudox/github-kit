@@ -1,19 +1,29 @@
 language: swift
 osx_image: xcode10
 
+global:
+  - CC_TEST_REPORTER_ID=f12a7cfc4d7eaace0126a5a0a19cd69a874f17b978d2fe0ec2d6027c40c134cc
+
 before_install:
-  - gem install cocoapods
-  - export MDX_CI=YES
-  - pod --project-directory=Demo update JacKit
+  - gem install cocoapods # Keep cocoapods up to date.
+  - pod --project-directory=Demo update JacKit # Pull JacKit from github repo.
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - set -o pipefail
     && xcodebuild test
-      -enableCodeCoverage YES
-      -workspace Demo/GitHubKit.xcworkspace
-      -scheme GitHubKit-Demo
-      -destination 'platform=iOS Simulator,OS=12.0,name=iPhone 8'
-      -configuration=Debug
+    -enableCodeCoverage YES
+    -workspace Demo/GitHubKit.xcworkspace
+    -scheme GitHubKit-Demo
+    -destination 'platform=iOS Simulator,OS=12.0,name=iPhone 8'
+    -configuration=Debug
     | xcpretty --test
 
-  #- pod lib lint # need to put JackKit.podspec upto Cocoapods first.ug
+    #- pod lib lint # need to put JackKit.podspec upto Cocoapods first.ug
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
