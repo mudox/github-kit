@@ -5,6 +5,8 @@ cache: cocoapods
 
 global:
   - CC_TEST_REPORTER_ID=f12a7cfc4d7eaace0126a5a0a19cd69a874f17b978d2fe0ec2d6027c40c134cc
+  - SCHEME=GitHubKit-Demo
+  - WORKSPACE=Demo/GitHubKit.xcworkspace
 
 before_install:
   - gem install cocoapods
@@ -20,8 +22,8 @@ script:
   - set -o pipefail
     && xcodebuild test
     -enableCodeCoverage YES
-    -workspace Demo/GitHubKit.xcworkspace
-    -scheme GitHubKit-Demo
+    -workspace $WORKSPACE
+    -scheme $SCHEME
     -destination 'platform=iOS Simulator,OS=12.0,name=iPhone 8'
     -configuration=Debug
     ONLY_ACTIVE_ARCH=YES
@@ -30,5 +32,5 @@ script:
     #- pod lib lint # need to put JackKit.podspec upto Cocoapods first.ug
 
 after_success:
-  - ./cc-test-reporter format-coverage -t cobertura
-  - ./cc-test-reporter after-build -exit-code $TRAVIS_TEST_RESULT
+  - slather coverage -x -t --scheme $SCHEME $WORKSPACE
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
