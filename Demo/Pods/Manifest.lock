@@ -42,16 +42,24 @@ PODS:
   - RxAlamofire/Core (4.3.0):
     - Alamofire (~> 4.5)
     - RxSwift (~> 4)
-  - RxBlocking (4.3.1):
+  - RxAtomic (4.4.0)
+  - RxBlocking (4.4.0):
+    - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
-  - RxCocoa (4.3.1):
+  - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
-  - RxNimble (4.2.0):
+  - RxNimble (4.4.0):
+    - RxNimble/RxBlocking (= 4.4.0)
+  - RxNimble/Core (4.4.0):
     - Nimble (~> 7.0)
-    - RxBlocking (~> 4.0)
     - RxSwift (~> 4.2)
-  - RxSwift (4.3.1)
-  - RxTest (4.3.1):
+  - RxNimble/RxBlocking (4.4.0):
+    - RxBlocking
+    - RxNimble/Core
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - RxTest (4.4.0):
+    - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
   - SSZipArchive (2.1.4)
   - SwiftLint (0.27.0)
@@ -79,6 +87,7 @@ SPEC REPOS:
     - Quick
     - Result
     - RxAlamofire
+    - RxAtomic
     - RxBlocking
     - RxCocoa
     - RxNimble
@@ -106,15 +115,16 @@ SPEC CHECKSUMS:
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
-  RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
-  RxNimble: 141422b841d7626811979fb3860698eff2ce4b51
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
-  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxBlocking: 138ad53217434444d6eeeb4fb406a45431d92e31
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxNimble: ba6caf0195c37fd50dd4b967624b66ff580d781a
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   Yams: 572f625a8b719b73e0b57fd313c680f3e2161fe9
 
-PODFILE CHECKSUM: f9bbbc7c1a8631d76114516bd5583d1ef05977b6
+PODFILE CHECKSUM: e9649d29f80d102c69e8d180ce11f4fbcfcc8086
 
 COCOAPODS: 1.5.3
