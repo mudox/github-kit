@@ -33,5 +33,5 @@ script:
     #- pod lib lint # need to put JackKit.podspec upto Cocoapods first.ug
 
 after_success:
-  - slather coverage -x -t --scheme $SCHEME $WORKSPACE
+  - slather
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
