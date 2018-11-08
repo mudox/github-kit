@@ -12,7 +12,8 @@ target 'Demo' do
   target 'Tests' do
     inherit! :search_paths
 
-    if ENV['MDX_CI'] == 'YES'
+    # Travis-CI set `CI` on macOS environment
+    if ENV['CI'] == 'true'
       pod 'JacKit',  :git  => 'https://github.com/mudox/jac-kit.git'
     else
       pod 'JacKit',  :path => '/Users/mudox/Develop/Apple/Frameworks/JacKit'
