@@ -14,11 +14,11 @@ Pod::Spec.new do |s|
   Yet another Swift implementation of GitHub API v3 (RESTful).
   DESC
 
-  s.homepage         = 'https://github.com/mudox/GitHubKit'
+  s.homepage         = 'https://github.com/mudox/github-kit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'mudox' => 'imudox@gmail.com' }
-  s.source           = { :git => 'https://github.com/mudox/GitHubKit.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/mudox/github-kit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
