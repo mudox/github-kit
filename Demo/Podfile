@@ -12,7 +12,11 @@ target 'Demo' do
   target 'Tests' do
     inherit! :search_paths
 
-    pod 'JacKit',    :path => '/Users/mudox/Develop/Apple/Frameworks/JacKit'
+    if ENV['MDX_CI'] == 'YES'
+      pod 'JacKit',  :path => 'https://github.com/mudox/jac-kit.git'
+    else
+      pod 'JacKit',  :path => '/Users/mudox/Develop/Apple/Frameworks/JacKit'
+    end
 
     pod 'GitHubKit', :path => '../'
 
