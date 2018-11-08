@@ -10,9 +10,9 @@ import JacKit
 public struct Trending {
 
   public enum Period: String {
-    case day = "daily"
-    case week = "weekly"
-    case month = "monthly"
+    case pastDay = "daily"
+    case pastWeek = "weekly"
+    case pastMonth = "monthly"
   }
 
   public enum Category {
@@ -20,7 +20,7 @@ public struct Trending {
     case developer
   }
 
-  fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .day) -> URL {
+  fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .pastDay) -> URL {
 
     var urlComponents: URLComponents
     switch catetory {
@@ -39,7 +39,7 @@ public struct Trending {
     return urlComponents.url!
   }
 
-  public static func repositories(of language: String? = nil, in period: Period = .day)
+  public static func repositories(of language: String? = nil, in period: Period = .pastDay)
     -> Single<[Trending.Repository]?> {
     let url = self.url(of: .repository, language: language, period: period)
 
@@ -48,7 +48,7 @@ public struct Trending {
       .map(Trending.Repository.list)
   }
 
-  public static func developers(of language: String? = nil, in period: Period = .day)
+  public static func developers(of language: String? = nil, in period: Period = .pastDay)
     -> Single<[Trending.Developer]?> {
     let url = self.url(of: .developer, language: language, period: period)
 
