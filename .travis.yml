@@ -10,5 +10,5 @@ before_install:
   #- pod install --project-directory=Demo
 
 script:
-  - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Demo/GitHubKit.xcworkspace -scheme GitHubKit-Demo -sdk iphonesimulator12.0 | xcpretty --test
-  - pod lib lint
+  - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Demo/GitHubKit.xcworkspace -scheme GitHubKit-Demo -destination 'platform=iOS Simulator,OS=12.0,name=iPhone 8' -configuration=Deb | xcpretty --test
+  #- pod lib lint # need to put JackKit.podspec upto Cocoapods first.ug
