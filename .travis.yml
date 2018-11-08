@@ -1,11 +1,14 @@
 language: swift
 osx_image: xcode10
 
+cache: cocoapods
+
 global:
   - CC_TEST_REPORTER_ID=f12a7cfc4d7eaace0126a5a0a19cd69a874f17b978d2fe0ec2d6027c40c134cc
 
 before_install:
-  - gem install cocoapods # Keep cocoapods up to date.
+  - gem install cocoapods
+  - gem install slather
   - pod --project-directory=Demo update JacKit # Pull JacKit from github repo.
 
 before_script:
@@ -21,11 +24,11 @@ script:
     -scheme GitHubKit-Demo
     -destination 'platform=iOS Simulator,OS=12.0,name=iPhone 8'
     -configuration=Debug
-    | xcpretty --test
+    ONLY_ACTIVE_ARCH=YES
+    | xcpretty
 
     #- pod lib lint # need to put JackKit.podspec upto Cocoapods first.ug
 
-after_script:
-  - ./cc-test-reporter after-build
-    --coverage-input-type cobertura
-    --exit-code $TRAVIS_TEST_RESULT
+after_success:
+  - ./cc-test-reporter format-coverage -t cobertura
+  - ./cc-test-reporter after-build -exit-code $TRAVIS_TEST_RESULT
