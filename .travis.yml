@@ -1,12 +1,12 @@
 osx_image: xcode10.0
 language: swift
 cache: cocoapods
-podfile: Demo/Podfile
+podfile: Demo/PodfileCI
 
 before_install:
   - gem install cocoapods # Since Travis is not always on latest version
   - pod install --project-directory=Demo
 
 script:
-  - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Demo/GitHubKit.xcworkspace -scheme GitHubKit-Demo -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
+  - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Demo/GitHubKit.xcworkspace -scheme GitHubKit-Demo -sdk iphonesimulator10.0 ONLY_ACTIVE_ARCH=NO | xcpretty
   - pod lib lint
