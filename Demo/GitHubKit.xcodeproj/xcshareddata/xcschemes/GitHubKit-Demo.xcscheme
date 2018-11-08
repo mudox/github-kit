@@ -31,7 +31,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7BA8781AD4331317C685CEBF84ECB6E9"
+            BlueprintIdentifier = "1C57ED39D97A182931025E5A0BDF6B3D"
             BuildableName = "GitHub.framework"
             BlueprintName = "GitHubKit"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
