@@ -3,10 +3,11 @@ osx_image: xcode10
 
 cache: cocoapods
 
-global:
-  - CC_TEST_REPORTER_ID=f12a7cfc4d7eaace0126a5a0a19cd69a874f17b978d2fe0ec2d6027c40c134cc
-  - SCHEME=GitHubKit-Demo
-  - WORKSPACE=Demo/GitHubKit.xcworkspace
+env:
+  global:
+    - CC_TEST_REPORTER_ID=f12a7cfc4d7eaace0126a5a0a19cd69a874f17b978d2fe0ec2d6027c40c134cc
+    - SCHEME=GitHubKit-Demo
+    - WORKSPACE=Demo/GitHubKit.xcworkspace
 
 before_install:
   - gem install cocoapods
