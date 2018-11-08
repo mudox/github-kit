@@ -4,6 +4,8 @@
 [![Version](https://img.shields.io/cocoapods/v/GitHubKit.svg?style=flat)](https://cocoapods.org/pods/GitHubKit)
 [![License](https://img.shields.io/cocoapods/l/GitHubKit.svg?style=flat)](https://cocoapods.org/pods/GitHubKit)
 [![Platform](https://img.shields.io/cocoapods/p/GitHubKit.svg?style=flat)](https://cocoapods.org/pods/GitHubKit)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e90d72dec155240410a7/maintainability)](https://codeclimate.com/github/mudox/github-kit/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e90d72dec155240410a7/test_coverage)](https://codeclimate.com/github/mudox/github-kit/test_coverage)
 
 ## Example
 
