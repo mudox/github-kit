@@ -1,0 +1,22 @@
+HTTP/1.1 422 Unprocessable Entity
+Date: Sat, 10 Nov 2018 15:12:34 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 157
+Connection: close
+Server: GitHub.com
+Status: 422 Unprocessable Entity
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4997
+X-RateLimit-Reset: 1541866167
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type
+Access-Control-Allow-Origin: *
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Frame-Options: deny
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin-when-cross-origin, strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'none'
+X-GitHub-Request-Id: 825E:3CD1:CC8EBA:116C4E9:5BE6F561
+
+{"message":"Invalid Application client_id or secret.","documentation_url":"https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization"}

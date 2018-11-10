@@ -44,20 +44,25 @@ class AuthorizationSpec: QuickSpec { override func spec() {
   it("authorize invalid credentials") {
     // Arrange
     let jack = Jack("Test.Service.authorize.error.invalidCredential")
-    
+
+    HTTPStubbing.stubIfEnabled(
+      name: "authorize_invalid_credential",
+      condition: isMethodPOST() && isPath("/authorizations")
+    )
+
     let credentials = Credentials(user: Credentials.invalidUser, app: Credentials.validApp)
     let service = GitHub.Service(credentialService: credentials)
-    
+
     // Act, Assert
     waitUntil { done in
       _ = service.authorize(scope: [.user, .repository]).subscribe(
         onSuccess: { response in
           jack.info("""
-            \(dump(of: response))
-            \(dump(of: response.payload))
-            """)
+          \(dump(of: response))
+          \(dump(of: response.payload))
+          """)
           fatalError("expect to fail")
-      },
+        },
         onError: { error in
           jack.info("error: \(dump(of: error))")
           if case GitHub.Error.invalidCredential = error {
@@ -65,28 +70,33 @@ class AuthorizationSpec: QuickSpec { override func spec() {
           } else {
             fatalError()
           }
-      }
+        }
       )
     }
   }
-  
+
   it("authorize invalid request parameter") {
     // Arrange
     let jack = Jack("Test.Service.authorize.error.invalidRequestParameter")
-    
+
+    HTTPStubbing.stubIfEnabled(
+      name: "authorize_invalid_parameter",
+      condition: isMethodPOST() && isPath("/authorizations")
+    )
+
     let credentials = Credentials(user: Credentials.validUser, app: Credentials.invalidApp)
     let service = GitHub.Service(credentialService: credentials)
-    
+
     // Act, Assert
     waitUntil { done in
       _ = service.authorize(scope: [.user, .repository]).subscribe(
         onSuccess: { response in
           jack.info("""
-            \(dump(of: response))
-            \(dump(of: response.payload))
-            """)
+          \(dump(of: response))
+          \(dump(of: response.payload))
+          """)
           fatalError("expect to fail")
-      },
+        },
         onError: { error in
           jack.info("error: \(dump(of: error))")
           if case GitHub.Error.invalidRequestParameter = error {
@@ -94,7 +104,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
           } else {
             fatalError()
           }
-      }
+        }
       )
     }
   }
