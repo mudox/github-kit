@@ -1,0 +1,3 @@
+ignore:
+  - "Demo"     # ignore folders and all its contents
+  - "Assets"
