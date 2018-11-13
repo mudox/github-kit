@@ -24,4 +24,4 @@ script:
 
 after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -J 'GitHub'
