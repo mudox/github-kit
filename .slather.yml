@@ -5,4 +5,4 @@ workspace: Demo/GitHubKit.xcworkspace
 
 scheme: GitHubKit-Demo
 
-source_directory: GitHubKit
+source_directory: ../Source

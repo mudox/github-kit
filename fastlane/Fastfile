@@ -16,15 +16,30 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
 
-  lane :tests do
+  desc "Build and test with code coverage"
+  lane :test do
+
+    workspace = "Demo/GitHubKit.xcworkspace"
+    project = "Demo/GitHubKit.xcodeproj"
+    scheme = "GitHubKit-Demo"
+
     run_tests(
-      workspace: "Demo/GitHubKit.xcworkspace",
-      scheme: "GitHubKit-Demo",
+      workspace: workspace,
+      scheme: scheme,
       devices: ["iPhone 8"],
       code_coverage: true,
     )
+
+    slather(
+      travis: true,
+      workspace: workspace,
+      proj: project,
+      scheme: "GitHubKit-Demo",
+      cobertura_xml: true,
+      source_files: ["../Source"]
+    )
+
   end
 
 end

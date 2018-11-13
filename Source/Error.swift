@@ -28,7 +28,7 @@ enum Error: Swift.Error {
   case invalidCredential(ErrorMessage?)
 
   // HTTP 422 Unprocessable Entity
-  // Invalid request paramter in request body or query string
+  // Invalid request paramter in request message
   case invalidRequestParameter(ErrorMessage?)
 }
 

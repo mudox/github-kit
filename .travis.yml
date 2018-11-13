@@ -8,33 +8,24 @@ notifications:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=f12a7cfc4d7eaace0126a5a0a19cd69a874f17b978d2fe0ec2d6027c40c134cc
-    - SCHEME=GitHubKit-Demo
-    - WORKSPACE=Demo/GitHubKit.xcworkspace
+    #- CC_TEST_REPORTER_ID=f12a7cfc4d7eaace0126a5a0a19cd69a874f17b978d2fe0ec2d6027c40c134cc
+    #- SCHEME=GitHubKit-Demo
+    #- WORKSPACE=Demo/GitHubKit.xcworkspace
+    - CODECOV_TOKEN=7f12e41c-5454-4c63-8736-a9415fcda476
 
 before_install:
-  - gem install cocoapods
-  - gem install slather
+  - bundle install
   - pod --project-directory=Demo update JacKit # Pull JacKit from github repo.
 
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+#before_script:
+  #- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
+  #- chmod +x ./cc-test-reporter
+  #- ./cc-test-reporter before-build
 
 script:
-  - set -o pipefail
-    && xcodebuild test
-    -enableCodeCoverage YES
-    -workspace $WORKSPACE
-    -scheme $SCHEME
-    -destination 'platform=iOS Simulator,OS=12.0,name=iPhone 8'
-    -configuration=Debug
-    ONLY_ACTIVE_ARCH=YES
-    | xcpretty
-
-    #- pod lib lint # need to put JackKit.podspec upto Cocoapods first.ug
+  - bundle exec fastlane ios test
 
 after_success:
-  - slather
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
+  #- slather
+  #- ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
+  - bash <(curl -s https://codecov.io/bash)
