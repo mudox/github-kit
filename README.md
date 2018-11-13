@@ -5,10 +5,9 @@
 <!--[![Platform](https://img.shields.io/cocoapods/p/GitHubKit.svg?style=flat)](https://cocoapods.org/pods/GitHubKit)-->
 ![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![GitHub license](https://img.shields.io/github/license/mudox/github-kit.svg)](https://github.com/mudox/github-kit/blob/master/LICENSE)
-
 [![Build Status](https://travis-ci.com/mudox/github-kit.svg?branch=master)](https://travis-ci.com/mudox/github-kit)
+[![codecov](https://codecov.io/gh/mudox/github-kit/branch/master/graph/badge.svg)](https://codecov.io/gh/mudox/github-kit)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e90d72dec155240410a7/maintainability)](https://codeclimate.com/github/mudox/github-kit/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/e90d72dec155240410a7/test_coverage)](https://codeclimate.com/github/mudox/github-kit/test_coverage)
 
 ## Example
 
