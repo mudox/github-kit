@@ -14,7 +14,9 @@ env:
     - CODECOV_TOKEN=7f12e41c-5454-4c63-8736-a9415fcda476
 
 before_install:
-  - bundle install
+  - gem install bundler
+
+before_script:
   - pod --project-directory=Demo update JacKit # Pull JacKit from github repo.
 
 #before_script:
@@ -27,5 +29,5 @@ script:
 
 after_success:
   #- slather
-  #- ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
   - bash <(curl -s https://codecov.io/bash)
