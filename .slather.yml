@@ -1,8 +1,0 @@
-coverage_service: cobertura_xml
-
-xcodeproj: Demo/GitHubKit.xcodeproj
-workspace: Demo/GitHubKit.xcworkspace
-
-scheme: GitHubKit-Demo
-
-source_directory: ../Source
