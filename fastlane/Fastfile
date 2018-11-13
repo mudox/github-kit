@@ -31,15 +31,6 @@ platform :ios do
       code_coverage: true,
     )
 
-    slather(
-      travis: true,
-      workspace: workspace,
-      proj: project,
-      scheme: "GitHubKit-Demo",
-      cobertura_xml: true,
-      source_files: ["../Source"]
-    )
-
   end
 
 end
