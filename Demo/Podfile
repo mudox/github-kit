@@ -9,7 +9,7 @@ target 'Demo' do
 
   pod 'GitHubKit', :path => '../'
 
-  target 'Tests' do
+  target 'Test' do
     inherit! :search_paths
 
     # Travis-CI set `CI` on macOS environment
