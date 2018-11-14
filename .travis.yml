@@ -8,7 +8,6 @@ notifications:
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=f12a7cfc4d7eaace0126a5a0a19cd69a874f17b978d2fe0ec2d6027c40c134cc
     - CODECOV_TOKEN=7f12e41c-5454-4c63-8736-a9415fcda476
 
 before_install:
@@ -16,12 +15,9 @@ before_install:
 
 before_script:
   - pod --project-directory=Demo update JacKit # Pull JacKit from github repo.
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
 
 script:
   - bundle exec fastlane ios test
 
 after_success:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - bash <(curl -s https://codecov.io/bash) -J 'GitHub'
