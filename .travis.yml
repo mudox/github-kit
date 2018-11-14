@@ -6,10 +6,6 @@ cache: bundler
 notifications:
   email: false
 
-env:
-  global:
-    - CODECOV_TOKEN=7f12e41c-5454-4c63-8736-a9415fcda476
-
 before_install:
   - gem install bundler
 
