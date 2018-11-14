@@ -16,7 +16,7 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "JacKit/**/*",
+  "source_files": "Source/**/*",
   "dependencies": {
     "CocoaLumberjack/Swift": [
       "~> 3.3.0"

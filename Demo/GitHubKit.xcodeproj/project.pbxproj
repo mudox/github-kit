@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7B3BBD4A717D33BEA91013DE /* Pods_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75FBD0F8C2630E5A16035C87 /* Pods_Test.framework */; };
-		D8F431C88C25D3FA598A460A /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8129120A016B0D0349B0B646 /* Pods_Tests.framework */; };
 		DDCBA286F7EADA5E13510AE6 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED9FB035EF79833B35C22E0 /* Pods_Demo.framework */; };
 		F41074A1216CC02600F0987D /* GitHubLanguageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410746C216CC02600F0987D /* GitHubLanguageSpec.swift */; };
 		F41074A2216CC02600F0987D /* HTTPStubbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410746E216CC02600F0987D /* HTTPStubbing.swift */; };
@@ -172,7 +171,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8F431C88C25D3FA598A460A /* Pods_Tests.framework in Frameworks */,
 				7B3BBD4A717D33BEA91013DE /* Pods_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,6 +747,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -797,6 +796,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -815,7 +815,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.mudox.GitHubKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -833,7 +833,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.mudox.GitHubKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -861,7 +861,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.mudox.GitHubKit.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
 			};
@@ -888,7 +888,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.mudox.GitHubKit.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo.app/Demo";
 			};
