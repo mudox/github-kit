@@ -14,7 +14,7 @@ before_install:
   - gem install bundler
 
 before_script:
-  - pod --project-directory=Demo update JacKit # Pull JacKit from github repo.
+  - pod --project-directory=Demo --no-repo-update update JacKit # Pull JacKit from github repo.
 
 script:
   - bundle exec fastlane ios test
