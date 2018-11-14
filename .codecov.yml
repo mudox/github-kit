@@ -1,6 +1,5 @@
 ignore:
-  - "Demo"     # ignore folders and all its contents
-  - "Assets"
+  - "Demo"
 
 coverage:
   range: "60...90"
