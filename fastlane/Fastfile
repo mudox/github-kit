@@ -1,3 +1,4 @@
+# vim: ft=ruby
 # This file contains the fastlane.tools configuration
 # You can find the documentation at https://docs.fastlane.tools
 #
@@ -23,11 +24,12 @@ platform :ios do
     workspace = "Demo/GitHubKit.xcworkspace"
     project = "Demo/GitHubKit.xcodeproj"
     scheme = "GitHubKit-Demo"
+    targetDevices = ["iPhone 8"]
 
     run_tests(
       workspace: workspace,
       scheme: scheme,
-      devices: ["iPhone 8"],
+      devices: targetDevices,
       code_coverage: true,
     )
 
