@@ -11,14 +11,14 @@ GitHubKit is a Swift network layer of the [GitHub APIv3] using [Alamofire] + [Mo
 ## Type hierarchy
 
 <p align="center">
-  <img src="Asset/types.png" width=700/>
+  <img src="Asset/xtypes.png" width=700/>
 </p>
 
 
 ## Interface
 
 <p align="center">
-  <img src="Asset/interface.png" width=700/>
+  <img src="Asset/xinterface.png" width=700/>
 </p>
 
 ## Installation
