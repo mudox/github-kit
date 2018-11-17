@@ -16,11 +16,11 @@ public struct HTTPStubbing {
     if enabled {
       jack.debug("""
       is enabled ($HTTP_STUBBING == YES)
-      """, options: [.compact, .noLocation])
+      """, format: [.compact, .noLocation])
     } else {
       jack.debug("""
       is NOT enabled ($HTTP_STUBBING != YES)
-      """, options: [.compact, .noLocation])
+      """, format: [.compact, .noLocation])
     }
 
     return enabled
@@ -30,7 +30,7 @@ public struct HTTPStubbing {
     
     guard isEnabled else { return }
 
-    let jack = Jack("Test.OHHTTPStubs").set(options: .noLocation)
+    let jack = Jack("Test.OHHTTPStubs").set(format: .noLocation)
 
     OHHTTPStubs.onStubActivation { request, stub, _ in
       jack.descendant("onStubActivation").debug("""

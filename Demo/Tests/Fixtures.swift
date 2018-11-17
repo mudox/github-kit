@@ -13,7 +13,7 @@ enum Fixtures {
   static let setup: BeforeExampleClosure = { () -> Void in
     
     // Logging
-    Jack("Test").set(options: .noLocation)
+    Jack("Test").set(format: .noLocation)
 
     // Stubbing
     HTTPStubbing.setup()

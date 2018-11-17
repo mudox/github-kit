@@ -18,7 +18,7 @@ public class LoggingPlugin: PluginType {
     \(String(describing: request))
     ---
     \(String(reflecting: request))
-    """, format : .noLocation)
+    """, format: .noLocation)
   }
 
   public func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
