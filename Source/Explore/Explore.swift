@@ -26,7 +26,7 @@ public struct Explore {
   private static let unzippedDirectoryURL = rootDirectoryURL.appendingPathComponent("explore-master")
 
   private static var isCached: Bool {
-    let jack = Jack("GitHub.Explore.isCached").set(options: .short)
+    let jack = Jack("GitHub.Explore.isCached").set(format: .short)
     if  FileManager.default.fileExists(atPath: unzippedDirectoryURL.path) {
       jack.verbose("repo github/explore is cached")
       return true

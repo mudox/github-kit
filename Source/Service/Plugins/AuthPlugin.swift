@@ -2,7 +2,7 @@ import Moya
 
 import JacKit
 
-private let jack = Jack("GitHub.AuthPlugin").set(options: .short)
+private let jack = Jack("GitHub.AuthPlugin").set(format: .short)
 
 public class AuthPlugin: PluginType {
 

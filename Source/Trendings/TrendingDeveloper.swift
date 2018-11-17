@@ -36,7 +36,7 @@ internal extension Trending.Developer {
     """
 
     let items = doc.css(selector)
-    jack.debug("found \(items.count) items", options: .short)
+    jack.debug("found \(items.count) items", format: .short)
 
     var developers = [Trending.Developer]()
     for item in items {

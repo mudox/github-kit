@@ -18,7 +18,7 @@ public class LoggingPlugin: PluginType {
     \(String(describing: request))
     ---
     \(String(reflecting: request))
-    """, options: .noLocation)
+    """, format : .noLocation)
   }
 
   public func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
@@ -26,7 +26,7 @@ public class LoggingPlugin: PluginType {
 
     Jack("GitHubKit.LoggingPlugin.didReceive").debug("""
     \(dump(of: result))
-    """, options: .noLocation)
+    """, format: .noLocation)
   }
 
   private func dump(of result: Result<Moya.Response, MoyaError>) -> String {

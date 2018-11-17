@@ -46,7 +46,7 @@ internal extension Trending.Repository {
 internal extension Trending.Repository {
 
   static func list(from htmlString: String) -> [Trending.Repository]? {
-    let jack = Jack("GitHub.Trending.Repository.list(from:)").set(options: .short)
+    let jack = Jack("GitHub.Trending.Repository.list(from:)").set(format: .short)
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       jack.error("init `Kanna.HTML` failed")
@@ -61,7 +61,7 @@ internal extension Trending.Repository {
     """
 
     let items = doc.css(selector)
-    jack.debug("found \(items.count) items", options: .short)
+    jack.debug("found \(items.count) items", format: .short)
 
     var repositories = [Trending.Repository]()
     for item in items {
