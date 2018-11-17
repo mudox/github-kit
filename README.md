@@ -8,17 +8,19 @@
 
 GitHubKit is a Swift network layer of the [GitHub APIv3] using [Alamofire] + [Moya] + [RxSwift].
 
+It started as network layer module of [Hydra.app], a Swift iOS client app of GitHub.
+
 ## Type hierarchy
 
 <p align="center">
-  <img src="Asset/xtypes.png" width=700/>
+  <img src="Asset/types.png" width=700/>
 </p>
 
 
 ## Interface
 
 <p align="center">
-  <img src="Asset/xinterface.png" width=700/>
+  <img src="Asset/interface.png" width=700/>
 </p>
 
 ## Installation
@@ -26,7 +28,7 @@ GitHubKit is a Swift network layer of the [GitHub APIv3] using [Alamofire] + [Mo
 <!--GitHubKit is available through [CocoaPods](http://cocoapods.org). To install-->
 <!--it, simply add the following line to your Podfile:-->
 
-GitHubKit is currently not published.
+GitHubKit is currently under heavy development.
 
 ```ruby
 pod 'GitHubKit' :git => 'https://github.com/mudox/github-kit.git'
@@ -44,3 +46,4 @@ GitHubKit is available under the MIT license. See the LICENSE file for more info
 [Moya]: https://github.com/Moya/Moya
 [RxSwift]: https://github.com/ReactiveX/RxSwift
 [Alamofire]: https://github.com/Alamofire/Alamofire
+[Hydra.app]: https://github.com/mudox/hydra
