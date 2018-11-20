@@ -39,6 +39,16 @@ public struct Trending {
     return urlComponents.url!
   }
 
+  /// Request GitHub trending repositories.
+  ///
+  /// - Note: The `language` can be `all` or `unknown`, if a invalid string is
+  ///   given, trending for __all__ repositories is returned. This method
+  ///   always returns a result.
+  ///
+  /// - Parameters:
+  ///   - language: Name of the lanauge to return.
+  ///   - period: Interval of the trending.
+  /// - Returns: `Single<[Trending.Repository]>`
   public static func repositories(of language: String? = nil, in period: Period = .pastDay)
     -> Single<[Trending.Repository]?> {
     let url = self.url(of: .repository, language: language, period: period)
@@ -48,6 +58,16 @@ public struct Trending {
       .map(Trending.Repository.list)
   }
 
+  /// Request GitHub trending developers.
+  ///
+  /// - Note: The `language` can be `all` or `unknown`, if a invalid string is
+  ///   given, trending for __all__ developers is returned. This method
+  ///   always returns a result.
+  ///
+  /// - Parameters:
+  ///   - language: Name of the lanauge to return.
+  ///   - period: Interval of the trending.
+  /// - Returns: `Single<[Trending.Developer]>`
   public static func developers(of language: String? = nil, in period: Period = .pastDay)
     -> Single<[Trending.Developer]?> {
     let url = self.url(of: .developer, language: language, period: period)
