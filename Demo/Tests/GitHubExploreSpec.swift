@@ -73,6 +73,9 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
             collections.forEach { c in
               expect(c.items.count) > 0
+              if let url = c.logoLocalURL {
+                jack.debug("collection logo: \(url.lastPathComponent)", format: .short)
+              }
             }
 
             done()
@@ -154,7 +157,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
     }
 
     // MARK: Collection.Item.invalid
-    
+
     it("Item.site") {
       let s = "- &*name/"
       let c = GitHub.Explore.Collection.Item(string: s)

@@ -27,12 +27,12 @@ public extension Explore {
         let url = GitHub.Explore.unzippedDirectoryURL
           .appendingPathComponent("topics/\(logoBaseName)/\(logoFileName)")
         if FileManager.default.fileExists(atPath: url.path) {
-          logoCachedURL = url
+          logoLocalURL = url
         } else {
-          logoCachedURL = nil
+          logoLocalURL = nil
         }
       } else {
-        logoCachedURL = nil
+        logoLocalURL = nil
       }
 
       creator = decoded.created_by
@@ -58,7 +58,7 @@ public extension Explore {
     public let aliases: String?
     public let related: String?
 
-    public let logoCachedURL: URL?
+    public let logoLocalURL: URL?
 
     public let creator: String?
     public let releaseDate: Date?

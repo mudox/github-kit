@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        try? FileManager.default.removeItem(at: logosDirecotryURL)
 //        try! FileManager.default.createDirectory(atPath: logosDirecotryURL.path, withIntermediateDirectories: true)
 //        topics
-//          .compactMap { $0.logoCachedURL }
+//          .compactMap { $0.logoLocalURL }
 //          .forEach { url in
 //            do {
 //              let destURL = logosDirecotryURL.appendingPathComponent(url.lastPathComponent)

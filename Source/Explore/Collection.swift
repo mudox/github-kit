@@ -16,7 +16,20 @@ public extension Explore {
     public init(yamlString: String, description: String) throws {
 
       let decoder = YAMLDecoder()
-      let decoded = try decoder.decode(_YAML.self, from: yamlString)
+      let decoded = try decoder.decode(YAMLDecoded.self, from: yamlString)
+
+      if let logoFileName = decoded.image {
+        let logoBaseName = (logoFileName as NSString).deletingPathExtension
+        let url = GitHub.Explore.unzippedDirectoryURL
+          .appendingPathComponent("collections/\(logoBaseName)/\(logoFileName)")
+        if FileManager.default.fileExists(atPath: url.path) {
+          logoLocalURL = url
+        } else {
+          logoLocalURL = nil
+        }
+      } else {
+        logoLocalURL = nil
+      }
 
       items = decoded.items.compactMap(Item.init)
       creator = decoded.created_by
@@ -24,6 +37,7 @@ public extension Explore {
       self.description = description
     }
 
+    public let logoLocalURL: URL?
     public let items: [Item]
     public let creator: String?
     public let displayName: String
@@ -38,8 +52,9 @@ public extension Explore {
 private extension Explore.Collection {
 
   /// YAML reprentation in `github/explore`
-  struct _YAML: Decodable {
+  struct YAMLDecoded: Decodable {
     // swiftlint:disable identifier_name
+    let image: String?
     let items: [String]
     let created_by: String?
     let display_name: String
