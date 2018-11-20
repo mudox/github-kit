@@ -4,6 +4,8 @@ import Yams
 
 import JacKit
 
+private let jack = Jack().set(format: .short)
+
 public extension Explore {
 
   struct Collection {
@@ -16,16 +18,16 @@ public extension Explore {
       let decoder = YAMLDecoder()
       let decoded = try decoder.decode(_YAML.self, from: yamlString)
 
-      items = decoded.items
+      items = decoded.items.compactMap(Item.init)
       creator = decoded.created_by
       displayName = decoded.display_name
       self.description = description
     }
 
-    let items: [String]
-    let creator: String?
-    let displayName: String
-    let description: String
+    public let items: [Item]
+    public let creator: String?
+    public let displayName: String
+    public let description: String
 
   }
 
@@ -33,7 +35,7 @@ public extension Explore {
 
 // MARK: - YAML Representation
 
-fileprivate extension Explore.Collection {
+private extension Explore.Collection {
 
   /// YAML reprentation in `github/explore`
   struct _YAML: Decodable {
@@ -42,6 +44,73 @@ fileprivate extension Explore.Collection {
     let created_by: String?
     let display_name: String
     // swiftlint:enable identifier_name
+  }
+
+}
+
+public extension Explore.Collection {
+
+  enum Item {
+
+    init?(string: String) {
+      do {
+        let repoRegex = try NSRegularExpression(pattern: "^\\s*(\\w+)\\s*/\\s*(\\w+)\\s*$")
+        let userRegex = try NSRegularExpression(pattern: "^\\s*(\\w+)\\s*$")
+        let youtubeRegex = try NSRegularExpression(pattern: "^https://www\\.youtube\\.com/watch\\?.*$")
+
+        let range = NSRange(string.startIndex ..< string.endIndex, in: string)
+
+        // .repository
+        if
+          let match = repoRegex.firstMatch(in: string, range: range),
+          let ownerRange = Range(match.range(at: 1), in: string),
+          let nameRange = Range(match.range(at: 2), in: string)
+        {
+          let owner = String(string[ownerRange])
+          let name = String(string[nameRange])
+          self = Item.repository(owner: owner, name: name)
+          return
+        }
+
+        // .gitHubUser
+        if
+          let match = userRegex.firstMatch(in: string, range: range),
+          let range = Range(match.range(at: 1), in: string)
+        {
+          let name = String(string[range])
+          self = Item.gitHubUser(string)
+          return
+        }
+
+        // .youtubeVideo
+        if
+          youtubeRegex.numberOfMatches(in: string, range: range) > 0,
+          let url = URL(string: string)
+        {
+          self = Item.youtubeVideo(url)
+          return
+        }
+
+        // .site
+        if
+          let url = URL(string: string)
+        {
+          self = Item.site(url)
+          return
+        }
+
+        jack.descendant("Item.init").warn("invalid item string: \(string)")
+        return nil
+      } catch {
+        jack.descendant("Item.init").error("error initializing regex patterns: \(error)")
+        return nil
+      }
+    }
+
+    case repository(owner: String, name: String)
+    case gitHubUser(String)
+    case youtubeVideo(URL)
+    case site(URL)
   }
 
 }
