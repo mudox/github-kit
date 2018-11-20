@@ -15,14 +15,25 @@ public extension Explore {
     public init(yamlString: String, description: String) throws {
 
       let decoder = YAMLDecoder()
-      let decoded = try decoder.decode(_YAML.self, from: yamlString)
+      let decoded = try decoder.decode(YAMLDecoded.self, from: yamlString)
 
       name = decoded.topic
       displayName = decoded.display_name
       aliases = decoded.aliases
       related = decoded.related
 
-      logoURL = decoded.logo.flatMap(URL.init)
+      if let logoFileName = decoded.logo {
+        let logoBaseName = (logoFileName as NSString).deletingPathExtension
+        let url = GitHub.Explore.unzippedDirectoryURL
+          .appendingPathComponent("topics/\(logoBaseName)/\(logoFileName)")
+        if FileManager.default.fileExists(atPath: url.path) {
+          logoCachedURL = url
+        } else {
+          logoCachedURL = nil
+        }
+      } else {
+        logoCachedURL = nil
+      }
 
       creator = decoded.created_by
 
@@ -40,34 +51,36 @@ public extension Explore {
     }
 
     /// Lowercase name used in cosntructing the topic's url.
-    let name: String
-    let displayName: String
-    let aliases: String?
-    let related: String?
+    public let name: String
+    /// Formal name used in titles.
+    public let displayName: String
+    /// Equivalent tags
+    public let aliases: String?
+    public let related: String?
 
-    let logoURL: URL?
+    public let logoCachedURL: URL?
 
-    let creator: String?
-    let releaseDate: Date?
+    public let creator: String?
+    public let releaseDate: Date?
 
     /// Short description.
-    let summary: String
+    public let summary: String
     /// Longer description, markdown syntax allowed.
-    let description: String
+    public let description: String
 
-    let url: URL?
-    let githubURL: URL?
-    let wikipediaURL: URL?
+    public let url: URL?
+    public let githubURL: URL?
+    public let wikipediaURL: URL?
   }
 
 }
 
 // MARK: - YAML Representation
 
-fileprivate extension Explore.CuratedTopic {
+private extension Explore.CuratedTopic {
 
   /// YAML reprentation in `github/explore`
-  struct _YAML: Decodable {
+  struct YAMLDecoded: Decodable {
     // swiftlint:disable identifier_name
     let topic: String
     let aliases: String?
