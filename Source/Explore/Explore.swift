@@ -23,7 +23,7 @@ public struct Explore {
   private static let downloadedZipFileURL = rootDirectoryURL.appendingPathComponent("downloaded.zip")
 
   /// Application Support/GitHubKit/GitHub.Explore/unzipped
-  private static let unzippedDirectoryURL = rootDirectoryURL.appendingPathComponent("explore-master")
+  internal static let unzippedDirectoryURL = rootDirectoryURL.appendingPathComponent("explore-master")
 
   private static var isCached: Bool {
     let jack = Jack("GitHub.Explore.isCached").set(format: .short)
