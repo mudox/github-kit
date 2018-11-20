@@ -8,11 +8,6 @@ public extension Explore {
 
   struct Collection {
 
-    // swiftlint:disable:next nesting
-    enum Error: Swift.Error {
-      case regexMatch
-    }
-
     /// Initialize an instance of CuratedTopic from an index.md file from github/explore repository.
     ///
     /// - Parameter url: URL of the index.md file.
