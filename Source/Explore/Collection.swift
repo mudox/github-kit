@@ -126,6 +126,20 @@ public extension Explore.Collection {
     case gitHubUser(String)
     case youtubeVideo(URL)
     case site(URL)
+
+    public var url: URL {
+      switch self {
+      case let .repository(owner: owner, name: name):
+        return URL(string: "https://github.com/\(owner)/\(name)")!
+      case let .gitHubUser(name):
+        return URL(string: "https://github.com/\(name)")!
+      case let .youtubeVideo(url):
+        return url
+      case let .site(url):
+        return url
+      }
+    }
+
   }
 
 }
