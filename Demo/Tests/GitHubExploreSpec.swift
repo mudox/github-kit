@@ -60,7 +60,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
   // MARK: collections
 
-  it("collections") {
+  fit("collections") {
     // Arrange
     let jack = Jack("Test.GitHub.Explore.collections")
 
@@ -73,6 +73,11 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
             collections.forEach { c in
               expect(c.items.count) > 0
+              
+              c.items.forEach { item in
+                expect(item.url.absoluteString.count) > 0
+              }
+              
               if let url = c.logoLocalURL {
                 jack.debug("collection logo: \(url.lastPathComponent)", format: .short)
               }
