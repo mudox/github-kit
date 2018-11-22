@@ -4,23 +4,43 @@ import Kanna
 
 import JacKit
 
+private let jack = Jack().set(format: .short)
+
 public extension Trending {
 
   struct Repository {
 
-    let title: String
-    let description: String
+    public let title: String
+    public let summary: String
 
-    let language: (name: String, color: String)?
+    public let language: (name: String, color: String)?
 
-    let starsCount: Int
-    let forksCount: Int?
-    let gainedStarsCount: Int
+    public let starsCount: Int
+    public let forksCount: Int?
+    public let gainedStarsCount: Int
 
     // swiftlint:disable:next nesting
-    typealias Contributor = (name: String, avatar: URL)
+    public typealias Contributor = (name: String, avatar: URL)
+    public let contributors: [Contributor]
 
-    let contributors: [Contributor]
+    // MARK: - Computed Properties
+
+    public var owner: String {
+      guard let owner = title.split(separator: "/").first else {
+        jack.error("can not extract repo owner from `.title`")
+        return ""
+      }
+      return String(owner)
+    }
+
+    public var name: String {
+      guard let name = title.split(separator: "/").last else {
+        jack.error("can not extract repo name from `.title`")
+        return ""
+      }
+      return String(name)
+    }
+
   }
 }
 
@@ -99,7 +119,7 @@ fileprivate extension Trending.Repository {
 
     return Trending.Repository(
       title: title,
-      description: description,
+      summary: description,
       language: language,
       starsCount: starsCount,
       forksCount: forksCount,
