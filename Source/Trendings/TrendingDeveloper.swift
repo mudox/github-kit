@@ -4,6 +4,8 @@ import Kanna
 
 import JacKit
 
+private let jack = Jack().set(format: .short).set(level: .warning)
+
 public extension Trending {
 
   struct Developer {
@@ -21,7 +23,8 @@ public extension Trending {
 internal extension Trending.Developer {
   
   static func list(from htmlString: String) throws -> [Trending.Developer] {
-    let jack = Jack("GitHub.Trending.Developer.list(from:)")
+    let log = jack.descendant("list(from:)")
+    log.assert(!Thread.isMainThread, "should run on background thread")
 
     let doc = try HTML(html: htmlString, encoding: .utf8)
 
@@ -67,7 +70,7 @@ fileprivate extension Trending.Developer {
   }
 
   static func logo(from element: Kanna.XMLElement) throws -> URL {
-    let jack = Jack("GitHub.Trending.Developer.logo(from:)")
+    let log = jack.descendant("logo(from:)")
 
     guard let img = element.css("div > a > img").first else {
       jack.error("failed to get the <img> element which should contain the url of the developer's logo")
@@ -88,7 +91,7 @@ fileprivate extension Trending.Developer {
   }
 
   static func names(from element: XMLElement) throws -> (name: String, displayName: String?) {
-    let jack = Jack("GitHub.Trending.Developer.names(from:)")
+    let log = jack.descendant("names(from:)")
 
     // Name of developer
     guard let anchor = element.css("div > div > h2 > a").first else {
@@ -127,7 +130,7 @@ fileprivate extension Trending.Developer {
   }
 
   static func repository(from element: XMLElement) throws -> (name: String, description: String) {
-    let jack = Jack("GitHub.Trending.Developer.repository(from:)")
+    let log = jack.descendant("repository(from:)")
 
     guard let span = element.css("div > div > a > span[class^=\"repo-snipit-name\"]").first else {
       jack.error("failed to get the <span> element which should contain the name of the repository")
