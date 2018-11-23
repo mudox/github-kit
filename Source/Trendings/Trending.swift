@@ -9,6 +9,24 @@ import JacKit
 
 public struct Trending {
 
+  struct HTMLParsingError: Swift.Error {
+
+    init(
+      file: StaticString = #file,
+      function: StaticString = #function,
+      line: UInt = #line
+    ) {
+      self.file = file.description
+      self.function = function.description
+      self.line = line
+    }
+
+    let reason: String? = nil
+    let file: String
+    let function: String
+    let line: UInt
+  }
+
   public enum Period: String {
     case pastDay = "daily"
     case pastWeek = "weekly"
