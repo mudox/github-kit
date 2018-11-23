@@ -76,6 +76,7 @@ public struct Trending {
 
     return RxAlamofire.string(.get, url)
       .asSingle()
+      .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
       .map(Trending.Repository.list)
   }
 
@@ -95,6 +96,7 @@ public struct Trending {
 
     return RxAlamofire.string(.get, url)
       .asSingle()
+      .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
       .map(Trending.Developer.list)
   }
 
