@@ -65,12 +65,12 @@ internal extension Trending.Repository {
 
 internal extension Trending.Repository {
 
-  static func list(from htmlString: String) -> [Trending.Repository]? {
+  static func list(from htmlString: String) throws -> [Trending.Repository] {
     let jack = Jack("GitHub.Trending.Repository.list(from:)").set(format: .short)
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       jack.error("init `Kanna.HTML` failed")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     let selector = """
@@ -85,9 +85,7 @@ internal extension Trending.Repository {
 
     var repositories = [Trending.Repository]()
     for item in items {
-      guard let repository = single(from: item) else {
-        return nil
-      }
+      let repository = try single(from: item)
 
       jack.debug(dump(of: repository))
       repositories.append(repository)
@@ -102,66 +100,51 @@ internal extension Trending.Repository {
 
 fileprivate extension Trending.Repository {
 
-  static func single(from element: Kanna.XMLElement) -> Trending.Repository? {
-
-    guard
-      let title = title(from: element),
-      let description = description(from: element),
-      let language = language(from: element),
-      let starsCount = starsCount(from: element),
-      let gainedStarsCount = gainedStarsCount(from: element)
-    else {
-      return nil
-    }
-
-    let forksCount = self.forksCount(from: element)
-    let contributors = self.contributors(from: element)
-
+  static func single(from element: Kanna.XMLElement) throws -> Trending.Repository {
     return Trending.Repository(
-      title: title,
-      summary: description,
-      language: language,
-      starsCount: starsCount,
-      forksCount: forksCount,
-      gainedStarsCount: gainedStarsCount,
-      contributors: contributors
+      title: try title(from: element),
+      summary: try description(from: element),
+      language: try language(from: element),
+      starsCount: try starsCount(from: element),
+      forksCount: try forksCount(from: element),
+      gainedStarsCount: try gainedStarsCount(from: element),
+      contributors: try contributors(from: element)
     )
-
   }
 
-  static func title(from element: Kanna.XMLElement) -> String? {
+  static func title(from element: Kanna.XMLElement) throws -> String {
     let jack = Jack("GitHub.Trending.Repository.title(from:)")
 
     guard let anchor = element.css("div > h3 > a").first else {
       jack.error("failed to get the <a> element which should contain the title of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let name = anchor.text else {
       jack.error("`anchor.text` returned nil, expecting the title of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     return name.trimmingCharacters(in: .whitespacesAndNewlines)
   }
 
-  static func description(from element: Kanna.XMLElement) -> String? {
+  static func description(from element: Kanna.XMLElement) throws -> String {
     let jack = Jack("GitHub.Trending.Repository.description(from:)")
 
     guard let div = element.css("div:nth-child(3)").first else {
       jack.error("failed to get the <div> element which should contain the description of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let description = div.text else {
       jack.error("`div.text` returned nil, expecting the description of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     return description.trimmingCharacters(in: .whitespacesAndNewlines)
   }
 
-  static func language(from element: Kanna.XMLElement) -> (name: String, color: String)? {
+  static func language(from element: Kanna.XMLElement) throws -> (name: String, color: String)? {
     let jack = Jack("GitHub.Trending.Repository.language(from:)")
 
     // Color string
@@ -173,18 +156,21 @@ fileprivate extension Trending.Repository {
     """
 
     guard let colorSpan = element.css(colorSelector).first else {
-      jack.error("failed to get the <span> element which should contain the language color indicator of the repository")
+      jack.debug("""
+      failed to get the <span> element which should contain the language color indicator of the repository.
+      it may not be an error.
+      """)
       return nil
     }
 
     guard let style = colorSpan["style"] else {
       jack.error("`span[style]` returned nil, expecting style string containing color of the repository's language")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let colorString = Trending.Repository.colorString(from: style) else {
       jack.error("failed to extract color string from style string: \(style)")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     // Language name
@@ -196,18 +182,18 @@ fileprivate extension Trending.Repository {
 
     guard let nameSpan = element.css(nameSelector).first else {
       jack.error("failed to get the <span> element which should contain the language name of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let name = nameSpan.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       jack.error("`span.text` returned nil, expecting name of the repository's language")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     return (name, colorString)
   }
 
-  static func starsCount(from element: Kanna.XMLElement) -> Int? {
+  static func starsCount(from element: Kanna.XMLElement) throws -> Int {
     let jack = Jack("GitHub.Trending.Repository.starsCount(from:)")
 
     let selector = """
@@ -217,12 +203,12 @@ fileprivate extension Trending.Repository {
 
     guard let anchor = element.css(selector).first else {
       jack.error("failed to get the <a> element which should stars count of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let text = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       jack.error("`anchor.text` returned nil, expecting stars count of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     let formatter = NumberFormatter()
@@ -230,13 +216,13 @@ fileprivate extension Trending.Repository {
     formatter.number(from: text)
     guard let count = formatter.number(from: text) else {
       jack.error("cast string (\(text)) to number failed, expecting stars count of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     return count.intValue
   }
 
-  static func forksCount(from element: Kanna.XMLElement) -> Int? {
+  static func forksCount(from element: Kanna.XMLElement) throws -> Int {
     let jack = Jack("GitHub.Trending.Repository.forksCount(from:)")
 
     let selector = """
@@ -248,12 +234,12 @@ fileprivate extension Trending.Repository {
       jack.debug("""
       failed to get the <a> element which should contain forks count of the repository, repository may have no forks.
       """)
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let text = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       jack.error("`anchor.text` returned nil, expecting forks count of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     let formatter = NumberFormatter()
@@ -261,13 +247,13 @@ fileprivate extension Trending.Repository {
     formatter.number(from: text)
     guard let count = formatter.number(from: text) else {
       jack.error("cast string (\(text)) to number failed, expecting forks count of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     return count.intValue
   }
 
-  static func gainedStarsCount(from element: Kanna.XMLElement) -> Int? {
+  static func gainedStarsCount(from element: Kanna.XMLElement) throws -> Int {
     let jack = Jack("GitHub.Trending.Repository.gainedStarsCount(from:)")
 
     let selector = """
@@ -277,27 +263,29 @@ fileprivate extension Trending.Repository {
 
     guard let span = element.css(selector).first else {
       jack.error("failed to get the <span> element which should gained stars count of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let text = span.text else {
       jack.error("`anchor.text` returned nil, expecting gained stars count of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
-    guard let range = text.range(of: "\\d+", options: .regularExpression, range: nil, locale: nil) else {
+    guard let range = text.range(of: "[,0-9]+", options: .regularExpression) else {
       jack.error("failed to extract gained star count digits from string: \(text)")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     let numberText = text.substring(with: range)
-
-    guard let count = Int(numberText) else {
+    
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    guard let count = formatter.number(from: numberText) else {
       jack.error("cast string (\(text)) to number failed, expecting gained stars count of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
-    return count
+    return count.intValue
   }
 
   static func contributors(from element: Kanna.XMLElement) -> [Contributor] {

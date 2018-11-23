@@ -19,14 +19,11 @@ public extension Trending {
 // MARK: - Internal
 
 internal extension Trending.Developer {
-
-  static func list(from htmlString: String) -> [Trending.Developer]? {
+  
+  static func list(from htmlString: String) throws -> [Trending.Developer] {
     let jack = Jack("GitHub.Trending.Developer.list(from:)")
 
-    guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
-      jack.error("init `Kanna.HTML` failed")
-      return nil
-    }
+    let doc = try HTML(html: htmlString, encoding: .utf8)
 
     let selector = """
     div.application-main \
@@ -40,9 +37,7 @@ internal extension Trending.Developer {
 
     var developers = [Trending.Developer]()
     for item in items {
-      guard let developer = single(from: item) else {
-        return nil
-      }
+      let developer = try single(from: item)
 
       jack.debug(dump(of: developer))
       developers.append(developer)
@@ -56,15 +51,11 @@ internal extension Trending.Developer {
 
 fileprivate extension Trending.Developer {
 
-  static func single(from element: Kanna.XMLElement) -> Trending.Developer? {
+  static func single(from element: Kanna.XMLElement) throws -> Trending.Developer {
 
-    guard
-      let logoURL = logo(from: element),
-      let (name, displayName) = names(from: element),
-      let (repoName, description) = repository(from: element)
-    else {
-      return nil
-    }
+    let logoURL = try logo(from: element)
+    let (name, displayName) = try names(from: element)
+    let (repoName, description) = try repository(from: element)
 
     return Trending.Developer(
       logoURL: logoURL,
@@ -75,34 +66,39 @@ fileprivate extension Trending.Developer {
     )
   }
 
-  static func logo(from element: Kanna.XMLElement) -> URL? {
+  static func logo(from element: Kanna.XMLElement) throws -> URL {
     let jack = Jack("GitHub.Trending.Developer.logo(from:)")
 
     guard let img = element.css("div > a > img").first else {
       jack.error("failed to get the <img> element which should contain the url of the developer's logo")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let urlString = img["src"] else {
       jack.error("`img.src` returned nil, expecting the url of developer logo")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
-    return URL(string: urlString)
+    guard let url =  URL(string: urlString) else {
+      jack.error("invalid url string: \(urlString)")
+      throw Trending.HTMLParsingError()
+    }
+    
+    return url
   }
 
-  static func names(from element: XMLElement) -> (name: String, displayName: String?)? {
+  static func names(from element: XMLElement) throws -> (name: String, displayName: String?) {
     let jack = Jack("GitHub.Trending.Developer.names(from:)")
 
     // Name of developer
     guard let anchor = element.css("div > div > h2 > a").first else {
       jack.error("failed to get the <a> element which should contain the url name of the developer")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let anchorText = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       jack.error("`anchor.text` returned nil, expecting the url name of the developer")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     let name: String
@@ -117,7 +113,7 @@ fileprivate extension Trending.Developer {
     if let span = element.css("div > div > h2 > a > span").first {
       guard let text = span.text else {
         jack.error("`span.text` returned nil, expecting the display name of the developer")
-        return nil
+        throw Trending.HTMLParsingError()
       }
       displayName = text
     } else {
@@ -130,27 +126,27 @@ fileprivate extension Trending.Developer {
     )
   }
 
-  static func repository(from element: XMLElement) -> (name: String, description: String)? {
+  static func repository(from element: XMLElement) throws -> (name: String, description: String) {
     let jack = Jack("GitHub.Trending.Developer.repository(from:)")
 
     guard let span = element.css("div > div > a > span[class^=\"repo-snipit-name\"]").first else {
       jack.error("failed to get the <span> element which should contain the name of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let name = span.text else {
       jack.error("`span.text` returned nil, expecting the name of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let anchor = element.css("div > div > a > span[class^=\"repo-snipit-description\"]").first else {
       jack.error("failed to get the <a> element which should contain the description of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     guard let description = anchor.text else {
       jack.error("`anchor.text` returned nil, expecting the description of the repository")
-      return nil
+      throw Trending.HTMLParsingError()
     }
 
     return (
