@@ -9,11 +9,11 @@ private let jack = Jack().set(format: .short).set(level: .warning)
 public extension Trending {
 
   struct Developer {
-    let logoURL: URL
-    let name: String
-    let displayName: String?
-    let repositoryName: String
-    let repositoryDescription: String
+    public let avatarURL: URL
+    public let name: String
+    public let displayName: String?
+    public let repositoryName: String
+    public let repositoryDescription: String
   }
 
 }
