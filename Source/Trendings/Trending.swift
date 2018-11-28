@@ -9,7 +9,7 @@ import JacKit
 
 public struct Trending {
   
-  enum Error: Swift.Error {
+  public enum Error: Swift.Error {
     case htmlParsing
     case isDissecting
   }
@@ -80,9 +80,9 @@ public struct Trending {
     let url = Trending.url(of: .repository, language: language, period: period)
 
     return RxAlamofire.string(.get, url)
-      .asSingle()
       .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
       .map(Trending.Repository.list)
+      .asSingle()
   }
 
   /// Request GitHub trending developers.
@@ -100,9 +100,9 @@ public struct Trending {
     let url = Trending.url(of: .developer, language: language, period: period)
 
     return RxAlamofire.string(.get, url)
-      .asSingle()
       .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
       .map(Trending.Developer.list)
+      .asSingle()
   }
 
 }

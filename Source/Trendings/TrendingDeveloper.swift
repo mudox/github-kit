@@ -38,8 +38,18 @@ internal extension Trending.Developer {
     """
 
     let items = doc.css(selector)
-    guard items.count > 0 else {
-      throw Trending.Error.isDissecting
+    if items.count > 0 {
+      let range = htmlString.range(
+        of: "Trending developers results are currently being dissected.",
+        options: .regularExpression
+      )
+    
+      if range != nil {
+        throw Trending.Error.isDissecting
+      } else {
+        throw Trending.Error.htmlParsing
+      }
+
     }
 
     var developers = [Trending.Developer]()
