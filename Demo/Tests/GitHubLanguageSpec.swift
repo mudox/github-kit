@@ -54,7 +54,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = Trending.developers(of: "swift", in: .pastWeek)
+        _ = Trending().developers(of: "swift", for: .thisMonth)
           .subscribe(
             onSuccess: { _ in
               done()

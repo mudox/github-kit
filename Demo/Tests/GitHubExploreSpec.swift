@@ -60,7 +60,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
 
   // MARK: collections
 
-  fit("collections") {
+  it("collections") {
     // Arrange
     let jack = Jack("Test.GitHub.Explore.collections")
 

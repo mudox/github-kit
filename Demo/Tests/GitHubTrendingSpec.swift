@@ -9,16 +9,20 @@ import GitHub
 
 import JacKit
 
+private let jack = Jack().set(format: .short)
+
 class GitHubTrendingSpec: QuickSpec { override func spec() {
-  
+
   beforeEach(Fixtures.setup)
   afterEach(Fixtures.cleanup)
 
   describe("GitHub.Trending") {
 
+    // MARK: repositories
+
     it("repositories") {
       // Arrange
-      let jack = Jack("Test.GitHub.Trending.repositories(of:in:)")
+      let log = jack.descendant("repositories")
 
       HTTPStubbing.stubIfEnabled(
         name: "repository-trending",
@@ -27,22 +31,24 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = Trending.repositories(of: "swift", in: .pastMonth)
+        _ = Trending().repositories(of: "swift", for: .thisMonth)
           .subscribe(
             onSuccess: { _ in
               done()
             },
             onError: { error in
-              jack.error(dump(of: error))
+              log.error(dump(of: error))
               fatalError()
             }
           )
       }
     }
 
+    // MARK: developers
+
     it("developers") {
       // Arrange
-      let jack = Jack("Test.GitHub.Trending.developers(of:in)")
+      let log = jack.descendant("developers")
 
       HTTPStubbing.stubIfEnabled(
         name: "developer-trending",
@@ -51,13 +57,13 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = Trending.developers(of: "swift", in: .pastWeek)
+        _ = Trending().developers(of: "swift", for: .thisWeek)
           .subscribe(
             onSuccess: { _ in
               done()
             },
             onError: { error in
-              jack.error(dump(of: error))
+              log.error(dump(of: error))
               fatalError()
             }
           )
