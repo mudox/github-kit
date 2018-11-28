@@ -8,29 +8,34 @@ import Kanna
 import JacKit
 
 public struct Trending {
-
-  struct HTMLParsingError: Swift.Error {
-
-    init(
-      file: StaticString = #file,
-      function: StaticString = #function,
-      line: UInt = #line
-    ) {
-      self.file = file.description
-      self.function = function.description
-      self.line = line
-    }
-
-    let reason: String? = nil
-    let file: String
-    let function: String
-    let line: UInt
+  
+  enum Error: Swift.Error {
+    case htmlParsing
+    case isDissecting
   }
+  
+//  struct HTMLParsingError: Swift.Error {
+//
+//    init(
+//      file: StaticString = #file,
+//      function: StaticString = #function,
+//      line: UInt = #line
+//    ) {
+//      self.file = file.description
+//      self.function = function.description
+//      self.line = line
+//    }
+//
+//    let reason: String? = nil
+//    let file: String
+//    let function: String
+//    let line: UInt
+//  }
 
   public enum Period: String {
-    case pastDay = "daily"
-    case pastWeek = "weekly"
-    case pastMonth = "monthly"
+    case today = "daily"
+    case thisWeek = "weekly"
+    case thisMonth = "monthly"
   }
 
   public enum Category {
@@ -40,7 +45,7 @@ public struct Trending {
 
   // MARK: - Private
 
-  fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .pastDay) -> URL {
+  fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .today) -> URL {
 
     var urlComponents: URLComponents
     switch catetory {
@@ -70,7 +75,7 @@ public struct Trending {
   ///   - language: Name of the lanauge to return.
   ///   - period: Interval of the trending.
   /// - Returns: `Single<[Trending.Repository]>`
-  public func repositories(of language: String = "all", in period: Period = .pastDay)
+  public func repositories(of language: String = "all", for period: Period = .today)
     -> Single<[Trending.Repository]> {
     let url = Trending.url(of: .repository, language: language, period: period)
 
@@ -90,7 +95,7 @@ public struct Trending {
   ///   - language: Name of the lanauge to return.
   ///   - period: Interval of the trending.
   /// - Returns: `Single<[Trending.Developer]>`
-  public func developers(of language: String = "all", in period: Period = .pastDay)
+  public func developers(of language: String = "all", for period: Period = .today)
     -> Single<[Trending.Developer]> {
     let url = Trending.url(of: .developer, language: language, period: period)
 

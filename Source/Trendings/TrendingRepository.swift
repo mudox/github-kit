@@ -71,7 +71,7 @@ internal extension Trending.Repository {
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       log.error("init `Kanna.HTML` failed")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     let selector = """
@@ -118,12 +118,12 @@ fileprivate extension Trending.Repository {
 
     guard let anchor = element.css("div > h3 > a").first else {
       log.error("failed to get the <a> element which should contain the title of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     guard let name = anchor.text else {
       log.error("`anchor.text` returned nil, expecting the title of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     return name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -134,12 +134,12 @@ fileprivate extension Trending.Repository {
 
     guard let div = element.css("div:nth-child(3)").first else {
       log.error("failed to get the <div> element which should contain the description of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     guard let description = div.text else {
       log.error("`div.text` returned nil, expecting the description of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     return description.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -166,12 +166,12 @@ fileprivate extension Trending.Repository {
 
     guard let style = colorSpan["style"] else {
       log.error("`span[style]` returned nil, expecting style string containing color of the repository's language")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     guard let colorString = Trending.Repository.colorString(from: style) else {
       log.error("failed to extract color string from style string: \(style)")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     // Language name
@@ -183,12 +183,12 @@ fileprivate extension Trending.Repository {
 
     guard let nameSpan = element.css(nameSelector).first else {
       log.error("failed to get the <span> element which should contain the language name of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     guard let name = nameSpan.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       log.error("`span.text` returned nil, expecting name of the repository's language")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     return (name, colorString)
@@ -204,12 +204,12 @@ fileprivate extension Trending.Repository {
 
     guard let anchor = element.css(selector).first else {
       log.error("failed to get the <a> element which should stars count of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     guard let text = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       log.error("`anchor.text` returned nil, expecting stars count of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     let formatter = NumberFormatter()
@@ -217,7 +217,7 @@ fileprivate extension Trending.Repository {
     formatter.number(from: text)
     guard let count = formatter.number(from: text) else {
       log.error("cast string (\(text)) to number failed, expecting stars count of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     return count.intValue
@@ -235,12 +235,12 @@ fileprivate extension Trending.Repository {
       log.debug("""
       failed to get the <a> element which should contain forks count of the repository, repository may have no forks.
       """)
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     guard let text = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
       log.error("`anchor.text` returned nil, expecting forks count of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     let formatter = NumberFormatter()
@@ -248,7 +248,7 @@ fileprivate extension Trending.Repository {
     formatter.number(from: text)
     guard let count = formatter.number(from: text) else {
       log.error("cast string (\(text)) to number failed, expecting forks count of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     return count.intValue
@@ -264,26 +264,26 @@ fileprivate extension Trending.Repository {
 
     guard let span = element.css(selector).first else {
       log.error("failed to get the <span> element which should gained stars count of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     guard let text = span.text else {
       log.error("`anchor.text` returned nil, expecting gained stars count of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     guard let range = text.range(of: "[,0-9]+", options: .regularExpression) else {
       log.error("failed to extract gained star count digits from string: \(text)")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     let numberText = text.substring(with: range)
-    
+
     let formatter = NumberFormatter()
     formatter.numberStyle = .decimal
     guard let count = formatter.number(from: numberText) else {
       log.error("cast string (\(text)) to number failed, expecting gained stars count of the repository")
-      throw Trending.HTMLParsingError()
+      throw Trending.Error.htmlParsing
     }
 
     return count.intValue
