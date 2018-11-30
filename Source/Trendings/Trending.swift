@@ -7,30 +7,14 @@ import Kanna
 
 import JacKit
 
+private let jack = Jack().set(format: .short).set(level: .warning)
+
 public struct Trending {
-  
+
   public enum Error: Swift.Error {
     case htmlParsing
     case isDissecting
   }
-  
-//  struct HTMLParsingError: Swift.Error {
-//
-//    init(
-//      file: StaticString = #file,
-//      function: StaticString = #function,
-//      line: UInt = #line
-//    ) {
-//      self.file = file.description
-//      self.function = function.description
-//      self.line = line
-//    }
-//
-//    let reason: String? = nil
-//    let file: String
-//    let function: String
-//    let line: UInt
-//  }
 
   public enum Period: String {
     case today = "daily"
@@ -45,9 +29,10 @@ public struct Trending {
 
   // MARK: - Private
 
-  fileprivate static func url(of catetory: Category, language: String? = nil, period: Period = .today) -> URL {
+  fileprivate static func url(of catetory: Category, language: String, period: Period = .today) -> URL {
 
     var urlComponents: URLComponents
+    
     switch catetory {
     case .repository:
       urlComponents = URLComponents(string: "https://github.com/trending")!
@@ -55,7 +40,7 @@ public struct Trending {
       urlComponents = URLComponents(string: "https://github.com/trending/developers")!
     }
 
-    urlComponents.path.append("/\(language)")
+    urlComponents.path.append("/\(language.lowercased())")
     urlComponents.queryItems = [URLQueryItem(name: "since", value: period.rawValue)]
 
     return urlComponents.url!
@@ -78,6 +63,7 @@ public struct Trending {
   public func repositories(of language: String = "all", for period: Period = .today)
     -> Single<[Trending.Repository]> {
     let url = Trending.url(of: .repository, language: language, period: period)
+    jack.function().debug("new request with url: \(url)")
 
     return RxAlamofire.string(.get, url)
       .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
