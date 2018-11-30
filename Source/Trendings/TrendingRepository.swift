@@ -67,7 +67,7 @@ internal extension Trending.Repository {
 
   static func list(from htmlString: String) throws -> [Trending.Repository] {
     let log = jack.descendant("list(from:)")
-    log.assert(!Thread.isMainThread, "should run on main thread")
+    log.assertMainThread()
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       log.error("init `Kanna.HTML` failed")
@@ -82,7 +82,20 @@ internal extension Trending.Repository {
     """
 
     let items = doc.css(selector)
-    log.debug("found \(items.count) items", format: .short)
+    if items.count == 0 {
+      let range = htmlString.range(
+        of: "Trending .* are currently being dissected.",
+        options: .regularExpression
+      )
+      
+      if range != nil {
+        throw Trending.Error.isDissecting
+      } else {
+        log.error("search for repsitory `<ol>` nodes failed")
+        throw Trending.Error.htmlParsing
+      }
+      
+    }
 
     var repositories = [Trending.Repository]()
     for item in items {
