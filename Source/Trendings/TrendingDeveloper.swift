@@ -24,9 +24,7 @@ internal extension Trending.Developer {
 
   static func list(from htmlString: String) throws -> [Trending.Developer] {
     let log = jack.function()
-    log.assert(!Thread.isMainThread, """
-    this method is time consuming, should run on background thread
-    """)
+    log.assertBackgroundThread()
 
     let doc = try HTML(html: htmlString, encoding: .utf8)
 
@@ -38,9 +36,9 @@ internal extension Trending.Developer {
     """
 
     let items = doc.css(selector)
-    if items.count > 0 {
+    if items.count == 0 {
       let range = htmlString.range(
-        of: "Trending developers results are currently being dissected.",
+        of: "Trending .* are currently being dissected.",
         options: .regularExpression
       )
     
