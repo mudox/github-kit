@@ -67,7 +67,7 @@ internal extension Trending.Repository {
 
   static func list(from htmlString: String) throws -> [Trending.Repository] {
     let log = jack.descendant("list(from:)")
-    log.assertMainThread()
+    log.assertBackgroundThread()
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
       log.error("init `Kanna.HTML` failed")
