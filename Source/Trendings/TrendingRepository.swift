@@ -1,6 +1,7 @@
 import Foundation
 
 import Kanna
+import SwiftHEXColors
 
 import JacKit
 
@@ -13,7 +14,7 @@ public extension Trending {
     public let title: String
     public let summary: String
 
-    public let language: (name: String, color: String)?
+    public let language: (name: String, color: UIColor?)?
 
     public let starsCount: Int
     public let forksCount: Int?
@@ -48,15 +49,16 @@ public extension Trending {
 
 internal extension Trending.Repository {
 
-  static func colorString(from styleText: String) -> String? {
-    let nsText = styleText as NSString
-    let nsRange = NSRange(location: 0, length: nsText.length)
+  static func color(from styleText: String) -> UIColor? {
     let pattern = "background-color\\s*:\\s*#([^;]+);"
+    let range = NSRange(styleText.startIndex ..< styleText.endIndex, in: styleText)
+    guard
+      let regex = try? NSRegularExpression(pattern: pattern),
+      let match = regex.firstMatch(in: styleText, options: [], range: range),
+      let hexRange = Range(match.range(at: 1), in: styleText)
+    else { return nil }
 
-    guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
-    guard let match = regex.firstMatch(in: styleText, options: [], range: nsRange) else { return nil }
-
-    return nsText.substring(with: match.range(at: 1))
+    return UIColor(hexString: String(styleText[hexRange]))
   }
 
 }
@@ -158,7 +160,7 @@ fileprivate extension Trending.Repository {
     return description.trimmingCharacters(in: .whitespacesAndNewlines)
   }
 
-  static func language(from element: Kanna.XMLElement) throws -> (name: String, color: String)? {
+  static func language(from element: Kanna.XMLElement) throws -> (name: String, color: UIColor?)? {
     let log = jack.descendant("language(from:)")
 
     // Color string
@@ -182,7 +184,7 @@ fileprivate extension Trending.Repository {
       throw Trending.Error.htmlParsing
     }
 
-    guard let colorString = Trending.Repository.colorString(from: style) else {
+    guard let color = Trending.Repository.color(from: style) else {
       log.error("failed to extract color string from style string: \(style)")
       throw Trending.Error.htmlParsing
     }
@@ -204,7 +206,7 @@ fileprivate extension Trending.Repository {
       throw Trending.Error.htmlParsing
     }
 
-    return (name, colorString)
+    return (name, color)
   }
 
   static func starsCount(from element: Kanna.XMLElement) throws -> Int {
@@ -236,7 +238,7 @@ fileprivate extension Trending.Repository {
     return count.intValue
   }
 
-  static func forksCount(from element: Kanna.XMLElement) throws -> Int {
+  static func forksCount(from element: Kanna.XMLElement) throws -> Int? {
     let log = jack.descendant("forksCount(from:)")
 
     let selector = """
@@ -246,9 +248,10 @@ fileprivate extension Trending.Repository {
 
     guard let anchor = element.css(selector).first else {
       log.debug("""
-      failed to get the <a> element which should contain forks count of the repository, repository may have no forks.
+      failed to get the <a> element which should contain forks count of the repository.
+      repository may have no forks, return nil.
       """)
-      throw Trending.Error.htmlParsing
+      return nil
     }
 
     guard let text = anchor.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
@@ -278,7 +281,7 @@ fileprivate extension Trending.Repository {
     guard let span = element.css(selector).first else {
       log.debug("""
       failed to get the <span> element which should contain gained stars count of the repository.
-      which is optional, return nil
+      repository may have no gained stars in the period, return nil
       """)
       return nil
     }
@@ -318,7 +321,9 @@ fileprivate extension Trending.Repository {
     let imgs = element.css(selector)
     // swiftlint:disable:next empty_count
     guard imgs.count > 0 else {
-      log.error("fail to extract contributors")
+      log.debug(
+        "fail to extract contributors, which is possible for some repositories, return []"
+      )
       return []
     }
 
