@@ -1,24 +1,27 @@
-import Foundation
+import UIKit
 
 import RxAlamofire
 import RxSwift
 
+import SwiftHEXColors
 import Yams
 
 import JacKit
 
 private let jack = Jack().set(format: .short)
 
-public struct Language: Decodable {
+public struct Language {
 
   let name: String
-  let color: String?
+  let color: UIColor?
 
 }
 
 extension Language {
 
-  private static let downloadURL = URL(string: "https://github.com/github/linguist/raw/master/lib/linguist/languages.yml")!
+  private static let downloadURL = URL(
+    string: "https://github.com/github/linguist/raw/master/lib/linguist/languages.yml"
+  )!
 
   /// Application Support/GitHubKit/GitHub.Language
   private static let cacheURL: URL = {
@@ -39,7 +42,7 @@ extension Language {
         failed to read languages from cache with error: \(error)
         fallback to requesting from network.
         """)
-        
+
         return RxAlamofire.string(.get, downloadURL)
           .do(onNext: { string in
             try string.write(to: cacheURL, atomically: true, encoding: .utf8)
@@ -55,7 +58,15 @@ extension Language {
         let decoder = YAMLDecoder()
         return try decoder.decode([String: YAML].self, from: string)
           .map { key, value in
-            Language(name: key, color: value.color)
+            let color = value.color.flatMap { colorString -> UIColor? in
+              if let color = UIColor(hexString: colorString) {
+                return color
+              } else {
+                jack.function().error("unrecognizable color string: \(colorString)")
+                return nil
+              }
+            }
+            return Language(name: key, color: color)
           }
       }
   }
