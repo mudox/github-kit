@@ -4,7 +4,7 @@ import Kanna
 
 import JacKit
 
-private let jack = Jack().set(format: .short).set(level: .warning)
+private let jack = Jack().set(level: .warning)
 
 public extension Trending {
 
@@ -17,7 +17,7 @@ public extension Trending {
 
     public let starsCount: Int
     public let forksCount: Int?
-    public let gainedStarsCount: Int
+    public let gainedStarsCount: Int?
 
     // swiftlint:disable:next nesting
     public typealias Contributor = (name: String, avatar: URL)
@@ -87,14 +87,14 @@ internal extension Trending.Repository {
         of: "Trending .* are currently being dissected.",
         options: .regularExpression
       )
-      
+
       if range != nil {
         throw Trending.Error.isDissecting
       } else {
         log.error("search for repsitory `<ol>` nodes failed")
         throw Trending.Error.htmlParsing
       }
-      
+
     }
 
     var repositories = [Trending.Repository]()
@@ -267,7 +267,7 @@ fileprivate extension Trending.Repository {
     return count.intValue
   }
 
-  static func gainedStarsCount(from element: Kanna.XMLElement) throws -> Int {
+  static func gainedStarsCount(from element: Kanna.XMLElement) throws -> Int? {
     let log = jack.descendant("gainedStarsCount(from:)")
 
     let selector = """
@@ -276,8 +276,11 @@ fileprivate extension Trending.Repository {
     """
 
     guard let span = element.css(selector).first else {
-      log.error("failed to get the <span> element which should gained stars count of the repository")
-      throw Trending.Error.htmlParsing
+      log.debug("""
+      failed to get the <span> element which should contain gained stars count of the repository.
+      which is optional, return nil
+      """)
+      return nil
     }
 
     guard let text = span.text else {
