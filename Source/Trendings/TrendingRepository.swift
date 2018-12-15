@@ -84,6 +84,7 @@ internal extension Trending.Repository {
     """
 
     let items = doc.css(selector)
+    // swiftlint:disable:next empty_count
     if items.count == 0 {
       let range = htmlString.range(
         of: "Trending .* are currently being dissected.",

@@ -32,7 +32,7 @@ public struct Trending {
   fileprivate static func url(of catetory: Category, language: String, period: Period = .today) -> URL {
 
     var urlComponents: URLComponents
-    
+
     switch catetory {
     case .repository:
       urlComponents = URLComponents(string: "https://github.com/trending")!

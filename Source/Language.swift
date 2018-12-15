@@ -39,8 +39,8 @@ extension Language {
       }
       .catchError { error in
         jack.warn("""
-        failed to read languages from cache with error: \(error)
-        fallback to requesting from network.
+        Failed to read languages from cache with error: \(error)
+        Fallback to requesting from network.
         """)
 
         return RxAlamofire.string(.get, downloadURL)
@@ -56,7 +56,7 @@ extension Language {
       .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
       .map { string -> [Language] in
         let decoder = YAMLDecoder()
-        return try decoder.decode([String: YAML].self, from: string)
+        return try decoder.decode([String: YAMLDecoded].self, from: string)
           .map { key, value in
             let color = value.color.flatMap { colorString -> UIColor? in
               if let color = UIColor(hexString: colorString) {
@@ -71,7 +71,7 @@ extension Language {
       }
   }
 
-  fileprivate struct YAML: Decodable {
+  fileprivate struct YAMLDecoded: Decodable {
     let color: String?
   }
 
