@@ -4,82 +4,76 @@ import Yams
 
 import JacKit
 
-public extension Explore {
+private let jack = Jack("GitHub.CuratedTopics").set(format: .short)
 
-  struct CuratedTopic {
+public struct CuratedTopic {
 
-    /// Initialize an instance of CuratedTopic from an index.md file from github/explore repository.
-    ///
-    /// - Parameter url: URL of the index.md file.
-    /// - Throws: Swift.Decoding.Error
-    public init(yamlString: String, description: String) throws {
+  /// Lowercase name used in cosntructing the topic's url.
+  public let name: String
+  /// Formal name used in titles.
+  public let displayName: String
+  /// Equivalent tags
+  public let aliases: String?
+  public let related: String?
 
-      let decoder = YAMLDecoder()
-      let decoded = try decoder.decode(YAMLDecoded.self, from: yamlString)
+  public let logoLocalURL: URL?
 
-      name = decoded.topic
-      displayName = decoded.display_name
-      aliases = decoded.aliases
-      related = decoded.related
+  public let creator: String?
+  public let releaseDate: Date?
 
-      if let logoFileName = decoded.logo {
-        let logoBaseName = (logoFileName as NSString).deletingPathExtension
-        let url = GitHub.Explore.unzippedDirectoryURL
-          .appendingPathComponent("topics/\(logoBaseName)/\(logoFileName)")
-        if FileManager.default.fileExists(atPath: url.path) {
-          logoLocalURL = url
-        } else {
-          logoLocalURL = nil
-        }
+  /// Short description.
+  public let summary: String
+  /// Longer description, markdown syntax allowed.
+  public let description: String
+
+  public let url: URL?
+  public let githubURL: URL?
+  public let wikipediaURL: URL?
+
+  init(yamlString: String, description: String, baseDir: URL) throws {
+
+    let decoder = YAMLDecoder()
+    let decoded = try decoder.decode(YAMLDecoded.self, from: yamlString)
+
+    name = decoded.topic
+    displayName = decoded.display_name
+    aliases = decoded.aliases
+    related = decoded.related
+
+    if let logoFileName = decoded.logo {
+      let logoBaseName = (logoFileName as NSString).deletingPathExtension
+      let url = baseDir.appendingPathComponent(logoFileName)
+      if FileManager.default.fileExists(atPath: url.path) {
+        logoLocalURL = url
       } else {
+        jack.function().warn("Logo image file does not exists: \(url.path)", format: [])
         logoLocalURL = nil
       }
-
-      creator = decoded.created_by
-
-      // Parse release date
-      let formatter = DateFormatter()
-      formatter.dateFormat = "MMM dd, yyyy"
-      releaseDate = decoded.released.flatMap(formatter.date)
-
-      summary = decoded.short_description
-      self.description = description
-
-      url = decoded.url
-      githubURL = decoded.github_url
-      wikipediaURL = decoded.wikipedia_url
+    } else {
+      logoLocalURL = nil
     }
 
-    /// Lowercase name used in cosntructing the topic's url.
-    public let name: String
-    /// Formal name used in titles.
-    public let displayName: String
-    /// Equivalent tags
-    public let aliases: String?
-    public let related: String?
+    creator = decoded.created_by
 
-    public let logoLocalURL: URL?
+    // Parse release date
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM dd, yyyy"
+    releaseDate = decoded.released.flatMap(formatter.date)
 
-    public let creator: String?
-    public let releaseDate: Date?
+    summary = decoded.short_description
+    self.description = description
 
-    /// Short description.
-    public let summary: String
-    /// Longer description, markdown syntax allowed.
-    public let description: String
-
-    public let url: URL?
-    public let githubURL: URL?
-    public let wikipediaURL: URL?
+    url = decoded.url
+    githubURL = decoded.github_url
+    wikipediaURL = decoded.wikipedia_url
   }
 
 }
 
 // MARK: - YAML Representation
 
-private extension Explore.CuratedTopic {
+private extension CuratedTopic {
 
-  /// YAML reprentation in `github/explore`
   struct YAMLDecoded: Decodable {
     // swiftlint:disable identifier_name
     let topic: String
@@ -95,5 +89,4 @@ private extension Explore.CuratedTopic {
     let wikipedia_url: URL?
     // swiftlint:enable identifier_name
   }
-
 }
