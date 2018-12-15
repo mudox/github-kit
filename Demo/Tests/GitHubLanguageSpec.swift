@@ -14,7 +14,7 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
   beforeEach(Fixtures.setup)
   afterEach(Fixtures.cleanup)
 
-  it("gets all github supported languages") {
+  it("all") {
     // Arrange
     let jack = Jack("Test.GitHub.Language.all")
 

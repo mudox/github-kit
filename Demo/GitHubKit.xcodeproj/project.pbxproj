@@ -57,6 +57,7 @@
 		F41074CE216CC02600F0987D /* UserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410749D216CC02600F0987D /* UserSpec.swift */; };
 		F41074CF216CC02600F0987D /* RepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F410749E216CC02600F0987D /* RepositorySpec.swift */; };
 		F41074D1216CC02600F0987D /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41074A0216CC02600F0987D /* Fixtures.swift */; };
+		F426C44221C55F1C00CAA764 /* GitHubCollectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426C44121C55F1C00CAA764 /* GitHubCollectionSpec.swift */; };
 		F436550E21972E1500723BA6 /* authorize_invalid_parameter.txt in Resources */ = {isa = PBXBuildFile; fileRef = F436550C21972E1500723BA6 /* authorize_invalid_parameter.txt */; };
 		F436550F21972E1500723BA6 /* authorize_invalid_credential.txt in Resources */ = {isa = PBXBuildFile; fileRef = F436550D21972E1500723BA6 /* authorize_invalid_credential.txt */; };
 		F4DEF57C216CC5690004CF2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DEF574216CC5690004CF2D /* ViewController.swift */; };
@@ -146,6 +147,7 @@
 		F410749E216CC02600F0987D /* RepositorySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositorySpec.swift; sourceTree = "<group>"; };
 		F410749F216CC02600F0987D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F41074A0216CC02600F0987D /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		F426C44121C55F1C00CAA764 /* GitHubCollectionSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubCollectionSpec.swift; sourceTree = "<group>"; };
 		F436550C21972E1500723BA6 /* authorize_invalid_parameter.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = authorize_invalid_parameter.txt; sourceTree = "<group>"; };
 		F436550D21972E1500723BA6 /* authorize_invalid_credential.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = authorize_invalid_credential.txt; sourceTree = "<group>"; };
 		F4DEF574216CC5690004CF2D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				F410749F216CC02600F0987D /* Info.plist */,
 				F41074A0216CC02600F0987D /* Fixtures.swift */,
 				F4107496216CC02600F0987D /* GitHubExploreSpec.swift */,
+				F426C44121C55F1C00CAA764 /* GitHubCollectionSpec.swift */,
 				F410746C216CC02600F0987D /* GitHubLanguageSpec.swift */,
 				F4107495216CC02600F0987D /* GitHubTrendingSpec.swift */,
 				F4107494216CC02600F0987D /* ModelSpec.swift */,
@@ -658,6 +661,7 @@
 				F41074CB216CC02600F0987D /* MiscSpec.swift in Sources */,
 				F41074D1216CC02600F0987D /* Fixtures.swift in Sources */,
 				F41074A1216CC02600F0987D /* GitHubLanguageSpec.swift in Sources */,
+				F426C44221C55F1C00CAA764 /* GitHubCollectionSpec.swift in Sources */,
 				F41074C6216CC02600F0987D /* ModelSpec.swift in Sources */,
 				F41074A3216CC02600F0987D /* OHHTTPStubsExtension.swift in Sources */,
 				F41074C7216CC02600F0987D /* GitHubTrendingSpec.swift in Sources */,
