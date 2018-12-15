@@ -12,8 +12,8 @@ private let jack = Jack("GitHub.Language").set(format: .short)
 
 public struct Language {
 
-  let name: String
-  let color: UIColor?
+  public let name: String
+  public let color: UIColor?
 
 }
 
