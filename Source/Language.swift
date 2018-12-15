@@ -8,7 +8,7 @@ import Yams
 
 import JacKit
 
-private let jack = Jack().set(format: .short)
+private let jack = Jack("GitHub.Language").set(format: .short)
 
 public struct Language {
 
@@ -19,40 +19,13 @@ public struct Language {
 
 extension Language {
 
-  private static let downloadURL = URL(
+  private static let url = URL(
     string: "https://github.com/github/linguist/raw/master/lib/linguist/languages.yml"
   )!
 
-  /// Application Support/GitHubKit/GitHub.Language
-  private static let cacheURL: URL = {
-    let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-    return url.appendingPathComponent("GitHubKit/languages.yml")
-  }()
-
-  private static var allLanguagesString: Single<String> {
-    return Single.just(cacheURL)
-      .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-      .map { url -> String in
-        let string = try String(contentsOf: url, encoding: .utf8)
-        jack.function().debug("got languages from cache")
-        return string
-      }
-      .catchError { error in
-        jack.warn("""
-        Failed to read languages from cache with error: \(error)
-        Fallback to requesting from network.
-        """)
-
-        return RxAlamofire.string(.get, downloadURL)
-          .do(onNext: { string in
-            try string.write(to: cacheURL, atomically: true, encoding: .utf8)
-          })
-          .asSingle()
-      }
-  }
-
   public static var all: Single<[Language]> {
-    return allLanguagesString
+    return RxAlamofire.string(.get, url)
+      .asSingle()
       .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
       .map { string -> [Language] in
         let decoder = YAMLDecoder()
@@ -62,7 +35,7 @@ extension Language {
               if let color = UIColor(hexString: colorString) {
                 return color
               } else {
-                jack.function().error("unrecognizable color string: \(colorString)")
+                jack.function().error("Unrecognized color string: \(colorString)")
                 return nil
               }
             }
