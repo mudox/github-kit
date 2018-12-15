@@ -4,52 +4,44 @@ import Yams
 
 import JacKit
 
-private let jack = Jack().set(format: .short)
+private let jack = Jack("GitHub.Collection").set(format: .short)
 
-public extension Explore {
+public struct Collection {
 
-  struct Collection {
+  public let logoLocalURL: URL?
+  public let items: [Item]
+  public let creator: String?
+  public let displayName: String
+  public let description: String
 
-    /// Initialize an instance of CuratedTopic from an index.md file from github/explore repository.
-    ///
-    /// - Parameter url: URL of the index.md file.
-    public init(yamlString: String, description: String) throws {
+  init(yamlString: String, description: String, baseDir: URL) throws {
 
-      let decoder = YAMLDecoder()
-      let decoded = try decoder.decode(YAMLDecoded.self, from: yamlString)
+    let decoder = YAMLDecoder()
+    let decoded = try decoder.decode(YAMLDecoded.self, from: yamlString)
 
-      if let logoFileName = decoded.image {
-        let logoBaseName = (logoFileName as NSString).deletingPathExtension
-        let url = GitHub.Explore.unzippedDirectoryURL
-          .appendingPathComponent("collections/\(logoBaseName)/\(logoFileName)")
-        if FileManager.default.fileExists(atPath: url.path) {
-          logoLocalURL = url
-        } else {
-          logoLocalURL = nil
-        }
+    if let logoFileName = decoded.image {
+      let url = baseDir.appendingPathComponent(logoFileName)
+      if FileManager.default.fileExists(atPath: url.path) {
+        logoLocalURL = url
       } else {
+        jack.function().warn("Logo image file does not exists: \(url.path)", format: [])
         logoLocalURL = nil
       }
-
-      items = decoded.items.compactMap(Item.init)
-      creator = decoded.created_by
-      displayName = decoded.display_name
-      self.description = description
+    } else {
+      logoLocalURL = nil
     }
 
-    public let logoLocalURL: URL?
-    public let items: [Item]
-    public let creator: String?
-    public let displayName: String
-    public let description: String
-
+    items = decoded.items.compactMap(Item.init)
+    creator = decoded.created_by
+    displayName = decoded.display_name
+    self.description = description
   }
 
 }
 
 // MARK: - YAML Representation
 
-private extension Explore.Collection {
+private extension Collection {
 
   /// YAML reprentation in `github/explore`
   struct YAMLDecoded: Decodable {
@@ -63,7 +55,7 @@ private extension Explore.Collection {
 
 }
 
-public extension Explore.Collection {
+public extension Collection {
 
   enum Item {
 
