@@ -5,8 +5,8 @@ import Moya
 
 import JacKit
 
-/// Error
-enum Error: Swift.Error {
+/// GitHubError
+public enum GitHubError: Swift.Error {
   // Moya.Response.response: HTTPURLResponse? return nil
   case noHTTPURLResponse
 
@@ -43,9 +43,9 @@ internal func elevate(error: Swift.Error) -> Swift.Error {
   case let MoyaError.underlying(AFError.responseValidationFailed(reason: .unacceptableStatusCode(code)), response):
     switch code {
     case 401:
-      return Error.invalidCredential(ErrorMessage(response: response))
+      return GitHubError.invalidCredential(ErrorMessage(response: response))
     case 422:
-      return Error.invalidRequestParameter(ErrorMessage(response: response))
+      return GitHubError.invalidRequestParameter(ErrorMessage(response: response))
     default:
       return error
     }
