@@ -15,7 +15,7 @@ public extension CredentialServiceType {
   var isAuthorized: Bool {
     if token != nil {
       if user == nil {
-        jack.descendant("isLoggedIn").warn("""
+        jack.sub("isLoggedIn").warn("""
         inconsistence: `self.user` should not be nil when `self.token` is not nil
         """)
       }

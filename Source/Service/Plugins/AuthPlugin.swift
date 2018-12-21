@@ -16,7 +16,7 @@ public class AuthPlugin: PluginType {
 
   public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
     guard let target = target as? APIv3 else {
-      jack.descendant("prepare").warn("the target type is not `GitHub.APIv3`")
+      jack.sub("prepare").warn("the target type is not `GitHub.APIv3`")
       return request
     }
 

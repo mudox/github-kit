@@ -22,7 +22,7 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
 
     it("repositories") {
       // Arrange
-      let log = jack.descendant("repositories")
+      let log = jack.sub("repositories")
 
       HTTPStubbing.stubIfEnabled(
         name: "repository-trending",
@@ -48,7 +48,7 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
 
     it("developers") {
       // Arrange
-      let log = jack.descendant("developers")
+      let log = jack.sub("developers")
 
       HTTPStubbing.stubIfEnabled(
         name: "developer-trending",

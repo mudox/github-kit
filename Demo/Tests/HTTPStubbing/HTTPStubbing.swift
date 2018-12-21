@@ -33,14 +33,14 @@ public struct HTTPStubbing {
     let jack = Jack("Test.OHHTTPStubs").set(format: .noLocation)
 
     OHHTTPStubs.onStubActivation { request, stub, _ in
-      jack.descendant("onStubActivation").debug("""
+      jack.sub("onStubActivation").debug("""
       hit : \(request)
       by  : \(stub.name ?? "<anonymous stub>")
       """)
     }
 
     OHHTTPStubs.onStubMissing { request in
-      jack.descendant("onStubMissing").warn("""
+      jack.sub("onStubMissing").warn("""
       miss hit test: \(request.httpMethod!) - \(request.url!)"
       """)
     }

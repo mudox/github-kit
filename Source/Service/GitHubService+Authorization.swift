@@ -26,11 +26,11 @@ public extension Service {
   func authorize(scope: AuthScope, note: String? = nil) -> Single<AuthorizeResponse> {
 
     guard credentials.user != nil else {
-      return .error(Error.missingCredential("user name & password in `GitHub.Service.credentials.user`"))
+      return .error(GitHubError.missingCredential("user name & password in `GitHub.Service.credentials.user`"))
     }
 
     guard let app = credentials.app else {
-      return .error(Error.missingCredential("application key & secret in `GitHub.Service.credentials.app`"))
+      return .error(GitHubError.missingCredential("application key & secret in `GitHub.Service.credentials.app`"))
     }
 
     let target = APIv3.authorize(
@@ -45,7 +45,7 @@ public extension Service {
       // Store the access token on success.
       .do(onSuccess: { [weak self] reponse in
         guard let `self` = self else {
-          jack.descendant("authorize.do.onSuccess").warn("""
+          jack.sub("authorize.do.onSuccess").warn("""
           weakly captured self is nil, the access token is not stored.
           """)
           return

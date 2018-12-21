@@ -23,15 +23,15 @@ public class Response<Payload>: ResponseType, CustomReflectable
      */
 
     guard let urlResponse = response.response else {
-      throw Error.noHTTPURLResponse
+      throw GitHubError.noHTTPURLResponse
     }
 
     guard let headers = urlResponse.allHeaderFields as? [String: String] else {
-      throw Error.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
+      throw GitHubError.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
     }
 
     guard let rateLimit = HeaderRateLimit(from: headers) else {
-      throw Error.initRateLimit(headers: headers)
+      throw GitHubError.initRateLimit(headers: headers)
     }
 
     /*
@@ -82,11 +82,11 @@ public class PagedResponse<Payload>: Response<Payload>
   public required init(response: Moya.Response) throws {
 
     guard let urlResponse = response.response else {
-      throw Error.noHTTPURLResponse
+      throw GitHubError.noHTTPURLResponse
     }
 
     guard let headers = urlResponse.allHeaderFields as? [String: String] else {
-      throw Error.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
+      throw GitHubError.casting(from: urlResponse.allHeaderFields, to: [String: String].self)
     }
 
     pagination = try Pagination(from: headers)

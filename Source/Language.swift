@@ -10,10 +10,20 @@ import JacKit
 
 private let jack = Jack("GitHub.Language").set(format: .short)
 
-public struct Language {
+public struct Language: Codable {
 
   public let name: String
-  public let color: UIColor?
+
+  private let colorString: String?
+
+  public var color: UIColor? {
+    guard let text = colorString else { return nil }
+    guard let uiColor = UIColor(hexString: text) else {
+      jack.func().warn("Unrecognized color string: \(text), return nil")
+      return nil
+    }
+    return uiColor
+  }
 
 }
 
@@ -30,17 +40,7 @@ extension Language {
       .map { string -> [Language] in
         let decoder = YAMLDecoder()
         return try decoder.decode([String: YAMLDecoded].self, from: string)
-          .map { key, value in
-            let color = value.color.flatMap { colorString -> UIColor? in
-              if let color = UIColor(hexString: colorString) {
-                return color
-              } else {
-                jack.function().error("Unrecognized color string: \(colorString)")
-                return nil
-              }
-            }
-            return Language(name: key, color: color)
-          }
+          .map { Language(name: $0, colorString: $1.color) }
       }
   }
 

@@ -63,7 +63,7 @@ public struct Trending {
   public func repositories(of language: String = "all", for period: Period = .today)
     -> Single<[Trending.Repository]> {
     let url = Trending.url(of: .repository, language: language, period: period)
-    jack.function().debug("new request with url: \(url)")
+    jack.func().debug("new request with url: \(url)")
 
     return RxAlamofire.string(.get, url)
       .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))

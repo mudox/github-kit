@@ -23,7 +23,7 @@ public extension Trending {
 internal extension Trending.Developer {
 
   static func list(from htmlString: String) throws -> [Trending.Developer] {
-    let log = jack.function()
+    let log = jack.func()
     log.assertBackgroundThread()
 
     let doc = try HTML(html: htmlString, encoding: .utf8)
@@ -83,7 +83,7 @@ fileprivate extension Trending.Developer {
   }
 
   static func avatarURL(from element: Kanna.XMLElement) throws -> URL {
-    let log = jack.descendant("logo(from:)")
+    let log = jack.sub("logo(from:)")
 
     guard let img = element.css("div > a > img").first else {
       jack.error("failed to get the <img> element which should contain the url of the developer's logo")
@@ -104,7 +104,7 @@ fileprivate extension Trending.Developer {
   }
 
   static func names(from element: XMLElement) throws -> (name: String, displayName: String?) {
-    let log = jack.descendant("names(from:)")
+    let log = jack.sub("names(from:)")
 
     // Name of developer
     guard let anchor = element.css("div > div > h2 > a").first else {
@@ -143,7 +143,7 @@ fileprivate extension Trending.Developer {
   }
 
   static func repository(from element: XMLElement) throws -> (name: String, description: String) {
-    let log = jack.descendant("repository(from:)")
+    let log = jack.sub("repository(from:)")
 
     guard let span = element.css("div > div > a > span[class^=\"repo-snipit-name\"]").first else {
       jack.error("failed to get the <span> element which should contain the name of the repository")

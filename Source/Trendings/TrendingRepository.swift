@@ -28,7 +28,7 @@ public extension Trending {
 
     public var owner: String {
       guard let owner = title.split(separator: "/").first else {
-        jack.descendant("owner.getter").error("can not extract repo owner from `.title`")
+        jack.sub("owner.getter").error("can not extract repo owner from `.title`")
         return ""
       }
       return String(owner)
@@ -36,7 +36,7 @@ public extension Trending {
 
     public var name: String {
       guard let name = title.split(separator: "/").last else {
-        jack.descendant("name.getter").error("can not extract repo name from `.title`")
+        jack.sub("name.getter").error("can not extract repo name from `.title`")
         return ""
       }
       return String(name)
@@ -68,7 +68,7 @@ internal extension Trending.Repository {
 internal extension Trending.Repository {
 
   static func list(from htmlString: String) throws -> [Trending.Repository] {
-    let log = jack.descendant("list(from:)")
+    let log = jack.sub("list(from:)")
     log.assertBackgroundThread()
 
     guard let doc = try? HTML(html: htmlString, encoding: .utf8) else {
@@ -130,7 +130,7 @@ fileprivate extension Trending.Repository {
   }
 
   static func title(from element: Kanna.XMLElement) throws -> String {
-    let log = jack.descendant("title(from:)")
+    let log = jack.sub("title(from:)")
 
     guard let anchor = element.css("div > h3 > a").first else {
       log.error("failed to get the <a> element which should contain the title of the repository")
@@ -146,7 +146,7 @@ fileprivate extension Trending.Repository {
   }
 
   static func description(from element: Kanna.XMLElement) throws -> String {
-    let log = jack.descendant("description(from:)")
+    let log = jack.sub("description(from:)")
 
     guard let div = element.css("div:nth-child(3)").first else {
       log.error("failed to get the <div> element which should contain the description of the repository")
@@ -162,7 +162,7 @@ fileprivate extension Trending.Repository {
   }
 
   static func language(from element: Kanna.XMLElement) throws -> (name: String, color: UIColor?)? {
-    let log = jack.descendant("language(from:)")
+    let log = jack.sub("language(from:)")
 
     // Color string
 
@@ -211,7 +211,7 @@ fileprivate extension Trending.Repository {
   }
 
   static func starsCount(from element: Kanna.XMLElement) throws -> Int {
-    let log = jack.descendant("starsCount(from:)")
+    let log = jack.sub("starsCount(from:)")
 
     let selector = """
     div.f6.text-gray.mt-2 \
@@ -240,7 +240,7 @@ fileprivate extension Trending.Repository {
   }
 
   static func forksCount(from element: Kanna.XMLElement) throws -> Int? {
-    let log = jack.descendant("forksCount(from:)")
+    let log = jack.sub("forksCount(from:)")
 
     let selector = """
     div.f6.text-gray.mt-2 \
@@ -272,7 +272,7 @@ fileprivate extension Trending.Repository {
   }
 
   static func gainedStarsCount(from element: Kanna.XMLElement) throws -> Int? {
-    let log = jack.descendant("gainedStarsCount(from:)")
+    let log = jack.sub("gainedStarsCount(from:)")
 
     let selector = """
     div.f6.text-gray.mt-2 \
@@ -310,7 +310,7 @@ fileprivate extension Trending.Repository {
   }
 
   static func contributors(from element: Kanna.XMLElement) -> [Contributor] {
-    let log = jack.descendant("contributors(from:)")
+    let log = jack.sub("contributors(from:)")
 
     let selector = """
     div.f6.text-gray.mt-2      \

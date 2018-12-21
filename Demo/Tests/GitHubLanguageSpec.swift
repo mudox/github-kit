@@ -28,8 +28,8 @@ class GitHubLanguageSpec: QuickSpec { override func spec() {
       _ = GitHub.Language.all
         .subscribe(
           onSuccess: { languages in
-            languages[...4].forEach { language in
-              jack.debug(dump(of: language))
+            for _ in 0..<8 {
+              jack.debug(dump(of: languages.randomElement()!))
             }
             done()
           },

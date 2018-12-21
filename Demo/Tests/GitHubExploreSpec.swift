@@ -23,14 +23,14 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
       _ = GitHub.Explore.topicsAndCollections
         .subscribe(
           onSuccess: { topics, collections in
-            jack.descendant("onSuccess").info("""
+            jack.sub("onSuccess").info("""
             - Topics count: \(topics.count)
             - Collections count: \(collections.count)
             """)
             done()
           },
           onError: { error in
-            jack.descendant("onError").error(dump(of: error))
+            jack.sub("onError").error(dump(of: error))
             fatalError()
           }
         )

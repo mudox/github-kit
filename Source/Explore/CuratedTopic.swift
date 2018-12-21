@@ -46,7 +46,7 @@ public struct CuratedTopic {
       if FileManager.default.fileExists(atPath: url.path) {
         logoLocalURL = url
       } else {
-        jack.function().warn("Logo image file does not exists: \(url.path)", format: [])
+        jack.func().warn("Logo image file does not exists: \(url.path)", format: [])
         logoLocalURL = nil
       }
     } else {

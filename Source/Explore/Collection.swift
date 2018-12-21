@@ -24,7 +24,7 @@ public struct Collection {
       if FileManager.default.fileExists(atPath: url.path) {
         logoLocalURL = url
       } else {
-        jack.function().warn("Logo image file does not exists: \(url.path)", format: [])
+        jack.func().warn("Logo image file does not exists: \(url.path)", format: [])
         logoLocalURL = nil
       }
     } else {
@@ -106,10 +106,10 @@ public extension Collection {
           return
         }
 
-        jack.descendant("Item.init").warn("invalid item string: \(string)")
+        jack.sub("Item.init").warn("invalid item string: \(string)")
         return nil
       } catch {
-        jack.descendant("Item.init").error("error initializing regex patterns: \(error)")
+        jack.sub("Item.init").error("error initializing regex patterns: \(error)")
         return nil
       }
     }
