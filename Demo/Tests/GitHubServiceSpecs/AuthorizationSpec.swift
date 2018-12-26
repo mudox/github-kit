@@ -65,7 +65,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
         },
         onError: { error in
           jack.info("error: \(dump(of: error))")
-          if case GitHub.Error.invalidCredential = error {
+          if case GitHubError.invalidCredential = error {
             done()
           } else {
             fatalError()
@@ -99,7 +99,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
         },
         onError: { error in
           jack.info("error: \(dump(of: error))")
-          if case GitHub.Error.invalidRequestParameter = error {
+          if case GitHubError.invalidRequestParameter = error {
             done()
           } else {
             fatalError()
