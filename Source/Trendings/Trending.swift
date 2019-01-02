@@ -22,7 +22,7 @@ public struct Trending {
     case thisMonth = "monthly"
   }
 
-  public enum Category {
+  public enum Category: String {
     case repository
     case developer
   }
