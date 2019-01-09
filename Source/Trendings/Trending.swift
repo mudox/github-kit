@@ -17,9 +17,9 @@ public struct Trending {
   }
 
   public enum Period: String {
-    case today = "daily"
-    case thisWeek = "weekly"
-    case thisMonth = "monthly"
+    case pastDay = "daily"
+    case pastWeek = "weekly"
+    case pastMonth = "monthly"
   }
 
   public enum Category: String {
@@ -29,7 +29,7 @@ public struct Trending {
 
   // MARK: - Private
 
-  fileprivate static func url(of catetory: Category, language: String, period: Period = .today) -> URL {
+  fileprivate static func url(of catetory: Category, language: String, period: Period = .pastDay) -> URL {
 
     var urlComponents: URLComponents
 
@@ -60,7 +60,7 @@ public struct Trending {
   ///   - language: Name of the lanauge to return.
   ///   - period: Interval of the trending.
   /// - Returns: `Single<[Trending.Repository]>`
-  public func repositories(of language: String = "all", for period: Period = .today)
+  public func repositories(of language: String = "all", for period: Period = .pastDay)
     -> Single<[Trending.Repository]> {
     let url = Trending.url(of: .repository, language: language, period: period)
     jack.func().debug("new request with url: \(url)")
@@ -81,7 +81,7 @@ public struct Trending {
   ///   - language: Name of the lanauge to return.
   ///   - period: Interval of the trending.
   /// - Returns: `Single<[Trending.Developer]>`
-  public func developers(of language: String = "all", for period: Period = .today)
+  public func developers(of language: String = "all", for period: Period = .pastDay)
     -> Single<[Trending.Developer]> {
     let url = Trending.url(of: .developer, language: language, period: period)
 
