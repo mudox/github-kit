@@ -18,11 +18,11 @@ public struct Language: Codable {
 
   public var color: UIColor? {
     guard let text = colorString else { return nil }
-    guard let uiColor = UIColor(hexString: text) else {
+    guard let color = UIColor(hexString: text) else {
       jack.func().warn("Unrecognized color string: \(text), return nil")
       return nil
     }
-    return uiColor
+    return color
   }
 
 }
