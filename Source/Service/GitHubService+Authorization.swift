@@ -29,9 +29,7 @@ public extension Service {
       return .error(GitHubError.missingCredential("user name & password in `GitHub.Service.credentials.user`"))
     }
 
-    guard let app = credentials.app else {
-      return .error(GitHubError.missingCredential("application key & secret in `GitHub.Service.credentials.app`"))
-    }
+    let app = credentials.app
 
     let target = APIv3.authorize(
       appKey: app.key,

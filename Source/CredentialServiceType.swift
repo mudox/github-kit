@@ -3,9 +3,9 @@ import JacKit
 private let jack = Jack("CredentialServiceType")
 
 public protocol CredentialServiceType: AnyObject {
-  var token: String? { get set }
+  var app: (key: String, secret: String) { get }
   var user: (name: String, password: String)? { get set }
-  var app: (key: String, secret: String)? { get set }
+  var token: String? { get set }
 
   var isAuthorized: Bool { get }
 }

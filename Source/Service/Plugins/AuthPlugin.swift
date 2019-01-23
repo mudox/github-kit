@@ -33,10 +33,7 @@ public class AuthPlugin: PluginType {
       let field = Headers.Authorization.user(name: name, password: password)
       request.setValue(field, forHTTPHeaderField: "Authorization")
     case .app:
-      guard let (key, secret) = credentials.app else {
-        jack.warn("app key & secret is missing")
-        return request
-      }
+      let (key, secret) = credentials.app
       let field = Headers.Authorization.app(key: key, secret: secret)
       request.setValue(field, forHTTPHeaderField: "Authorization")
     case .token:
