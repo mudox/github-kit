@@ -19,8 +19,8 @@ public extension Service {
 
   /// Create a new authorization.
   ///
-  /// - Important: Before using this method, set __service.credentialService.user__
-  ///   and __service.credentialService.app__ to valid credentials.
+  /// - Important: Before using this method, set __service.credentials.user__
+  ///   and __service.credentials.app__ to valid credentials.
   ///
   /// - Returns: RxSwift.Single\<AuthoriztionResponse\>
   func authorize(scope: AuthScope, note: String? = nil) -> Single<AuthorizeResponse> {

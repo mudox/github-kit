@@ -8,8 +8,8 @@ public class AuthPlugin: PluginType {
 
   private let credentials: CredentialServiceType
 
-  public init(credentialService: CredentialServiceType) {
-    self.credentials = credentialService
+  public init(credentials: CredentialServiceType) {
+    self.credentials = credentials
   }
 
   // MARK: - PluginType

@@ -13,10 +13,10 @@ public class Service {
   private let authPlugin: AuthPlugin
   private let loggingPlugin: LoggingPlugin
 
-  public init(credentialService: CredentialServiceType) {
-    credentials = credentialService
+  public init(credentials: CredentialServiceType) {
+    self.credentials = credentials
 
-    authPlugin = AuthPlugin(credentialService: credentialService)
+    authPlugin = AuthPlugin(credentials: credentials)
     loggingPlugin = LoggingPlugin()
 
     provider = MoyaProvider<APIv3>(
