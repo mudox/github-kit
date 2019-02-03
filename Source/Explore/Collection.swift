@@ -6,7 +6,7 @@ import JacKit
 
 private let jack = Jack("GitHub.Collection").set(format: .short)
 
-public struct Collection {
+public struct Collection: Codable {
 
   public let logoLocalURL: URL?
   public let items: [Item]
@@ -106,10 +106,10 @@ public extension Collection {
           return
         }
 
-        jack.sub("Item.init").warn("invalid item string: \(string)")
+        jack.func().warn("invalid item string: \(string)")
         return nil
       } catch {
-        jack.sub("Item.init").error("error initializing regex patterns: \(error)")
+        jack.func().error("error initializing regex patterns: \(error)")
         return nil
       }
     }
@@ -134,4 +134,79 @@ public extension Collection {
 
   }
 
+}
+
+extension Collection.Item: Codable {
+
+  private enum CodingKeys: String, CodingKey {
+    case base
+    case repositoryAssociated
+    case gitHubUserAssociated
+    case youtubeVideoAssociated
+    case siteAssociated
+  }
+
+  private enum Base: String, Codable {
+    case repository
+    case gitHubUser
+    case youtubeVideo
+    case site
+  }
+
+  private struct RepositoryAssociated: Codable {
+    let owner: String
+    let name: String
+  }
+
+  private struct GitHubUserAssociated: Codable {
+    let name: String
+  }
+
+  private struct YoutubeVideoAssociated: Codable {
+    let url: URL
+  }
+
+  private struct SiteAssociated: Codable {
+    let url: URL
+  }
+  
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    let base = try container.decode(Base.self, forKey: .base)
+    
+    switch base {
+    case .repository:
+      let assocaited = try container.decode(RepositoryAssociated.self, forKey: .repositoryAssociated)
+      self = .repository(owner: assocaited.owner, name: assocaited.name)
+    case .gitHubUser:
+      let assocaited = try container.decode(GitHubUserAssociated.self, forKey: .gitHubUserAssociated)
+      self = .gitHubUser(assocaited.name)
+    case .youtubeVideo:
+      let assocaited = try container.decode(YoutubeVideoAssociated.self, forKey: .youtubeVideoAssociated)
+      self = .youtubeVideo(assocaited.url)
+    case .site:
+      let assocaited = try container.decode(SiteAssociated.self, forKey: .siteAssociated)
+      self = .site(assocaited.url)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+
+    switch self {
+    case let .repository(owner: owner, name: name):
+      try container.encode(Base.repository, forKey: .base)
+      try container.encode(RepositoryAssociated(owner: owner, name: name), forKey: .repositoryAssociated)
+    case let .gitHubUser(name):
+      try container.encode(Base.gitHubUser, forKey: .base)
+      try container.encode(GitHubUserAssociated(name: name), forKey: .gitHubUserAssociated)
+    case let .youtubeVideo(url):
+      try container.encode(Base.youtubeVideo, forKey: .base)
+      try container.encode(YoutubeVideoAssociated(url: url), forKey: .youtubeVideoAssociated)
+    case let .site(url):
+      try container.encode(Base.site, forKey: .base)
+      try container.encode(SiteAssociated(url: url), forKey: .siteAssociated)
+    }
+  }
+  
 }
