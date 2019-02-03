@@ -6,7 +6,7 @@ import JacKit
 
 private let jack = Jack("GitHub.CuratedTopics").set(format: .short)
 
-public struct CuratedTopic {
+public struct CuratedTopic: Codable {
 
   /// Lowercase name used in cosntructing the topic's url.
   public let name: String
