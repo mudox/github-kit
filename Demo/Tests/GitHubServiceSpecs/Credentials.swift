@@ -10,7 +10,7 @@ class Credentials: CredentialServiceType {
     name: "cement_ce@163.com",
     password: "zheshi1geceshihao"
   )
-  
+
   static let validApp = (
     key: "c2dc8eb1cd09ac1e2381",
     secret: "1e6558ef27cd7844047b9de69dc009d0bd05579b"
@@ -20,7 +20,7 @@ class Credentials: CredentialServiceType {
     name: "ce_cement@163.com",
     password: "zheshi1geceshihao123"
   )
-  
+
   static let invalidApp = (
     key: "c2dc8eb1cd09ac1e2081",
     secret: "1e6558ef27cd7804047b9de69dc009d0bd05579b"
@@ -58,5 +58,5 @@ class Credentials: CredentialServiceType {
 
   var user: (name: String, password: String)?
 
-  var app: (key: String, secret: String)?
+  var app: (key: String, secret: String)
 }
