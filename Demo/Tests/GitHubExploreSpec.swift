@@ -14,24 +14,24 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
   beforeEach(Fixtures.setup)
   afterEach(Fixtures.cleanup)
 
-  it("topicsAndCollections") {
+  it("loads topic and collection lists") {
     // Arrange
-    let jack = Jack("Test.GitHub.Explore.topicsAndCollections")
+    let jack = Jack("Test.GitHub.Explore.lists")
 
     // Act, Assert
     waitUntil { done in
-      _ = GitHub.Explore.topicsAndCollections
+      _ = GitHub.Explore.lists
         .subscribe(
-          onSuccess: { topics, collections in
+          onSuccess: { lists in
             jack.sub("onSuccess").info("""
-            - Topics count: \(topics.count)
-            - Collections count: \(collections.count)
+            - Topics count: \(lists.topics.count)
+            - Collections count: \(lists.collections.count)
             """)
             done()
           },
           onError: { error in
             jack.sub("onError").error(dump(of: error))
-            fatalError()
+            fail()
           }
         )
     }
