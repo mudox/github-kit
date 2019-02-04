@@ -11,30 +11,7 @@ import JacKit
 
 private let jack = Jack("GitHub.Explore").set(format: .short)
 
-private extension URL {
-
-  static let download = URL(string: "https://github.com/github/explore/archive/master.zip")!
-
-  /// Application Support/GitHubKit/GitHub.Explore/
-  static let prefix: URL = {
-    let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-    return url.appendingPathComponent("GitHubKit/GitHub.Explore")
-  }()
-
-  /// Application Support/GitHubKit/GitHub.Explore/downloaded.zip
-  static let downloaded = prefix.appendingPathComponent("downloaded.zip")
-
-  /// Application Support/GitHubKit/GitHub.Explore/explore-master/
-  static let unzipped = prefix.appendingPathComponent("explore-master")
-
-  /// Application Support/GitHubKit/GitHub.Explore/explore-master/topics/
-  static let topics = unzipped.appendingPathComponent("topics")
-  /// Application Support/GitHubKit/GitHub.Explore/explore-master/collections/
-  static let collections = unzipped.appendingPathComponent("collections")
-
-}
-
-// MARK: - GitHub.Explore
+// MARK: GitHub.Explore
 
 public enum Explore {
 
@@ -64,9 +41,11 @@ public enum Explore {
 
   }
 
-  private static var parse: Single<(topics: [CuratedTopic], collections: [Collection])> {
+  private static var parse: Single<Lists> {
 
     return .create { single in
+      jack.func().assertBackgroundThread()
+
       // Parse folder
       do {
 
@@ -112,7 +91,7 @@ public enum Explore {
             return try Collection(yamlString: yamlString, description: description, baseDir: baseDir)
           }
 
-        single(.success((topics: topics, collections: collections)))
+        single(.success(Lists(topics: topics, collections: collections)))
       } catch {
         single(.error(error))
       }
@@ -121,8 +100,46 @@ public enum Explore {
     } // return .create
   }
 
-  public static var topicsAndCollections: Single<(topics: [CuratedTopic], collections: [Collection])> {
-    return download.andThen(parse)
+  public static var lists: Single<Lists> {
+    return download
+      .observeOn(ConcurrentDispatchQueueScheduler(qos: .default))
+      .andThen(parse)
   }
+
+}
+
+// MARK: - GitHub.Explore.Lists
+
+public extension Explore {
+
+  struct Lists: Codable {
+    public let topics: [CuratedTopic]
+    public let collections: [Collection]
+  }
+
+}
+
+// MARK: - URLs
+
+private extension URL {
+
+  static let download = URL(string: "https://github.com/github/explore/archive/master.zip")!
+
+  /// Application Support/GitHubKit/GitHub.Explore/
+  static let prefix: URL = {
+    let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+    return url.appendingPathComponent("GitHubKit/GitHub.Explore")
+  }()
+
+  /// Application Support/GitHubKit/GitHub.Explore/downloaded.zip
+  static let downloaded = prefix.appendingPathComponent("downloaded.zip")
+
+  /// Application Support/GitHubKit/GitHub.Explore/explore-master/
+  static let unzipped = prefix.appendingPathComponent("explore-master")
+
+  /// Application Support/GitHubKit/GitHub.Explore/explore-master/topics/
+  static let topics = unzipped.appendingPathComponent("topics")
+  /// Application Support/GitHubKit/GitHub.Explore/explore-master/collections/
+  static let collections = unzipped.appendingPathComponent("collections")
 
 }

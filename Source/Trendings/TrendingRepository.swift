@@ -9,8 +9,8 @@ private let jack = Jack().set(level: .warning)
 
 public extension Trending {
 
-  public struct Repository: Codable {
-    
+  struct Repository: Codable {
+
     public let title: String
     public let summary: String
 
@@ -21,7 +21,7 @@ public extension Trending {
     public let gainedStarsCount: Int?
 
     public let contributors: [Contributor]
-    
+
   }
 
 }

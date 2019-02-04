@@ -11,8 +11,7 @@ import JacKit
 private let jack = Jack("GitHub.Language").set(format: .short)
 
 public struct Language: Codable {
-  
-  
+
   /// Initializer for testing stubbing puerpose.
   ///
   /// - Parameters:

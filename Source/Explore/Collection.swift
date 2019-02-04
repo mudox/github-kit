@@ -169,11 +169,11 @@ extension Collection.Item: Codable {
   private struct SiteAssociated: Codable {
     let url: URL
   }
-  
+
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     let base = try container.decode(Base.self, forKey: .base)
-    
+
     switch base {
     case .repository:
       let assocaited = try container.decode(RepositoryAssociated.self, forKey: .repositoryAssociated)
@@ -208,5 +208,5 @@ extension Collection.Item: Codable {
       try container.encode(SiteAssociated(url: url), forKey: .siteAssociated)
     }
   }
-  
+
 }
