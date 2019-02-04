@@ -31,7 +31,7 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = Trending().repositories(of: "swift", for: .thisMonth)
+        _ = Trending().repositories(of: "swift", for: .pastMonth)
           .subscribe(
             onSuccess: { _ in
               done()
@@ -57,7 +57,7 @@ class GitHubTrendingSpec: QuickSpec { override func spec() {
 
       // Act, Assert
       waitUntil { done in
-        _ = Trending().developers(of: "swift", for: .thisWeek)
+        _ = Trending().developers(of: "swift", for: .pastWeek)
           .subscribe(
             onSuccess: { _ in
               done()

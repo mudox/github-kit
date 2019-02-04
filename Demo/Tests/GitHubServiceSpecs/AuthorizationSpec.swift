@@ -51,7 +51,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     )
 
     let credentials = Credentials(user: Credentials.invalidUser, app: Credentials.validApp)
-    let service = GitHub.Service(credentialService: credentials)
+    let service = GitHub.Service(credentials: credentials)
 
     // Act, Assert
     waitUntil { done in
@@ -85,7 +85,7 @@ class AuthorizationSpec: QuickSpec { override func spec() {
     )
 
     let credentials = Credentials(user: Credentials.validUser, app: Credentials.invalidApp)
-    let service = GitHub.Service(credentialService: credentials)
+    let service = GitHub.Service(credentials: credentials)
 
     // Act, Assert
     waitUntil { done in

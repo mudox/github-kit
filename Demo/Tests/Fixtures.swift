@@ -28,7 +28,7 @@ enum Fixtures {
   }
 
   static var gitHubService: GitHub.Service = {
-    return GitHub.Service(credentialService: Credentials.valid)
+    return GitHub.Service(credentials: Credentials.valid)
   }()
   
 }
