@@ -56,7 +56,7 @@ public enum Explore {
           .contentsOfDirectory(atPath: URL.topics.path)
           // Append `index.md`
           .map { path -> URL in
-            return URL.topics.appendingPathComponent("/\(path)/index.md")
+            return URL.topics.appendingPathComponent("\(path)/index.md")
           }
           // Filter out non-existing files.
           .filter { url in
@@ -77,7 +77,7 @@ public enum Explore {
           .contentsOfDirectory(atPath: URL.collections.path)
           // Append `index.md`
           .map { path -> URL in
-            return URL.collections.appendingPathComponent("/\(path)/index.md")
+            return URL.collections.appendingPathComponent("\(path)/index.md")
           }
           // Filter out non-existing files.
           .filter { url in
