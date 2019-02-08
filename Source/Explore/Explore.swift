@@ -1,7 +1,6 @@
 import Foundation
 
 import Alamofire
-import RxAlamofire
 import RxSwift
 
 import SSZipArchive
@@ -17,38 +16,55 @@ public enum Explore {
 
   public enum Error: Swift.Error {
     case regexMatchingMarkdownContent
+    case downloadCanceled(Data)
   }
 
-  private static var download: Completable {
-
-    return .create { completable in
+  private static var download: Observable<Explore.LoadingState> {
+    return .create { observer in
       let request = URLRequest(url: .download)
 
       let destination: DownloadRequest.DownloadFileDestination = { _, _ in
         (.downloaded, [.removePreviousFile, .createIntermediateDirectories])
       }
 
-      return RxAlamofire.download(request, to: destination)
-        .observeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-        .subscribe(onCompleted: {
+      let queue = DispatchQueue(label: "Explore lists downloading progress observing")
+      let task = Alamofire.download(request, to: destination)
+        .downloadProgress(queue: queue) { progress in
+          observer.onNext(.downloading(completed: progress.fractionCompleted))
+        }
+        .response { response in
+          // Check errors
+          if let resumeData = response.resumeData {
+            observer.onError(Error.downloadCanceled(resumeData))
+            return
+          }
+
+          if let error = response.error {
+            observer.onError(error)
+            return
+          }
+
+          // Unarchive
+          observer.onNext(.unarchiving)
           SSZipArchive.unzipFile(
             atPath: URL.downloaded.path,
             toDestination: URL.downloaded.deletingLastPathComponent().path
           )
-          completable(.completed)
-        })
-    } // .create
+          observer.onCompleted()
+        }
 
+      return Disposables.create { task.cancel() }
+    } // .create
   }
 
-  private static var parse: Single<Lists> {
-
-    return .create { single in
+  private static var parse: Observable<LoadingState> {
+    return .create { observer in
       jack.func().assertBackgroundThread()
+
+      observer.onNext(.parsing)
 
       // Parse folder
       do {
-
         // Curated topics
 
         let topics = try FileManager.default
@@ -91,26 +107,37 @@ public enum Explore {
             return try Collection(yamlString: yamlString, description: description, baseDir: baseDir)
           }
 
-        single(.success(Lists(topics: topics, collections: collections)))
+        let lists = Lists(topics: topics, collections: collections)
+        observer.onNext(.success(lists))
       } catch {
-        single(.error(error))
+        observer.onError(error)
       }
 
       return Disposables.create()
     } // return .create
   }
 
-  public static var lists: Single<Lists> {
-    return download
-      .observeOn(ConcurrentDispatchQueueScheduler(qos: .default))
+  public static var lists: Observable<LoadingState> {
+    let progressiveStates = download.share()
+    let finalState = download
+      .ignoreElements()
+      .observeOn(ConcurrentDispatchQueueScheduler(qos: .utility))
       .andThen(parse)
+    return Observable.merge(progressiveStates, finalState)
   }
 
 }
 
-// MARK: - GitHub.Explore.Lists
+// MARK: - Types
 
 public extension Explore {
+
+  enum LoadingState {
+    case downloading(completed: Double)
+    case unarchiving
+    case parsing
+    case success(Lists)
+  }
 
   struct Lists: Codable {
     public let topics: [CuratedTopic]
