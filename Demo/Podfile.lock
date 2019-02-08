@@ -7,6 +7,7 @@ PODS:
     - JacKit
     - Kanna
     - Moya/RxSwift
+    - RxAlamofire
     - RxCocoa
     - RxSwift
     - SSZipArchive
@@ -37,6 +38,11 @@ PODS:
     - OHHTTPStubs/Default
   - Quick (1.3.2)
   - Result (3.2.4)
+  - RxAlamofire (4.3.0):
+    - RxAlamofire/Core (= 4.3.0)
+  - RxAlamofire/Core (4.3.0):
+    - Alamofire (~> 4.5)
+    - RxSwift (~> 4)
   - RxAtomic (4.4.0)
   - RxBlocking (4.4.0):
     - RxAtomic (~> 4.4)
@@ -82,6 +88,7 @@ SPEC REPOS:
     - OHHTTPStubs
     - Quick
     - Result
+    - RxAlamofire
     - RxAtomic
     - RxBlocking
     - RxCocoa
@@ -102,7 +109,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
-  GitHubKit: 8fd5adf26d1897c9a0ae4e2f1f5e5a3bca82df45
+  GitHubKit: 1364db4a899543412237251a0f2017de8c929543
   JacKit: 0342f68694da0b0a14c35ab78ee3f402119d3517
   Kanna: c60b61d72554bf04ed1ee074f9b379855cab4892
   Moya: a725035953bc1c0eb1be505ab903984501d82440
@@ -110,6 +117,7 @@ SPEC CHECKSUMS:
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxBlocking: 138ad53217434444d6eeeb4fb406a45431d92e31
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
