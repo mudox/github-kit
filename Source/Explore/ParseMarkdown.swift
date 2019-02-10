@@ -11,7 +11,7 @@ internal extension Explore {
   /// - Parameter text: String content of the **index.md** file.
   /// - Returns: A tuple of YAML document string and the longer description string.
   /// - Throws: `NSError` thrown by initializing `NSRegularExpression`
-  static func parse(text: String) throws -> (yamlString: String, description: String) {
+  static func parse(markdown text: String) throws -> (yamlString: String, description: String) {
     let nl = "(?:\\n|\\r\\n|\\r)"
 
     let pattern = """

@@ -16,8 +16,6 @@ public struct CuratedTopic: Codable {
   public let aliases: String?
   public let related: String?
 
-  public let logoLocalURL: URL?
-
   public let creator: String?
   public let releaseDate: Date?
 
@@ -30,7 +28,21 @@ public struct CuratedTopic: Codable {
   public let githubURL: URL?
   public let wikipediaURL: URL?
 
-  init(yamlString: String, description: String, baseDir: URL) throws {
+  private let logoRelativePath: String?
+  public var logoLocalURL: URL? {
+    do {
+      let baseURL = try Explore.URLs().topics
+      if let path = logoRelativePath {
+        return URL(string: path, relativeTo: baseURL)
+      } else {
+        return nil
+      }
+    } catch {
+      return nil
+    }
+  }
+
+  init(yamlString: String, description: String, directory: String) throws {
 
     let decoder = YAMLDecoder()
     let decoded = try decoder.decode(YAMLDecoded.self, from: yamlString)
@@ -40,17 +52,10 @@ public struct CuratedTopic: Codable {
     aliases = decoded.aliases
     related = decoded.related
 
-    if let logoFileName = decoded.logo {
-      let logoBaseName = (logoFileName as NSString).deletingPathExtension
-      let url = baseDir.appendingPathComponent(logoFileName)
-      if FileManager.default.fileExists(atPath: url.path) {
-        logoLocalURL = url
-      } else {
-        jack.func().warn("Logo image file does not exists: \(url.path)", format: [])
-        logoLocalURL = nil
-      }
+    if let fileName = decoded.logo {
+      logoRelativePath = "\(directory)/\(fileName)"
     } else {
-      logoLocalURL = nil
+      logoRelativePath = nil
     }
 
     creator = decoded.created_by

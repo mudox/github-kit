@@ -14,7 +14,7 @@ class GitHubExploreSpec: QuickSpec { override func spec() {
   beforeEach(Fixtures.setup)
   afterEach(Fixtures.cleanup)
 
-  fit("loads topic and collection lists") {
+  it("loads topic and collection lists") {
     // Arrange
     let jack = Jack("Test.GitHub.Explore.lists").set(format: .short)
 

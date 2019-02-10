@@ -8,27 +8,34 @@ private let jack = Jack("GitHub.Collection").set(format: .short)
 
 public struct Collection: Codable {
 
-  public let logoLocalURL: URL?
   public let items: [Item]
   public let creator: String?
   public let displayName: String
   public let description: String
+  
+  private let logoRelativePath: String?
+  public var logoLocalURL: URL? {
+    do {
+      let baseURL = try Explore.URLs().collections
+      if let path = logoRelativePath {
+        return URL(string: path, relativeTo: baseURL)
+      } else {
+        return nil
+      }
+    } catch {
+      return nil
+    }
+  }
 
-  init(yamlString: String, description: String, baseDir: URL) throws {
+  init(yamlString: String, description: String, directory: String) throws {
 
     let decoder = YAMLDecoder()
     let decoded = try decoder.decode(YAMLDecoded.self, from: yamlString)
 
-    if let logoFileName = decoded.image {
-      let url = baseDir.appendingPathComponent(logoFileName)
-      if FileManager.default.fileExists(atPath: url.path) {
-        logoLocalURL = url
-      } else {
-        jack.func().warn("Logo image file does not exists: \(url.path)", format: [])
-        logoLocalURL = nil
-      }
+    if let fileName = decoded.image {
+      logoRelativePath = "\(directory)/\(fileName)"
     } else {
-      logoLocalURL = nil
+      logoRelativePath = nil
     }
 
     items = decoded.items.compactMap(Item.init)

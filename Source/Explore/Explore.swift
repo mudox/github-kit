@@ -13,24 +13,35 @@ private let jack = Jack("GitHub.Explore").set(format: .short)
 // MARK: GitHub.Explore
 
 public enum Explore {
-
   public enum Error: Swift.Error {
     case regexMatchingMarkdownContent
     case downloadCanceled(Data)
   }
 
-  private static var download: Observable<Explore.LoadingState> {
+  private static var download: Observable<Explore.ListsLoadingState> {
     return .create { observer in
-      let request = URLRequest(url: .download)
+
+      let url: URLs
+      do {
+        url = try URLs()
+      } catch {
+        observer.onError(error)
+        return Disposables.create()
+      }
+
+      let request = URLRequest(url: url.download)
 
       let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-        (.downloaded, [.removePreviousFile, .createIntermediateDirectories])
+        (url.downloaded, [.removePreviousFile, .createIntermediateDirectories])
       }
+
+      observer.onNext(.downloading(progress: 0))
 
       let queue = DispatchQueue(label: "Explore lists downloading progress observing")
       let task = Alamofire.download(request, to: destination)
         .downloadProgress(queue: queue) { progress in
-          observer.onNext(.downloading(completed: progress.fractionCompleted))
+          jack.func().debug("progress: \(progress)")
+          observer.onNext(.downloading(progress: progress.fractionCompleted))
         }
         .response { response in
           // Check errors
@@ -47,8 +58,8 @@ public enum Explore {
           // Unarchive
           observer.onNext(.unarchiving)
           SSZipArchive.unzipFile(
-            atPath: URL.downloaded.path,
-            toDestination: URL.downloaded.deletingLastPathComponent().path
+            atPath: url.downloaded.path,
+            toDestination: url.prefix.path
           )
           observer.onCompleted()
         }
@@ -57,7 +68,7 @@ public enum Explore {
     } // .create
   }
 
-  private static var parse: Observable<LoadingState> {
+  private static var parse: Observable<ListsLoadingState> {
     return .create { observer in
       jack.func().assertBackgroundThread()
 
@@ -65,46 +76,32 @@ public enum Explore {
 
       // Parse folder
       do {
-        // Curated topics
+        let url = try URLs()
 
+        // Curated topics
         let topics = try FileManager.default
-          // For each directory in `topics` folder
-          .contentsOfDirectory(atPath: URL.topics.path)
-          // Append `index.md`
-          .map { path -> URL in
-            return URL.topics.appendingPathComponent("\(path)/index.md")
-          }
-          // Filter out non-existing files.
-          .filter { url in
-            FileManager.default.fileExists(atPath: url.path)
-          }
-          // Parse each `index.md` file as an instance of `GitHub.CuratedTopic`
-          .map { url -> CuratedTopic in
-            let baseDir = url.deletingLastPathComponent()
-            let text = try String(contentsOf: url)
-            let (yamlString, description) = try parse(text: text)
-            return try CuratedTopic(yamlString: yamlString, description: description, baseDir: baseDir)
+          .contentsOfDirectory(atPath: try url.topics.path)
+          .flatMap { name -> [CuratedTopic] in
+            let indexFile = url.topics.appendingPathComponent("\(name)/index.md")
+            if let text = try? String(contentsOf: indexFile) {
+              let (yamlString, description) = try parse(markdown: text)
+              return [try CuratedTopic(yamlString: yamlString, description: description, directory: name)]
+            } else {
+              return []
+            }
           }
 
         // Collections
-
         let collections = try FileManager.default
-          // For each directory in `collections` folder
-          .contentsOfDirectory(atPath: URL.collections.path)
-          // Append `index.md`
-          .map { path -> URL in
-            return URL.collections.appendingPathComponent("\(path)/index.md")
-          }
-          // Filter out non-existing files.
-          .filter { url in
-            FileManager.default.fileExists(atPath: url.path)
-          }
-          // Parse each `index.md` file as an instance of `GitHub.Explore.Collection`
-          .map { url -> Collection in
-            let baseDir = url.deletingLastPathComponent()
-            let text = try String(contentsOf: url)
-            let (yamlString, description) = try parse(text: text)
-            return try Collection(yamlString: yamlString, description: description, baseDir: baseDir)
+          .contentsOfDirectory(atPath: try url.collections.path)
+          .flatMap { name -> [Collection] in
+            let indexFile = url.collections.appendingPathComponent("\(name)/index.md")
+            if let text = try? String(contentsOf: indexFile) {
+              let (yamlString, description) = try parse(markdown: text)
+              return [try Collection(yamlString: yamlString, description: description, directory: name)]
+            } else {
+              return []
+            }
           }
 
         let lists = Lists(topics: topics, collections: collections)
@@ -117,56 +114,76 @@ public enum Explore {
     } // return .create
   }
 
-  public static var lists: Observable<LoadingState> {
-    let progressiveStates = download.share()
-    let finalState = download
-      .ignoreElements()
+  public static var lists: Observable<ListsLoadingState> {
+    return download
       .observeOn(ConcurrentDispatchQueueScheduler(qos: .utility))
-      .andThen(parse)
-    return Observable.merge(progressiveStates, finalState)
+      .concat(parse)
   }
-
 }
 
 // MARK: - Types
 
 public extension Explore {
-
-  enum LoadingState {
-    case downloading(completed: Double)
+  enum ListsLoadingState {
+    case downloading(progress: Double)
     case unarchiving
     case parsing
     case success(Lists)
+
+    public var value: Lists! {
+      switch self {
+      case let .success(lists):
+        return lists
+      default:
+        return nil
+      }
+    }
   }
 
   struct Lists: Codable {
     public let topics: [CuratedTopic]
     public let collections: [Collection]
   }
-
 }
 
 // MARK: - URLs
 
-private extension URL {
+extension Explore {
 
-  static let download = URL(string: "https://github.com/github/explore/archive/master.zip")!
+  struct URLs {
+    let prefix: URL
 
-  /// Application Support/GitHubKit/GitHub.Explore/
-  static let prefix: URL = {
-    let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-    return url.appendingPathComponent("GitHubKit/GitHub.Explore")
-  }()
+    init() throws {
+      let url = try FileManager.default.url(
+        for: .applicationSupportDirectory,
+        in: .userDomainMask,
+        appropriateFor: nil,
+        create: true
+      )
+      prefix = url.appendingPathComponent("GitHubKit/GitHubExplore")
+    }
 
-  /// Application Support/GitHubKit/GitHub.Explore/downloaded.zip
-  static let downloaded = prefix.appendingPathComponent("downloaded.zip")
+    let download = URL(string: "https://github.com/github/explore/archive/master.zip")!
 
-  /// Application Support/GitHubKit/GitHub.Explore/explore-master/
-  static let unzipped = prefix.appendingPathComponent("explore-master")
+    /// Application Support/GitHubKit/GitHubExplore/downloaded.zip
+    var downloaded: URL {
+      return prefix.appendingPathComponent("downloaded.zip")
+    }
 
-  /// Application Support/GitHubKit/GitHub.Explore/explore-master/topics/
-  static let topics = unzipped.appendingPathComponent("topics")
-  /// Application Support/GitHubKit/GitHub.Explore/explore-master/collections/
-  static let collections = unzipped.appendingPathComponent("collections")
+    /// Application Support/GitHubKit/GitHubExplore/explore-master/
+    var unzipped: URL {
+      return prefix.appendingPathComponent("explore-master")
+    }
+
+    /// Application Support/GitHubKit/GitHubExplore/explore-master/topics/
+    var topics: URL {
+      return unzipped.appendingPathComponent("topics")
+    }
+
+    /// Application Support/GitHubKit/GitHubExplore/explore-master/collections/
+    var collections: URL {
+      return unzipped.appendingPathComponent("collections")
+    }
+  }
 
 }
