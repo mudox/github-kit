@@ -12,7 +12,7 @@ public struct Collection: Codable {
   public let creator: String?
   public let displayName: String
   public let description: String
-  
+
   private let logoRelativePath: String?
   public var logoLocalURL: URL? {
     do {

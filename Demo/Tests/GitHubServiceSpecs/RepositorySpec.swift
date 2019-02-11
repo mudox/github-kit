@@ -19,7 +19,7 @@ class RepositorySpec: QuickSpec { override func spec() {
 
   it("repository") {
     // Arrange
-    let jack = Jack("Service.repository")
+    let jack = Jack("Test.Service.repository")
 
     HTTPStubbing.stubIfEnabled(
       name: "repository",
@@ -46,7 +46,7 @@ class RepositorySpec: QuickSpec { override func spec() {
 
   it("myRepositories") {
     // Arrange
-    let jack = Jack("Service.myRepositories")
+    let jack = Jack("Test.Service.myRepositories")
 
     HTTPStubbing.stubIfEnabled(
       name: "myRepositories",
@@ -73,7 +73,7 @@ class RepositorySpec: QuickSpec { override func spec() {
 
   it("repositories") {
     // Arrange
-    let jack = Jack("Service.repositories")
+    let jack = Jack("Test.Service.repositories")
 
     HTTPStubbing.stubIfEnabled(
       name: "repositories",
@@ -100,7 +100,7 @@ class RepositorySpec: QuickSpec { override func spec() {
 
   it("organizationRepositories") {
     // Arrange
-    let jack = Jack("Service.organizationRepositories")
+    let jack = Jack("Test.Service.organizationRepositories")
 
     HTTPStubbing.stubIfEnabled(
       name: "organizationRepositories",
@@ -127,7 +127,7 @@ class RepositorySpec: QuickSpec { override func spec() {
 
   it("repositoryTopics") {
     // Arrange
-    let jack = Jack("Service.repositoryTopics")
+    let jack = Jack("Test.Service.repositoryTopics")
 
     HTTPStubbing.stubIfEnabled(
       name: "repositoryTopics",
@@ -154,7 +154,7 @@ class RepositorySpec: QuickSpec { override func spec() {
 
   it("repositoryTags") {
     // Arrange
-    let jack = Jack("Service.repositoryTags")
+    let jack = Jack("Test.Service.repositoryTags")
 
     HTTPStubbing.stubIfEnabled(
       name: "repositoryTags",
@@ -181,7 +181,7 @@ class RepositorySpec: QuickSpec { override func spec() {
 
   it("repositoryContributors") {
     // Arrange
-    let jack = Jack("Service.repositoryContributors")
+    let jack = Jack("Test.Service.repositoryContributors")
 
     HTTPStubbing.stubIfEnabled(
       name: "repositoryContributors",
@@ -208,7 +208,7 @@ class RepositorySpec: QuickSpec { override func spec() {
 
   it("repositoryLanguages") {
     // Arrange
-    let jack = Jack("Service.repositoryLanguages")
+    let jack = Jack("Test.Service.repositoryLanguages")
 
     HTTPStubbing.stubIfEnabled(
       name: "repositoryLanguages",

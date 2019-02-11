@@ -19,7 +19,7 @@ class GitDataSpec: QuickSpec { override func spec() {
 
   it("reference") {
     // Arrange
-    let jack = Jack("Service.reference")
+    let jack = Jack("Test.Service.reference")
 
     HTTPStubbing.stubIfEnabled(
       name: "reference",
@@ -46,7 +46,7 @@ class GitDataSpec: QuickSpec { override func spec() {
 
   it("commit") {
     // Arrange
-    let jack = Jack("Service.commit")
+    let jack = Jack("Test.Service.commit")
 
     HTTPStubbing.stubIfEnabled(
       name: "commit",
@@ -75,7 +75,7 @@ class GitDataSpec: QuickSpec { override func spec() {
 
   it("tree") {
     // Arrange
-    let jack = Jack("Service.tree")
+    let jack = Jack("Test.Service.tree")
 
     HTTPStubbing.stubIfEnabled(
       name: "tree",
@@ -103,7 +103,7 @@ class GitDataSpec: QuickSpec { override func spec() {
 
   it("blob") {
     // Arrange
-    let jack = Jack("Service.blob")
+    let jack = Jack("Test.Service.blob")
 
     HTTPStubbing.stubIfEnabled(
       name: "blob",

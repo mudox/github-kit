@@ -18,7 +18,7 @@ class UserSpec: QuickSpec { override func spec() {
 
   it("myProfile") {
     // Arrange
-    let jack = Jack("Service.myProfile")
+    let jack = Jack("Test.Service.myProfile")
 
     HTTPStubbing.stubIfEnabled(
       name: "myProfile",
@@ -44,7 +44,7 @@ class UserSpec: QuickSpec { override func spec() {
 
   it("profile") {
     // Arrange
-    let jack = Jack("Service.profile")
+    let jack = Jack("Test.Service.profile")
 
     HTTPStubbing.stubIfEnabled(
       name: "profile",
@@ -70,7 +70,7 @@ class UserSpec: QuickSpec { override func spec() {
 
   it("isFollowing") {
     // Arrange
-    let jack = Jack("Service.isFollowing")
+    let jack = Jack("Test.Service.isFollowing")
 
     HTTPStubbing.stubIfEnabled(
       name: "isFollowing",

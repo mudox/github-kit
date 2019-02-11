@@ -18,7 +18,7 @@ afterEach(Fixtures.cleanup)
 
   it("zen") {
     // Arrange
-    let jack = Jack("Service.user")
+    let jack = Jack("Test.Service.user")
 
     HTTPStubbing.stubIfEnabled(
       name: "zen",
@@ -41,7 +41,7 @@ afterEach(Fixtures.cleanup)
 
   it("rateLimit") {
     // Arrange
-    let jack = Jack("Service.rateLimit")
+    let jack = Jack("Test.Service.rateLimit")
 
     HTTPStubbing.stubIfEnabled(
       name: "rateLimit",

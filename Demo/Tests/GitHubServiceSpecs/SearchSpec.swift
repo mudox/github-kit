@@ -18,7 +18,7 @@ class SearchSpec: QuickSpec { override func spec() {
 
   it("searchRepository") {
     // Arrange
-    let jack = Jack("Service.search")
+    let jack = Jack("Test.Service.search")
 
     for index in 0 ..< 4 {
       HTTPStubbing.stubIfEnabled(
