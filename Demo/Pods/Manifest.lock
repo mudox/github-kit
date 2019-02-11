@@ -11,7 +11,7 @@ PODS:
     - RxCocoa
     - RxSwift
     - SSZipArchive
-    - SwiftHEXColors (~> 1.1)
+    - SwiftHEXColors
     - Yams
   - JacKit (1.0):
     - CocoaLumberjack/Swift (~> 3.3.0)
@@ -63,7 +63,7 @@ PODS:
     - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
   - SSZipArchive (2.1.4)
-  - SwiftHEXColors (1.1.2)
+  - SwiftHEXColors (1.2.0)
   - SwiftLint (0.27.0)
   - Yams (1.0.1)
 
@@ -109,7 +109,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
-  GitHubKit: 1364db4a899543412237251a0f2017de8c929543
+  GitHubKit: 8ee8c6d7eb41394446e4b0e0ffb3e2aaeab4ac80
   JacKit: 0342f68694da0b0a14c35ab78ee3f402119d3517
   Kanna: c60b61d72554bf04ed1ee074f9b379855cab4892
   Moya: a725035953bc1c0eb1be505ab903984501d82440
@@ -125,7 +125,7 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
-  SwiftHEXColors: 7f9f7e6bdce888d821e11749279733e5ddff5f51
+  SwiftHEXColors: a4ebe93a70890a9fa124e205dd785cc7552273b4
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   Yams: 572f625a8b719b73e0b57fd313c680f3e2161fe9
 

@@ -46,7 +46,7 @@
 
     ],
     "SwiftHEXColors": [
-      "~> 1.1"
+
     ]
   },
   "pod_target_xcconfig": {

@@ -5721,38 +5721,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0B3D4843DA73578F0620E7209FFEF5EF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FB0E247B694A20942B77333444FF1C7 /* SwiftHEXColors.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftHEXColors/SwiftHEXColors-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftHEXColors/SwiftHEXColors-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftHEXColors/SwiftHEXColors.modulemap";
-				PRODUCT_MODULE_NAME = SwiftHEXColors;
-				PRODUCT_NAME = SwiftHEXColors;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		0C2DC2FF632F9AE867DD985923A732D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70C3117B672030E2E33AA627FF501EA3 /* Quick.xcconfig */;
@@ -6050,6 +6018,38 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		308BA641E32A5CA61B14A9528E35FAAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FB0E247B694A20942B77333444FF1C7 /* SwiftHEXColors.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftHEXColors/SwiftHEXColors-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftHEXColors/SwiftHEXColors-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftHEXColors/SwiftHEXColors.modulemap";
+				PRODUCT_MODULE_NAME = SwiftHEXColors;
+				PRODUCT_NAME = SwiftHEXColors;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -7177,37 +7177,6 @@
 			};
 			name = Release;
 		};
-		CBD805621274818168AD5537D5D98C38 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FB0E247B694A20942B77333444FF1C7 /* SwiftHEXColors.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftHEXColors/SwiftHEXColors-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftHEXColors/SwiftHEXColors-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftHEXColors/SwiftHEXColors.modulemap";
-				PRODUCT_MODULE_NAME = SwiftHEXColors;
-				PRODUCT_NAME = SwiftHEXColors;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		DFCB337C083A1668F527B241E6BC4153 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 10EDAEEDBAA1510584230ABD3FD337E3 /* Nimble.xcconfig */;
@@ -7229,6 +7198,37 @@
 				MODULEMAP_FILE = "Target Support Files/Nimble/Nimble.modulemap";
 				PRODUCT_MODULE_NAME = Nimble;
 				PRODUCT_NAME = Nimble;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		ED65E2E273C062A1FD3A6AB55226306E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FB0E247B694A20942B77333444FF1C7 /* SwiftHEXColors.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftHEXColors/SwiftHEXColors-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftHEXColors/SwiftHEXColors-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftHEXColors/SwiftHEXColors.modulemap";
+				PRODUCT_MODULE_NAME = SwiftHEXColors;
+				PRODUCT_NAME = SwiftHEXColors;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -7411,8 +7411,8 @@
 		B82D97D5C15415E501859CEF2BFA76AB /* Build configuration list for PBXNativeTarget "SwiftHEXColors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CBD805621274818168AD5537D5D98C38 /* Debug */,
-				0B3D4843DA73578F0620E7209FFEF5EF /* Release */,
+				ED65E2E273C062A1FD3A6AB55226306E /* Debug */,
+				308BA641E32A5CA61B14A9528E35FAAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
